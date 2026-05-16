@@ -38,7 +38,8 @@ class LLMModel:
         
         model_name_lower = model_name.lower()
         
-        # Auto-detect based on model name patterns
+        if model_name_lower.startswith("chatgpt/") or model_name_lower.startswith("chatgpt-"):
+            return "litellm"
         if "gpt" in model_name_lower:
             return "openai"
         elif "qwen3" in model_name_lower:
@@ -53,6 +54,9 @@ class LLMModel:
         elif self.provider == "qwen3vl":
             from .qwen3vl import Qwen3VLModel
             return Qwen3VLModel(model_name=self.model_name, **kwargs)
+        elif self.provider == "litellm":
+            from .litellm_proxy import LiteLLMProxyModel
+            return LiteLLMProxyModel(model_name=self.model_name, **kwargs)
         else:
             raise ValueError(f"Unsupported provider: {self.provider}")
 
@@ -60,9 +64,7 @@ class LLMModel:
         """
         Unified generate method for all LLMs.
         """
-        if self.provider == "openai":
-            return self.model.generate(prompt, **kwargs)
-        elif self.provider == "qwen3vl":
+        if self.provider in ("openai", "qwen3vl", "litellm"):
             return self.model.generate(prompt, **kwargs)
         else:
             raise NotImplementedError(f"Model {self.provider} does not support text generation.")
@@ -71,9 +73,7 @@ class LLMModel:
         """
         Unified batch generate method for all LLMs.
         """
-        if self.provider == "openai":
-            return self.model.generate_batch(batch_prompts, **kwargs)
-        elif self.provider == "qwen3vl":
+        if self.provider in ("openai", "qwen3vl", "litellm"):
             return self.model.generate_batch(batch_prompts, **kwargs)
         else:
             raise NotImplementedError(f"Model {self.provider} does not support batch generation.")
