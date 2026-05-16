@@ -60,19 +60,22 @@ data/EgoLife/
 
 ## Memory Construction
 
-WorldMM builds three memory modules—episodic, semantic, and visual—to support long-term reasoning, which can be constructed with:
+WorldMM builds four memory modules—episodic, semantic, **spatial**, and visual—to support long-term reasoning, which can be constructed with:
 ```sh
 bash script/3_build_memory.sh
 ```
 To run a specific module only:
 ```sh
-bash script/3_build_memory.sh --step [episodic|semantic|visual]
+bash script/3_build_memory.sh --step [episodic|semantic|spatial|visual]
 ```
+
+**Spatial memory** captures WHERE-axis knowledge: object/agent locations and closed-vocab spatial relations (`in`, `on`, `next_to`, `located_in`, …). It mirrors semantic memory (graph + Personalized PageRank retrieval) but encodes location-grounded triples instead of generic entity relationships, so the reasoning agent can resolve queries like *"Where did Jake last leave his mug?"* by routing them to the `spatial` branch.
+
 #### Options
 ```sh
---step <type>       # Memory type: episodic, semantic, visual, all
+--step <type>       # Memory type: episodic, semantic, spatial, visual, all
 --gpu <ids>         # GPU IDs to use (default: 0,1,2,3)
---model <name>      # LLM model for memory construction (default: gpt-5-mini)
+--model <name>      # LLM model for memory construction (default: gpt-5-mini; spatial can also use chatgpt/gpt-5.4 via local LiteLLM proxy)
 ```
 
 ## Evaluation
