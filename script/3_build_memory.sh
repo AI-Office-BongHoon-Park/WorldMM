@@ -1,6 +1,6 @@
 #!/bin/bash
 # WorldMM Memory Construction Script
-# Usage: ./script/3_build_memory.sh [--step episodic|semantic|visual|all] [--person <person>] [--gpu 0,1,2,3] [--model gpt-5-mini]
+# Usage: ./script/3_build_memory.sh [--step episodic|semantic|spatial|visual|all] [--person <person>] [--gpu 0,1,2,3] [--model gpt-5-mini]
 
 set -e
 trap 'echo -e "\nInterrupted."; exit 130' INT TERM
@@ -21,7 +21,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 cd "$(dirname "$0")/.."
-mkdir -p output/metadata/{episodic,semantic,visual}_memory/${PERSON}
+mkdir -p output/metadata/{episodic,semantic,spatial,visual}_memory/${PERSON}
 
 BLUE='\033[1;34m' NC='\033[0m'
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -69,10 +69,26 @@ run_visual() {
         --person "$PERSON" --gpu "$GPU_LIST" --num_frames "$NUM_FRAMES" 2>&1 | tee "$LOG_DIR/visual_features_$TIMESTAMP.log"
 }
 
+run_spatial() {
+    SAFE_MODEL="${MODEL//\//_}"
+    echo -e "${BLUE}Spatial Memory: Extracting triples...${NC}"
+    python preprocess/spatial_memory/extract_spatial_triples.py \
+        --caption-file "data/EgoLife/EgoLifeCap/${PERSON}/${PERSON}_30sec.json" \
+        --openie-file "output/metadata/episodic_memory/${PERSON}/openie_results_${MODEL}.json" \
+        --output-dir "output/metadata/spatial_memory/${PERSON}" \
+        --model "$MODEL" 2>&1 | tee "$LOG_DIR/spatial_extraction_$TIMESTAMP.log"
+    echo -e "${BLUE}Spatial Memory: Consolidating...${NC}"
+    CUDA_VISIBLE_DEVICES="${GPU_LIST%%,*}" python preprocess/spatial_memory/consolidate_spatial_memory.py \
+        --spatial-file "output/metadata/spatial_memory/${PERSON}/spatial_extraction_results_${SAFE_MODEL}.json" \
+        --output-dir "output/metadata/spatial_memory/${PERSON}" \
+        --model "$MODEL" 2>&1 | tee "$LOG_DIR/spatial_consolidation_$TIMESTAMP.log"
+}
+
 case $STEP in
-    all) run_episodic; run_semantic; run_visual ;;
+    all) run_episodic; run_semantic; run_spatial; run_visual ;;
     episodic) run_episodic ;;
     semantic) run_semantic ;;
+    spatial) run_spatial ;;
     visual) run_visual ;;
     *) echo "Invalid step: $STEP"; exit 1 ;;
 esac
