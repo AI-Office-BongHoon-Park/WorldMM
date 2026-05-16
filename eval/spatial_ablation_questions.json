@@ -1,0 +1,42 @@
+[
+  {
+    "id": "S1",
+    "question": "During this scene, where was Lucia located?",
+    "A": "kitchen",
+    "B": "bedroom",
+    "C": "computer_room",
+    "D": "balcony",
+    "answer": "C",
+    "grounding": "spatial triple: (Lucia, located_in, computer_room)"
+  },
+  {
+    "id": "S2",
+    "question": "What object was placed on the table?",
+    "A": "mug",
+    "B": "phone",
+    "C": "book",
+    "D": "laptop",
+    "answer": "B",
+    "grounding": "spatial triple: (phone, on, table)"
+  },
+  {
+    "id": "S3",
+    "question": "Who was sitting on the stool?",
+    "A": "Lucia",
+    "B": "Tasha",
+    "C": "Katrina",
+    "D": "Jake (I)",
+    "answer": "C",
+    "grounding": "spatial triple: (Katrina, on, stool)"
+  },
+  {
+    "id": "S4",
+    "question": "Where was the camera wearer (Jake) located during this scene?",
+    "A": "kitchen",
+    "B": "living_room",
+    "C": "balcony",
+    "D": "computer_room",
+    "answer": "D",
+    "grounding": "spatial triple: (I, located_in, computer_room)"
+  }
+]

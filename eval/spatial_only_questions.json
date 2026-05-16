@@ -1,0 +1,222 @@
+[
+  {
+    "id": "P1",
+    "category": "place_lookup",
+    "question": "At Hema Fresh supermarket, in which section was Alice located?",
+    "A": "freezer",
+    "B": "deli_section",
+    "C": "fruit_counter",
+    "D": "checkout_counter",
+    "answer": "B",
+    "grounding": "Alice located_in deli_section"
+  },
+  {
+    "id": "P2",
+    "category": "place_lookup",
+    "question": "Where was Lucia recorded as being located during DAY1?",
+    "A": "school",
+    "B": "Changchun",
+    "C": "dorm",
+    "D": "ikea",
+    "answer": "A",
+    "grounding": "Lucia located_in school"
+  },
+  {
+    "id": "P3",
+    "category": "place_lookup",
+    "question": "Where was the camera wearer (I) when interacting with the fruit display?",
+    "A": "dairy_section",
+    "B": "freezer",
+    "C": "fruit_counter",
+    "D": "checkout_counter",
+    "answer": "C",
+    "grounding": "I located_in fruit_counter / pineapple_display_case"
+  },
+  {
+    "id": "P4",
+    "category": "place_lookup",
+    "question": "Which supermarket-section was Tasha in when handling frozen goods?",
+    "A": "freezer",
+    "B": "deli_section",
+    "C": "vegetable_section",
+    "D": "produce",
+    "answer": "A",
+    "grounding": "Tasha located_in freezer"
+  },
+  {
+    "id": "P5",
+    "category": "place_lookup",
+    "question": "Where was Shure during the dorm-related conversation?",
+    "A": "Changchun",
+    "B": "Beijing",
+    "C": "dorm",
+    "D": "school",
+    "answer": "C",
+    "grounding": "Shure located_in dorm"
+  },
+  {
+    "id": "P6",
+    "category": "place_lookup",
+    "question": "Which floor of the house does the meeting room sit on?",
+    "A": "first_floor",
+    "B": "second_floor",
+    "C": "upstairs",
+    "D": "downstairs",
+    "answer": "A",
+    "grounding": "meeting_room located_in first_floor"
+  },
+  {
+    "id": "P7",
+    "category": "place_lookup",
+    "question": "On which floor is the activity room located?",
+    "A": "first_floor",
+    "B": "ground_floor",
+    "C": "upstairs",
+    "D": "courtyard",
+    "answer": "C",
+    "grounding": "activity_room located_in upstairs"
+  },
+  {
+    "id": "O1",
+    "category": "object_location",
+    "question": "Where was the hard drive placed?",
+    "A": "table",
+    "B": "dining_table",
+    "C": "counter",
+    "D": "bed",
+    "answer": "B",
+    "grounding": "hard drive on dining_table"
+  },
+  {
+    "id": "O2",
+    "category": "object_location",
+    "question": "Where was the pen seen during DAY1?",
+    "A": "shelf",
+    "B": "floor",
+    "C": "table",
+    "D": "drawer",
+    "answer": "C",
+    "grounding": "pen on table"
+  },
+  {
+    "id": "O3",
+    "category": "object_location",
+    "question": "Where was the data cable observed?",
+    "A": "floor",
+    "B": "table",
+    "C": "shelf",
+    "D": "counter",
+    "answer": "B",
+    "grounding": "data cable on table"
+  },
+  {
+    "id": "O4",
+    "category": "object_location",
+    "question": "Where did the slate end up?",
+    "A": "table",
+    "B": "shelf",
+    "C": "floor",
+    "D": "counter",
+    "answer": "C",
+    "grounding": "slate on floor"
+  },
+  {
+    "id": "O5",
+    "category": "object_location",
+    "question": "Where was the paper bag in the house?",
+    "A": "kitchen",
+    "B": "living_room",
+    "C": "bedroom",
+    "D": "outside",
+    "answer": "A",
+    "grounding": "paper_bag located_in kitchen"
+  },
+  {
+    "id": "O6",
+    "category": "object_location",
+    "question": "Where was the puzzle piece placed during the puzzle activity?",
+    "A": "table",
+    "B": "floor",
+    "C": "plate",
+    "D": "shelf",
+    "answer": "C",
+    "grounding": "puzzle_piece on plate"
+  },
+  {
+    "id": "O7",
+    "category": "object_location",
+    "question": "On which piece of furniture were the boxes seen this day (excluding outside)?",
+    "A": "shelf only",
+    "B": "table, bed, and stool",
+    "C": "kitchen counter only",
+    "D": "floor only",
+    "answer": "B",
+    "grounding": "box on table; box on bed; box on stool"
+  },
+  {
+    "id": "S1",
+    "category": "person_on_surface",
+    "question": "What did Katrina sit on during the puzzle activity?",
+    "A": "chair",
+    "B": "stool",
+    "C": "sofa",
+    "D": "floor",
+    "answer": "A",
+    "grounding": "Katrina on chair"
+  },
+  {
+    "id": "S2",
+    "category": "person_on_surface",
+    "question": "What did the camera wearer (I) end up sitting on at the dining setup?",
+    "A": "chair",
+    "B": "stool",
+    "C": "bench",
+    "D": "sofa",
+    "answer": "B",
+    "grounding": "I on stool"
+  },
+  {
+    "id": "N1",
+    "category": "proximity",
+    "question": "When the camera wearer was next to a single companion in the kitchen area, who was it most often?",
+    "A": "Tasha",
+    "B": "Shure",
+    "C": "Lucia",
+    "D": "Katrina",
+    "answer": "B",
+    "grounding": "I next_to Shure (multiple)"
+  },
+  {
+    "id": "N2",
+    "category": "proximity",
+    "question": "Who was Shure standing next to besides the camera wearer?",
+    "A": "Alice",
+    "B": "Tasha",
+    "C": "Katrina",
+    "D": "Lucia",
+    "answer": "A",
+    "grounding": "Shure next_to Alice"
+  },
+  {
+    "id": "C1",
+    "category": "place_composition",
+    "question": "What does the kitchen contain according to the recorded spatial layout?",
+    "A": "light",
+    "B": "fridge",
+    "C": "blender",
+    "D": "oven",
+    "answer": "A",
+    "grounding": "kitchen contains light"
+  },
+  {
+    "id": "C2",
+    "category": "place_composition",
+    "question": "What is on the table that the spatial record notes (two items mentioned)?",
+    "A": "two_bottles",
+    "B": "two_books",
+    "C": "two_phones",
+    "D": "two_cups",
+    "answer": "A",
+    "grounding": "table contains two_bottles"
+  }
+]
