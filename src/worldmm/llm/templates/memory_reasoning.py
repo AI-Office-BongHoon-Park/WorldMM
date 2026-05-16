@@ -18,6 +18,7 @@ When searching, you must select exactly one memory type and form a query.
 2. Semantic: Entities/relationships. Stores factual knowledge about entities and their relationships, roles, and habits. Query by ENTITY/CONCEPT.
 3. Visual: Scene/setting snapshots. Stores visual snapshots of scenes and settings. Query by SCENE/SETTING or TIMESTAMP RANGE.
     - For timestamp range queries, return in the format: DAY X HH:MM:SS - DAY Y HH:MM:SS
+4. Spatial: WHERE-axis facts (object/agent locations, room/place containment, relative positions). Stores closed-vocab spatial triples like (subject, on|in|next_to|located_in|..., object). Query by OBJECT NAME + LOCATION CUE or by PLACE NAME.
 
 # Context Inputs:
 - Current Query
@@ -39,8 +40,8 @@ When searching, you must select exactly one memory type and form a query.
 # Output Format:
 {
  "decision": "search" | "answer",
- "selected_memory": {
-   "memory_type": "episodic" | "semantic" | "visual",
+  "selected_memory": {
+   "memory_type": "episodic" | "semantic" | "visual" | "spatial",
    "search_query": <str>
  } # Omit if decision = "answer"
 }
@@ -101,6 +102,52 @@ Retrieved:
  "selected_memory": {
    "memory_type": "semantic",
    "search_query": "Luis relation to Maria"
+ }
+}
+
+## Example S1 (spatial — object-location)
+Query: Where did Jake last leave his coffee mug?
+Round History: []
+
+### Response:
+{
+ "decision": "search",
+ "selected_memory": {
+   "memory_type": "spatial",
+   "search_query": "Jake coffee mug location"
+ }
+}
+
+## Example S2 (spatial — place query)
+Query: What objects were in the kitchen during dinner?
+Round History: []
+
+### Response:
+{
+ "decision": "search",
+ "selected_memory": {
+   "memory_type": "spatial",
+   "search_query": "kitchen contains objects"
+ }
+}
+
+## Example S3 (spatial → episodic chain)
+Query: Where was Jake just before he went to bed, and what was he doing?
+Round History:
+### Round 1
+Decision: search
+Memory: spatial
+Search Query: Jake location before bedtime
+Retrieved:
+(Jake, located_in, living_room)
+(Jake, next_to, sofa)
+
+### Response:
+{
+ "decision": "search",
+ "selected_memory": {
+   "memory_type": "episodic",
+   "search_query": "Jake activity in living room before bed"
  }
 }
 

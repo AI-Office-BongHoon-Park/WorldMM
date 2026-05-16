@@ -15,6 +15,7 @@ from ..embedding import EmbeddingModel
 
 from .episodic import EpisodicMemory, CaptionEntry
 from .semantic import SemanticMemory, SemanticTripleEntry
+from .spatial import SpatialMemory, SpatialTripleEntry
 from .visual import VisualMemory
 from .utils import *
 
@@ -36,11 +37,13 @@ class WorldMemory:
     - Episodic: Specific events/actions using HippoRAG for retrieval
     - Semantic: Entity/relationship knowledge using PPR graph retrieval  
     - Visual: Scene/setting snapshots using embedding similarity
+    - Spatial: WHERE-axis (object/place co-occurrence) using PPR graph retrieval
     
     Attributes:
         episodic_memory: EpisodicMemory instance
         semantic_memory: SemanticMemory instance
         visual_memory: VisualMemory instance
+        spatial_memory: SpatialMemory instance
         retriever_llm_model: LLM for retrieval operations (NER, OpenIE)
         respond_llm_model: LLM for iterative reasoning and generating answers
         prompt_template_manager: Manager for prompt templates
@@ -92,6 +95,8 @@ class WorldMemory:
         self.semantic_memory = SemanticMemory(embedding_model=embedding_model)
         
         self.visual_memory = VisualMemory(embedding_model=embedding_model)
+
+        self.spatial_memory = SpatialMemory(embedding_model=embedding_model)
         
         # Track indexed time
         self.indexed_time: int = 0
@@ -100,6 +105,7 @@ class WorldMemory:
         self.episodic_top_k: int = 3
         self.semantic_top_k: int = 10
         self.visual_top_k: int = 3
+        self.spatial_top_k: int = 8
         
     def load_episodic_captions(
         self,
@@ -155,6 +161,23 @@ class WorldMemory:
             self.visual_memory.load_clips_from_file(clips_path)
         if clips_data:
             self.visual_memory.load_clips_from_data(clips_data)
+
+    def load_spatial_triples(
+        self,
+        file_path: Optional[str] = None,
+        data: Optional[Dict[str, Dict[str, Any]]] = None,
+    ) -> None:
+        """
+        Load spatial triples from file or data.
+        
+        Args:
+            file_path: Path to JSON file with consolidated spatial triples
+            data: In-memory dict with spatial triples
+        """
+        if file_path:
+            self.spatial_memory.load_triples_from_file(file_path)
+        if data:
+            self.spatial_memory.load_triples_from_data(data)
     
     def index(self, until_time: int) -> None:
         """
@@ -175,6 +198,7 @@ class WorldMemory:
         # Index each memory type
         self.episodic_memory.index(until_time)
         self.semantic_memory.index(until_time)
+        self.spatial_memory.index(until_time)
         self.visual_memory.index(until_time)
         
         self.indexed_time = until_time
@@ -260,7 +284,7 @@ Retrieved:
         """
         messages = []
         for item in retrieved_items:
-            if item.memory_type in ("episodic", "semantic"):
+            if item.memory_type in ("episodic", "semantic", "spatial"):
                 messages.append({"type": "text", "text": item.content})
             elif item.memory_type == "visual":
                 if isinstance(item.content, list):
@@ -365,6 +389,49 @@ Retrieved:
         content = self.semantic_memory.retrieve_triples_as_str(new_items)
         return content, retrieved_set
     
+    def retrieve_from_spatial(
+        self,
+        query: str,
+        top_k: Optional[int] = None,
+        retrieved_set: Optional[Set[str]] = None,
+    ) -> Tuple[str, Set[str]]:
+        """
+        Retrieve from spatial memory.
+        
+        Args:
+            query: Search query
+            top_k: Number of results to retrieve
+            retrieved_set: Set of already retrieved items to avoid duplicates
+            
+        Returns:
+            Tuple of (formatted content string, updated retrieved set)
+        """
+        top_k = top_k or self.spatial_top_k
+        retrieved_set = retrieved_set or set()
+        
+        result = self.spatial_memory.retrieve(
+            query=query,
+            top_k=top_k * 2,
+            as_context=False,
+        )
+        
+        if not result:
+            return "", retrieved_set
+        
+        if isinstance(result, str):
+            return result, retrieved_set
+        
+        new_items: List[SpatialTripleEntry] = []
+        for entry in result:
+            if entry.id not in retrieved_set:
+                new_items.append(entry)
+                retrieved_set.add(entry.id)
+            if len(new_items) >= top_k:
+                break
+        
+        content = self.spatial_memory.retrieve_triples_as_str(new_items)
+        return content, retrieved_set
+
     def retrieve_from_visual(
         self,
         query: str,
@@ -462,7 +529,7 @@ Round History:
 
 Task:
 Step 1: Decide whether to "search" or "answer".
-Step 2 (only if search): Pick one memory type (episodic/semantic/visual) and form a search query."""
+Step 2 (only if search): Pick one memory type (episodic/semantic/visual/spatial) and form a search query."""
             
             # Get reasoning decision
             reasoning_messages = copy.deepcopy(reasoning_prompt)
@@ -511,6 +578,12 @@ Step 2 (only if search): Pick one memory type (episodic/semantic/visual) and for
                         search_query,
                         retrieved_set=retrieved_set
                     )
+
+                elif memory_type == "spatial":
+                    content, retrieved_set = self.retrieve_from_spatial(
+                        search_query,
+                        retrieved_set=retrieved_set
+                    )
                     
                 elif memory_type == "visual":
                     images, retrieved_set = self.retrieve_from_visual(
@@ -536,7 +609,7 @@ Step 2 (only if search): Pick one memory type (episodic/semantic/visual) and for
                     continue
                 
                 # Add to retrieved items (text memories)
-                if memory_type in ("episodic", "semantic") and content:
+                if memory_type in ("episodic", "semantic", "spatial") and content:
                     retrieved_items.append(RetrievedItem(
                         memory_type=memory_type,
                         content=content,
@@ -617,6 +690,7 @@ Step 2 (only if search): Pick one memory type (episodic/semantic/visual) and for
     def cleanup(self) -> None:
         """Release GPU memory and other resources."""
         self.semantic_memory.cleanup()
+        self.spatial_memory.cleanup()
         self.visual_memory.cleanup()
         logger.info("Memory cleanup complete")
     
@@ -629,6 +703,7 @@ Step 2 (only if search): Pick one memory type (episodic/semantic/visual) and for
         episodic: Optional[int] = None,
         semantic: Optional[int] = None,
         visual: Optional[int] = None,
+        spatial: Optional[int] = None,
     ) -> None:
         """
         Configure the number of items to retrieve from each memory type.
@@ -637,6 +712,7 @@ Step 2 (only if search): Pick one memory type (episodic/semantic/visual) and for
             episodic: Top-k for episodic memory
             semantic: Top-k for semantic memory
             visual: Top-k for visual memory
+            spatial: Top-k for spatial memory
         """
         if episodic is not None:
             self.episodic_top_k = episodic
@@ -644,3 +720,5 @@ Step 2 (only if search): Pick one memory type (episodic/semantic/visual) and for
             self.semantic_top_k = semantic
         if visual is not None:
             self.visual_top_k = visual
+        if spatial is not None:
+            self.spatial_top_k = spatial
