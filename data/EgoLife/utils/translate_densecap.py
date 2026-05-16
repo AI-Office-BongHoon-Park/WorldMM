@@ -6,7 +6,8 @@ from tqdm import tqdm
 
 from worldmm.llm import LLMModel
 
-model = LLMModel(model_name="gpt-5-mini")
+_MODEL_NAME = os.environ.get("WORLDMM_LLM_MODEL", "gpt-5-mini")
+model = LLMModel(model_name=_MODEL_NAME)
 
 SYSTEM_PROMPT = "You are a helpful assistant that translates text from Chinese to English. Answer in translated text only."
 
@@ -61,18 +62,29 @@ def translate(input_path: str, output_path: str) -> None:
     if os.path.isdir(input_path):
         os.makedirs(output_path, exist_ok=True)
         day_dirs = sorted([d for d in os.listdir(input_path) if d.startswith("DAY")])
-        
-        file_pairs = []
-        for day in day_dirs:
-            day_path = os.path.join(input_path, day)
-            if not os.path.isdir(day_path):
-                continue
 
-            files = [f for f in os.listdir(day_path) if f.endswith(".srt")]
+        file_pairs = []
+        if day_dirs:
+            for day in day_dirs:
+                day_path = os.path.join(input_path, day)
+                if not os.path.isdir(day_path):
+                    continue
+                files = [f for f in os.listdir(day_path) if f.endswith(".srt")]
+                for file in files:
+                    input_file = os.path.join(day_path, file)
+                    output_file = os.path.join(output_path, file.replace(".srt", ".jsonl"))
+                    file_pairs.append((input_file, output_file))
+        else:
+            files = [f for f in os.listdir(input_path) if f.endswith(".srt")]
             for file in files:
-                input_file = os.path.join(day_path, file)
+                input_file = os.path.join(input_path, file)
                 output_file = os.path.join(output_path, file.replace(".srt", ".jsonl"))
                 file_pairs.append((input_file, output_file))
+
+        file_pairs = [(i, o) for i, o in file_pairs if not os.path.exists(o)]
+        if not file_pairs:
+            print("All target SRT files already translated; nothing to do.")
+            return
         
         with ThreadPoolExecutor() as executor:
             futures = {executor.submit(_translate_file, in_f, out_f): in_f for in_f, out_f in file_pairs}
@@ -83,6 +95,18 @@ def translate(input_path: str, output_path: str) -> None:
 
 
 if __name__ == "__main__":
-    input_path = "data/EgoLife/EgoLifeCap/DenseCaption/A1_JAKE"
-    output_path = "data/EgoLife/EgoLifeCap/DenseCaption/translated"
-    translate(input_path, output_path)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--input", default="data/EgoLife/EgoLifeCap/DenseCaption/A1_JAKE",
+                        help="SRT file or directory of DAY folders.")
+    parser.add_argument("--output", default="data/EgoLife/EgoLifeCap/DenseCaption/translated",
+                        help="Output JSONL file (if input is a file) or directory.")
+    parser.add_argument("--day", default=None,
+                        help="If input is a directory, restrict to a single DAY (e.g. DAY1).")
+    args = parser.parse_args()
+
+    input_path = args.input
+    if args.day and os.path.isdir(input_path):
+        input_path = os.path.join(input_path, args.day)
+
+    translate(input_path, args.output)
