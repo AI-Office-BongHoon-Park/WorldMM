@@ -16,13 +16,15 @@ This document is the survey + opinionated verdict. It is intentionally one level
 
 | Question | Verdict |
 |---|---|
-| Should WorldMM add a geometric memory layer beyond text triples? | **Yes, but RGB-only and as a text-summarising layer.** |
-| Which method? | **Depth Anything V2 + ConceptGraphs-style JSON scene graph** (cheapest path that fits the existing `retrieve(query: str) -> str` contract). |
+| Should WorldMM add a geometric memory layer beyond text triples? | **Yes, but as an EXTENSION of the existing 4th axis, not a new 5th axis.** |
+| Which method? | **Depth Anything V2 + open-vocab detector → per-triple geometric grounding attached to `SpatialTripleEntry.grounding`.** |
 | Should we add non-RGB sensors (LiDAR, mmWave, WiFi-CSI, RGB-D, IMU)? | **No, not for the EgoLife pipeline.** All require re-capture; the project becomes a sensor-engineering project, not a memory-reasoning project. |
 | Should we use NeRF or Gaussian Splatting as memory? | **No.** Beautiful renders, but the training cost, pose-drift, and dynamic-scene weakness make them a poor fit for 7-day egocentric memory. |
-| What is the right agent-query interface? | **A JSON-of-objects summary** (ConceptGraphs pattern), with a `collapse / expand` upgrade path (SayPlan pattern) once the LLM can call tools mid-reasoning. |
+| What is the right agent-query interface? | **The same `retrieve(query: str) -> str` the 4th axis already exposes**, augmented to render geometric grounding inline when present. Reasoning prompt still picks `"spatial"`; no new memory type. |
 
-If you read no further: **target Depth Anything V2 → posed point cloud → object-centric scene graph → ConceptGraphs JSON returned from `retrieve(query: str)`**. Treat sensors as a future-work section in the paper.
+If you read no further: **extend `SpatialTripleEntry` with an optional `grounding: Optional[GeometricGrounding]` field populated by a new offline pipeline (Depth Anything V2 → posed point cloud → object centroids → CLIP-match to existing triple subjects/objects). `SpatialMemory.retrieve()` keeps its current shape and just appends `[place=..., center=(x,y,z), extent=(...)]` to each line when grounding exists.** Treat sensors as a future-work section in the paper.
+
+> **Architectural choice locked in [§7](#7-extension-over-new-axis-architectural-revision):** geometric data is an *extension* of the existing 4th axis, not a parallel 5th axis. The previous draft of this document recommended a new `SpatialEncodingMemory` class — that has been superseded.
 
 ---
 
@@ -103,9 +105,9 @@ For a 6-month research arc on long-video memory, that trade is a clear *no*. Tre
 
 ---
 
-## 3. Recommended path for WorldMM (concrete)
+## 3. Recommended path for WorldMM (concrete, extension-style)
 
-### 3.1 Cheapest viable prototype
+### 3.1 Cheapest viable prototype — wired as an EXTENSION of the 4th axis
 
 ```
 RGB frames (1 fps from existing EgoLife mp4s)
@@ -114,23 +116,26 @@ RGB frames (1 fps from existing EgoLife mp4s)
 Depth Anything V2 (Base or Small)  ─── per-frame relative depth, ~3 GB VRAM
         │
         ▼
-Camera intrinsic estimation (VGGT or COLMAP) ─── per-clip, ~5 GB VRAM
+Camera intrinsic estimation (VGGT or hard-coded EgoLife default) ─── per-clip, ~5 GB VRAM
         │
         ▼
 Per-frame oriented point cloud (Open3D)
         │
         ▼
-Open-vocabulary detection (GroundingDINO + SAM2) ─── object proposals per keyframe
+Open-vocabulary detection (GroundingDINO + SAM2) ─── object proposals per keyframe → 3D centroid
         │
         ▼
-Object-centric scene graph (ConceptGraphs style)  ─── { id, tag, caption, bbox_center, bbox_extent, observed_at, place_name }
+Object index: { detected_label, caption, bbox_center, bbox_extent, observed_at, clip_emb }
         │
+        ▼     ◄── new joinerStep: CLIP-match each existing SpatialTripleEntry.subject / .object
+        │         to the detected-object index. Where matched, populate
+        │         SpatialTripleEntry.grounding = GeometricGrounding(...)
         ▼
-SpatialEncodingMemory.retrieve(query: str) -> str
-        │  - top-K objects by CLIP similarity to query
-        │  - JSON serialised exactly like ConceptGraphs planner prompt
+SpatialMemory.retrieve(query: str) -> str    ◄── UNCHANGED INTERFACE
+        │  - existing PPR retrieval over text triples
+        │  - to_display_str() now optionally appends [place=..., center=(x,y,z), extent=(...)]
         ▼
-WorldMemory.iterative_reasoning() picks "spatial_encoding" alongside the existing 4 axes
+WorldMemory.iterative_reasoning() still picks "spatial"  ◄── prompt unchanged, no 5th type
 ```
 
 ### 3.2 Why this exact path
@@ -169,20 +174,23 @@ The reasoning LLM ingests this exactly as it ingests the existing spatial-triple
 
 ---
 
-## 4. Comparison vs. the shipped spatial-triple memory
+## 4. Comparison — current 4th axis vs. extended 4th axis vs. (rejected) 5th axis
 
-| Dimension | Shipped spatial-triple memory (4th axis) | Proposed spatial-encoding memory (5th axis) |
-|---|---|---|
-| Input | Episodic triples + captions | RGB frames |
-| Predicate vocabulary | 11 closed tokens | open-vocabulary object tags |
-| Geometric grounding | None — purely linguistic | metric or relative 3D centres per object |
-| Distance queries | not supported | supported |
-| "Render the kitchen" | not supported | not supported (out of scope) |
-| Compute footprint | LLM-only | adds 3 GB VRAM (depth) + 3 GB (detector) intermittently |
-| Per-day build cost | ~10 min via proxy | estimated 30–60 min on dev box for full DAY1 |
-| Failure mode | drops out-of-vocab predicates | mis-detection / drift in long sequences |
+| Dimension | 4th axis as shipped (text triples only) | **Extended 4th axis (recommended)** | Rejected: separate 5th axis |
+|---|---|---|---|
+| Memory types exposed to the reasoning agent | 4 | **4** (same) | 5 |
+| `retrieve(query)` return shape | text triples, line per entry | **text triples; grounded lines also carry `[place=..., center=(...), extent=(...)]`** | additional JSON-of-objects payload from the new memory |
+| Triple ↔ geometric grounding join | n/a | **done offline at build time, persisted in the triple JSON** | done at query time across two memories |
+| Reasoning prompt complexity | 4 memory types + 3 spatial few-shots | **4 memory types + 1 added few-shot showing a grounded triple** | 5 memory types + new few-shots → more agent confusion |
+| Backward compat for existing builds | n/a | **full — `grounding` is `Optional[...]`; old JSON loads with `grounding=None`** | n/a — separate JSON, separate index |
+| Distance queries (e.g. "how far is sofa from kitchen") | not supported | **supported via grounding fields** | supported |
+| "Render the kitchen" | not supported | not supported | not supported (out of scope) |
+| Compute footprint | LLM only | **LLM + 3 GB VRAM (depth) + 3 GB (detector) intermittently, only for the grounding step** | same VRAM, but adds always-on object index |
+| Per-day build cost | ~10 min via proxy | **~10 min triples + 30–60 min one-time grounding pass on dev box** | similar; two pipelines instead of one |
+| Failure mode | drops out-of-vocab predicates | drops out-of-vocab predicates; grounding silently omitted on detect-miss | mis-detection; agent must combine partial answers across memories |
+| Code surface | `memory/spatial/*.py` | **same files + `grounding` field + 1 new builder script** | new package `memory/spatial_encoding/*` (~7 files) |
 
-**They are complementary, not substitutes.** The shipped layer answers *symbolic* WHERE questions; the proposed layer answers *metric* WHERE questions and grounds objects in 3D space.
+**Net:** the extension reuses one memory's PPR retrieval and one prompt slot for the same observable behaviour, at strictly lower code and prompt budget than a sibling 5th axis. The 5th-axis variant is preserved here only as a comparison point — see [§7](#7-extension-over-new-axis-architectural-revision) for the architectural argument.
 
 ---
 
@@ -205,4 +213,108 @@ The reasoning LLM ingests this exactly as it ingests the existing spatial-triple
 
 ## 6. Bottom line for the write-up
 
-> WorldMM's current spatial memory encodes symbolic WHERE-relations as text triples. A natural 5th axis is a **geometric** memory derived from RGB video using Depth Anything V2 + object-centric scene graphs in the ConceptGraphs style, returning a JSON summary that drops cleanly into the existing `retrieve(query: str) -> str` interface. Non-RGB sensors (LiDAR, mmWave radar, WiFi-CSI, RGB-D, IMU) require dataset re-capture and turn a memory-reasoning project into a sensor-engineering project; they belong in a one-paragraph future-work section, not in the v1 pipeline. NeRF / Gaussian Splatting deliver beautiful renders but are mismatched with hour-scale dynamic egocentric memory.
+> WorldMM's current 4th spatial-memory axis encodes symbolic WHERE-relations as closed-vocabulary text triples. We **extend** that same axis with optional geometric grounding derived from RGB video (Depth Anything V2 for monocular depth, GroundingDINO+SAM2 for open-vocab detection, Open3D for the per-frame point cloud, CLIP for joining detected objects back to the existing triple subjects and objects). The augmented triples flow through the same Personalized-PageRank retrieval the 4th axis already uses, and the reasoning agent continues to see exactly four memory types — no prompt-vocabulary expansion. Non-RGB sensors (LiDAR, mmWave radar, WiFi-CSI, RGB-D, IMU) require dataset re-capture and would turn a memory-reasoning project into a sensor-engineering project; they belong in a one-paragraph future-work section, not in the v1 pipeline. NeRF / Gaussian Splatting deliver beautiful renders but are mismatched with hour-scale dynamic egocentric memory.
+
+---
+
+## 7. Extension over new axis — architectural revision
+
+The previous draft of this document recommended adding a **new 5th memory axis** (`SpatialEncodingMemory`) for geometric data. After implementing the 4th axis and seeing it land in the reasoning loop, the cleaner design is an **extension of the 4th axis**, not a sibling memory.
+
+### 7.1 Why the 5th-axis idea was tempting
+
+- Strict separation of concerns: text-symbolic vs. geometric WHERE knowledge.
+- Mirrors how Semantic and Episodic are separate axes despite both encoding text.
+- Lets the reasoning agent explicitly request `memory_type: "spatial_encoding"` for distance / 3D queries.
+
+### 7.2 Why extension is better in practice
+
+1. **Same conceptual entity, two representations.** A triple `(sofa, located_in, living_room)` and an object detection `sofa at (2.3, 0.5, 1.8)` are the same fact in two formats. Storing them in two memories forces the reasoning agent to *join* them at query time, every time. Extension performs the join *once*, offline.
+2. **Reasoning prompt budget.** Each new memory type the agent can choose between adds branches to the system prompt and dilutes the few-shot examples. 4 types is already at the edge of what one-shot prompting handles well; 5 makes wrong-memory selection a measurable failure mode.
+3. **Code reuse.** `SpatialMemory` already runs igraph + PPR + embedding similarity. A 5th axis would either duplicate that or invent a new retrieval path. Extension reuses 100 % of the existing retrieval code.
+4. **Backward compatibility.** Existing `spatial_consolidation_results_*.json` builds continue to load — the new `grounding` field is `Optional` and absent in old files.
+5. **Ablation cleanliness.** The next ablation can compare:
+   - 4th axis OFF
+   - 4th axis ON, grounding OFF (i.e. the version shipped in `docs/spatial-memory-ablation.md`)
+   - 4th axis ON, grounding ON (the extension)
+   That is a clean three-way comparison of the *same* memory at three augmentation levels, not a comparison across two distinct architectures.
+
+### 7.3 Concrete schema diff
+
+```python
+# src/worldmm/memory/spatial/memory.py  (existing)
+@dataclass
+class SpatialTripleEntry:
+    id: str
+    subject: str
+    predicate: str
+    object: str
+    timestamp: int
+    place: Optional[str] = None
+
+# After extension (drop-in):
+@dataclass
+class GeometricGrounding:
+    bbox_center: List[float]       # (x, y, z) — metric if intrinsics known, relative otherwise
+    bbox_extent: List[float]       # (dx, dy, dz)
+    units: str                     # "meters" | "relative"
+    source: str                    # e.g. "depth_anything_v2+grounding_dino+sam2"
+    confidence: float              # detector confidence, [0, 1]
+    matched_token: str             # which side of the triple the grounding refers to: "subject" | "object"
+    keyframe_ts: int               # the video timestamp where the centroid was sampled
+
+@dataclass
+class SpatialTripleEntry:
+    id: str
+    subject: str
+    predicate: str
+    object: str
+    timestamp: int
+    place: Optional[str] = None
+    grounding: Optional[GeometricGrounding] = None    # ← new, fully optional
+
+    def to_display_str(self) -> str:
+        base = f"({self.subject}, {self.predicate}, {self.object})"
+        if self.place:
+            base += f" [place={self.place}]"
+        if self.grounding:
+            c = self.grounding.bbox_center
+            e = self.grounding.bbox_extent
+            base += f" [center=({c[0]:.2f},{c[1]:.2f},{c[2]:.2f}) extent=({e[0]:.2f},{e[1]:.2f},{e[2]:.2f}) units={self.grounding.units}]"
+        return base
+```
+
+### 7.4 Concrete file plan
+
+**No new package.** Instead:
+- `src/worldmm/memory/spatial/utils.py` — add `GeometricGrounding` dataclass + Pydantic schema for grounding JSON.
+- `src/worldmm/memory/spatial/memory.py` — extend `SpatialTripleEntry` with `grounding: Optional[GeometricGrounding]` and update `to_display_str()`.
+- `src/worldmm/memory/spatial/grounding_builder.py` *(new file)* — runs the depth + detect + CLIP-match offline pipeline and writes a sidecar JSON keyed by triple `id`.
+- `src/worldmm/memory/spatial/memory.py` — extend `load_triples_from_*` to read the sidecar if present and populate the `grounding` field.
+- `preprocess/spatial_memory/ground_spatial_triples.py` *(new CLI)* — wraps the builder.
+- `preprocess/build_memory.py` — extend the `run_spatial` flow with an optional `--with-grounding` flag (default off so existing builds stay identical).
+- `script/3_build_memory.sh` — add `--with-grounding` passthrough.
+
+**Out of scope intentionally:**
+- New memory type in the reasoning prompt.
+- Renderable representations.
+- Multi-day or per-day cross-day consolidation of grounding.
+
+### 7.5 What the agent sees after the extension
+
+Before:
+```
+(Lucia, located_in, living_room) [place=living_room]
+```
+
+After (grounding present):
+```
+(Lucia, located_in, living_room) [place=living_room] [center=(1.32,0.81,2.10) extent=(0.42,1.65,0.30) units=meters]
+```
+
+After (grounding absent — old data or detect-miss):
+```
+(Lucia, located_in, living_room) [place=living_room]
+```
+
+The reasoning LLM reads this without any new prompt vocabulary; existing distance questions ("how far is X from Y") become answerable when both ends are grounded, and degrade gracefully to the current behaviour when they are not.
