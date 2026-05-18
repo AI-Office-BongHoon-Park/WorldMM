@@ -2,7 +2,7 @@
 
 **Date:** 2026-05-18 KST
 **Subject:** A1_JAKE, DAY1 (10 hours of egocentric footage, 11:00–22:00)
-**Question source:** EgoLifeQA DAY1 subset, first **n = 25** questions in published order
+**Question source:** EgoLifeQA DAY1 subset, first **n = 60** questions in published order (≈ 60 % of the 102 DAY1 questions)
 **Reasoning model:** `chatgpt/gpt-5.4` via local LiteLLM proxy (streaming, JSON-via-prompt)
 **Text embedding (for semantic + spatial indexing):** `sentence-transformers/all-MiniLM-L6-v2` (CPU, swapped in to fit the 5.6 GB-free GPU)
 **Sister docs:** [`docs/spatial-memory-ablation.md`](spatial-memory-ablation.md) (synthetic + EgoLifeQA-WHERE only) · [`docs/spatial-encoding-sensor-based.md`](spatial-encoding-sensor-based.md) (architectural design for the future 5th axis / 4th-axis extension)
@@ -17,17 +17,19 @@ This report measures, for the first time on this codebase, the *real* added valu
 
 | Configuration | Correct | % |
 |---|---:|---:|
-| **3-axis** (episodic + semantic + visual-no-op)               | **15 / 25** | **60.0 %** |
-| **4-axis** (episodic + semantic + visual-no-op + **spatial**) | **14 / 25** | **56.0 %** |
-| **Δ** (4-axis − 3-axis)                                       | **−1**     | **−4.0 %p** |
-| Answers differ between configs | 6 / 25 | 24 % |
+| **3-axis** (episodic + semantic + visual-no-op)               | **37 / 60** | **61.7 %** |
+| **4-axis** (episodic + semantic + visual-no-op + **spatial**) | **36 / 60** | **60.0 %** |
+| **Δ** (4-axis − 3-axis)                                       | **−1**     | **−1.7 %p** |
+| Answers differ between configs | 10 / 60 | 16.7 % |
 | Of those: **UP** (4-axis fixes 3-axis wrong) | 2 | |
 | Of those: **DN** (4-axis breaks 3-axis right) | 3 | |
-| Of those: both wrong, different letters | 1 | |
+| Of those: both wrong, different letters | 5 | |
 
-**Headline:** on real EgoLifeQA DAY1 questions, adding the spatial axis is a **mild net negative** (−1 / 25). The spatial signal **is** real — it fixes 2 questions the 3-axis baseline gets wrong — but the reasoning agent also picks the spatial memory in 3 cases where it should not, and those *cost* a correct answer.
+**Headline:** on real EgoLifeQA DAY1 questions, adding the spatial axis is **essentially neutral** (−1 / 60 ≈ −1.7 %p, well within run-to-run variance). The spatial signal **is** real — it fixes 2 questions the 3-axis baseline gets wrong — but the reasoning agent also picks the spatial memory in 3 cases where it should not, and those *cost* a correct answer. The remaining 5 differing answers are "both wrong with different letters" — spatial reroutes a wrong guess to a different wrong guess.
 
-This is not a contradiction with the earlier `docs/spatial-memory-ablation.md` (which showed **+15 %p on hand-curated WHERE questions**). The earlier report deliberately filtered to questions whose answer lives in the spatial layer. This report uses the **unfiltered first 25 questions of DAY1**, which include `EntityLog`, `RelationMap`, `EventRecall`, `TaskMaster`, and `HabitInsight` types. Most of those are not WHERE questions, so the spatial layer adds noise as often as it adds signal.
+> A first-pass smaller sample at **n = 25** had measured Δ = **−4.0 %p**; at **n = 60** the gap narrows to **−1.7 %p**, suggesting the apparent regression at small n was sampling noise around an actually-neutral mean. Larger n (full 102 DAY1 Qs, multi-seed) would tighten further.
+
+This is not a contradiction with the earlier `docs/spatial-memory-ablation.md` (which showed **+15 %p on hand-curated WHERE questions**). The earlier report deliberately filtered to questions whose answer lives in the spatial layer. This report uses the **unfiltered first 60 questions of DAY1**, which include `EntityLog`, `RelationMap`, `EventRecall`, `TaskMaster`, and `HabitInsight` types. Most of those are not WHERE questions, so the spatial layer adds noise as often as it adds signal.
 
 ---
 
@@ -59,16 +61,16 @@ To run the ablation, `WorldMemory.__init__` was extended with a `reasoning_templ
 
 ### 2.3 Question set
 
-The first 25 questions of `EgoLifeQA_A1_JAKE.json` that have `query_time.date == "DAY1"`, kept in published order. Type distribution:
+The first 60 questions of `EgoLifeQA_A1_JAKE.json` that have `query_time.date == "DAY1"`, kept in published order. Type distribution:
 
 | Type | n |
 |---|---:|
-| EntityLog | 8 |
-| RelationMap | 7 |
-| EventRecall | 4 |
-| HabitInsight | 3 |
-| TaskMaster | 3 |
-| **Total** | **25** |
+| EntityLog | 16 |
+| RelationMap | 13 |
+| EventRecall | 12 |
+| TaskMaster | 10 |
+| HabitInsight | 9 |
+| **Total** | **60** |
 
 No filter on whether the question is "spatial-flavored". This is the **unfiltered general-purpose** result — what a paper-table number should look like for a fair 3-vs-4-axis comparison.
 
@@ -79,58 +81,67 @@ No filter on whether the question is "spatial-flavored". This is the **unfiltere
 ### 3.1 Overall
 
 ```
-3-axis (E+S+V no-op):       15/25 (60.0%)
-4-axis (E+S+V no-op + Sp):  14/25 (56.0%)
-delta:                       -1  (-4.0%p)
-answers differ:              6/25  (UP=2 DN=3 both-wrong=1)
+3-axis (E+S+V no-op):       37/60 (61.7%)
+4-axis (E+S+V no-op + Sp):  36/60 (60.0%)
+delta:                       -1  (-1.7%p)
+answers differ:              10/60  (UP=2 DN=3 both-wrong-different=5)
 ```
 
 ### 3.2 By question type
 
 | Type | n | 3-axis | 4-axis | Δ | differs | UP | DN |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| **EntityLog** | 8 | 6 | 5 | **−1** | 2 | 0 | 1 |
-| **EventRecall** | 4 | 2 | 2 |  0 | 2 | 1 | 1 |
-| **HabitInsight** | 3 | 1 | 2 | **+1** | 1 | 1 | 0 |
-| **RelationMap** | 7 | 5 | 4 | **−1** | 1 | 0 | 1 |
-| **TaskMaster** | 3 | 1 | 1 |  0 | 0 | 0 | 0 |
+| **EntityLog** | 16 | 10 | 11 | **+1** | 6 | 2 | 1 |
+| **EventRecall** | 12 | 7 | 7 |  0 | 1 | 0 | 0 |
+| **HabitInsight** | 9 | 7 | 6 | **−1** | 1 | 0 | 1 |
+| **RelationMap** | 13 | 6 | 6 |  0 | 1 | 0 | 0 |
+| **TaskMaster** | 10 | 7 | 6 | **−1** | 1 | 0 | 1 |
 
 Observations:
-- **HabitInsight is the only category where spatial helps** (+1 / 3). Habits are often "always at place X" / "every morning in place Y" — the spatial layer's place lookups directly fit.
-- **EntityLog and RelationMap lose 1 each**. These are *who-did-what* questions; the spatial layer's place tokens occasionally bait the reasoning agent into a place-based answer even when the question is about agency.
-- **EventRecall is a wash**: 1 UP, 1 DN.
-- **TaskMaster** (planning / what-next) shows no differences; the spatial layer is simply irrelevant here.
+- **EntityLog is the only category where spatial helps in this larger sample** (+1 / 16, with 2 UP / 1 DN). At n = 25 EntityLog was the loudest *loser*; at n = 60 it flipped to a winner. This is the cleanest evidence that the n = 25 result was **dominated by sample variance**, not a real type-level signal.
+- **RelationMap is now flat** (0 / 13, 1 differ "both wrong"). At n = 25 it had been a loser. Again — sample variance.
+- **HabitInsight switched sign too**: was +1 / 3 at n = 25, now −1 / 9. The 3-axis baseline got two new correct HabitInsight answers that 4-axis missed.
+- **TaskMaster** (planning / what-next) showed 0 / 3 at n = 25 (no differs); at n = 60 it picked up one DN.
+- **EventRecall**: 0 / 12 net, only 1 differ (both wrong with different letters).
 
-### 3.3 Question-level differences (6 / 25)
+Across all 5 types the absolute Δ at n = 60 is **±1** — there is no category where spatial reliably helps or reliably hurts.
 
-#### UP (spatial fixes a wrong 3-axis answer)
+### 3.3 Question-level differences (10 / 60)
 
-**Q20 — `EventRecall`** "We are currently discussing the details of the puzzle. When was this discussed before?"
-- gold = D, 3a = A (wrong), **4a = D ✅**
-- Why spatial helped: the place tokens for the puzzle-table scene tied the *previous* discussion's spatial context to a specific earlier timestamp the spatial PPR could surface.
-
-**Q21 — `HabitInsight`** "Who always sits on that pony hair this morning"
-- gold = A, 3a = C (wrong), **4a = A ✅**
-- Why spatial helped: `(<person>, on, pony_hair)`-type triples are explicitly stored in the spatial layer; episodic captions describe the *action* but rarely state the seat assignment as a *fact*.
-
-#### DN (spatial breaks a correct 3-axis answer)
+#### UP (spatial fixes a wrong 3-axis answer) — 2 / 60
 
 **Q1 — `EntityLog`** "Who used the screwdriver first?"
-- gold = B, 3a = B ✅, **4a = C ❌**
-- Why spatial hurt: the spatial layer surfaced `(screwdriver, on, table)` and `(table, contains, screwdriver)` triples, which the agent over-weighted at the expense of the episodic event "Alice tightens screws" that pins the gold answer.
+- gold = B, 3a = C (wrong), **4a = B ✅**
+- Why spatial helped: the spatial layer surfaced `(<person>, near, screwdriver)` for the correct candidate when the episodic event-stream was ambiguous about who picked it up first.
+- (Note: this question alternated between UP and DN across runs of this harness — model + retrieval variance dominates at n = 1.)
 
-**Q12 — `RelationMap`** "When I handed out the charging cables just now, who had already started charging?"
+**Q33 — `EntityLog`** "What app did I order the takeout in my hand?"
+- gold = A, 3a = D (wrong), **4a = A ✅**
+- Why spatial helped: `(phone, on, table)` plus `(I, near, phone)` plus an open-vocab object tag `takeout-app screen` anchored the answer to the on-screen app the agent could then verify in episodic.
+
+#### DN (spatial breaks a correct 3-axis answer) — 3 / 60
+
+**Q6 — `TaskMaster`** "Who plans to grow flowers"
 - gold = D, 3a = D ✅, **4a = A ❌**
-- Why spatial hurt: spatial returns `(<person>, near, charging_cable)` and `(charging_cable, on, table)` for *several* people — the reasoning agent picked the spatially closest, but the actual answer is about action sequence, not proximity.
+- Why spatial hurt: `(<wrong-person>, near, flowers)` and `(flowers, on, table)` baited the agent into a proximity answer; the actual gold lives in a stated *plan* from episodic dialogue, not a spatial proximity at the query time.
 
-**Q14 — `EventRecall`** "Who is missing compared to when we first started the puzzle?"
-- gold = A, 3a = A ✅, **4a = B ❌**
-- Why spatial hurt: comparing two scenes by *who was present* is an episodic-temporal task; the spatial layer's snapshot view of "who is at the puzzle table now" actively misleads.
+**Q45 — `EntityLog`** "When was the last time we talked about coffee?"
+- gold = A, 3a = A ✅, **4a = D ❌**
+- Why spatial hurt: spatial returned multiple `(coffee, on, table)` mentions across the day; the reasoning agent latched onto a later spatial-anchored mention rather than the canonical *conversational* one.
 
-#### Both wrong, different letters (1 / 25)
+**Q50 — `HabitInsight`** "What do I usually show everyone on my phone?"
+- gold = D, 3a = D ✅, **4a = A ❌**
+- Why spatial hurt: `(I, with, phone)` is everywhere; the spatial layer flooded the prompt with phone-related triples that distracted the agent from the *content* habit pattern.
 
-**Q16 — `EntityLog`** "Who was the first to move the puzzle board on the table?"
-- gold = B, 3a = C, 4a = A — different answers, both wrong. Retrieval (keyword overlap) failed to surface the decisive moment in either configuration.
+#### Both wrong, different letters — 5 / 60
+
+- **Q9** RelationMap "Who just helped Alice unpack and arrange the flowers" — 3a = C, 4a = A (gold D)
+- **Q16** EntityLog "Who was the first to move the puzzle board on the table?" — 3a = C, 4a = A (gold B)
+- **Q27** EntityLog "I put the pot aside, what was in the pot before?" — 3a = A, 4a = D (gold B)
+- **Q31** EntityLog "Who used the black signature pen last time?" — 3a = D, 4a = B (gold C)
+- **Q40** EventRecall "Shure mentioned Tiramisu, when was the last time we discussed making Tiramisu?" — 3a = A, 4a = B (gold C)
+
+These are questions where retrieval failed on both sides — either the keyword overlap missed the decisive moment, or it surfaced enough of the wrong context to mislead. The spatial layer changed *which* wrong letter was picked but did not unlock the correct answer.
 
 ---
 
@@ -160,16 +171,16 @@ Observations:
 | Baseline | episodic-only, top-50 by keyword overlap | episodic + semantic + visual (empty), full iterative reasoning |
 | Treatment | + spatial-text top-25 | + spatial-text via the shipped 4th axis |
 | Retrieval | keyword overlap | HippoRAG (episodic), PPR (semantic + spatial), shipped retrievers |
-| Question set | (a) 20 synthetic WHERE-only (b) 22 EgoLifeQA WHERE-filtered | first 25 unfiltered DAY1 EgoLifeQA |
-| Δ measured | (a) +15.0 %p (b) +4.5 %p | **−4.0 %p** |
+| Question set | (a) 20 synthetic WHERE-only (b) 22 EgoLifeQA WHERE-filtered | first 60 unfiltered DAY1 EgoLifeQA |
+| Δ measured | (a) +15.0 %p (b) +4.5 %p | **−1.7 %p** (n = 60) — sample-noise narrowed from −4.0 %p at n = 25 |
 
-The change of sign is **not** evidence that the previous report was wrong — it is evidence that **filtering questions changes the conclusion**. On WHERE-grounded questions, spatial helps. On a representative slice of EgoLifeQA, it slightly hurts. Both can be true at once.
+The change of sign is **not** evidence that the previous report was wrong — it is evidence that **filtering questions changes the conclusion**. On WHERE-grounded questions, spatial helps clearly (+15 %p). On a representative slice of EgoLifeQA, it is essentially neutral (−1.7 %p, within the noise band of a stochastic LLM agent over 60 questions). Both can be true at once.
 
 ---
 
 ## 5. Limitations
 
-1. **n = 25 is small.** A wider follow-up (n = 60+) is running in the background; this document will be updated when those numbers land. Treat the −4.0 %p as directional.
+1. **n = 60 of 102 DAY1 questions.** Full DAY1 plus multi-seed averaging would tighten the result. The shift from −4.0 %p (n = 25) to −1.7 %p (n = 60) shows the noise band at this n.
 2. **Visual axis is a no-op.** The text-only LiteLLM proxy plus absent visual-clip embeddings means both configurations effectively use only **E + S** (and S only on the 4-axis run). This is fair *between* the two configurations being compared, but it is **not** a comparison against the WorldMM paper's full E + S + V baseline.
 3. **Embedding model is smaller.** We swapped Qwen3-Embedding-4B for `all-MiniLM-L6-v2` (384-d) because the larger model OOMs on the 5.6 GB-free dev box. This affects retrieval quality on both sides equally but lowers absolute scores.
 4. **`max_rounds = 3` instead of the shipped default 5.** Lower budget hurts both configurations equally but caps how deeply the agent can iterate; spatial may benefit more than baseline from more rounds.
@@ -185,16 +196,16 @@ The change of sign is **not** evidence that the previous report was wrong — it
 # 1. Build the prerequisite memories (multiscale episodic, semantic, spatial)
 bash script/3_build_memory.sh --step all --person A1_JAKE --model chatgpt-gpt-5.4
 
-# 2. Run the 3-vs-4-axis ablation harness
+# 2. Run the 3-vs-4-axis ablation harness on the first 60 DAY1 questions
 WORLDMM_EMBED_MODEL=sentence-transformers/all-MiniLM-L6-v2 \
 WORLDMM_EMBED_DEVICE=cpu \
 uv run python eval/three_vs_four_axis_ablation.py \
-    --max-n 25 --max-rounds 3 \
-    --output output/three_vs_four_n25.json
+    --max-n 60 --max-rounds 3 \
+    --output output/three_vs_four_n60.json
 ```
 
 Output:
-- `output/three_vs_four_n25.json` — per-question predictions for both configs.
+- `output/three_vs_four_n60.json` — per-question predictions for both configs.
 - Console log includes per-question summary lines and the totals block.
 
 The harness is at [`eval/three_vs_four_axis_ablation.py`](../eval/three_vs_four_axis_ablation.py); the 3-axis prompt is at [`src/worldmm/llm/templates/memory_reasoning_3axis.py`](../src/worldmm/llm/templates/memory_reasoning_3axis.py).
@@ -203,6 +214,6 @@ The harness is at [`eval/three_vs_four_axis_ablation.py`](../eval/three_vs_four_
 
 ## 7. Bottom line for the write-up
 
-> On a representative unfiltered slice of EgoLifeQA DAY1 (n = 25), adding the closed-vocabulary spatial memory as a 4th axis is a **mild net negative (−4.0 %p)**: it recovers 2 questions the 3-axis baseline gets wrong, but the reasoning agent also picks the spatial branch in 3 cases where it should not have, and those *cost* a correct answer. The signal is sharply category-dependent: **+1 / 3 on `HabitInsight`**, **−1 / 7 on `RelationMap`**, **−1 / 8 on `EntityLog`**, neutral on `EventRecall` and `TaskMaster`. This is not in conflict with the earlier synthetic-WHERE finding of +15 %p — that one filtered to questions whose answers live in the spatial layer; this one does not. **The honest paper-level number for spatial-as-shipped is therefore: positive on WHERE-grounded queries, negative on relation / agency queries, and the choice of question filter dominates the headline.**
+> On a representative unfiltered slice of EgoLifeQA DAY1 (n = 60), adding the closed-vocabulary spatial memory as a 4th axis is **essentially neutral** (−1 / 60, −1.7 %p — within sample noise). The spatial signal **does exist** — it fixes 2 questions the 3-axis baseline gets wrong (Q1 screwdriver, Q33 takeout app) — but the reasoning agent also picks the spatial branch in 3 cases where it should not (Q6 grow-flowers, Q45 coffee-timing, Q50 phone-habit), and those *cost* a correct answer. The remaining 5 differing answers are "both wrong with different letters" — spatial reroutes a wrong guess without unlocking the correct one. Per-type Δ values at n = 60 are all within ±1, with no category showing a stable positive or negative effect. This is **not** in conflict with the earlier synthetic-WHERE finding of +15 %p — that one filtered to questions whose answers live in the spatial layer; this one does not. **The honest paper-level number for spatial-as-shipped is therefore: a clear +15 %p win on WHERE-grounded queries, but only a ≈0 %p effect on unfiltered EgoLifeQA, with question-type composition dominating the headline. The choice of question filter dominates the conclusion.**
 >
 > The natural next move is a **routing fix in the reasoning prompt**: the agent currently treats the spatial axis as freely selectable; constraining it to questions whose surface form contains WHERE / location cues (or letting the agent choose spatial only as a *second-round* refinement after episodic) should preserve the +UP wins while collapsing the −DN losses. This is captured as the v2 extension plan in [`docs/spatial-encoding-sensor-based.md`](spatial-encoding-sensor-based.md) §7.
