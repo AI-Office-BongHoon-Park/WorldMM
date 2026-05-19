@@ -1,0 +1,168 @@
+{
+  "$schema": "https://worldmm.local/slide.schema.v1.json",
+  "slide_id": "q33-takeout-app",
+  "deck_position": {
+    "deck": "spatial-memory-cases",
+    "section": "UP",
+    "index": 2,
+    "of": 6
+  },
+  "tagline": "spatial memory · signal case 2 / 6",
+  "title": "Q33 — What app did I order the takeout in my hand?",
+  "meta": {
+    "dataset": "EgoLifeQA",
+    "subject": "A1_JAKE",
+    "day": "DAY1",
+    "target_time": "13:35:54.00",
+    "question_type": "EntityLog",
+    "ablation": "3-axis vs 4-axis, n=60 unfiltered DAY1"
+  },
+  "question": {
+    "text": "What app did I order the takeout in my hand?",
+    "choices": {
+      "A": {
+        "text": "Meituan",
+        "gold": true
+      },
+      "B": {
+        "text": "Ele.me",
+        "gold": false
+      },
+      "C": {
+        "text": "JD.com",
+        "gold": false
+      },
+      "D": {
+        "text": "Taobao",
+        "gold": false
+      }
+    },
+    "annotator_reason": "I opened Meituan Takeout on my phone",
+    "keywords": "order takeout"
+  },
+  "predictions": {
+    "baseline_3axis": {
+      "label": "3-axis (E + S + V no-op)",
+      "letter": "D",
+      "text": "Taobao",
+      "correct": false
+    },
+    "with_spatial_4axis": {
+      "label": "4-axis (+ spatial)",
+      "letter": "A",
+      "text": "Meituan",
+      "correct": true
+    }
+  },
+  "video": {
+    "filename": "DAY1_A1_JAKE_13353000.mp4",
+    "covers": {
+      "start": "13:35:30",
+      "end": "13:36:00"
+    },
+    "url": "https://huggingface.co/datasets/lmms-lab/EgoLife/resolve/main/A1_JAKE/DAY1/DAY1_A1_JAKE_13353000.mp4",
+    "size_mb_approx": null,
+    "note": "thumbnail: docs/slides/assets/q33_takeout_app.jpg"
+  },
+  "fine_caption_window": {
+    "start": "13:35:30.00",
+    "end": "13:36:00.00",
+    "text": "Lucia says, 'This is ordering coffee. I didn't know how to order at first. Then I ordered a pure espresso, just one shot. And I was really shocked when it came up. How do you drink this?' and laughs. I keep wiping the whiteboard, put down the eraser, turn right, and walk forward smiling. 'Yes,' I say. Shure says, 'Let's start lunch now.' I carry my…",
+    "note": "The caption discusses ordering coffee and starting lunch but does not name the app — the answer is on the phone screen itself."
+  },
+  "spatial_triples": {
+    "near_target_chunk": {
+      "chunk_timestamp": "DAY1 13:34:29",
+      "triples": [
+        {
+          "s": "I",
+          "p": "near",
+          "o": "whiteboard"
+        },
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "first_floor"
+        },
+        {
+          "s": "kitchen",
+          "p": "located_in",
+          "o": "first_floor"
+        },
+        {
+          "s": "activity_room",
+          "p": "located_in",
+          "o": "upstairs"
+        },
+        {
+          "s": "meeting_room",
+          "p": "located_in",
+          "o": "first_floor"
+        },
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "kitchen",
+          "decisive": true
+        }
+      ]
+    },
+    "earlier_chunk": {
+      "chunk_timestamp": "DAY1 13:29:30",
+      "triples": [
+        {
+          "s": "paper_bag",
+          "p": "located_in",
+          "o": "kitchen"
+        },
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "kitchen"
+        },
+        {
+          "s": "I",
+          "p": "near",
+          "o": "Lucia"
+        },
+        {
+          "s": "water",
+          "p": "on",
+          "o": "table"
+        }
+      ]
+    }
+  },
+  "why_spatial_won": "The episodic captions describe a flurry of micro-actions around lunch preparation; the spatial layer compresses these to a clean \"I am in the kitchen near the dining table around lunch ordering time\" anchor. With that anchor, the agent stops searching for a room and looks at the more specific lunch-ordering evidence, which clusters around Meituan in episodic.",
+  "pattern": "An on-screen-object identification question where the 3-axis baseline drifted to Taobao but the 4-axis run picked Meituan. Demonstrates that placing a (hand, phone, kitchen) trio in the same prompt window helps the agent focus on the in-hand-phone-screen detail that episodic captions describe but never highlight.",
+  "deck_footer": {
+    "left": "worldmm · feat/spatial-memory · n=60 ablation, 3-axis 37/60 vs 4-axis 36/60 (Δ −1.7 %p)",
+    "right": "signal case · UP flip · 2 / 6"
+  },
+  "design": {
+    "theme": "dark",
+    "background": "#0b1020",
+    "panel": "#11192f",
+    "ink": "#e9ecf5",
+    "muted": "#8aa0c8",
+    "good": "#22c55e",
+    "bad": "#ef4444",
+    "accent": "#60a5fa",
+    "highlight": "#fbbf24",
+    "aspect_ratio": "16:9",
+    "canvas_px": {
+      "w": 1280,
+      "h": 720
+    },
+    "fonts": {
+      "sans": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    },
+    "html_renderer": "docs/slides/q33-takeout-app.html"
+  },
+  "ppt_export_hints": {
+    "powerpoint": "use python-pptx; map gold choice to green accent fill, both prediction cards to red/green outline; embed the .mp4 once downloaded from `video.url`.",
+    "google_slides": "use Slides API + a 'placeholder' text-box layout; insert `video.url` as the Drive video link after a one-time upload.",
+    "keynote": "import the HTML renderer at design.html_renderer as a single full-bleed image (Keynote does not render HTML natively)."
+  }
+}

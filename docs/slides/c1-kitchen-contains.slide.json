@@ -1,0 +1,122 @@
+{
+  "$schema": "https://worldmm.local/slide.schema.v1.json",
+  "slide_id": "c1-kitchen-contains",
+  "deck_position": {
+    "deck": "spatial-memory-cases",
+    "section": "UP",
+    "index": 6,
+    "of": 6
+  },
+  "tagline": "spatial memory · signal case 6 / 6",
+  "title": "C1 — What does the kitchen contain?",
+  "meta": {
+    "dataset": "Synthetic WHERE-only",
+    "subject": null,
+    "day": null,
+    "target_time": null,
+    "question_type": "place_composition",
+    "ablation": "Synthetic WHERE-only, n=20, episodic top-50 vs + spatial top-25"
+  },
+  "question": {
+    "text": "What does the kitchen contain according to the recorded spatial layout?",
+    "choices": {
+      "A": {
+        "text": "light",
+        "gold": true
+      },
+      "B": {
+        "text": "fridge",
+        "gold": false
+      },
+      "C": {
+        "text": "blender",
+        "gold": false
+      },
+      "D": {
+        "text": "oven",
+        "gold": false
+      }
+    },
+    "annotator_reason": null,
+    "keywords": null
+  },
+  "predictions": {
+    "baseline_3axis": {
+      "label": "Baseline (episodic top-50 only)",
+      "letter": "B",
+      "text": "fridge",
+      "correct": false
+    },
+    "with_spatial_4axis": {
+      "label": "+ Spatial (top-25 spatial added)",
+      "letter": "A",
+      "text": "light",
+      "correct": true
+    }
+  },
+  "video": {
+    "filename": null,
+    "covers": {
+      "start": null,
+      "end": null
+    },
+    "url": null,
+    "size_mb_approx": null,
+    "note": "Synthetic WHERE-only case; source catalog provides no EgoLifeQA video window. Thumbnail is docs/slides/assets/kitchen_stool.jpg, a kitchen scene with stool, not the exact target frame."
+  },
+  "fine_caption_window": {
+    "start": null,
+    "end": null,
+    "text": null,
+    "note": "Synthetic WHERE-only case; source catalog supplies the observed contains triple but no 30-second EgoLifeQA caption window."
+  },
+  "spatial_triples": {
+    "near_target_chunk": {
+      "chunk_timestamp": null,
+      "triples": [
+        {
+          "s": "kitchen",
+          "p": "contains",
+          "o": "light",
+          "decisive": true
+        }
+      ]
+    },
+    "earlier_chunk": {
+      "chunk_timestamp": null,
+      "triples": []
+    }
+  },
+  "why_spatial_won": "This is the cleanest \"spatial-only ground truth\" example. The model has a strong world prior that kitchens contain fridges; only the spatial layer's observed triple `(kitchen, contains, light)` (the recording captured someone noting the kitchen lights specifically) breaks the prior.",
+  "pattern": "Grounding: `(kitchen, contains, light)`.",
+  "deck_footer": {
+    "left": "worldmm · feat/spatial-memory · n=60 ablation, 3-axis 37/60 vs 4-axis 36/60 (Δ −1.7 %p)",
+    "right": "signal case · UP flip · 6 / 6"
+  },
+  "design": {
+    "theme": "dark",
+    "background": "#0b1020",
+    "panel": "#11192f",
+    "ink": "#e9ecf5",
+    "muted": "#8aa0c8",
+    "good": "#22c55e",
+    "bad": "#ef4444",
+    "accent": "#60a5fa",
+    "highlight": "#fbbf24",
+    "aspect_ratio": "16:9",
+    "canvas_px": {
+      "w": 1280,
+      "h": 720
+    },
+    "fonts": {
+      "sans": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    },
+    "html_renderer": "docs/slides/c1-kitchen-contains.html"
+  },
+  "ppt_export_hints": {
+    "powerpoint": "use python-pptx; map gold choice to green accent fill, both prediction cards to red/green outline; embed the .mp4 once downloaded from `video.url`.",
+    "google_slides": "use Slides API + a 'placeholder' text-box layout; insert `video.url` as the Drive video link after a one-time upload.",
+    "keynote": "import the HTML renderer at design.html_renderer as a single full-bleed image (Keynote does not render HTML natively)."
+  }
+}
