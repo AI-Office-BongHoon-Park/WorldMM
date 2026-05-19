@@ -178,7 +178,10 @@ This is the strongest argument for the [`docs/spatial-encoding-sensor-based.md`]
 | [`output/demo_spatial_kitchen.html`](../output/demo_spatial_kitchen.html) | sample retrieval for "I in kitchen near whiteboard" | **shipped** (4/12 thumbnails) |
 | [`output/day_summary_A1_JAKE_DAY1.html`](../output/day_summary_A1_JAKE_DAY1.html) | DAY1 fused day-narrative report | **shipped** (8/10 hourly thumbnails) |
 | [`docs/slides/spatial-retrieval-gs-mock.html`](slides/spatial-retrieval-gs-mock.html) | PPT mock — same layout, "GS-rendered" labels | **mock** |
-| `output/gs_models/A1_JAKE/DAY1/<place>.ply` | per-place Gaussian splat models | **not built** (out of scope; see §2.5 cost) |
+| [`tools/gs_render_kitchen.py`](../tools/gs_render_kitchen.py) | `gs_render(place, pose)`-shaped kitchen PoC CLI | **PoC shipped** (depth-warp fake fallback, not real GS) |
+| [`output/gs_models/A1_JAKE/DAY1/kitchen.ply`](../output/gs_models/A1_JAKE/DAY1/kitchen.ply) | kitchen proxy RGB-D point cloud plus `.status.json` sidecar | **fallback built** (real GS blocked: no COLMAP poses; see `docs/gs-poc-status.md`) |
+| [`output/gs_renders/A1_JAKE/DAY1/kitchen_view_01.png`](../output/gs_renders/A1_JAKE/DAY1/kitchen_view_01.png) | 480px kitchen rendered-view artefact for PPT | **fallback built** (PNG metadata labels depth-warp fake) |
+| `output/gs_models/A1_JAKE/DAY1/<place>.ply` | per-place Gaussian splat models | **not built for other places** (out of scope; see §2.5 cost) |
 
 ---
 
