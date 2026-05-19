@@ -1,0 +1,174 @@
+{
+  "$schema": "https://worldmm.local/slide.schema.v1.json",
+  "slide_id": "q6-grow-flowers",
+  "deck_position": {
+    "deck": "spatial-memory-cases",
+    "section": "DN",
+    "index": 1,
+    "of": 3
+  },
+  "tagline": "spatial memory · noise case 1 / 3",
+  "title": "Q6 — Who plans to grow flowers",
+  "meta": {
+    "dataset": "EgoLifeQA",
+    "subject": "A1_JAKE",
+    "day": "DAY1",
+    "target_time": "11:34:40.19",
+    "question_type": "TaskMaster (future plan)",
+    "ablation": "3-axis vs 4-axis, n=60 unfiltered DAY1"
+  },
+  "question": {
+    "text": "Who plans to grow flowers",
+    "choices": {
+      "A": {
+        "text": "Alice",
+        "gold": false
+      },
+      "B": {
+        "text": "Tasha",
+        "gold": false
+      },
+      "C": {
+        "text": "Me (the camera wearer)",
+        "gold": false
+      },
+      "D": {
+        "text": "Katrina",
+        "gold": true
+      }
+    },
+    "annotator_reason": "Katrina explicitly said she planned the planting / Earth-Day theme",
+    "keywords": null
+  },
+  "predictions": {
+    "baseline_3axis": {
+      "label": "3-axis (E + S + V no-op)",
+      "letter": "D",
+      "text": "Katrina",
+      "correct": true
+    },
+    "with_spatial_4axis": {
+      "label": "4-axis (+ spatial)",
+      "letter": "A",
+      "text": "Alice",
+      "correct": false
+    }
+  },
+  "video": {
+    "filename": "DAY1_A1_JAKE_11343000.mp4",
+    "covers": {
+      "start": "11:34:30",
+      "end": "11:34:59"
+    },
+    "url": "https://huggingface.co/datasets/lmms-lab/EgoLife/resolve/main/A1_JAKE/DAY1/DAY1_A1_JAKE_11343000.mp4",
+    "size_mb_approx": null,
+    "note": "thumbnail: docs/slides/assets/q6_restaurant_flowers.jpg"
+  },
+  "fine_caption_window": {
+    "start": "11:34:30.00",
+    "end": "11:34:59.00",
+    "text": "I turn around, walk into the restaurant, and carry a cardboard box to the dining table, straightening it, setting it down, and nudging it forward. Katrina says, 'Because I saw … I was thinking of planting something. That fits the Earth Day theme, but it wouldn't sprout in 7 days, so I thought of buying these flowers. Directly shipped by SF Express, flowers from Yunnan.' 'Show…'",
+    "note": "The plan-author is explicitly named in dialogue by Katrina herself in this very window."
+  },
+  "spatial_triples": {
+    "near_target_chunk": {
+      "chunk_timestamp": "DAY1 11:34:30",
+      "triples": [
+        {
+          "s": "Shure",
+          "p": "next_to",
+          "o": "Alice",
+          "decisive": true
+        },
+        {
+          "s": "I",
+          "p": "on",
+          "o": "stool"
+        },
+        {
+          "s": "Shure",
+          "p": "on",
+          "o": "whiteboard"
+        },
+        {
+          "s": "I",
+          "p": "in",
+          "o": "Shure's original seat"
+        },
+        {
+          "s": "Shure",
+          "p": "near",
+          "o": "whiteboard"
+        },
+        {
+          "s": "Tasha",
+          "p": "on",
+          "o": "table"
+        }
+      ]
+    },
+    "earlier_chunk": {
+      "chunk_timestamp": "DAY1 11:39:30",
+      "triples": [
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "restaurant"
+        },
+        {
+          "s": "Katrina",
+          "p": "located_in",
+          "o": "restaurant"
+        },
+        {
+          "s": "cardboard box",
+          "p": "located_in",
+          "o": "restaurant"
+        },
+        {
+          "s": "flowers",
+          "p": "in",
+          "o": "box",
+          "decisive": true
+        },
+        {
+          "s": "Shure",
+          "p": "near",
+          "o": "I"
+        }
+      ]
+    }
+  },
+  "why_spatial_hurt": "The spatial layer correctly encoded the physical scene (Alice handling the box that contained the flowers), but the question was about plans, not who is touching the flowers right now. The spatial layer has no notion of \"intent\" — the planner can be physically distant from the object. Episodic caught the actual planning utterance; spatial overrode it with a physical-proximity heuristic.",
+  "pattern": "The reasoning prompt should not route TaskMaster / future-plan questions to the spatial axis at all. A type-aware routing rule (\"if question contains plans, will, intends, route to episodic + semantic only\") closes this DN at zero cost to the WHERE-grounded UP cases.",
+  "deck_footer": {
+    "left": "worldmm · feat/spatial-memory · n=60 ablation, 3-axis 37/60 vs 4-axis 36/60 (Δ −1.7 %p)",
+    "right": "noise case · DN flip · 1 / 3"
+  },
+  "design": {
+    "theme": "dark",
+    "background": "#0b1020",
+    "panel": "#11192f",
+    "ink": "#e9ecf5",
+    "muted": "#8aa0c8",
+    "good": "#22c55e",
+    "bad": "#ef4444",
+    "accent": "#60a5fa",
+    "highlight": "#fbbf24",
+    "aspect_ratio": "16:9",
+    "canvas_px": {
+      "w": 1280,
+      "h": 720
+    },
+    "fonts": {
+      "sans": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    },
+    "html_renderer": "docs/slides/q6-grow-flowers.html"
+  },
+  "ppt_export_hints": {
+    "powerpoint": "use python-pptx; map gold choice to green accent fill, both prediction cards to red/green outline; embed the .mp4 once downloaded from `video.url`.",
+    "google_slides": "use Slides API + a 'placeholder' text-box layout; insert `video.url` as the Drive video link after a one-time upload.",
+    "keynote": "import the HTML renderer at design.html_renderer as a single full-bleed image (Keynote does not render HTML natively)."
+  }
+}

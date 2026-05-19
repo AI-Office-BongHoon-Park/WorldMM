@@ -1,0 +1,174 @@
+{
+  "$schema": "https://worldmm.local/slide.schema.v1.json",
+  "slide_id": "q50-phone-habit",
+  "deck_position": {
+    "deck": "spatial-memory-cases",
+    "section": "DN",
+    "index": 3,
+    "of": 3
+  },
+  "tagline": "spatial memory · noise case 3 / 3",
+  "title": "Q50 — What do I usually show everyone on my phone?",
+  "meta": {
+    "dataset": "EgoLifeQA",
+    "subject": "A1_JAKE",
+    "day": "DAY1",
+    "target_time": "DAY1 12:23:43 + DAY1 17:11:44",
+    "question_type": "HabitInsight",
+    "ablation": "3-axis vs 4-axis, n=60 unfiltered DAY1"
+  },
+  "question": {
+    "text": "What do I usually show everyone on my phone?",
+    "choices": {
+      "A": {
+        "text": "Share interesting videos with everyone",
+        "gold": false
+      },
+      "B": {
+        "text": "Show everyone what they want to eat",
+        "gold": false
+      },
+      "C": {
+        "text": "I'm recording a video and want everyone to be in it",
+        "gold": false
+      },
+      "D": {
+        "text": "Take a look at the timer interface on my phone",
+        "gold": true
+      }
+    },
+    "annotator_reason": "I opened my phone to the timer interface and showed it to everyone",
+    "keywords": "show everyone, on phone"
+  },
+  "predictions": {
+    "baseline_3axis": {
+      "label": "3-axis (E + S + V no-op)",
+      "letter": "D",
+      "text": "timer interface",
+      "correct": true
+    },
+    "with_spatial_4axis": {
+      "label": "4-axis (+ spatial)",
+      "letter": "A",
+      "text": "share interesting videos",
+      "correct": false
+    }
+  },
+  "video": {
+    "filename": "DAY1_A1_JAKE_12233000.mp4 + DAY1_A1_JAKE_17113000.mp4",
+    "covers": {
+      "start": "12:23:30 + 17:11:31",
+      "end": "12:24:00 + 17:11:58"
+    },
+    "url": "https://huggingface.co/datasets/lmms-lab/EgoLife/resolve/main/A1_JAKE/DAY1/DAY1_A1_JAKE_12233000.mp4 ; https://huggingface.co/datasets/lmms-lab/EgoLife/resolve/main/A1_JAKE/DAY1/DAY1_A1_JAKE_17113000.mp4",
+    "size_mb_approx": null,
+    "note": "thumbnail: docs/slides/assets/q50_phone_timer.jpg"
+  },
+  "fine_caption_window": {
+    "start": "12:23:30.00 + 17:11:31.00",
+    "end": "12:24:00.00 + 17:11:58.00",
+    "text": "Anchor 1: 'It's okay,' I say. I keep operating my phone and show everyone the timer. 'Actually, one person left is fine,' I say. 'But it's safer to take another round,' I say. I keep showing the phones, take my phone back, and use it with both hands. Katrina says, 'I found this business card so pretty.' Shure asks, 'Oh, did you watch What Kind of Life Do You Want to Live? The one by Ha…' Anchor 2: I adjust the framing and hand my phone to Alice to check. 'Come, take a look,' I say. Lucia replies, 'OK.' I take my phone back, check it, and pass it to Shure on the left to confirm before it goes to Tasha and Katrina. 'Looks good?' I ask. Shure replies, 'Looks good. Awesome.' Alice says, 'Looks good,' and I say, 'Looks good.' I take my phone back again, turn off the screen, p…",
+    "note": "The first anchor explicitly says \"show everyone the timer\". The 3-axis baseline found this and answered correctly."
+  },
+  "spatial_triples": {
+    "near_target_chunk": {
+      "chunk_timestamp": "DAY1 17:11:30 + DAY1 17:16:29",
+      "triples": [
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "kitchen"
+        },
+        {
+          "s": "I",
+          "p": "on",
+          "o": "stool"
+        },
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "restaurant"
+        },
+        {
+          "s": "Shure",
+          "p": "on",
+          "o": "his phone",
+          "decisive": true
+        },
+        {
+          "s": "Shure",
+          "p": "left_of",
+          "o": "I"
+        },
+        {
+          "s": "I",
+          "p": "behind",
+          "o": "seat"
+        }
+      ]
+    },
+    "earlier_chunk": {
+      "chunk_timestamp": "DAY1 14:14:29",
+      "triples": [
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "restaurant"
+        },
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "courtyard"
+        },
+        {
+          "s": "I",
+          "p": "on",
+          "o": "Katrina's_phone",
+          "decisive": true
+        },
+        {
+          "s": "Second_Ring_Road",
+          "p": "located_in",
+          "o": "beijing"
+        },
+        {
+          "s": "Katrina",
+          "p": "near",
+          "o": "Beijing"
+        }
+      ]
+    }
+  },
+  "why_spatial_hurt": "The spatial layer reliably encodes which people are physically together using phones, scattered across many chunks. The agent collapsed this into a habit (\"group phone use → group video sharing\"), losing the specificity that the content of the phone screen was a timer. The episodic layer has the explicit \"show everyone the timer\" sentence; spatial diluted it by surrounding the prompt with broader phone-with-people context.",
+  "pattern": "HabitInsight questions phrased as \"what do I show / say / do …\" should preferentially weight episodic content (specific actions described in captions) over spatial co-presence facts. A simple prompt nudge — \"for content-of-action questions, retrieve episodic first and only consult spatial when episodic returns ambiguous results\" — should close this case.",
+  "deck_footer": {
+    "left": "worldmm · feat/spatial-memory · n=60 ablation, 3-axis 37/60 vs 4-axis 36/60 (Δ −1.7 %p)",
+    "right": "noise case · DN flip · 3 / 3"
+  },
+  "design": {
+    "theme": "dark",
+    "background": "#0b1020",
+    "panel": "#11192f",
+    "ink": "#e9ecf5",
+    "muted": "#8aa0c8",
+    "good": "#22c55e",
+    "bad": "#ef4444",
+    "accent": "#60a5fa",
+    "highlight": "#fbbf24",
+    "aspect_ratio": "16:9",
+    "canvas_px": {
+      "w": 1280,
+      "h": 720
+    },
+    "fonts": {
+      "sans": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    },
+    "html_renderer": "docs/slides/q50-phone-habit.html"
+  },
+  "ppt_export_hints": {
+    "powerpoint": "use python-pptx; map gold choice to green accent fill, both prediction cards to red/green outline; embed the .mp4 once downloaded from `video.url`.",
+    "google_slides": "use Slides API + a 'placeholder' text-box layout; insert `video.url` as the Drive video link after a one-time upload.",
+    "keynote": "import the HTML renderer at design.html_renderer as a single full-bleed image (Keynote does not render HTML natively)."
+  }
+}
