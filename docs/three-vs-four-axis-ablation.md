@@ -245,3 +245,30 @@ The agent **did pick `visual`** (2 times in 3-axis; 5 times in 4-axis), but ever
 Compared with the visual-empty n = 60 run's first-15 prefix, the old prefix was **8 / 15 vs 8 / 15** (Δ 0), while this real-visual smoke is **7 / 15 vs 8 / 15** (Δ +1). The changed flips are not visual-evidence wins because the visual selections had no image payloads. Example: Q14 (`Who is missing compared to when we first started the puzzle?`) became an UP flip in the new run (gold A, 3-axis D, 4-axis A), but the 4-axis visual calls for Q14 returned 0 clips / 0 images, so the gain is run/routing variance, not a verified visual contribution.
 
 Implication for the old disclaimer: remove the blanket claim that the visual axis is unbuilt or unavailable for this follow-up run, but keep a narrower caveat for this n = 15 result: **visual was active and selected, yet produced no clip/image hits on the selected queries**, so this smoke still does not measure a positive visual-evidence contribution.
+
+
+## 8.1 Visual coverage expanded — n=30 rerun
+
+**Date:** 2026-05-20 KST
+
+Expanded the real-video coverage from **36** non-empty MP4s (**522 MB**) to **91** non-empty MP4s (**1.3 GB**) under `data/EgoLife/A1_JAKE/DAY1`, then rebuilt `clip-ViT-B-32` visual embeddings to **91** clip embeddings. Selection was targeted, not bulk: first-30 EgoLifeQA `target_time`/`query_time` neighborhoods plus top-15 spatial-extraction chunks by triple count. After expansion, all first-30 questions have at least one target/query timestamp covered within ±60 s; top-15 spatial-density chunks are also covered within ±60 s. A decord middle-frame sanity check passed on all 55 newly downloaded MP4s.
+
+| Configuration | Correct | % |
+|---|---:|---:|
+| **3-axis** (episodic + semantic + visual) | **15 / 30** | **50.0 %** |
+| **4-axis** (episodic + semantic + visual + spatial) | **16 / 30** | **53.3 %** |
+| **Δ** (4-axis − 3-axis) | **+1** | **+3.3 %p** |
+| Answers differ between configs | 6 / 30 | 20.0 % |
+| Of those: **UP** (4-axis fixes 3-axis wrong) | 3 | |
+| Of those: **DN** (4-axis breaks 3-axis right) | 2 | |
+
+Visual telemetry required a trace rerun because `output/three_vs_four_n30_real_visual_expanded.json` stores only predictions/totals, not `round_history`. That trace rerun used the same MiniLM CPU embedder and `max_rounds=3`, but its answers varied, so use it for retrieval telemetry only, not headline accuracy.
+
+| Config | Visual selections | Visual selections with image hits | Image payloads |
+|---|---:|---:|---:|
+| **3-axis trace** | 5 | 0 | 0 |
+| **4-axis trace** | 10 | 2 | 60 images from 2 clip retrievals |
+
+**Honest visual answer:** real visual now can return images, but it still produced **no measured accuracy lift** in this n=30 ablation. The only visual image hits in the trace were two 4-axis searches for Q16 (`Who was the first to move the puzzle board on the table?`), both retrieving frames around DAY1 12:27. The canonical ablation still got Q16 wrong in both configs (gold B, 3-axis C, 4-axis C), so those visual hits did not flip an answer. Q14 (`Who is missing compared to when we first started the puzzle?`) was an UP flip in the canonical run (gold A, 3-axis D, 4-axis A), but the trace visual searches for the analogous puzzle-participant queries returned `[No results]`; no evidence supports calling that a visual win.
+
+Conclusion: expanded coverage fixes the earlier “visual selected but always 0 clips/images” failure mode only partially. Visual retrieval can now return frames, yet the measurable +1 / 30 lift belongs to the 4-axis configuration as a whole, not to verified visual evidence.
