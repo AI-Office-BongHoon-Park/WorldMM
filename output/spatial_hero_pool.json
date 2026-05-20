@@ -1,0 +1,1720 @@
+[
+  {
+    "id": "SH-A-001",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was hard drive at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "dining table",
+      "B": "bedroom",
+      "C": "another box",
+      "D": "hard drive"
+    },
+    "gold": "A",
+    "gold_answer": "dining table",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:14:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "hard drive",
+          "on",
+          "dining table"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-A-002",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was box at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "hard drive",
+      "B": "dining table",
+      "C": "another box",
+      "D": "bedroom"
+    },
+    "gold": "C",
+    "gold_answer": "another box",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:14:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "box",
+          "on",
+          "another box"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-A-003",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was data at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "dining table",
+      "B": "another box",
+      "C": "bedroom",
+      "D": "hard drive"
+    },
+    "gold": "D",
+    "gold_answer": "hard drive",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:14:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "data",
+          "in",
+          "hard drive"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-A-004",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was right hand at approximately DAY1 11:19:30?",
+    "choices": {
+      "A": "table",
+      "B": "dining table",
+      "C": "another box",
+      "D": "bedroom"
+    },
+    "gold": "A",
+    "gold_answer": "table",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111193000,
+        "timestamp_label": "DAY1 11:19:30",
+        "triple": [
+          "right hand",
+          "on",
+          "table"
+        ]
+      }
+    ],
+    "evidence_chunk": 111193000,
+    "evidence_chunk_label": "DAY1 11:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-A-005",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was Changchun at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "jilin province",
+      "B": "dining table",
+      "C": "bedroom",
+      "D": "another box"
+    },
+    "gold": "A",
+    "gold_answer": "jilin province",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Changchun",
+          "located_in",
+          "jilin province"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-A-006",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was Jilin City at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "dining table",
+      "B": "another box",
+      "C": "jilin province",
+      "D": "bedroom"
+    },
+    "gold": "C",
+    "gold_answer": "jilin province",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Jilin City",
+          "located_in",
+          "jilin province"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-A-007",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was Shure at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "bedroom",
+      "B": "another box",
+      "C": "Changchun",
+      "D": "dining table"
+    },
+    "gold": "C",
+    "gold_answer": "Changchun",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Shure",
+          "located_in",
+          "Changchun"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-A-008",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was Changchun at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "another box",
+      "B": "great northeast",
+      "C": "bedroom",
+      "D": "dining table"
+    },
+    "gold": "B",
+    "gold_answer": "great northeast",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Changchun",
+          "located_in",
+          "great northeast"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-A-009",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was strip at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "bedroom",
+      "B": "another box",
+      "C": "dining table",
+      "D": "Tasha's black box"
+    },
+    "gold": "D",
+    "gold_answer": "Tasha's black box",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "strip",
+          "in",
+          "Tasha's black box"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-A-010",
+    "template": "A",
+    "template_name": "Object location at time",
+    "question": "Where was box at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "bedroom",
+      "B": "dining table",
+      "C": "another box",
+      "D": "table"
+    },
+    "gold": "D",
+    "gold_answer": "table",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "box",
+          "on",
+          "table"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-B-001",
+    "template": "B",
+    "template_name": "Objects on/at place",
+    "question": "What object was on/at another box at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "box",
+      "B": "Katrina",
+      "C": "data",
+      "D": "hard drive"
+    },
+    "gold": "A",
+    "gold_answer": "box",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:14:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "box",
+          "on",
+          "another box"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "containment",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-B-002",
+    "template": "B",
+    "template_name": "Objects on/at place",
+    "question": "What object was on/at dining table at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "Katrina",
+      "B": "box",
+      "C": "hard drive",
+      "D": "data"
+    },
+    "gold": "C",
+    "gold_answer": "hard drive",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:14:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "hard drive",
+          "on",
+          "dining table"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "containment",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-B-003",
+    "template": "B",
+    "template_name": "Objects on/at place",
+    "question": "What object was on/at hard drive at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "hard drive",
+      "B": "data",
+      "C": "Katrina",
+      "D": "box"
+    },
+    "gold": "B",
+    "gold_answer": "data",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:14:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "data",
+          "in",
+          "hard drive"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "containment",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-B-004",
+    "template": "B",
+    "template_name": "Objects on/at place",
+    "question": "What object was on/at table at approximately DAY1 11:19:30?",
+    "choices": {
+      "A": "data",
+      "B": "hard drive",
+      "C": "right hand",
+      "D": "box"
+    },
+    "gold": "C",
+    "gold_answer": "right hand",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111193000,
+        "timestamp_label": "DAY1 11:19:30",
+        "triple": [
+          "right hand",
+          "on",
+          "table"
+        ]
+      }
+    ],
+    "evidence_chunk": 111193000,
+    "evidence_chunk_label": "DAY1 11:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "containment",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-B-005",
+    "template": "B",
+    "template_name": "Objects on/at place",
+    "question": "What object was on/at Changchun at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "hard drive",
+      "B": "Shure",
+      "C": "data",
+      "D": "box"
+    },
+    "gold": "B",
+    "gold_answer": "Shure",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Shure",
+          "located_in",
+          "Changchun"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "containment",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-B-006",
+    "template": "B",
+    "template_name": "Objects on/at place",
+    "question": "What object was on/at Tasha's black box at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "hard drive",
+      "B": "box",
+      "C": "strip",
+      "D": "data"
+    },
+    "gold": "C",
+    "gold_answer": "strip",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "strip",
+          "in",
+          "Tasha's black box"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "containment",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-B-007",
+    "template": "B",
+    "template_name": "Objects on/at place",
+    "question": "What object was on/at bed at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "data",
+      "B": "Katrina",
+      "C": "box",
+      "D": "hard drive"
+    },
+    "gold": "C",
+    "gold_answer": "box",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "box",
+          "on",
+          "bed"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "containment",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-B-008",
+    "template": "B",
+    "template_name": "Objects on/at place",
+    "question": "What object was on/at box at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "data",
+      "B": "Katrina",
+      "C": "hard drive",
+      "D": "box"
+    },
+    "gold": "D",
+    "gold_answer": "box",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "box",
+          "in",
+          "box"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "containment",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-C-001",
+    "template": "C",
+    "template_name": "Same place as person",
+    "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
+    "choices": {
+      "A": "Angela",
+      "B": "Katrina",
+      "C": "Alice",
+      "D": "Jake"
+    },
+    "gold": "C",
+    "gold_answer": "Alice",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111193000,
+        "timestamp_label": "DAY1 11:19:30",
+        "triple": [
+          "I",
+          "behind",
+          "Alice"
+        ]
+      }
+    ],
+    "evidence_chunk": 111193000,
+    "evidence_chunk_label": "DAY1 11:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-C-002",
+    "template": "C",
+    "template_name": "Same place as person",
+    "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
+    "choices": {
+      "A": "Shure",
+      "B": "Angela",
+      "C": "Katrina",
+      "D": "Jake"
+    },
+    "gold": "A",
+    "gold_answer": "Shure",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111193000,
+        "timestamp_label": "DAY1 11:19:30",
+        "triple": [
+          "Shure",
+          "next_to",
+          "I"
+        ]
+      }
+    ],
+    "evidence_chunk": 111193000,
+    "evidence_chunk_label": "DAY1 11:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-C-003",
+    "template": "C",
+    "template_name": "Same place as person",
+    "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
+    "choices": {
+      "A": "Katrina",
+      "B": "Shure",
+      "C": "Angela",
+      "D": "Jake"
+    },
+    "gold": "B",
+    "gold_answer": "Shure",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111193000,
+        "timestamp_label": "DAY1 11:19:30",
+        "triple": [
+          "I",
+          "next_to",
+          "Shure"
+        ]
+      }
+    ],
+    "evidence_chunk": 111193000,
+    "evidence_chunk_label": "DAY1 11:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-C-004",
+    "template": "C",
+    "template_name": "Same place as person",
+    "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
+    "choices": {
+      "A": "Katrina",
+      "B": "Angela",
+      "C": "Shure",
+      "D": "Jake"
+    },
+    "gold": "C",
+    "gold_answer": "Shure",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111193000,
+        "timestamp_label": "DAY1 11:19:30",
+        "triple": [
+          "I",
+          "behind",
+          "Shure"
+        ]
+      }
+    ],
+    "evidence_chunk": 111193000,
+    "evidence_chunk_label": "DAY1 11:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-C-005",
+    "template": "C",
+    "template_name": "Same place as person",
+    "question": "Who was in the same place as Shure when the interaction happened at approximately DAY1 11:34:30?",
+    "choices": {
+      "A": "Angela",
+      "B": "Katrina",
+      "C": "Alice",
+      "D": "Jake"
+    },
+    "gold": "C",
+    "gold_answer": "Alice",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:34:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111343000,
+        "timestamp_label": "DAY1 11:34:30",
+        "triple": [
+          "Shure",
+          "next_to",
+          "Alice"
+        ]
+      }
+    ],
+    "evidence_chunk": 111343000,
+    "evidence_chunk_label": "DAY1 11:34:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-C-006",
+    "template": "C",
+    "template_name": "Same place as person",
+    "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:39:30?",
+    "choices": {
+      "A": "Katrina",
+      "B": "Angela",
+      "C": "Shure",
+      "D": "Jake"
+    },
+    "gold": "C",
+    "gold_answer": "Shure",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:39:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111393000,
+        "timestamp_label": "DAY1 11:39:30",
+        "triple": [
+          "Shure",
+          "near",
+          "I"
+        ]
+      }
+    ],
+    "evidence_chunk": 111393000,
+    "evidence_chunk_label": "DAY1 11:39:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-C-007",
+    "template": "C",
+    "template_name": "Same place as person",
+    "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:59:30?",
+    "choices": {
+      "A": "Katrina",
+      "B": "Shure",
+      "C": "Angela",
+      "D": "Jake"
+    },
+    "gold": "B",
+    "gold_answer": "Shure",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:59:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111593000,
+        "timestamp_label": "DAY1 11:59:30",
+        "triple": [
+          "I",
+          "left_of",
+          "Shure"
+        ]
+      }
+    ],
+    "evidence_chunk": 111593000,
+    "evidence_chunk_label": "DAY1 11:59:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-C-008",
+    "template": "C",
+    "template_name": "Same place as person",
+    "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 12:09:30?",
+    "choices": {
+      "A": "Shure",
+      "B": "Jake",
+      "C": "Katrina",
+      "D": "Angela"
+    },
+    "gold": "A",
+    "gold_answer": "Shure",
+    "query_time": {
+      "date": "DAY1",
+      "time": "12:09:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 112093000,
+        "timestamp_label": "DAY1 12:09:30",
+        "triple": [
+          "I",
+          "next_to",
+          "Shure"
+        ]
+      }
+    ],
+    "evidence_chunk": 112093000,
+    "evidence_chunk_label": "DAY1 12:09:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-D-001",
+    "template": "D",
+    "template_name": "Enter/leave around action",
+    "question": "Which place did Jake enter just after being at bedroom around DAY1 11:14:30?",
+    "choices": {
+      "A": "Shure's original seat",
+      "B": "bedroom",
+      "C": "my room",
+      "D": "dining table"
+    },
+    "gold": "D",
+    "gold_answer": "dining table",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111193000,
+        "timestamp_label": "DAY1 11:19:30",
+        "triple": [
+          "Katrina",
+          "near",
+          "windowsill"
+        ]
+      }
+    ],
+    "evidence_chunk": 111193000,
+    "evidence_chunk_label": "DAY1 11:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "trajectory",
+    "generation_note": "trajectory stop transition"
+  },
+  {
+    "id": "SH-D-002",
+    "template": "D",
+    "template_name": "Enter/leave around action",
+    "question": "Which place did Jake enter just after being at dining table around DAY1 11:19:30?",
+    "choices": {
+      "A": "bedroom",
+      "B": "Shure's original seat",
+      "C": "dining table",
+      "D": "my room"
+    },
+    "gold": "D",
+    "gold_answer": "my room",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Changchun",
+          "located_in",
+          "jilin province"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "trajectory",
+    "generation_note": "trajectory stop transition"
+  },
+  {
+    "id": "SH-D-003",
+    "template": "D",
+    "template_name": "Enter/leave around action",
+    "question": "Which place did Jake enter just after being at my room around DAY1 11:24:30?",
+    "choices": {
+      "A": "Shure's original seat",
+      "B": "dining table",
+      "C": "bedroom",
+      "D": "my room"
+    },
+    "gold": "A",
+    "gold_answer": "Shure's original seat",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:34:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111343000,
+        "timestamp_label": "DAY1 11:34:30",
+        "triple": [
+          "Shure",
+          "next_to",
+          "Alice"
+        ]
+      }
+    ],
+    "evidence_chunk": 111343000,
+    "evidence_chunk_label": "DAY1 11:34:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "trajectory",
+    "generation_note": "trajectory stop transition"
+  },
+  {
+    "id": "SH-D-004",
+    "template": "D",
+    "template_name": "Enter/leave around action",
+    "question": "Which place did Jake enter just after being at Shure's original seat around DAY1 11:34:30?",
+    "choices": {
+      "A": "dining table",
+      "B": "my room",
+      "C": "restaurant",
+      "D": "bedroom"
+    },
+    "gold": "C",
+    "gold_answer": "restaurant",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:39:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111393000,
+        "timestamp_label": "DAY1 11:39:30",
+        "triple": [
+          "I",
+          "located_in",
+          "restaurant"
+        ]
+      }
+    ],
+    "evidence_chunk": 111393000,
+    "evidence_chunk_label": "DAY1 11:39:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "trajectory",
+    "generation_note": "trajectory stop transition"
+  },
+  {
+    "id": "SH-D-005",
+    "template": "D",
+    "template_name": "Enter/leave around action",
+    "question": "Which place did Jake enter just after being at restaurant around DAY1 11:39:30?",
+    "choices": {
+      "A": "Shure's original seat",
+      "B": "bedroom",
+      "C": "my room",
+      "D": "dining table"
+    },
+    "gold": "B",
+    "gold_answer": "bedroom",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:54:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111543000,
+        "timestamp_label": "DAY1 11:54:30",
+        "triple": [
+          "I",
+          "located_in",
+          "bedroom"
+        ]
+      }
+    ],
+    "evidence_chunk": 111543000,
+    "evidence_chunk_label": "DAY1 11:54:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "trajectory",
+    "generation_note": "trajectory stop transition"
+  },
+  {
+    "id": "SH-D-006",
+    "template": "D",
+    "template_name": "Enter/leave around action",
+    "question": "Which place did Jake enter just after being at bedroom around DAY1 11:54:30?",
+    "choices": {
+      "A": "dining table",
+      "B": "my room",
+      "C": "phone",
+      "D": "bedroom"
+    },
+    "gold": "C",
+    "gold_answer": "phone",
+    "query_time": {
+      "date": "DAY1",
+      "time": "12:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 112243000,
+        "timestamp_label": "DAY1 12:24:30",
+        "triple": [
+          "I",
+          "on",
+          "phone"
+        ]
+      }
+    ],
+    "evidence_chunk": 112243000,
+    "evidence_chunk_label": "DAY1 12:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "trajectory",
+    "generation_note": "trajectory stop transition"
+  },
+  {
+    "id": "SH-D-007",
+    "template": "D",
+    "template_name": "Enter/leave around action",
+    "question": "Which place did Jake enter just after being at phone around DAY1 12:24:30?",
+    "choices": {
+      "A": "Shure's original seat",
+      "B": "bedroom",
+      "C": "dining table",
+      "D": "my room"
+    },
+    "gold": "B",
+    "gold_answer": "bedroom",
+    "query_time": {
+      "date": "DAY1",
+      "time": "12:49:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 112493000,
+        "timestamp_label": "DAY1 12:49:30",
+        "triple": [
+          "I",
+          "located_in",
+          "bedroom"
+        ]
+      }
+    ],
+    "evidence_chunk": 112493000,
+    "evidence_chunk_label": "DAY1 12:49:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "trajectory",
+    "generation_note": "trajectory stop transition"
+  },
+  {
+    "id": "SH-D-008",
+    "template": "D",
+    "template_name": "Enter/leave around action",
+    "question": "Which place did Jake enter just after being at bedroom around DAY1 12:49:30?",
+    "choices": {
+      "A": "dining table",
+      "B": "kitchen",
+      "C": "my room",
+      "D": "bedroom"
+    },
+    "gold": "B",
+    "gold_answer": "kitchen",
+    "query_time": {
+      "date": "DAY1",
+      "time": "13:29:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 113293000,
+        "timestamp_label": "DAY1 13:29:30",
+        "triple": [
+          "paper bag",
+          "located_in",
+          "kitchen"
+        ]
+      }
+    ],
+    "evidence_chunk": 113293000,
+    "evidence_chunk_label": "DAY1 13:29:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "trajectory",
+    "generation_note": "trajectory stop transition"
+  },
+  {
+    "id": "SH-E-001",
+    "template": "E",
+    "template_name": "Path-pair connector",
+    "question": "Path-pair: which place connects bedroom and my room in Jake's DAY1 trajectory?",
+    "choices": {
+      "A": "dining table",
+      "B": "Shure's original seat",
+      "C": "bedroom",
+      "D": "my room"
+    },
+    "gold": "A",
+    "gold_answer": "dining table",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111193000,
+        "timestamp_label": "DAY1 11:19:30",
+        "triple": [
+          "Katrina",
+          "near",
+          "windowsill"
+        ]
+      }
+    ],
+    "evidence_chunk": 111193000,
+    "evidence_chunk_label": "DAY1 11:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "path",
+    "generation_note": "middle stop between two real trajectory stops"
+  },
+  {
+    "id": "SH-E-002",
+    "template": "E",
+    "template_name": "Path-pair connector",
+    "question": "Path-pair: which place connects dining table and Shure's original seat in Jake's DAY1 trajectory?",
+    "choices": {
+      "A": "bedroom",
+      "B": "dining table",
+      "C": "my room",
+      "D": "Shure's original seat"
+    },
+    "gold": "C",
+    "gold_answer": "my room",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Changchun",
+          "located_in",
+          "jilin province"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "path",
+    "generation_note": "middle stop between two real trajectory stops"
+  },
+  {
+    "id": "SH-E-003",
+    "template": "E",
+    "template_name": "Path-pair connector",
+    "question": "Path-pair: which place connects my room and restaurant in Jake's DAY1 trajectory?",
+    "choices": {
+      "A": "dining table",
+      "B": "my room",
+      "C": "Shure's original seat",
+      "D": "bedroom"
+    },
+    "gold": "C",
+    "gold_answer": "Shure's original seat",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:34:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111343000,
+        "timestamp_label": "DAY1 11:34:30",
+        "triple": [
+          "Shure",
+          "next_to",
+          "Alice"
+        ]
+      }
+    ],
+    "evidence_chunk": 111343000,
+    "evidence_chunk_label": "DAY1 11:34:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "path",
+    "generation_note": "middle stop between two real trajectory stops"
+  },
+  {
+    "id": "SH-E-004",
+    "template": "E",
+    "template_name": "Path-pair connector",
+    "question": "Path-pair: which place connects Shure's original seat and bedroom in Jake's DAY1 trajectory?",
+    "choices": {
+      "A": "dining table",
+      "B": "restaurant",
+      "C": "my room",
+      "D": "bedroom"
+    },
+    "gold": "B",
+    "gold_answer": "restaurant",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:39:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111393000,
+        "timestamp_label": "DAY1 11:39:30",
+        "triple": [
+          "I",
+          "located_in",
+          "restaurant"
+        ]
+      }
+    ],
+    "evidence_chunk": 111393000,
+    "evidence_chunk_label": "DAY1 11:39:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "path",
+    "generation_note": "middle stop between two real trajectory stops"
+  },
+  {
+    "id": "SH-E-005",
+    "template": "E",
+    "template_name": "Path-pair connector",
+    "question": "Path-pair: which place connects restaurant and phone in Jake's DAY1 trajectory?",
+    "choices": {
+      "A": "bedroom",
+      "B": "dining table",
+      "C": "my room",
+      "D": "Shure's original seat"
+    },
+    "gold": "A",
+    "gold_answer": "bedroom",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:54:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111543000,
+        "timestamp_label": "DAY1 11:54:30",
+        "triple": [
+          "I",
+          "located_in",
+          "bedroom"
+        ]
+      }
+    ],
+    "evidence_chunk": 111543000,
+    "evidence_chunk_label": "DAY1 11:54:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "path",
+    "generation_note": "middle stop between two real trajectory stops"
+  },
+  {
+    "id": "SH-E-006",
+    "template": "E",
+    "template_name": "Path-pair connector",
+    "question": "Path-pair: which place connects phone and kitchen in Jake's DAY1 trajectory?",
+    "choices": {
+      "A": "my room",
+      "B": "dining table",
+      "C": "bedroom",
+      "D": "Shure's original seat"
+    },
+    "gold": "C",
+    "gold_answer": "bedroom",
+    "query_time": {
+      "date": "DAY1",
+      "time": "12:49:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 112493000,
+        "timestamp_label": "DAY1 12:49:30",
+        "triple": [
+          "I",
+          "located_in",
+          "bedroom"
+        ]
+      }
+    ],
+    "evidence_chunk": 112493000,
+    "evidence_chunk_label": "DAY1 12:49:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "path",
+    "generation_note": "middle stop between two real trajectory stops"
+  },
+  {
+    "id": "SH-E-007",
+    "template": "E",
+    "template_name": "Path-pair connector",
+    "question": "Path-pair: which place connects bedroom and first floor in Jake's DAY1 trajectory?",
+    "choices": {
+      "A": "dining table",
+      "B": "bedroom",
+      "C": "kitchen",
+      "D": "my room"
+    },
+    "gold": "C",
+    "gold_answer": "kitchen",
+    "query_time": {
+      "date": "DAY1",
+      "time": "13:29:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 113293000,
+        "timestamp_label": "DAY1 13:29:30",
+        "triple": [
+          "paper bag",
+          "located_in",
+          "kitchen"
+        ]
+      }
+    ],
+    "evidence_chunk": 113293000,
+    "evidence_chunk_label": "DAY1 13:29:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "path",
+    "generation_note": "middle stop between two real trajectory stops"
+  },
+  {
+    "id": "SH-F-001",
+    "template": "F",
+    "template_name": "Co-location chain",
+    "question": "Co-location chain: was Katrina with windowsill at any point on DAY1?",
+    "choices": {
+      "A": "not enough evidence",
+      "B": "only before DAY1",
+      "C": "yes",
+      "D": "no"
+    },
+    "gold": "C",
+    "gold_answer": "yes",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111193000,
+        "timestamp_label": "DAY1 11:19:30",
+        "triple": [
+          "Katrina",
+          "near",
+          "windowsill"
+        ]
+      }
+    ],
+    "evidence_chunk": 111193000,
+    "evidence_chunk_label": "DAY1 11:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-F-002",
+    "template": "F",
+    "template_name": "Co-location chain",
+    "question": "Co-location chain: was Shure with Alice at any point on DAY1?",
+    "choices": {
+      "A": "only before DAY1",
+      "B": "no",
+      "C": "yes",
+      "D": "not enough evidence"
+    },
+    "gold": "C",
+    "gold_answer": "yes",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:34:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111343000,
+        "timestamp_label": "DAY1 11:34:30",
+        "triple": [
+          "Shure",
+          "next_to",
+          "Alice"
+        ]
+      }
+    ],
+    "evidence_chunk": 111343000,
+    "evidence_chunk_label": "DAY1 11:34:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-F-003",
+    "template": "F",
+    "template_name": "Co-location chain",
+    "question": "Co-location chain: was Shure with whiteboard at any point on DAY1?",
+    "choices": {
+      "A": "only before DAY1",
+      "B": "no",
+      "C": "not enough evidence",
+      "D": "yes"
+    },
+    "gold": "D",
+    "gold_answer": "yes",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:34:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111343000,
+        "timestamp_label": "DAY1 11:34:30",
+        "triple": [
+          "Shure",
+          "near",
+          "whiteboard"
+        ]
+      }
+    ],
+    "evidence_chunk": 111343000,
+    "evidence_chunk_label": "DAY1 11:34:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-F-004",
+    "template": "F",
+    "template_name": "Co-location chain",
+    "question": "Co-location chain: was blackboard with whiteboard at any point on DAY1?",
+    "choices": {
+      "A": "not enough evidence",
+      "B": "only before DAY1",
+      "C": "no",
+      "D": "yes"
+    },
+    "gold": "D",
+    "gold_answer": "yes",
+    "query_time": {
+      "date": "DAY1",
+      "time": "13:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 113193000,
+        "timestamp_label": "DAY1 13:19:30",
+        "triple": [
+          "blackboard",
+          "near",
+          "whiteboard"
+        ]
+      }
+    ],
+    "evidence_chunk": 113193000,
+    "evidence_chunk_label": "DAY1 13:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-F-005",
+    "template": "F",
+    "template_name": "Co-location chain",
+    "question": "Co-location chain: was these two with each other at any point on DAY1?",
+    "choices": {
+      "A": "yes",
+      "B": "only before DAY1",
+      "C": "not enough evidence",
+      "D": "no"
+    },
+    "gold": "A",
+    "gold_answer": "yes",
+    "query_time": {
+      "date": "DAY1",
+      "time": "13:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 113193000,
+        "timestamp_label": "DAY1 13:19:30",
+        "triple": [
+          "these two",
+          "next_to",
+          "each other"
+        ]
+      }
+    ],
+    "evidence_chunk": 113193000,
+    "evidence_chunk_label": "DAY1 13:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-F-006",
+    "template": "F",
+    "template_name": "Co-location chain",
+    "question": "Co-location chain: was upstairs with us at any point on DAY1?",
+    "choices": {
+      "A": "no",
+      "B": "only before DAY1",
+      "C": "yes",
+      "D": "not enough evidence"
+    },
+    "gold": "C",
+    "gold_answer": "yes",
+    "query_time": {
+      "date": "DAY1",
+      "time": "13:19:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 113193000,
+        "timestamp_label": "DAY1 13:19:30",
+        "triple": [
+          "upstairs",
+          "next_to",
+          "us"
+        ]
+      }
+    ],
+    "evidence_chunk": 113193000,
+    "evidence_chunk_label": "DAY1 13:19:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-F-007",
+    "template": "F",
+    "template_name": "Co-location chain",
+    "question": "Co-location chain: was Earth God with there at any point on DAY1?",
+    "choices": {
+      "A": "yes",
+      "B": "only before DAY1",
+      "C": "no",
+      "D": "not enough evidence"
+    },
+    "gold": "A",
+    "gold_answer": "yes",
+    "query_time": {
+      "date": "DAY1",
+      "time": "13:24:29"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 113242900,
+        "timestamp_label": "DAY1 13:24:29",
+        "triple": [
+          "Earth God",
+          "right_of",
+          "there"
+        ]
+      }
+    ],
+    "evidence_chunk": 113242900,
+    "evidence_chunk_label": "DAY1 13:24:29",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "co-location",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-G-001",
+    "template": "G",
+    "template_name": "Place inventory at time",
+    "question": "Place inventory at DAY1 11:24:30: which objects shared jilin province?",
+    "choices": {
+      "A": "Shure",
+      "B": "Changchun, Jilin City",
+      "C": "Changchun",
+      "D": "strip"
+    },
+    "gold": "B",
+    "gold_answer": "Changchun, Jilin City",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:24:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Changchun",
+          "located_in",
+          "jilin province"
+        ]
+      },
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Jilin City",
+          "located_in",
+          "jilin province"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "inventory",
+    "generation_note": ""
+  },
+  {
+    "id": "SH-G-002",
+    "template": "G",
+    "template_name": "Place inventory at time",
+    "question": "Place inventory at DAY1 11:39:30: which objects shared restaurant?",
+    "choices": {
+      "A": "flowers",
+      "B": "box",
+      "C": "hard drive",
+      "D": "Katrina, cardboard box"
+    },
+    "gold": "D",
+    "gold_answer": "Katrina, cardboard box",
+    "query_time": {
+      "date": "DAY1",
+      "time": "11:39:30"
+    },
+    "evidence_triples": [
+      {
+        "timestamp": 111393000,
+        "timestamp_label": "DAY1 11:39:30",
+        "triple": [
+          "Katrina",
+          "located_in",
+          "restaurant"
+        ]
+      },
+      {
+        "timestamp": 111393000,
+        "timestamp_label": "DAY1 11:39:30",
+        "triple": [
+          "cardboard box",
+          "located_in",
+          "restaurant"
+        ]
+      }
+    ],
+    "evidence_chunk": 111393000,
+    "evidence_chunk_label": "DAY1 11:39:30",
+    "evidence_axis": "spatial",
+    "reasoning_kind": "inventory",
+    "generation_note": ""
+  }
+]

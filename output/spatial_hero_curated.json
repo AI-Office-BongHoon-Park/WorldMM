@@ -1,0 +1,649 @@
+[
+  {
+    "case_num": 1,
+    "id": "SH-A-001",
+    "template": "A",
+    "question": "Where was hard drive at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "dining table",
+      "B": "bedroom",
+      "C": "another box",
+      "D": "hard drive"
+    },
+    "gold": "A",
+    "gold_answer": "dining table",
+    "win_frequency": {
+      "four_axis": "3/3",
+      "three_axis": "0/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "B",
+      "letter": "B",
+      "correct": false,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:14:00",
+        "DAY1 11:14:30",
+        "DAY1 11:13:30",
+        "DAY1 11:14:00",
+        "DAY1 11:12:00",
+        "DAY1 11:15:00"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:14:00 - DAY1 11:14:30]\n\"Yes, your second life is all in here,\" I say as I look back and forth. I point to th...",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "A",
+      "letter": "A",
+      "correct": true,
+      "axis_selections": [
+        "spatial"
+      ],
+      "chosen_chunk_ids": [],
+      "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "hard drive",
+          "on",
+          "dining table"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "reasoning_kind": "location",
+    "verdict": "candidate_winner"
+  },
+  {
+    "case_num": 2,
+    "id": "SH-B-002",
+    "template": "B",
+    "question": "What object was on/at dining table at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "Katrina",
+      "B": "box",
+      "C": "hard drive",
+      "D": "data"
+    },
+    "gold": "C",
+    "gold_answer": "hard drive",
+    "win_frequency": {
+      "four_axis": "3/3",
+      "three_axis": "0/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "D",
+      "letter": "D",
+      "correct": false,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:12:30",
+        "DAY1 11:12:59",
+        "DAY1 11:44:00",
+        "DAY1 11:44:29",
+        "DAY1 12:06:00",
+        "DAY1 12:09:00"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:12:30 - DAY1 11:12:59]\nI remove the box insert, gather the plastic bag, lining, and Alice's cardboard box, s...",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "C",
+      "letter": "C",
+      "correct": true,
+      "axis_selections": [
+        "spatial"
+      ],
+      "chosen_chunk_ids": [],
+      "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "hard drive",
+          "on",
+          "dining table"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "reasoning_kind": "containment",
+    "verdict": "candidate_winner"
+  },
+  {
+    "case_num": 3,
+    "id": "SH-C-006",
+    "template": "C",
+    "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:39:30?",
+    "choices": {
+      "A": "Katrina",
+      "B": "Angela",
+      "C": "Shure",
+      "D": "Jake"
+    },
+    "gold": "C",
+    "gold_answer": "Shure",
+    "win_frequency": {
+      "four_axis": "2/3",
+      "three_axis": "0/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "A",
+      "letter": "A",
+      "correct": false,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:30:00",
+        "DAY1 11:40:00",
+        "DAY1 11:10:00",
+        "DAY1 11:10:30",
+        "DAY1 11:09:43",
+        "DAY1 11:19:43"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:30:00 - DAY1 11:40:00]\n**The group completed the invitation section on the whiteboard and simplified its wor...",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "C",
+      "letter": "C",
+      "correct": true,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 12:11:30",
+        "DAY1 12:12:00",
+        "DAY1 12:12:00",
+        "DAY1 12:15:00",
+        "DAY1 11:09:43",
+        "DAY1 11:19:43"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 12:11:30 - DAY1 12:12:00]\nKatrina says, \"When people are more familiar. Plus, people are more emotional at nigh...",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 111393000,
+        "timestamp_label": "DAY1 11:39:30",
+        "triple": [
+          "Shure",
+          "near",
+          "I"
+        ]
+      }
+    ],
+    "evidence_chunk": 111393000,
+    "evidence_chunk_label": "DAY1 11:39:30",
+    "reasoning_kind": "co-location",
+    "verdict": "candidate_winner"
+  },
+  {
+    "case_num": 4,
+    "id": "SH-E-004",
+    "template": "E",
+    "question": "Path-pair: which place connects Shure's original seat and bedroom in Jake's DAY1 trajectory?",
+    "choices": {
+      "A": "dining table",
+      "B": "restaurant",
+      "C": "my room",
+      "D": "bedroom"
+    },
+    "gold": "B",
+    "gold_answer": "restaurant",
+    "win_frequency": {
+      "four_axis": "2/3",
+      "three_axis": "0/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "A",
+      "letter": "A",
+      "correct": false,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:33:01",
+        "DAY1 11:33:30",
+        "DAY1 11:12:00",
+        "DAY1 11:15:00",
+        "DAY1 12:07:01",
+        "DAY1 12:07:28"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:33:01 - DAY1 11:33:30]\nI hold the stool with both hands and watch Shure write, nodding at him. Shure says, \"...",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "B",
+      "letter": "B",
+      "correct": true,
+      "axis_selections": [
+        "spatial"
+      ],
+      "chosen_chunk_ids": [],
+      "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(Shure, located_in, Changchun)\n(I, locate...",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 111393000,
+        "timestamp_label": "DAY1 11:39:30",
+        "triple": [
+          "I",
+          "located_in",
+          "restaurant"
+        ]
+      }
+    ],
+    "evidence_chunk": 111393000,
+    "evidence_chunk_label": "DAY1 11:39:30",
+    "reasoning_kind": "path",
+    "verdict": "candidate_winner"
+  },
+  {
+    "case_num": 5,
+    "id": "SH-F-005",
+    "template": "F",
+    "question": "Co-location chain: was these two with each other at any point on DAY1?",
+    "choices": {
+      "A": "yes",
+      "B": "only before DAY1",
+      "C": "not enough evidence",
+      "D": "no"
+    },
+    "gold": "A",
+    "gold_answer": "yes",
+    "win_frequency": {
+      "four_axis": "3/3",
+      "three_axis": "1/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "C",
+      "letter": "C",
+      "correct": false,
+      "axis_selections": [
+        "semantic"
+      ],
+      "chosen_chunk_ids": [],
+      "reasoning_summary": "R1 semantic: (I, works on jigsaw puzzles with, Lucia)\n(I, has a friendly rapport with, Lucia)\n(Lucia, gives advice to, I)\n(I, coll...",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "A",
+      "letter": "A",
+      "correct": true,
+      "axis_selections": [
+        "spatial"
+      ],
+      "chosen_chunk_ids": [],
+      "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, next_to, box)\n(I,...",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 113193000,
+        "timestamp_label": "DAY1 13:19:30",
+        "triple": [
+          "these two",
+          "next_to",
+          "each other"
+        ]
+      }
+    ],
+    "evidence_chunk": 113193000,
+    "evidence_chunk_label": "DAY1 13:19:30",
+    "reasoning_kind": "co-location",
+    "verdict": "candidate_winner"
+  },
+  {
+    "case_num": 6,
+    "id": "SH-A-002",
+    "template": "A",
+    "question": "Where was box at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "hard drive",
+      "B": "dining table",
+      "C": "another box",
+      "D": "bedroom"
+    },
+    "gold": "C",
+    "gold_answer": "another box",
+    "win_frequency": {
+      "four_axis": "3/3",
+      "three_axis": "0/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "B",
+      "letter": "B",
+      "correct": false,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:12:30",
+        "DAY1 11:12:59",
+        "DAY1 11:34:30",
+        "DAY1 11:34:59",
+        "DAY1 11:36:00",
+        "DAY1 11:39:00"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:12:30 - DAY1 11:12:59]\nI remove the box insert, gather the plastic bag, lining, and Alice's cardboard box, s...",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "C",
+      "letter": "C",
+      "correct": true,
+      "axis_selections": [
+        "spatial"
+      ],
+      "chosen_chunk_ids": [],
+      "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "box",
+          "on",
+          "another box"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "reasoning_kind": "location",
+    "verdict": "candidate_winner"
+  },
+  {
+    "case_num": 7,
+    "id": "SH-B-001",
+    "template": "B",
+    "question": "What object was on/at another box at approximately DAY1 11:14:30?",
+    "choices": {
+      "A": "box",
+      "B": "Katrina",
+      "C": "data",
+      "D": "hard drive"
+    },
+    "gold": "A",
+    "gold_answer": "box",
+    "win_frequency": {
+      "four_axis": "3/3",
+      "three_axis": "1/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "D",
+      "letter": "D",
+      "correct": false,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:12:30",
+        "DAY1 11:12:59",
+        "DAY1 11:12:00",
+        "DAY1 11:12:30",
+        "DAY1 11:20:31",
+        "DAY1 11:21:00"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:12:30 - DAY1 11:12:59]\nI remove the box insert, gather the plastic bag, lining, and Alice's cardboard box, s...",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "A",
+      "letter": "A",
+      "correct": true,
+      "axis_selections": [
+        "spatial"
+      ],
+      "chosen_chunk_ids": [],
+      "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 111143000,
+        "timestamp_label": "DAY1 11:14:30",
+        "triple": [
+          "box",
+          "on",
+          "another box"
+        ]
+      }
+    ],
+    "evidence_chunk": 111143000,
+    "evidence_chunk_label": "DAY1 11:14:30",
+    "reasoning_kind": "containment",
+    "verdict": "candidate_winner"
+  },
+  {
+    "case_num": 8,
+    "id": "SH-B-005",
+    "template": "B",
+    "question": "What object was on/at Changchun at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "hard drive",
+      "B": "Shure",
+      "C": "data",
+      "D": "box"
+    },
+    "gold": "B",
+    "gold_answer": "Shure",
+    "win_frequency": {
+      "four_axis": "3/3",
+      "three_axis": "1/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "D",
+      "letter": "D",
+      "correct": false,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:19:31",
+        "DAY1 11:20:00",
+        "DAY1 11:20:00",
+        "DAY1 11:20:30",
+        "DAY1 11:18:00",
+        "DAY1 11:21:00"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:19:31 - DAY1 11:20:00]\nI answer a question and look left as Shure says, \"My hometown in the Great Northeast....",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "B",
+      "letter": "B",
+      "correct": true,
+      "axis_selections": [
+        "spatial"
+      ],
+      "chosen_chunk_ids": [],
+      "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, in, box)\n(I, on, stool)\n(I, located_in, dining_table...",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "Shure",
+          "located_in",
+          "Changchun"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "reasoning_kind": "containment",
+    "verdict": "candidate_winner"
+  },
+  {
+    "case_num": 9,
+    "id": "SH-B-008",
+    "template": "B",
+    "question": "What object was on/at box at approximately DAY1 11:24:30?",
+    "choices": {
+      "A": "data",
+      "B": "Katrina",
+      "C": "hard drive",
+      "D": "box"
+    },
+    "gold": "D",
+    "gold_answer": "box",
+    "win_frequency": {
+      "four_axis": "3/3",
+      "three_axis": "1/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "C",
+      "letter": "C",
+      "correct": false,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:23:00",
+        "DAY1 11:23:30",
+        "DAY1 11:12:30",
+        "DAY1 11:12:59",
+        "DAY1 12:05:00",
+        "DAY1 12:05:28"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30]\nI hold the box with both hands, grab it back, set it upright, and close it. Shure say...",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "D",
+      "letter": "D",
+      "correct": true,
+      "axis_selections": [
+        "spatial"
+      ],
+      "chosen_chunk_ids": [],
+      "reasoning_summary": "R1 spatial: (box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, on, stool...",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 111243000,
+        "timestamp_label": "DAY1 11:24:30",
+        "triple": [
+          "box",
+          "in",
+          "box"
+        ]
+      }
+    ],
+    "evidence_chunk": 111243000,
+    "evidence_chunk_label": "DAY1 11:24:30",
+    "reasoning_kind": "containment",
+    "verdict": "candidate_winner"
+  },
+  {
+    "case_num": 10,
+    "id": "SH-C-005",
+    "template": "C",
+    "question": "Who was in the same place as Shure when the interaction happened at approximately DAY1 11:34:30?",
+    "choices": {
+      "A": "Angela",
+      "B": "Katrina",
+      "C": "Alice",
+      "D": "Jake"
+    },
+    "gold": "C",
+    "gold_answer": "Alice",
+    "win_frequency": {
+      "four_axis": "2/3",
+      "three_axis": "1/3"
+    },
+    "baseline_trace": {
+      "trial": 1,
+      "prediction": "B",
+      "letter": "B",
+      "correct": false,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:30:01",
+        "DAY1 11:30:30",
+        "DAY1 11:27:00",
+        "DAY1 11:30:00",
+        "DAY1 11:30:00",
+        "DAY1 11:40:00"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:30:01 - DAY1 11:30:30]\nShure says, \"Tomorrow, we'll get reported here.\" I rock back and forth and laugh with...",
+      "num_rounds": 1
+    },
+    "spatial_trace": {
+      "trial": 1,
+      "prediction": "C",
+      "letter": "C",
+      "correct": true,
+      "axis_selections": [
+        "episodic"
+      ],
+      "chosen_chunk_ids": [
+        "DAY1 11:30:30",
+        "DAY1 11:30:59",
+        "DAY1 11:30:01",
+        "DAY1 11:30:30",
+        "DAY1 11:30:00",
+        "DAY1 11:40:00"
+      ],
+      "reasoning_summary": "R1 episodic: [DAY1 11:30:30 - DAY1 11:30:59]\nI lean back and rock slightly while looking down at my hands, then up at Shure and th...",
+      "num_rounds": 1
+    },
+    "spatial_chain": [
+      {
+        "timestamp": 111343000,
+        "timestamp_label": "DAY1 11:34:30",
+        "triple": [
+          "Shure",
+          "next_to",
+          "Alice"
+        ]
+      }
+    ],
+    "evidence_chunk": 111343000,
+    "evidence_chunk_label": "DAY1 11:34:30",
+    "reasoning_kind": "co-location",
+    "verdict": "candidate_winner"
+  }
+]
