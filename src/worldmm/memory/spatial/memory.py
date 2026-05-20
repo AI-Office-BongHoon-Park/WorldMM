@@ -11,12 +11,13 @@ import json
 import logging
 import torch
 import torch.nn.functional as F
-import igraph as ig
+ig = __import__("igraph")
 from typing import Dict, List, Any, Optional, Set, Tuple, Union
 from dataclasses import dataclass
 
 from ...embedding import EmbeddingModel
 from .utils import SPATIAL_PREDICATE_VOCAB
+from .grounding import GeometricGrounding
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +30,8 @@ class SpatialTripleEntry:
     object: str
     timestamp: int
     place: Optional[str] = None
+    subject_grounding: Optional[GeometricGrounding] = None
+    object_grounding: Optional[GeometricGrounding] = None
 
     @property
     def triple(self) -> List[str]:
@@ -41,9 +44,33 @@ class SpatialTripleEntry:
         return f"{self.subject} {self.predicate} {self.object}"
 
     def to_display_str(self) -> str:
-        base = f"({self.subject}, {self.predicate}, {self.object})"
+        def render_side(name: str, grounding: Optional[GeometricGrounding]) -> str:
+            if grounding is None:
+                return ""
+            center = grounding.bbox_center
+            extent = grounding.bbox_extent
+            return (
+                f" [{name}_center=({center[0]:.2f},{center[1]:.2f},{center[2]:.2f})"
+                f" {name}_extent=({extent[0]:.2f},{extent[1]:.2f},{extent[2]:.2f})"
+                f" units={grounding.units}]"
+            )
+
+        if self.subject_grounding or self.object_grounding:
+            subject = self.subject
+            obj = self.object
+            if self.subject_grounding:
+                c = self.subject_grounding.bbox_center
+                subject = f"{subject} @ ({c[0]:.2f},{c[1]:.2f},{c[2]:.2f}) rel"
+            if self.object_grounding:
+                c = self.object_grounding.bbox_center
+                obj = f"{obj} @ ({c[0]:.2f},{c[1]:.2f},{c[2]:.2f}) rel"
+            base = f"({subject}) [{self.predicate}] ({obj})"
+        else:
+            base = f"({self.subject}, {self.predicate}, {self.object})"
         if self.place:
             base += f" [place={self.place}]"
+        base += render_side("subj", self.subject_grounding)
+        base += render_side("obj", self.object_grounding)
         return base
 
 
@@ -81,18 +108,26 @@ class SpatialMemory:
         self.indexed_time: int = 0
         self.indexed_timestamp: int = 0
 
-        self.graph: Optional[ig.Graph] = None
+        self.graph: Optional[Any] = None
         self.embeddings: Optional[torch.Tensor] = None
         self.triple_to_entities: Dict[str, Tuple[str, str]] = {}
 
         self.max_object_vertices: int = 500
 
-    def load_triples_from_file(self, file_path: str) -> None:
+    def load_triples_from_file(self, file_path: str, grounding_file: Optional[str] = None) -> None:
         with open(file_path, 'r') as f:
             data = json.load(f)
-        self.load_triples_from_data(data)
+        grounding_data = None
+        if grounding_file:
+            with open(grounding_file, 'r') as f:
+                grounding_data = json.load(f)
+        self.load_triples_from_data(data, grounding_data=grounding_data)
 
-    def load_triples_from_data(self, data: Dict[str, Dict[str, Any]]) -> None:
+    def load_triples_from_data(
+        self,
+        data: Dict[str, Dict[str, Any]],
+        grounding_data: Optional[Dict[str, Dict[str, Any]]] = None,
+    ) -> None:
         """
         Expected format (mirrors semantic):
         {
@@ -125,6 +160,9 @@ class SpatialMemory:
 
                 triple_id = f"spatial_{timestamp}_{idx}"
                 place = places.get(str(idx)) or places.get(idx)
+                grounding_record = (grounding_data or {}).get(triple_id, {})
+                subject_grounding = grounding_record.get("subject_grounding")
+                object_grounding = grounding_record.get("object_grounding")
                 entry = SpatialTripleEntry(
                     id=triple_id,
                     subject=triple[0],
@@ -132,6 +170,8 @@ class SpatialMemory:
                     object=triple[2],
                     timestamp=timestamp,
                     place=place,
+                    subject_grounding=GeometricGrounding(**subject_grounding) if subject_grounding else None,
+                    object_grounding=GeometricGrounding(**object_grounding) if object_grounding else None,
                 )
                 self.triple_id_to_entry[triple_id] = entry
                 timestamp_entries.append(entry)
@@ -201,9 +241,10 @@ class SpatialMemory:
                 all_entities.add(obj)
             self.triple_to_entities[entry.id] = (subj, obj)
 
-        self.graph = ig.Graph()
+        graph = ig.Graph()
+        self.graph = graph
         entity_list = list(all_entities)
-        self.graph.add_vertices(entity_list)
+        graph.add_vertices(entity_list)
         entity_to_vertex = {entity: i for i, entity in enumerate(entity_list)}
 
         edges_to_add: List[Tuple[int, int]] = []
@@ -215,7 +256,7 @@ class SpatialMemory:
                 if sv != ov:
                     edges_to_add.append((sv, ov))
         if edges_to_add:
-            self.graph.add_edges(edges_to_add)
+            graph.add_edges(edges_to_add)
 
         all_texts = [entry.text for entry in entries_to_index]
         all_embeddings = self.embedding_model.encode_text(all_texts)

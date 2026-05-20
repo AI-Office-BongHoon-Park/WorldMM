@@ -386,3 +386,60 @@ Outputs are written to `output/spatial_only_ablation.json` and `output/spatial_a
 > Adding a closed-vocabulary spatial memory to WorldMM, built as a 4th axis that mirrors the existing semantic memory shape (igraph + Personalized PageRank), produced **0 regressions** and a **+15.0 %-point** absolute improvement on hand-curated WHERE-style questions (n=20, 80 % → 95 %) for one day of egocentric footage. On an auto-filtered subset of EgoLifeQA the improvement was a modest **+4.5 %-points** (n=22, 31.8 % → 36.4 %), but most of that filter consists of relation / habit questions rather than true WHERE questions; the spatial signal still recovered one previously-wrong answer with no losses.
 
 > The spatial layer makes its biggest difference where episodic action verbs do not implicitly encode location: **place lookups** (which floor / which room), **place composition** (what a place contains), and **proximity** (who was next to whom). For pure object-on-surface placements, episodic action verbs already carry the same information, so the spatial layer is redundant rather than additive.
+
+---
+
+## 8. Geometric grounding PoC
+
+**Chunk:** `120255900` from `data/EgoLife/A1_JAKE/DAY1/DAY1_A1_JAKE_20260000.mp4` (real MP4, 20 fps, non-placeholder). The consolidation timestamp has 375 triples; the sidecar grounds 10 selected visual/table/puzzle/kitchen triples.
+
+**Shipped path:** `SpatialTripleEntry` now has optional `subject_grounding` / `object_grounding`; `SpatialMemory.load_triples_from_file(..., grounding_file=...)` merges `output/metadata/spatial_memory/A1_JAKE/grounding/120255900.json`; `to_display_str()` renders grounded sides inline.
+
+**Depth + detector:** `depth-anything/Depth-Anything-V2-Small-hf` through `transformers` depth-estimation on CPU, with `units="relative"` per no-intrinsics policy. Detector path is the practical fallback: OpenCV saliency/contour + semantic tile priors, because `groundingdino` / `open_clip` are not installed in this environment. No new pip dependency installed. Grounding source recorded as `depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics`.
+
+**Build command:**
+
+```bash
+uv run python tools/build_geometric_grounding.py --allow-depth-fallback
+```
+
+**Demo command:**
+
+```bash
+uv run python tools/demo_grounded_spatial_retrieve.py
+```
+
+**Demo stdout:**
+
+```text
+query: where was the puzzle board?
+grounded spatial retrieval:
+(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]
+(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]
+(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]
+(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]
+(Shure, next_to, I)
+(I, next_to, Shure)
+(I, behind, Shure)
+(Shure, near, I)
+(I, left_of, Shure)
+(I, near, Shure)
+(Shure, left_of, I)
+(Shure, behind, I)
+(Shure, right_of, I)
+(I, near, Tasha)
+(Tasha, near, I)
+(I, in_front_of, Tasha)
+(Tasha, next_to, I)
+(Tasha, in_front_of, I)
+(I, next_to, Tasha)
+(I, left_of, Tasha)
+(Tasha, behind, I)
+(I, next_to, box)
+(I, near, box)
+(Tasha, on, table)
+(I, left_of, puzzle_piece)
+```
+
+**Measured build wall time:** 2.40 s for one frame / one chunk on CPU after model cache hit. The first run successfully loaded Depth-Anything-V2 Small; no depth fallback was used. GroundingDINO was blocked by missing dependency, so OpenCV detector fallback shipped for this PoC.
+
