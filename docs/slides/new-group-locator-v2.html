@@ -35,6 +35,7 @@
   .panel .axes span{padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted)}
   .panel .axes span.added{color:#062012;background:var(--good);border-color:var(--good);font-weight:700}
   .panel .axes span.removed{color:#fff;background:var(--bad);border-color:var(--bad);font-weight:700;text-decoration:line-through}
+  .panel .axes span.empty{color:#fda4af;border-style:dashed;border-color:rgba(253,164,175,.45);background:rgba(253,164,175,.06)}
   .ctx-box{background:rgba(0,0,0,.32);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.5;color:#cfd8ee}
   .ctx-box .label{color:var(--muted);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px}
   .ctx-box em{color:var(--ink);font-style:normal;font-weight:600}
@@ -78,6 +79,8 @@
   .scene-caption .small{color:var(--muted);font-size:11px;margin-top:6px;font-family:var(--mono)}
 
   footer{display:flex;justify-content:space-between;color:var(--muted);font-family:var(--mono);font-size:10.5px;border-top:1px solid var(--line);padding-top:6px}
+  .visual-footnote{color:#fda4af;font-family:var(--mono);font-size:10.5px;padding:4px 10px;background:rgba(253,164,175,.06);border:1px dashed rgba(253,164,175,.40);border-radius:6px;margin-top:6px}
+  .visual-footnote b{color:#fff}
 </style>
 </head>
 <body>
@@ -103,7 +106,7 @@
     <div class="panel no-sp">
       <h2>WITHOUT SPATIAL · 3-axis baseline</h2>
       <div class="axes">
-        <span>episodic ✓</span><span>semantic ✓</span><span>visual (no-op)</span>
+        <span>episodic ✓</span><span>semantic ✓</span><span class="empty">visual ⊘ no clips</span>
       </div>
       <div class="ctx-box">
         <div class="label">retrieved context names everyone except the actor</div>
@@ -126,7 +129,7 @@
     <div class="panel yes-sp">
       <h2>WITH SPATIAL · 4-axis</h2>
       <div class="axes">
-        <span>episodic ✓</span><span>semantic ✓</span><span>visual (no-op)</span>
+        <span>episodic ✓</span><span>semantic ✓</span><span class="empty">visual ⊘ no clips</span>
         <span class="added">+ spatial ★</span>
       </div>
       <div class="smoking-gun">
@@ -154,6 +157,13 @@
     </div>
   </div>
 
+
+  <div class="visual-footnote">
+    <b>⊘ visual axis is empty in <em>both</em> panels.</b> The LiteLLM proxy this run uses is text-only, and no
+    video-clip embeddings were pre-computed for this PoC. The 3-axis baseline is therefore effectively <b>E + S</b>,
+    not E + S + V. The before/after comparison stays fair (both sides have the same empty visual layer) —
+    documented at <code>docs/three-vs-four-axis-ablation.md</code> §1.
+  </div>
 
   <footer>
     <div>worldmm · feat/spatial-memory · UP flip · 8 / 9</div>
