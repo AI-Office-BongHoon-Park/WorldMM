@@ -1,0 +1,2070 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Day-as-topology · A1_JAKE / DAY1 place graph</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#11192f; --panel2:#0e1730; --line:#1c2746; --ink:#e9ecf5; --muted:#8aa0c8;
+    --good:#22c55e; --bad:#ef4444; --accent:#60a5fa; --hl:#fbbf24;
+    --good-edge:rgba(34,197,94,.55); --accent-edge:rgba(96,165,250,.42); --hl-edge:rgba(251,191,36,.72);
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px;
+    --radius-sm:8px; --radius-md:10px; --radius-lg:14px; --radius-xl:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+  .slide{
+    width:1280px;height:720px;margin:24px auto;padding:22px 26px;
+    background:var(--panel);border-radius:var(--radius-xl);box-shadow:0 8px 40px rgba(0,0,0,.45);
+    display:grid;grid-template-rows:auto auto 1fr auto;gap:10px;overflow:hidden;
+  }
+  header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:6px}
+  header h1{margin:0;font-size:23px;font-weight:700;letter-spacing:-.01em}
+  header h1 .dot{color:var(--hl)}
+  header h1 .axis{color:var(--good)}
+  header .tag{color:var(--accent);font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+  header .meta{color:var(--muted);font-family:var(--mono);font-size:11px;text-align:right}
+  .question-bar{background:var(--panel2);border:1px solid var(--line);border-radius:var(--radius-md);padding:9px 16px;display:flex;align-items:center;gap:14px}
+  .question-bar .qlabel{color:var(--accent);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px}
+  .question-bar .qtext{font-size:17px;font-weight:600}
+  .question-bar .gold{margin-left:auto;color:var(--good);font-family:var(--mono);font-size:12px}
+  .topology{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:12px;min-height:0}
+  .graph-card,.side-card{background:#0a1325;border:1px solid var(--line);border-radius:var(--radius-lg);min-height:0;position:relative;overflow:hidden}
+  .graph-card{box-shadow:inset 0 0 0 1px rgba(96,165,250,.08)}
+  .graph-head{position:absolute;left:14px;top:12px;z-index:3;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.6px;text-transform:uppercase}
+  .stat-pill{border:1px solid var(--line);background:rgba(14,23,48,.82);border-radius:999px;padding:4px 10px;backdrop-filter:blur(4px)}
+  .stat-pill b{color:var(--hl);font-weight:800}
+  .graph-card svg{width:100%;height:100%;display:block;background:
+    radial-gradient(circle at 22% 18%, rgba(96,165,250,.13), transparent 30%),
+    radial-gradient(circle at 78% 70%, rgba(34,197,94,.10), transparent 28%),
+    linear-gradient(180deg, rgba(14,23,48,.72), rgba(10,19,37,.96));
+  }
+  .edge{fill:none;stroke:var(--accent-edge);stroke-linecap:round;opacity:.42;transition:opacity .16s ease, stroke .16s ease, stroke-width .16s ease}
+  .edge.incident{stroke:var(--hl);opacity:.96;filter:drop-shadow(0 0 6px rgba(251,191,36,.36))}
+  .edge.dim{opacity:.08}
+  .node circle{stroke:rgba(233,236,245,.68);stroke-width:1.3px;filter:drop-shadow(0 8px 14px rgba(0,0,0,.36));cursor:grab;transition:stroke-width .16s ease, filter .16s ease, opacity .16s ease}
+  .node:active circle{cursor:grabbing}
+  .node text{pointer-events:none;text-anchor:middle;paint-order:stroke;stroke:#0a1325;stroke-width:3px;stroke-linejoin:round;transition:font-size .16s ease, fill .16s ease, opacity .16s ease}
+  .node .label{font-size:12px;font-weight:800;fill:var(--ink)}
+  .node .count{font-size:10px;font-family:var(--mono);fill:var(--muted);stroke-width:2px}
+  .node.active circle{stroke:var(--hl);stroke-width:3px;filter:drop-shadow(0 0 18px rgba(251,191,36,.46))}
+  .node.active .label{font-size:15px;fill:var(--ink);font-weight:900}
+  .node.active .count{fill:var(--hl)}
+  .node.dim circle,.node.dim text{opacity:.22}
+  .side-card{display:grid;grid-template-rows:auto 1fr;background:linear-gradient(180deg,var(--panel2),#0a1325)}
+  .side-top{padding:13px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .side-top .label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--good)}
+  .side-top .hint{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+  .detail{padding:14px;overflow:auto;min-height:0}
+  .place-title{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .place-swatch{width:14px;height:14px;border-radius:999px;box-shadow:0 0 16px rgba(96,165,250,.28);flex:none}
+  .place-title h2{margin:0;font-size:20px;line-height:1.08;letter-spacing:-.01em}
+  .countline{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:12px}
+  .section{border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+  .section h3{margin:0 0 7px 0;color:var(--accent);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{border:1px solid var(--line);border-radius:999px;padding:3px 8px;background:rgba(96,165,250,.08);color:var(--ink);font-family:var(--mono);font-size:11px}
+  .chip.good{background:rgba(34,197,94,.12);border-color:var(--good-edge);color:#bbf7d0}
+  .list{display:grid;gap:5px;font-family:var(--mono);font-size:11px;color:var(--ink)}
+  .visit{display:flex;justify-content:space-between;gap:8px;border:1px solid rgba(28,39,70,.8);border-radius:var(--radius-sm);padding:5px 7px;background:rgba(11,16,32,.38)}
+  .visit span:first-child{color:var(--hl)}
+  .triple{font-family:var(--mono);font-size:11.5px;line-height:1.35;padding:5px 7px;border-left:2px solid var(--good);background:rgba(34,197,94,.08);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:#d8f7e2}
+  .empty{color:var(--muted);font-family:var(--mono);font-size:11px;font-style:italic}
+  .legend{position:absolute;left:14px;bottom:12px;z-index:3;display:flex;gap:8px;align-items:center;flex-wrap:wrap;max-width:640px}
+  .legend .pill{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:rgba(14,23,48,.84);border-radius:999px;padding:4px 9px;font-family:var(--mono);font-size:10.5px;color:var(--muted);backdrop-filter:blur(4px)}
+  .legend .swatch{width:9px;height:9px;border-radius:50%;display:inline-block}
+  footer{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px;font-family:var(--mono);border-top:1px solid var(--line);padding-top:8px}
+  footer div:last-child{color:var(--good)}
+</style>
+</head>
+<body>
+<div class="slide">
+  <header>
+    <div>
+      <div class="tag">worldmm · spatial memory · force graph</div>
+      <h1>Day-as-topology <span class="dot">·</span> <span class="axis">A1_JAKE / DAY1</span> place graph</h1>
+    </div>
+    <div class="meta">nodes = places<br>edges = transitions</div>
+  </header>
+
+  <div class="question-bar">
+    <span class="qlabel">reading mode</span>
+    <span class="qtext">The day becomes a topology: repeated places pull large, repeated transitions thicken.</span>
+    <span class="gold">drag · hover · click</span>
+  </div>
+
+  <main class="topology">
+    <section class="graph-card" aria-label="Force-directed place transition graph">
+      <div class="graph-head">
+        <span class="stat-pill"><b id="nodeCount">0</b> nodes</span>
+        <span class="stat-pill"><b id="edgeCount">0</b> directed edges</span>
+        <span class="stat-pill"><b id="stopCount">0</b> stops</span>
+      </div>
+      <svg id="graph" viewBox="0 0 846 560" role="img" aria-label="Force-directed graph of places and transitions"></svg>
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <aside class="side-card" aria-label="Selected place detail">
+      <div class="side-top">
+        <span class="label">place dossier</span>
+        <span class="hint">click node</span>
+      </div>
+      <div class="detail" id="detail">
+        <div class="place-title">
+          <span class="place-swatch" style="background:var(--accent)"></span>
+          <h2>Select a place</h2>
+        </div>
+        <div class="countline">Hover highlights incident transitions. Click opens visits, companions, and evidence triples.</div>
+        <div class="section">
+          <h3>interaction contract</h3>
+          <div class="chips"><span class="chip good">drag nodes</span><span class="chip">hover topology</span><span class="chip">click details</span></div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div>spatial axis · transitions inferred from trajectory · interactive — drag, hover, click</div>
+    <div>D3 v7 forceSimulation · forceLink + forceManyBody + forceCenter + forceCollide</div>
+  </footer>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script id="trajectory" type="application/json">
+{
+  "subject": "A1_JAKE",
+  "day": "DAY1",
+  "stops": [
+    {
+      "chunk_ts": 111143000,
+      "place": "bedroom",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "hard drive",
+          "on",
+          "dining_table"
+        ],
+        [
+          "box",
+          "on",
+          "another_box"
+        ],
+        [
+          "I",
+          "located_in",
+          "bedroom"
+        ],
+        [
+          "data",
+          "in",
+          "hard_drive"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_111143000.jpg"
+    },
+    {
+      "chunk_ts": 111193000,
+      "place": "dining_table",
+      "companions": [
+        "Alice",
+        "Shure"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Katrina",
+          "near",
+          "windowsill"
+        ],
+        [
+          "I",
+          "behind",
+          "Alice"
+        ],
+        [
+          "right hand",
+          "on",
+          "table"
+        ],
+        [
+          "Shure",
+          "next_to",
+          "I"
+        ],
+        [
+          "I",
+          "next_to",
+          "Shure"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_111193000.jpg"
+    },
+    {
+      "chunk_ts": 111243000,
+      "place": "my_room",
+      "companions": [],
+      "nearby_objects": [
+        "stool"
+      ],
+      "sample_triples": [
+        [
+          "Changchun",
+          "located_in",
+          "jilin_province"
+        ],
+        [
+          "Jilin City",
+          "located_in",
+          "jilin_province"
+        ],
+        [
+          "Shure",
+          "located_in",
+          "Changchun"
+        ],
+        [
+          "Changchun",
+          "located_in",
+          "great_northeast"
+        ],
+        [
+          "strip",
+          "in",
+          "Tasha's black box"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_111243000.jpg"
+    },
+    {
+      "chunk_ts": 111343000,
+      "place": "Shure's original seat",
+      "companions": [],
+      "nearby_objects": [
+        "stool"
+      ],
+      "sample_triples": [
+        [
+          "Shure",
+          "next_to",
+          "Alice"
+        ],
+        [
+          "I",
+          "on",
+          "stool"
+        ],
+        [
+          "Shure",
+          "on",
+          "whiteboard"
+        ],
+        [
+          "I",
+          "in",
+          "Shure's original seat"
+        ],
+        [
+          "Shure",
+          "near",
+          "whiteboard"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_111343000.jpg"
+    },
+    {
+      "chunk_ts": 111393000,
+      "place": "restaurant",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "restaurant"
+        ],
+        [
+          "Katrina",
+          "located_in",
+          "restaurant"
+        ],
+        [
+          "cardboard box",
+          "located_in",
+          "restaurant"
+        ],
+        [
+          "flowers",
+          "in",
+          "box"
+        ],
+        [
+          "Shure",
+          "near",
+          "I"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 111543000,
+      "place": "bedroom",
+      "companions": [
+        "Shure"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "bedroom"
+        ],
+        [
+          "Katrina",
+          "on",
+          "school's_lawn"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 112243000,
+      "place": "phone",
+      "companions": [],
+      "nearby_objects": [
+        "laptop",
+        "phone"
+      ],
+      "sample_triples": [
+        [
+          "I",
+          "on",
+          "phone"
+        ],
+        [
+          "I",
+          "on",
+          "laptop"
+        ],
+        [
+          "I",
+          "in",
+          "phone"
+        ],
+        [
+          "phone",
+          "on",
+          "battery"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_112243000.jpg"
+    },
+    {
+      "chunk_ts": 112493000,
+      "place": "bedroom",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "bedroom"
+        ],
+        [
+          "charging_cable",
+          "in",
+          "computer"
+        ],
+        [
+          "data_cable",
+          "in",
+          "computer"
+        ],
+        [
+          "I",
+          "located_in",
+          "kitchen"
+        ],
+        [
+          "vase",
+          "on",
+          "table"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 113242900,
+      "place": "place",
+      "companions": [
+        "Alice",
+        "Katrina",
+        "Lucia",
+        "Tasha"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "in",
+          "place"
+        ],
+        [
+          "I",
+          "located_in",
+          "downstairs"
+        ],
+        [
+          "I",
+          "near",
+          "Lucia"
+        ],
+        [
+          "I",
+          "near",
+          "Alice"
+        ],
+        [
+          "I",
+          "near",
+          "Tasha"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 113293000,
+      "place": "kitchen",
+      "companions": [
+        "Lucia"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "paper_bag",
+          "located_in",
+          "kitchen"
+        ],
+        [
+          "I",
+          "located_in",
+          "kitchen"
+        ],
+        [
+          "I",
+          "near",
+          "Lucia"
+        ],
+        [
+          "water",
+          "on",
+          "table"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_113293000.jpg"
+    },
+    {
+      "chunk_ts": 113342900,
+      "place": "first_floor",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "near",
+          "whiteboard"
+        ],
+        [
+          "I",
+          "located_in",
+          "first_floor"
+        ],
+        [
+          "kitchen",
+          "located_in",
+          "first_floor"
+        ],
+        [
+          "activity_room",
+          "located_in",
+          "upstairs"
+        ],
+        [
+          "meeting_room",
+          "located_in",
+          "first_floor"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_113342900.jpg"
+    },
+    {
+      "chunk_ts": 113393000,
+      "place": "bedroom",
+      "companions": [
+        "dining_table",
+        "oven"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "bedroom"
+        ],
+        [
+          "laptop",
+          "in",
+          "bedroom"
+        ],
+        [
+          "laptop",
+          "on",
+          "bed"
+        ],
+        [
+          "I",
+          "located_in",
+          "living_room"
+        ],
+        [
+          "I",
+          "near",
+          "dining_table"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 113443000,
+      "place": "kitchen",
+      "companions": [
+        "projector"
+      ],
+      "nearby_objects": [
+        "microwave",
+        "stool"
+      ],
+      "sample_triples": [
+        [
+          "I",
+          "on",
+          "microwave"
+        ],
+        [
+          "microwave",
+          "on",
+          "oven"
+        ],
+        [
+          "I",
+          "near",
+          "projector"
+        ],
+        [
+          "I",
+          "on",
+          "stool"
+        ],
+        [
+          "battery",
+          "on",
+          "table"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 114092900,
+      "place": "outside",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "ladle",
+          "in",
+          "bucket"
+        ],
+        [
+          "spoon",
+          "in",
+          "bucket"
+        ],
+        [
+          "I",
+          "located_in",
+          "sink"
+        ],
+        [
+          "tableware",
+          "in",
+          "bucket"
+        ],
+        [
+          "bowl",
+          "under",
+          "here"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_114092900.jpg"
+    },
+    {
+      "chunk_ts": 114142900,
+      "place": "restaurant",
+      "companions": [],
+      "nearby_objects": [
+        "Katrina's_phone"
+      ],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "restaurant"
+        ],
+        [
+          "I",
+          "located_in",
+          "courtyard"
+        ],
+        [
+          "I",
+          "on",
+          "Katrina's_phone"
+        ],
+        [
+          "Second_Ring_Road",
+          "located_in",
+          "beijing"
+        ],
+        [
+          "Katrina",
+          "near",
+          "Beijing"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 117113000,
+      "place": "kitchen",
+      "companions": [],
+      "nearby_objects": [
+        "stool"
+      ],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "kitchen"
+        ],
+        [
+          "I",
+          "on",
+          "stool"
+        ],
+        [
+          "I",
+          "located_in",
+          "restaurant"
+        ],
+        [
+          "Shure",
+          "on",
+          "his phone"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_117113000.jpg"
+    },
+    {
+      "chunk_ts": 117162900,
+      "place": "supermarket",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Shure",
+          "left_of",
+          "I"
+        ],
+        [
+          "I",
+          "behind",
+          "seat"
+        ],
+        [
+          "Shure",
+          "located_in",
+          "supermarket"
+        ],
+        [
+          "Lucia",
+          "located_in",
+          "supermarket"
+        ],
+        [
+          "Katrina",
+          "located_in",
+          "supermarket"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 117213000,
+      "place": "blue_promotional_area",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "blue_promotional_area"
+        ],
+        [
+          "AI",
+          "near",
+          "Alice"
+        ],
+        [
+          "HLA",
+          "next_to",
+          "our house"
+        ],
+        [
+          "Tasha",
+          "located_in",
+          "the station"
+        ],
+        [
+          "I",
+          "located_in",
+          "blue_drawing_board"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 117262700,
+      "place": "store",
+      "companions": [
+        "Alice",
+        "Tasha"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "the_box",
+          "in",
+          "cart"
+        ],
+        [
+          "Alice",
+          "next_to",
+          "Tasha"
+        ],
+        [
+          "box",
+          "in",
+          "shopping_cart"
+        ],
+        [
+          "TashaAlice",
+          "near",
+          "I"
+        ],
+        [
+          "I",
+          "in_front_of",
+          "Tasha"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_117262700.jpg"
+    },
+    {
+      "chunk_ts": 117312900,
+      "place": "dairy_section",
+      "companions": [
+        "Alice",
+        "drink cooler"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Tasha",
+          "next_to",
+          "I"
+        ],
+        [
+          "I",
+          "next_to",
+          "Alice"
+        ],
+        [
+          "two cartons of milk",
+          "in",
+          "cart"
+        ],
+        [
+          "selected drinks",
+          "in",
+          "cart"
+        ],
+        [
+          "I",
+          "located_in",
+          "dairy_section"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 117362900,
+      "place": "egg_display",
+      "companions": [
+        "Alice",
+        "Tasha"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Tasha",
+          "near",
+          "I"
+        ],
+        [
+          "I",
+          "near",
+          "Alice"
+        ],
+        [
+          "I",
+          "near",
+          "Tasha"
+        ],
+        [
+          "I",
+          "located_in",
+          "egg_display"
+        ],
+        [
+          "Tasha",
+          "near",
+          "Alice"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_117362900.jpg"
+    },
+    {
+      "chunk_ts": 117410800,
+      "place": "freezer",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "freezer"
+        ],
+        [
+          "Tasha",
+          "located_in",
+          "vegetable_section"
+        ],
+        [
+          "I",
+          "located_in",
+          "vegetable_section"
+        ],
+        [
+          "scallion",
+          "in",
+          "Alice's hand"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 117463000,
+      "place": "food_booth",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Alice",
+          "located_in",
+          "deli_section"
+        ],
+        [
+          "Iodine",
+          "in",
+          "cart"
+        ],
+        [
+          "selected sugar",
+          "in",
+          "cart"
+        ],
+        [
+          "I",
+          "located_in",
+          "food_booth"
+        ],
+        [
+          "chicken essence",
+          "in",
+          "cart"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 117562900,
+      "place": "seafood_counter",
+      "companions": [
+        "Tasha",
+        "shelves"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Katrina",
+          "in_front_of",
+          "I"
+        ],
+        [
+          "I",
+          "located_in",
+          "seafood_counter"
+        ],
+        [
+          "Jiangsu",
+          "contains",
+          "people of Jiangsu"
+        ],
+        [
+          "Shure",
+          "behind",
+          "I"
+        ],
+        [
+          "Shure",
+          "right_of",
+          "I"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 118123000,
+      "place": "merchandise_area",
+      "companions": [
+        "Alice",
+        "Katrina",
+        "Lucia",
+        "Shure",
+        "Tasha",
+        "group",
+        "nearby_products"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "next_to",
+          "Lucia"
+        ],
+        [
+          "I",
+          "next_to",
+          "Shure"
+        ],
+        [
+          "Katrina",
+          "next_to",
+          "Lucia"
+        ],
+        [
+          "Shure",
+          "near",
+          "Katrina"
+        ],
+        [
+          "I",
+          "located_in",
+          "merchandise_area"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_118123000.jpg"
+    },
+    {
+      "chunk_ts": 118173000,
+      "place": "checkout_counter",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "checkout_counter"
+        ],
+        [
+          "Shure",
+          "near",
+          "cash_register"
+        ],
+        [
+          "Tasha",
+          "near",
+          "cash_register"
+        ],
+        [
+          "I",
+          "in",
+          "pocket"
+        ],
+        [
+          "power bank",
+          "in",
+          "pocket"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 118272400,
+      "place": "supermarket",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "supermarket"
+        ],
+        [
+          "I",
+          "located_in",
+          "supermarket_entrance"
+        ],
+        [
+          "shopping_bag",
+          "in",
+          "shopping_cart"
+        ],
+        [
+          "my bag",
+          "in",
+          "shopping_cart"
+        ],
+        [
+          "Tasha",
+          "located_in",
+          "car"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 118323000,
+      "place": "shopping_cart_attendant",
+      "companions": [
+        "Lucia",
+        "Tasha"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "next_to",
+          "Lucia"
+        ],
+        [
+          "I",
+          "next_to",
+          "Tasha"
+        ],
+        [
+          "I",
+          "located_in",
+          "shopping_cart_attendant"
+        ],
+        [
+          "shopping_cart",
+          "located_in",
+          "shopping_cart_attendant"
+        ],
+        [
+          "shopping_bag",
+          "on",
+          "ground"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 118372700,
+      "place": "yellow_picture_board",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Tasha",
+          "behind",
+          "I"
+        ],
+        [
+          "Shure",
+          "behind",
+          "I"
+        ],
+        [
+          "I",
+          "located_in",
+          "yellow_picture_board"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 118422900,
+      "place": "entrance",
+      "companions": [
+        "car"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Alice",
+          "located_in",
+          "entrance"
+        ],
+        [
+          "I",
+          "located_in",
+          "entrance"
+        ],
+        [
+          "I",
+          "located_in",
+          "doorway"
+        ],
+        [
+          "Mercedes",
+          "in_front_of",
+          "Yonghe King"
+        ],
+        [
+          "I",
+          "behind",
+          "car"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 119063000,
+      "place": "car",
+      "companions": [
+        "Alice",
+        "Katrina",
+        "Lucia",
+        "Tasha",
+        "driver",
+        "trunk"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Tasha",
+          "near",
+          "my phone"
+        ],
+        [
+          "Alice",
+          "near",
+          "my phone"
+        ],
+        [
+          "Shure",
+          "near",
+          "my phone"
+        ],
+        [
+          "I",
+          "located_in",
+          "car"
+        ],
+        [
+          "I",
+          "near",
+          "driver"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_119063000.jpg"
+    },
+    {
+      "chunk_ts": 119113000,
+      "place": "singapore",
+      "companions": [
+        "Lucia"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "singapore"
+        ],
+        [
+          "Alice",
+          "in_front_of",
+          "I"
+        ],
+        [
+          "WeChat",
+          "contains",
+          "saved password"
+        ],
+        [
+          "his hat",
+          "in",
+          "plastic_bag"
+        ],
+        [
+          "I",
+          "located_in",
+          "courtyard"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_119113000.jpg"
+    },
+    {
+      "chunk_ts": 119163000,
+      "place": "living_room_doorway",
+      "companions": [
+        "refrigerator"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "items",
+          "in",
+          "refrigerator"
+        ],
+        [
+          "Alice",
+          "near",
+          "refrigerator"
+        ],
+        [
+          "Katrina",
+          "near",
+          "refrigerator"
+        ],
+        [
+          "Tasha",
+          "near",
+          "refrigerator"
+        ],
+        [
+          "meat",
+          "in",
+          "freezer"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_119163000.jpg"
+    },
+    {
+      "chunk_ts": 119213000,
+      "place": "room",
+      "companions": [
+        "dining table"
+      ],
+      "nearby_objects": [
+        "windowsill"
+      ],
+      "sample_triples": [
+        [
+          "Alice",
+          "next_to",
+          "trash can"
+        ],
+        [
+          "Lucia",
+          "next_to",
+          "trash can"
+        ],
+        [
+          "I",
+          "next_to",
+          "dining table"
+        ],
+        [
+          "trash bag",
+          "on",
+          "table"
+        ],
+        [
+          "small bag",
+          "on",
+          "ground outside"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_119213000.jpg"
+    },
+    {
+      "chunk_ts": 119263000,
+      "place": "living_room",
+      "companions": [
+        "Alice",
+        "Katrina",
+        "Lucia",
+        "Tasha",
+        "dining_table"
+      ],
+      "nearby_objects": [
+        "table"
+      ],
+      "sample_triples": [
+        [
+          "I",
+          "next_to",
+          "Katrina"
+        ],
+        [
+          "I",
+          "next_to",
+          "Alice"
+        ],
+        [
+          "I",
+          "next_to",
+          "Lucia"
+        ],
+        [
+          "I",
+          "next_to",
+          "Tasha"
+        ],
+        [
+          "Katrina",
+          "on",
+          "ground"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_119263000.jpg"
+    },
+    {
+      "chunk_ts": 119313000,
+      "place": "entryway",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Katrina",
+          "near",
+          "table"
+        ],
+        [
+          "Alice",
+          "next_to",
+          "I"
+        ],
+        [
+          "Katrina",
+          "on",
+          "floor"
+        ],
+        [
+          "I",
+          "located_in",
+          "entryway"
+        ],
+        [
+          "I",
+          "located_in",
+          "upstairs"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 119362900,
+      "place": "living_room",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "another computer",
+          "located_in",
+          "second-floor_living_room"
+        ],
+        [
+          "I",
+          "located_in",
+          "living_room"
+        ],
+        [
+          "computer by sofa",
+          "on",
+          "sofa"
+        ],
+        [
+          "camera",
+          "located_in",
+          "second-floor_living_room"
+        ],
+        [
+          "computer",
+          "located_in",
+          "second-floor_living_room"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 119463000,
+      "place": "first_floor_living_room",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "second_floor_living_room"
+        ],
+        [
+          "I",
+          "located_in",
+          "first_floor_living_room"
+        ],
+        [
+          "Katrina",
+          "next_to",
+          "I"
+        ],
+        [
+          "Katrina",
+          "on",
+          "floor"
+        ],
+        [
+          "I",
+          "located_in",
+          "center_of_the_living_room"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_119463000.jpg"
+    },
+    {
+      "chunk_ts": 119595900,
+      "place": "kitchen",
+      "companions": [],
+      "nearby_objects": [
+        "sofa"
+      ],
+      "sample_triples": [
+        [
+          "I",
+          "on",
+          "sofa"
+        ],
+        [
+          "phone",
+          "on",
+          "sofa"
+        ],
+        [
+          "I",
+          "located_in",
+          "kitchen"
+        ],
+        [
+          "computer",
+          "on",
+          "chair"
+        ],
+        [
+          "computer",
+          "next_to",
+          "desk"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_119595900.jpg"
+    },
+    {
+      "chunk_ts": 120072700,
+      "place": "living_room",
+      "companions": [],
+      "nearby_objects": [
+        "chair"
+      ],
+      "sample_triples": [
+        [
+          "computer",
+          "located_in",
+          "living_room"
+        ],
+        [
+          "I",
+          "located_in",
+          "living_room"
+        ],
+        [
+          "I",
+          "on",
+          "chair"
+        ],
+        [
+          "computer",
+          "on",
+          "chair"
+        ],
+        [
+          "computer",
+          "on",
+          "sofa"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 120255900,
+      "place": "kitchen",
+      "companions": [
+        "Alice",
+        "Lucia"
+      ],
+      "nearby_objects": [
+        "table"
+      ],
+      "sample_triples": [
+        [
+          "I",
+          "located_in",
+          "kitchen"
+        ],
+        [
+          "food",
+          "on",
+          "dining_table"
+        ],
+        [
+          "I",
+          "on",
+          "table"
+        ],
+        [
+          "Lucia",
+          "located_in",
+          "kitchen"
+        ],
+        [
+          "Alice",
+          "located_in",
+          "kitchen"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 120305900,
+      "place": "living_room",
+      "companions": [
+        "Lucia",
+        "Tasha"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "next_to",
+          "Lucia"
+        ],
+        [
+          "data cable",
+          "on",
+          "table"
+        ],
+        [
+          "phone",
+          "near",
+          "Lucia"
+        ],
+        [
+          "power bank",
+          "in",
+          "Lucia"
+        ],
+        [
+          "Tasha",
+          "near",
+          "blackboard"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 120355700,
+      "place": "kitchen",
+      "companions": [],
+      "nearby_objects": [
+        "sofa"
+      ],
+      "sample_triples": [
+        [
+          "Alice",
+          "located_in",
+          "kitchen"
+        ],
+        [
+          "Lucia",
+          "located_in",
+          "kitchen"
+        ],
+        [
+          "takeout",
+          "in",
+          "microwave"
+        ],
+        [
+          "rice cooker",
+          "near",
+          "kitchen"
+        ],
+        [
+          "I",
+          "located_in",
+          "second_floor_living_room"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 120410000,
+      "place": "second-floor_kitchen",
+      "companions": [
+        "Katrina",
+        "computer",
+        "keyboard"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "near",
+          "Katrina"
+        ],
+        [
+          "Lucia",
+          "near",
+          "Katrina"
+        ],
+        [
+          "Lucia",
+          "near",
+          "I"
+        ],
+        [
+          "I",
+          "near",
+          "computer"
+        ],
+        [
+          "I",
+          "near",
+          "keyboard"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_120410000.jpg"
+    },
+    {
+      "chunk_ts": 120460000,
+      "place": "living_room",
+      "companions": [
+        "Lucia"
+      ],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "I",
+          "behind",
+          "Lucia"
+        ],
+        [
+          "I",
+          "located_in",
+          "living_room"
+        ],
+        [
+          "food",
+          "on",
+          "table"
+        ],
+        [
+          "power_outlet",
+          "next_to",
+          "desk"
+        ],
+        [
+          "schoolbag",
+          "on",
+          "sofa"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 121370000,
+      "place": "kitchen",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "computer_power_plug",
+          "on",
+          "table"
+        ],
+        [
+          "I",
+          "located_in",
+          "kitchen"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_121370000.jpg"
+    },
+    {
+      "chunk_ts": 121520000,
+      "place": "lobby",
+      "companions": [],
+      "nearby_objects": [
+        "handle"
+      ],
+      "sample_triples": [
+        [
+          "Katrina",
+          "next_to",
+          "Alice"
+        ],
+        [
+          "I",
+          "located_in",
+          "lobby"
+        ],
+        [
+          "I",
+          "located_in",
+          "upstairs"
+        ],
+        [
+          "I",
+          "on",
+          "handle"
+        ],
+        [
+          "I",
+          "located_in",
+          "room"
+        ]
+      ],
+      "thumbnail_path": null
+    },
+    {
+      "chunk_ts": 121570000,
+      "place": "computer",
+      "companions": [],
+      "nearby_objects": [],
+      "sample_triples": [
+        [
+          "Lucia",
+          "on",
+          "small horse"
+        ],
+        [
+          "I",
+          "located_in",
+          "computer"
+        ],
+        [
+          "Lucia",
+          "next_to",
+          "Tasha"
+        ],
+        [
+          "Number Three",
+          "located_in",
+          "upstairs"
+        ],
+        [
+          "phone",
+          "on",
+          "stool"
+        ]
+      ],
+      "thumbnail_path": "output/thumbnails/A1_JAKE/DAY1/thumb_121570000.jpg"
+    }
+  ]
+}
+</script>
+<script>
+(() => {
+  const trajectory = JSON.parse(document.getElementById('trajectory').textContent);
+  const rawStops = trajectory.stops || [];
+  const rawPlaceCounts = d3.rollup(rawStops, visits => visits.length, stop => stop.place);
+  const collapseRare = rawPlaceCounts.size > 40;
+  const normalisePlace = place => collapseRare && rawPlaceCounts.get(place) === 1 ? 'misc' : place;
+  const stops = rawStops.map(stop => ({...stop, graphPlace: normalisePlace(stop.place)}));
+  const placeStops = d3.rollup(stops, visits => visits, stop => stop.graphPlace);
+
+  const PLACE_PALETTE = {
+    kitchen: '#22c55e',
+    bedroom: '#a855f7',
+    restaurant: '#fbbf24',
+    supermarket: '#60a5fa',
+    'Hema Fresh': '#3b82f6',
+    courtyard: '#84cc16',
+    first_floor: '#06b6d4',
+    second_floor: '#0ea5e9',
+    'second-floor_living_room': '#0ea5e9',
+    second_floor_living_room: '#0ea5e9',
+    upstairs: '#0ea5e9',
+    downstairs: '#06b6d4',
+    outside: '#f97316',
+    meeting_room: '#8b5cf6',
+    computer_room: '#6366f1',
+    store: '#3b82f6',
+    dorm: '#ef4444',
+    misc: '#8aa0c8'
+  };
+
+  function hashHue(place) {
+    let hash = 0;
+    for (const char of place) hash = ((hash << 5) - hash + char.charCodeAt(0)) | 0;
+    return Math.abs(hash) % 360;
+  }
+
+  function colourFor(place) {
+    return PLACE_PALETTE[place] || `hsl(${hashHue(place)},65%,55%)`;
+  }
+
+  function fmt(ts) {
+    const s = String(ts).padStart(9, '0');
+    return `DAY${s[0]} ${s.slice(1,3)}:${s.slice(3,5)}:${s.slice(5,7)}`;
+  }
+
+  const nodes = Array.from(placeStops, ([place, visits]) => ({
+    id: place,
+    count: visits.length,
+    visits,
+    radius: 16 + Math.log1p(visits.length) * 8,
+    color: colourFor(place)
+  })).sort((a, b) => d3.descending(a.count, b.count) || d3.ascending(a.id, b.id));
+
+  const edgeCounts = d3.rollup(
+    d3.pairs(stops),
+    pairs => pairs.length,
+    pair => pair[0].graphPlace,
+    pair => pair[1].graphPlace
+  );
+  const edges = [];
+  for (const [source, targets] of edgeCounts) {
+    for (const [target, count] of targets) {
+      edges.push({source, target, count, id: `${source}→${target}`});
+    }
+  }
+  const edgeIndex = new Set(edges.map(edge => edge.id));
+  edges.forEach(edge => { edge.reciprocal = edgeIndex.has(`${edge.target}→${edge.source}`); });
+
+  document.getElementById('nodeCount').textContent = nodes.length;
+  document.getElementById('edgeCount').textContent = edges.length;
+  document.getElementById('stopCount').textContent = stops.length;
+
+  const svg = d3.select('#graph');
+  const width = 846;
+  const height = 560;
+
+  svg.append('defs').append('marker')
+    .attr('id', 'arrow')
+    .attr('viewBox', '0 -5 10 10')
+    .attr('refX', 9)
+    .attr('refY', 0)
+    .attr('markerWidth', 7)
+    .attr('markerHeight', 7)
+    .attr('orient', 'auto')
+    .append('path')
+    .attr('d', 'M0,-5L10,0L0,5')
+    .attr('fill', 'var(--hl)')
+    .attr('opacity', 0.9);
+
+  const edgeWidth = d => 1.1 + Math.log1p(d.count) * 2.1;
+  const linkLayer = svg.append('g').attr('class', 'links');
+  const nodeLayer = svg.append('g').attr('class', 'nodes');
+
+  const link = linkLayer.selectAll('path')
+    .data(edges)
+    .join('path')
+    .attr('class', 'edge')
+    .attr('stroke-width', edgeWidth)
+    .attr('marker-end', 'url(#arrow)');
+
+  link.append('title').text(d => `${d.source} → ${d.target} · ${d.count} transition${d.count > 1 ? 's' : ''}`);
+
+  const node = nodeLayer.selectAll('g')
+    .data(nodes)
+    .join('g')
+    .attr('class', 'node')
+    .call(drag());
+
+  node.append('circle')
+    .attr('r', d => d.radius)
+    .attr('fill', d => d.color);
+
+  node.append('text')
+    .attr('class', 'label')
+    .attr('dy', d => -d.radius - 7)
+    .text(d => d.id);
+
+  node.append('text')
+    .attr('class', 'count')
+    .attr('dy', d => -d.radius + 8)
+    .text(d => `${d.count} stop${d.count > 1 ? 's' : ''}`);
+
+  node.append('title').text(d => `${d.id} · ${d.count} stop${d.count > 1 ? 's' : ''}`);
+
+  const topPlaces = nodes.slice(0, 6);
+  d3.select('#legend').selectAll('span')
+    .data(topPlaces)
+    .join('span')
+    .attr('class', 'pill')
+    .html(d => `<span class="swatch" style="background:${d.color}"></span>${escapeHtml(d.id)} · ${d.count}`);
+
+  const simulation = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(edges).id(d => d.id).distance(d => 82 + Math.log1p(d.count) * 28).strength(0.46))
+    .force('charge', d3.forceManyBody().strength(d => -245 - d.radius * 5))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collide', d3.forceCollide().radius(d => d.radius + 34).iterations(2))
+    .on('tick', ticked);
+
+  node.on('mouseenter', (_, d) => highlight(d))
+    .on('mouseleave', clearHighlight)
+    .on('click', (_, d) => showDetail(d));
+
+  if (nodes.length) showDetail(nodes[0]);
+
+  function ticked() {
+    nodes.forEach(d => {
+      d.x = Math.max(d.radius + 24, Math.min(width - d.radius - 24, d.x));
+      d.y = Math.max(d.radius + 42, Math.min(height - d.radius - 30, d.y));
+    });
+    link.attr('d', edgePath);
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
+  }
+
+  function edgePath(d) {
+    const source = d.source;
+    const target = d.target;
+    if (source.id === target.id) {
+      const loop = source.radius + 22;
+      return `M${source.x},${source.y - loop}A${loop},${loop} 0 1,1 ${source.x + loop * 0.74},${source.y - loop * 0.74}`;
+    }
+    const dx = target.x - source.x;
+    const dy = target.y - source.y;
+    const distance = Math.hypot(dx, dy) || 1;
+    const sx = source.x + (dx / distance) * (source.radius + 3);
+    const sy = source.y + (dy / distance) * (source.radius + 3);
+    const tx = target.x - (dx / distance) * (target.radius + 11);
+    const ty = target.y - (dy / distance) * (target.radius + 11);
+    const arc = distance * (d.reciprocal ? 1.38 : 1.05);
+    return `M${sx},${sy}A${arc},${arc} 0 0,1 ${tx},${ty}`;
+  }
+
+  function highlight(active) {
+    const activeId = active.id;
+    link.classed('incident', d => d.source.id === activeId || d.target.id === activeId)
+      .classed('dim', d => !(d.source.id === activeId || d.target.id === activeId));
+    node.classed('active', d => d.id === activeId)
+      .classed('dim', d => d.id !== activeId && !edges.some(edge =>
+        (edge.source.id === activeId && edge.target.id === d.id) ||
+        (edge.target.id === activeId && edge.source.id === d.id)
+      ));
+  }
+
+  function clearHighlight() {
+    link.classed('incident', false).classed('dim', false);
+    node.classed('active', false).classed('dim', false);
+  }
+
+  function showDetail(d) {
+    const visits = [...d.visits].sort((a, b) => a.chunk_ts - b.chunk_ts);
+    const companions = Array.from(new Set(visits.flatMap(stop => stop.companions || []))).sort();
+    const triples = [];
+    const seen = new Set();
+    for (const stop of visits) {
+      for (const triple of stop.sample_triples || []) {
+        const key = triple.join('\u241f');
+        if (!seen.has(key)) {
+          seen.add(key);
+          triples.push(triple);
+        }
+      }
+    }
+    const visitHtml = visits.map(stop => `
+      <div class="visit"><span>${escapeHtml(String(stop.chunk_ts))}</span><span>${escapeHtml(fmt(stop.chunk_ts))}${d.id === 'misc' ? ' · ' + escapeHtml(stop.place) : ''}</span></div>
+    `).join('');
+    const companionsHtml = companions.length
+      ? companions.map(name => `<span class="chip good">${escapeHtml(name)}</span>`).join('')
+      : '<span class="empty">alone / no named companion</span>';
+    const tripleHtml = triples.length
+      ? triples.slice(0, 18).map(triple => `<div class="triple">(${escapeHtml(triple[0])}, <span style="color:var(--hl)">${escapeHtml(triple[1])}</span>, ${escapeHtml(triple[2])})</div>`).join('')
+      : '<span class="empty">no sample triples</span>';
+    const moreTriples = triples.length > 18 ? `<div class="empty">+ ${triples.length - 18} more triple lines hidden for panel fit</div>` : '';
+
+    d3.select('#detail').html(`
+      <div class="place-title">
+        <span class="place-swatch" style="background:${d.color}"></span>
+        <h2>${escapeHtml(d.id)}</h2>
+      </div>
+      <div class="countline">${d.count} stop${d.count > 1 ? 's' : ''} · radius = log(stop count) · color = PLACE_PALETTE/hash hue</div>
+      <div class="section">
+        <h3>chunk_ts visits</h3>
+        <div class="list">${visitHtml}</div>
+      </div>
+      <div class="section">
+        <h3>companions union</h3>
+        <div class="chips">${companionsHtml}</div>
+      </div>
+      <div class="section">
+        <h3>sample triples from trajectory JSON</h3>
+        <div class="list">${tripleHtml}${moreTriples}</div>
+      </div>
+    `);
+  }
+
+  function drag() {
+    return d3.drag()
+      .on('start', (event, d) => {
+        if (!event.active) simulation.alphaTarget(0.28).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+      })
+      .on('drag', (event, d) => {
+        d.fx = event.x;
+        d.fy = event.y;
+      })
+      .on('end', (event, d) => {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+      });
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  }
+})();
+</script>
+</body>
+</html>
