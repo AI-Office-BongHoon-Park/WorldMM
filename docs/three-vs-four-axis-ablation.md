@@ -217,3 +217,31 @@ The harness is at [`eval/three_vs_four_axis_ablation.py`](../eval/three_vs_four_
 > On a representative unfiltered slice of EgoLifeQA DAY1 (n = 60), adding the closed-vocabulary spatial memory as a 4th axis is **essentially neutral** (−1 / 60, −1.7 %p — within sample noise). The spatial signal **does exist** — it fixes 2 questions the 3-axis baseline gets wrong (Q1 screwdriver, Q33 takeout app) — but the reasoning agent also picks the spatial branch in 3 cases where it should not (Q6 grow-flowers, Q45 coffee-timing, Q50 phone-habit), and those *cost* a correct answer. The remaining 5 differing answers are "both wrong with different letters" — spatial reroutes a wrong guess without unlocking the correct one. Per-type Δ values at n = 60 are all within ±1, with no category showing a stable positive or negative effect. This is **not** in conflict with the earlier synthetic-WHERE finding of +15 %p — that one filtered to questions whose answers live in the spatial layer; this one does not. **The honest paper-level number for spatial-as-shipped is therefore: a clear +15 %p win on WHERE-grounded queries, but only a ≈0 %p effect on unfiltered EgoLifeQA, with question-type composition dominating the headline. The choice of question filter dominates the conclusion.**
 >
 > The natural next move is a **routing fix in the reasoning prompt**: the agent currently treats the spatial axis as freely selectable; constraining it to questions whose surface form contains WHERE / location cues (or letting the agent choose spatial only as a *second-round* refinement after episodic) should preserve the +UP wins while collapsing the −DN losses. This is captured as the v2 extension plan in [`docs/spatial-encoding-sensor-based.md`](spatial-encoding-sensor-based.md) §7.
+
+---
+
+## 8. Visual axis activated — first 15 DAY1 questions (n=15)
+
+This smoke rerun used the real visual-memory files at `output/metadata/visual_memory/A1_JAKE/visual_embeddings_clip-ViT-B-32.pkl` and `output/metadata/visual_memory/A1_JAKE/visual_clips_clip-ViT-B-32.json` with the patched vision-capable LiteLLM proxy. It covered the first 15 DAY1 EgoLifeQA questions, `max_rounds = 3`, same `all-MiniLM-L6-v2` CPU text embedding path, and wrote `output/three_vs_four_n15_real_visual.json`.
+
+| Configuration | Correct | % |
+|---|---:|---:|
+| **3-axis** (episodic + semantic + real visual) | **7 / 15** | **46.7 %** |
+| **4-axis** (episodic + semantic + real visual + **spatial**) | **8 / 15** | **53.3 %** |
+| **Δ** (4-axis − 3-axis) | **+1** | **+6.7 %p** |
+| Answers differ between configs | 4 / 15 | 26.7 % |
+| Of those: **UP** (4-axis fixes 3-axis wrong) | 2 | |
+| Of those: **DN** (4-axis breaks 3-axis right) | 1 | |
+
+Axis selections observed in an instrumented cached rerun of the same 15-question path:
+
+| Configuration | Episodic | Semantic | Visual | Spatial |
+|---|---:|---:|---:|---:|
+| **3-axis** | 22 | 0 | 2 | n/a |
+| **4-axis** | 23 | 0 | 5 | 4 |
+
+The agent **did pick `visual`** (2 times in 3-axis; 5 times in 4-axis), but every visual retrieval returned **0 clips / 0 images** for these queries. Therefore visual hits did **not** contribute to any correct answer in this n = 15 prefix: the real visual axis was available and selectable, but this sample's selected visual queries fell outside the downloaded/indexed MP4 coverage or retrieved no frame payloads.
+
+Compared with the visual-empty n = 60 run's first-15 prefix, the old prefix was **8 / 15 vs 8 / 15** (Δ 0), while this real-visual smoke is **7 / 15 vs 8 / 15** (Δ +1). The changed flips are not visual-evidence wins because the visual selections had no image payloads. Example: Q14 (`Who is missing compared to when we first started the puzzle?`) became an UP flip in the new run (gold A, 3-axis D, 4-axis A), but the 4-axis visual calls for Q14 returned 0 clips / 0 images, so the gain is run/routing variance, not a verified visual contribution.
+
+Implication for the old disclaimer: remove the blanket claim that the visual axis is unbuilt or unavailable for this follow-up run, but keep a narrower caveat for this n = 15 result: **visual was active and selected, yet produced no clip/image hits on the selected queries**, so this smoke still does not measure a positive visual-evidence contribution.
