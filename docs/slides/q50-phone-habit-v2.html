@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorldMM · Q50 — before / after spatial</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#11192f; --panel2:#0e1730; --line:#1c2746; --ink:#e9ecf5; --muted:#8aa0c8;
+    --good:#22c55e; --bad:#ef4444; --accent:#60a5fa; --hl:#fbbf24;
+    --good-edge:rgba(34,197,94,.55); --bad-edge:rgba(239,68,68,.55);
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+  .slide{width:1280px;height:720px;margin:24px auto;padding:22px 26px;background:var(--panel);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.45);display:grid;grid-template-rows:auto auto 1fr auto;gap:10px}
+  header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:6px}
+  header h1{margin:0;font-size:23px;font-weight:700;letter-spacing:-.01em}
+  header h1 .red{color:var(--bad)} header h1 .grn{color:var(--good)} header h1 .arrow{color:var(--hl);margin:0 4px}
+  header .tag{color:var(--bad);font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+  header .meta{color:var(--muted);font-family:var(--mono);font-size:11px;text-align:right}
+  .question-bar{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:9px 16px;display:flex;align-items:center;gap:14px}
+  .question-bar .qlabel{color:var(--accent);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px}
+  .question-bar .qtext{font-size:17px;font-weight:600}
+  .question-bar .gold{margin-left:auto;color:var(--good);font-family:var(--mono);font-size:12px}
+
+  .twocol{display:grid;grid-template-columns:1fr 80px 1fr;gap:0;min-height:0}
+  .panel{border-radius:14px;padding:14px 18px;border:2px solid;display:flex;flex-direction:column;gap:12px;min-height:0;background:#0a1325}
+  .panel.no-sp{border-color:var(--bad-edge);box-shadow:inset 0 0 0 1px rgba(239,68,68,.18)}
+  .panel.yes-sp{border-color:var(--good-edge);box-shadow:inset 0 0 0 1px rgba(34,197,94,.22)}
+  .panel h2{margin:0;font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;display:flex;align-items:center;gap:8px}
+  .panel.no-sp h2{color:var(--bad)} .panel.no-sp h2::before{content:"✗";font-size:18px}
+  .panel.yes-sp h2{color:var(--good)} .panel.yes-sp h2::before{content:"✓";font-size:18px}
+  .panel .axes{display:flex;gap:6px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px}
+  .panel .axes span{padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid var(--line);color:var(--muted)}
+  .panel .axes span.added{color:#062012;background:var(--good);border-color:var(--good);font-weight:700}
+  .panel .axes span.removed{color:#fff;background:var(--bad);border-color:var(--bad);font-weight:700;text-decoration:line-through}
+  .ctx-box{background:rgba(0,0,0,.32);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:12.5px;line-height:1.5;color:#cfd8ee}
+  .ctx-box .label{color:var(--muted);font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:6px}
+  .ctx-box em{color:var(--ink);font-style:normal;font-weight:600}
+
+  .smoking-gun{background:linear-gradient(180deg,rgba(34,197,94,.22),rgba(34,197,94,.10));border:2px solid var(--good);border-radius:10px;padding:14px 16px;box-shadow:0 0 28px rgba(34,197,94,.25)}
+  .panel.no-sp .smoking-gun{background:linear-gradient(180deg,rgba(239,68,68,.22),rgba(239,68,68,.10));border-color:var(--bad);box-shadow:0 0 28px rgba(239,68,68,.25)}
+  .smoking-gun .lab{font-family:var(--mono);color:var(--good);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+  .panel.no-sp .smoking-gun .lab{color:var(--bad)}
+  .smoking-gun .triple{font-family:var(--mono);font-size:24px;color:#dcfce7;font-weight:800;letter-spacing:.5px;text-align:center}
+  .panel.no-sp .smoking-gun .triple{color:#fecaca}
+  .smoking-gun .triple .you{color:var(--hl)}
+  .smoking-gun .triple .pred{color:#86efac;margin:0 6px}
+  .panel.no-sp .smoking-gun .triple .pred{color:#fca5a5}
+  .smoking-gun .triple .alice{color:#fff;text-decoration:underline;text-decoration-color:var(--good);text-underline-offset:4px}
+  .panel.no-sp .smoking-gun .triple .alice{text-decoration-color:var(--bad)}
+  .smoking-gun .reading{margin-top:8px;color:#bbf7d0;font-size:12.5px;line-height:1.45}
+  .panel.no-sp .smoking-gun .reading{color:#fecaca}
+
+  .pred-final{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:10px;font-family:var(--mono)}
+  .panel.no-sp .pred-final{background:rgba(239,68,68,.16);border:1px solid var(--bad-edge);color:#fecaca}
+  .panel.yes-sp .pred-final{background:rgba(34,197,94,.18);border:1px solid var(--good-edge);color:#bbf7d0}
+  .pred-final .letter{font-size:46px;font-weight:900;line-height:1;font-family:var(--sans)}
+  .pred-final .name{font-size:18px;font-weight:700}
+  .pred-final .verdict{margin-left:auto;font-size:14px;font-weight:700;letter-spacing:.4px}
+
+  .divider{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+  .divider .plus{width:54px;height:54px;border-radius:50%;background:var(--hl);color:#1a1300;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;font-family:var(--sans);box-shadow:0 0 24px rgba(251,191,36,.45)}
+  .divider .what{font-family:var(--mono);font-size:11px;color:var(--hl);letter-spacing:1px;text-transform:uppercase;text-align:center}
+  .divider .one{font-size:18px;color:#fff8d6;font-weight:800;text-align:center;line-height:1.1}
+  .divider .arrow-down{font-size:22px;color:var(--hl);font-weight:900;margin-top:2px}
+
+  .scene-row{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:stretch}
+  .scene{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#06090f;width:280px;height:158px}
+  .scene img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.06) contrast(1.05)}
+  .scene .scene-label{position:absolute;top:6px;left:8px;font-family:var(--mono);font-size:10px;color:var(--muted);background:rgba(11,16,32,.78);padding:2px 7px;border-radius:5px;letter-spacing:.4px}
+  .scene .ann{position:absolute;border:2px solid var(--good);border-radius:6px;box-shadow:0 0 0 2px rgba(34,197,94,.18),0 0 18px rgba(34,197,94,.45)}
+  .scene .ann-label{position:absolute;background:var(--good);color:#062012;font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:5px;font-weight:800;letter-spacing:.4px;white-space:nowrap}
+  .scene .you-arrow{position:absolute;top:6px;right:8px;background:rgba(11,16,32,.85);border:1px solid var(--hl);color:var(--hl);font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:5px;font-weight:700}
+  .scene-caption{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:13px;line-height:1.5;color:#cfd8ee;display:flex;flex-direction:column;justify-content:center}
+  .scene-caption b{color:var(--hl)}
+  .scene-caption .small{color:var(--muted);font-size:11px;margin-top:6px;font-family:var(--mono)}
+
+  footer{display:flex;justify-content:space-between;color:var(--muted);font-family:var(--mono);font-size:10.5px;border-top:1px solid var(--line);padding-top:6px}
+</style>
+</head>
+<body>
+
+<div class="slide">
+
+  <header>
+    <div>
+      <div class="tag">spatial memory · before / after · DN flip</div>
+      <h1>One extra spatial fact: <span class="grn">right</span><span class="arrow">→</span><span class="red">wrong</span></h1>
+    </div>
+    <div class="meta">A1_JAKE · DAY1 · HabitInsight<br>3-axis 37/60 · 4-axis 36/60</div>
+  </header>
+
+  <div class="question-bar">
+    <span class="qlabel">Q50</span>
+    <span class="qtext">What do I usually show everyone on my phone?</span>
+    <span class="gold">correct answer: D · Take a look at the timer interface</span>
+  </div>
+
+  <div class="twocol">
+
+    <div class="panel yes-sp">
+      <h2>WITHOUT SPATIAL · 3-axis baseline</h2>
+      <div class="axes">
+        <span>episodic ✓</span><span>semantic ✓</span><span>visual (no-op)</span>
+      </div>
+      <div class="ctx-box">
+        <div class="label">baseline reads the episodic capture directly</div>
+        "I keep operating my phone and show everyone the timer."  The episodic capture states the specific action.
+        <br><br>
+        <span style="color:var(--muted)">Direct evidence wins on the 3-axis side.</span>
+      </div>
+      <div class="pred-final">
+        <span class="letter">D</span><span class="name">timer interface</span><span class="verdict">✓ CORRECT</span>
+      </div>
+    </div>
+
+    <div class="divider">
+      <div class="plus">+</div>
+      <div class="what">adding extra</div>
+      <div class="one">spatial fact</div>
+      <div class="arrow-down">↓</div>
+    </div>
+
+    <div class="panel no-sp">
+      <h2>WITH SPATIAL · 4-axis</h2>
+      <div class="axes">
+        <span>episodic ✓</span><span>semantic ✓</span><span>visual (no-op)</span>
+        <span class="added">+ spatial ★</span>
+      </div>
+      <div class="smoking-gun">
+        <div class="lab">the misleading triple</div>
+        <div class="triple">(<span class="you">I (wearer)</span><span class="pred">on</span><span class="alice">Katrina&#x27;s_phone</span>)</div>
+        <div class="reading">Spatial surfaces many people-on-phone triples across the day. Agent generalises 'group phone use' → 'sharing interesting videos'.</div>
+      </div>
+      <div class="pred-final">
+        <span class="letter">A</span><span class="name">share videos</span><span class="verdict">✗ WRONG</span>
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="scene-row">
+    <div class="scene">
+      <img src="assets/q50_phone_timer.jpg">
+      <div class="scene-label">DAY1 12:23:43 · show the timer</div>
+      
+      
+    </div>
+    <div class="scene-caption">
+      Spatial dilutes the specific timer mention with broad people-with-phones context. The content of the phone screen is lost.
+      <div class="small">failure mode: pattern-induction overrides specific evidence</div>
+    </div>
+  </div>
+
+
+  <footer>
+    <div>worldmm · feat/spatial-memory · DN flip · 3 / 3</div>
+    <div>same retrieval, same QA, same model — spatial added a true-but-irrelevant fact</div>
+  </footer>
+</div>
+
+</body>
+</html>
