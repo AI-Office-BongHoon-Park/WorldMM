@@ -194,6 +194,44 @@ class LiteLLMProxyModel:
             return [{"role": "user", "content": prompt}]
         return copy.deepcopy(prompt)
 
+    @staticmethod
+    def _pil_to_data_url(img: Any) -> str:
+        import base64 as _b64
+        import io as _io
+        from PIL import Image as _Image
+
+        if isinstance(img, str) and img.startswith("data:"):
+            return img
+        if isinstance(img, str) and os.path.exists(img):
+            with open(img, "rb") as f:
+                return f"data:image/jpeg;base64,{_b64.b64encode(f.read()).decode()}"
+        if isinstance(img, _Image.Image):
+            buf = _io.BytesIO()
+            (img.convert("RGB") if img.mode != "RGB" else img).save(buf, format="JPEG", quality=85)
+            return f"data:image/jpeg;base64,{_b64.b64encode(buf.getvalue()).decode()}"
+        raise ValueError(f"Cannot turn {type(img).__name__} into an image data URL")
+
+    def _normalize_content_items(self, messages: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Rewrite each message's content list so image items follow the OpenAI chat
+        completions schema: {"type":"image_url","image_url":{"url":"data:image/jpeg;base64,..."}}.
+        WorldMemory hands us {"type":"image","image":<PIL>}; pass-through everything else.
+        """
+        for m in messages:
+            content = m.get("content")
+            if not isinstance(content, list):
+                continue
+            new_content: List[Dict[str, Any]] = []
+            for item in content:
+                if isinstance(item, dict) and item.get("type") == "image" and "image" in item:
+                    new_content.append({
+                        "type": "image_url",
+                        "image_url": {"url": self._pil_to_data_url(item["image"])},
+                    })
+                else:
+                    new_content.append(item)
+            m["content"] = new_content
+        return messages
+
     def _inject_json_directive(
         self, messages: List[Dict[str, Any]], text_format: Type[BaseModel]
     ) -> List[Dict[str, Any]]:
@@ -280,6 +318,7 @@ class LiteLLMProxyModel:
         **kwargs: Any,
     ) -> Any:
         messages = self._normalize_prompt(prompt)
+        messages = self._normalize_content_items(messages)
         if text_format is not None:
             messages = self._inject_json_directive(messages, text_format)
 
