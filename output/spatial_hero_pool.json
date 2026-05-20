@@ -617,8 +617,8 @@
     "template_name": "Same place as person",
     "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
     "choices": {
-      "A": "Angela",
-      "B": "Katrina",
+      "A": "Lucia",
+      "B": "Tasha",
       "C": "Alice",
       "D": "Jake"
     },
@@ -652,8 +652,8 @@
     "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
     "choices": {
       "A": "Shure",
-      "B": "Angela",
-      "C": "Katrina",
+      "B": "Lucia",
+      "C": "Tasha",
       "D": "Jake"
     },
     "gold": "A",
@@ -685,9 +685,9 @@
     "template_name": "Same place as person",
     "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
     "choices": {
-      "A": "Katrina",
+      "A": "Tasha",
       "B": "Shure",
-      "C": "Angela",
+      "C": "Lucia",
       "D": "Jake"
     },
     "gold": "B",
@@ -719,8 +719,8 @@
     "template_name": "Same place as person",
     "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
     "choices": {
-      "A": "Katrina",
-      "B": "Angela",
+      "A": "Tasha",
+      "B": "Lucia",
       "C": "Shure",
       "D": "Jake"
     },
@@ -753,8 +753,8 @@
     "template_name": "Same place as person",
     "question": "Who was in the same place as Shure when the interaction happened at approximately DAY1 11:34:30?",
     "choices": {
-      "A": "Angela",
-      "B": "Katrina",
+      "A": "Lucia",
+      "B": "Tasha",
       "C": "Alice",
       "D": "Jake"
     },
@@ -787,8 +787,8 @@
     "template_name": "Same place as person",
     "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:39:30?",
     "choices": {
-      "A": "Katrina",
-      "B": "Angela",
+      "A": "Tasha",
+      "B": "Lucia",
       "C": "Shure",
       "D": "Jake"
     },
@@ -821,9 +821,9 @@
     "template_name": "Same place as person",
     "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:59:30?",
     "choices": {
-      "A": "Katrina",
+      "A": "Tasha",
       "B": "Shure",
-      "C": "Angela",
+      "C": "Lucia",
       "D": "Jake"
     },
     "gold": "B",
@@ -857,8 +857,8 @@
     "choices": {
       "A": "Shure",
       "B": "Jake",
-      "C": "Katrina",
-      "D": "Angela"
+      "C": "Tasha",
+      "D": "Lucia"
     },
     "gold": "A",
     "gold_answer": "Shure",

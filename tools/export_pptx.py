@@ -4,18 +4,27 @@
 Each input HTML is loaded at 1280x720 (1920x1080 for the place-graph since it
 benefits from extra room), screenshotted to PNG, and dropped as a full-bleed
 image onto one 16:9 slide. The result is a self-contained .pptx that mirrors
-the V2 deck plus the V3 capstone and the interactive D3 place graph.
+the spatial-hero V3 deck plus the capstone and the interactive D3 place graph.
 """
 
 from __future__ import annotations
 
 import argparse
 import tempfile
+import shutil
 from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Optional
 
 from playwright.sync_api import sync_playwright
+
+
+def launch_chromium(playwright):
+    for name in ("chromium", "chromium-browser", "google-chrome", "google-chrome-stable"):
+        executable = shutil.which(name)
+        if executable:
+            return playwright.chromium.launch(executable_path=executable)
+    return playwright.chromium.launch()
 from pptx import Presentation
 from pptx.util import Inches
 
@@ -40,35 +49,36 @@ def discover_slides(repo: Path) -> List[SlideSpec]:
     capstone = slides_dir / "spatial-capstone-v3.html"
     place_graph = slides_dir / "place-graph-A1_JAKE-DAY1.html"
     case_files_in_order = [
-        "q1-screwdriver-v2.html",
-        "q33-takeout-app-v2.html",
-        "q53-hot-pot-v2.html",
-        "p6-meeting-room-floor-v2.html",
-        "n1-kitchen-proximity-v2.html",
-        "c1-kitchen-contains-v2.html",
-        "new-where-am-i-v2.html",
-        "new-group-locator-v2.html",
-        "new-left-of-direction-v2.html",
-        "q6-grow-flowers-v2.html",
-        "q45-coffee-timing-v2.html",
-        "q50-phone-habit-v2.html",
+        "spatial-hero-SH-A-001.html",
+        "spatial-hero-SH-B-002.html",
+        "spatial-hero-SH-C-006.html",
+        "spatial-hero-SH-E-004.html",
+        "spatial-hero-SH-F-005.html",
+        "spatial-hero-SH-A-002.html",
+        "spatial-hero-SH-B-001.html",
+        "spatial-hero-SH-B-005.html",
+        "spatial-hero-SH-B-008.html",
     ]
     order: List[SlideSpec] = []
     if capstone.exists():
         order.append(SlideSpec(capstone, "capstone", 1400, 880, 1330, 860))
+    if place_graph.exists():
+        order.append(SlideSpec(place_graph, "place-graph", 1920, 1080, 1880, 1040, wait_ms=1800))
+    case_count = 0
     for name in case_files_in_order:
         p = slides_dir / name
         if p.exists():
             order.append(SlideSpec(p, name.replace(".html", "")))
-    if place_graph.exists():
-        order.append(SlideSpec(place_graph, "place-graph", 1920, 1080, 1880, 1040, wait_ms=1800))
+            case_count += 1
+    if case_count != len(case_files_in_order):
+        raise FileNotFoundError(f"Expected {len(case_files_in_order)} spatial-hero slides, found {case_count}.")
     return order
 
 
 def render_to_png(specs: List[SlideSpec], tmpdir: Path) -> List[Path]:
     out: List[Path] = []
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = launch_chromium(p)
         for i, s in enumerate(specs):
             page = browser.new_page(viewport={"width": s.viewport_w, "height": s.viewport_h})
             page.goto(f"file://{s.html_path.resolve()}")
@@ -107,7 +117,7 @@ def assemble_pptx(pngs: List[Path], out_pptx: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", type=Path, default=Path("."))
-    parser.add_argument("--out", type=Path, default=Path("output/worldmm_spatial_deck.pptx"))
+    parser.add_argument("--out", type=Path, default=Path("docs/slides/pptx/worldmm_spatial_deck.pptx"))
     parser.add_argument("--keep-tmp", action="store_true", help="Do not delete the temporary PNG directory.")
     args = parser.parse_args()
 
