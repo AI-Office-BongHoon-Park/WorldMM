@@ -443,3 +443,33 @@ grounded spatial retrieval:
 
 **Measured build wall time:** 2.40 s for one frame / one chunk on CPU after model cache hit. The first run successfully loaded Depth-Anything-V2 Small; no depth fallback was used. GroundingDINO was blocked by missing dependency, so OpenCV detector fallback shipped for this PoC.
 
+---
+
+## 9. Grounded ablation results
+
+**Protocol:** `tools/spatial_hero_grounded_ablation.py` measured chunk `120255900` (`DAY1 12:02:55`) from A1_JAKE DAY1. `output/spatial_hero_curated.json` had no exact `120255900` / `DAY1 12:02:55` case, so the harness generated 6 closed-choice questions from real triples in `output/metadata/spatial_memory/A1_JAKE/grounding/120255900.json`. Each question ran through `WorldMemory.answer()` for 3 trials per mode. Mode A loaded `SpatialMemory` with triples only; mode B loaded the same triples plus `grounding_file`, which makes `to_display_str()` render relative `(x,y,z)` centers inline. Model was `chatgpt-gpt-5.4` via LiteLLM proxy; embedding was `sentence-transformers/all-MiniLM-L6-v2` on CPU; reasoning template was `memory_reasoning_essp`; spatial top-k was 25; semantic top-k was 5.
+
+**Command:**
+
+```bash
+uv run python tools/spatial_hero_grounded_ablation.py
+```
+
+**Stdout summary:**
+
+```text
+Grounded ablation: plain 6/18, grounded 3/18; question flips to grounded 0, flips to plain 1; grounding string retrieved in 6/6 questions. Inspect output/spatial_hero_grounded_results.json for per-trial axes and retrieved spatial text.
+```
+
+| ID | Question type | Gold | Mode A triples-only correct/3 | Mode B grounded correct/3 | Verdict |
+|---|---|---|---:|---:|---|
+| GH-001 | location | `table` | 3/3 | 3/3 | tie |
+| GH-002 | containment | `puzzle_piece` | 3/3 | 0/3 | grounding hurt |
+| GH-003 | depth ordering | `puzzle_piece was in front of plate` | 0/3 | 0/3 | tie fail |
+| GH-004 | closest z / camera depth | `kitchen` | 0/3 | 0/3 | tie fail |
+| GH-005 | 3D distance pair | `puzzle_piece and jigsaw puzzle` | 0/3 | 0/3 | tie fail |
+| GH-006 | larger z than jigsaw puzzle | `water` | 0/3 | 0/3 | tie fail |
+
+**Headline:** grounding did **not** improve accuracy in this run. It produced `0` positive flips, `1` negative flip, and reduced aggregate accuracy from `6/18` to `3/18`. The grounded display string was retrieved in every grounded question (`6/6` questions; all grounded trials had `retrieved_grounding_string=true`), so this is not a pure retrieval miss. The model saw strings like `table @ (-0.00,0.08,0.50) rel` and `[obj_center=(-0.00,0.08,0.50) ...]`, but did not reliably use the numeric coordinates for depth or distance reasoning.
+
+**Honest verdict:** this validates the data path, not the reasoning benefit. The geometric sidecar carries DATA into `WorldMemory.answer()`, and the retrieval trace proves the inline grounding string reaches the QA prompt. In this small measurable ablation, it did **not** carry usable SIGNAL for the model: coordinate questions still failed, and one simple containment question regressed when grounded context added extra coordinate-heavy distractors. Next useful test is prompt/schema work for coordinate interpretation, not more sidecar plumbing.

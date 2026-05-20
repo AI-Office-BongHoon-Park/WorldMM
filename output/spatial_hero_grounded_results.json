@@ -1,0 +1,1094 @@
+{
+  "protocol": {
+    "subject": "A1_JAKE",
+    "day": "DAY1",
+    "chunk_id": 120255900,
+    "chunk_label": "DAY1 12:02:55",
+    "trials_per_mode": 3,
+    "modes": {
+      "plain": "SpatialMemory triples only; no grounding_file argument",
+      "grounded": "SpatialMemory triples plus grounding_file; to_display_str renders relative 3D centers inline"
+    },
+    "model": "chatgpt-gpt-5.4",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_device": "cpu",
+    "reasoning_template": "memory_reasoning_essp",
+    "spatial_top_k": 25,
+    "semantic_top_k": 5,
+    "semantic_file_loaded": true,
+    "spatial_file": "output/metadata/spatial_memory/A1_JAKE/spatial_consolidation_results_chatgpt-gpt-5.4.json",
+    "grounding_file": "output/metadata/spatial_memory/A1_JAKE/grounding/120255900.json",
+    "question_source": "generated from real triples in grounding sidecar because output/spatial_hero_curated.json had no exact 120255900 / DAY1 12:02:55 case"
+  },
+  "summary": {
+    "questions_completed": 6,
+    "trials_per_mode": 3,
+    "plain_correct_total": 6,
+    "grounded_correct_total": 3,
+    "total_trials_per_mode": 18,
+    "questions_grounding_better": 0,
+    "questions_plain_better": 1,
+    "questions_with_grounding_retrieved": 6
+  },
+  "per_question": [
+    {
+      "id": "GH-001",
+      "template": "location",
+      "question": "Where was jigsaw puzzle at approximately DAY1 12:02:55?",
+      "choices": {
+        "A": "plate",
+        "B": "table",
+        "C": "kitchen",
+        "D": "paper_bag"
+      },
+      "gold": "B",
+      "gold_answer": "table",
+      "evidence_triples": [
+        {
+          "id": "spatial_120255900_76",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "jigsaw puzzle",
+            "on",
+            "table"
+          ],
+          "subject_center": [
+            -0.0003,
+            0.0368,
+            0.4118
+          ],
+          "object_center": [
+            -0.0002,
+            0.0802,
+            0.502
+          ]
+        }
+      ],
+      "evidence_chunk": 120255900,
+      "evidence_chunk_label": "DAY1 12:02:55",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:02:55"
+      },
+      "trials": {
+        "plain": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure, right_of, I) (I, on, table) (I, located_in, table) (I, near, table) (I, in_fr...",
+            "num_rounds": 2
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure, right_of, I) (I, on, table) (I, located_in, table) (I, near, table) (I, in_fr...",
+            "num_rounds": 2
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure, right_of, I) (I, on, table) (I, located_in, table) (I, near, table) (I, in_fr...",
+            "num_rounds": 2
+          }
+        ],
+        "grounded": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial",
+              "semantic"
+            ],
+            "retrieved_spatial_text": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure, right_of, I) (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08... | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial",
+              "semantic"
+            ],
+            "retrieved_spatial_text": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure, right_of, I) (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08... | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial",
+              "semantic"
+            ],
+            "retrieved_spatial_text": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure, right_of, I) (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08... | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia)",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "plain_correct": 3,
+      "grounded_correct": 3,
+      "verdict": "tie"
+    },
+    {
+      "id": "GH-002",
+      "template": "containment",
+      "question": "Which object was on the plate at approximately DAY1 12:02:55?",
+      "choices": {
+        "A": "puzzle_piece",
+        "B": "water",
+        "C": "trash bag",
+        "D": "table"
+      },
+      "gold": "A",
+      "gold_answer": "puzzle_piece",
+      "evidence_triples": [
+        {
+          "id": "spatial_120255900_58",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "puzzle_piece",
+            "on",
+            "plate"
+          ],
+          "subject_center": [
+            -0.0003,
+            0.0368,
+            0.4118
+          ],
+          "object_center": [
+            -0.0003,
+            0.0757,
+            0.4745
+          ]
+        }
+      ],
+      "evidence_chunk": 120255900,
+      "evidence_chunk_label": "DAY1 12:02:55",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:02:55"
+      },
+      "trials": {
+        "plain": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, next_to, box)\n(I, near, box)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, located_in, meat_section)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, located_in, kitchen)",
+              "(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (I, near, Katrina) (Katrina, in_front_of, I) (I, next_to, Katrina) (Katrina, next_to, I) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, ne... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, next_to, box) (I, near, box) (I, near, whit... | R3 spatial: (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, next_to, box)\n(I, near, box)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, located_in, meat_section)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, located_in, kitchen)",
+              "(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (I, near, Katrina) (Katrina, in_front_of, I) (I, next_to, Katrina) (Katrina, next_to, I) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, ne... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, next_to, box) (I, near, box) (I, near, whit... | R3 spatial: (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, next_to, box)\n(I, near, box)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, located_in, meat_section)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, located_in, kitchen)",
+              "(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (I, near, Katrina) (Katrina, in_front_of, I) (I, next_to, Katrina) (Katrina, next_to, I) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, ne... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, next_to, box) (I, near, box) (I, near, whit... | R3 spatial: (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          }
+        ],
+        "grounded": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, meat_section)\n(I, left_of, puzzle_piece)\n(I, located_in, kitchen)\n(I, next_to, shopping_cart)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R2 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, next_to, box) (I, near, box) (I, located_in...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, meat_section)\n(I, left_of, puzzle_piece)\n(I, located_in, kitchen)\n(I, next_to, shopping_cart)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R2 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, next_to, box) (I, near, box) (I, located_in...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, meat_section)\n(I, left_of, puzzle_piece)\n(I, located_in, kitchen)\n(I, next_to, shopping_cart)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R2 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, next_to, box) (I, near, box) (I, located_in...",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "plain_correct": 3,
+      "grounded_correct": 0,
+      "verdict": "plain_better"
+    },
+    {
+      "id": "GH-003",
+      "template": "depth_ordering",
+      "question": "Using the relative 3D centers at DAY1 12:02:55, was puzzle_piece in front of or behind plate? Treat smaller z as closer to the camera/in front.",
+      "choices": {
+        "A": "puzzle_piece was in front of plate",
+        "B": "puzzle_piece was behind plate",
+        "C": "they had the same depth",
+        "D": "the grounded triples do not mention plate"
+      },
+      "gold": "A",
+      "gold_answer": "puzzle_piece was in front of plate",
+      "evidence_triples": [
+        {
+          "id": "spatial_120255900_58",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "puzzle_piece",
+            "on",
+            "plate"
+          ],
+          "subject_center": [
+            -0.0003,
+            0.0368,
+            0.4118
+          ],
+          "object_center": [
+            -0.0003,
+            0.0757,
+            0.4745
+          ]
+        }
+      ],
+      "evidence_chunk": 120255900,
+      "evidence_chunk_label": "DAY1 12:02:55",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:02:55"
+      },
+      "trials": {
+        "plain": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, first_floor)\n(I, located_in, second_floor)\n(I, located_in, downstairs)",
+              "(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in, kitchen) (I, next_to, box) (I, ... | R3 spatial: (I, near, whiteboard) (I, in_front_of, whiteboard) (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, first_floor)\n(I, located_in, second_floor)\n(I, located_in, downstairs)",
+              "(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in, kitchen) (I, next_to, box) (I, ... | R3 spatial: (I, near, whiteboard) (I, in_front_of, whiteboard) (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, first_floor)\n(I, located_in, second_floor)\n(I, located_in, downstairs)",
+              "(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in, kitchen) (I, next_to, box) (I, ... | R3 spatial: (I, near, whiteboard) (I, in_front_of, whiteboard) (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          }
+        ],
+        "grounded": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, located_in, first_floor)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, second_floor)\n(I, located_in, downstairs)",
+              "(I, located_in, singapore)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R2 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, located_in, kitchen) (I, next_to, box) (I, ... | R3 spatial: (I, located_in, singapore) (I, near, whiteboard) (I, in_front_of, whiteboard) (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, located_in, first_floor)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, second_floor)\n(I, located_in, downstairs)",
+              "(I, located_in, singapore)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R2 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, located_in, kitchen) (I, next_to, box) (I, ... | R3 spatial: (I, located_in, singapore) (I, near, whiteboard) (I, in_front_of, whiteboard) (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, located_in, first_floor)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, second_floor)\n(I, located_in, downstairs)",
+              "(I, located_in, singapore)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R2 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, located_in, kitchen) (I, next_to, box) (I, ... | R3 spatial: (I, located_in, singapore) (I, near, whiteboard) (I, in_front_of, whiteboard) (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "plain_correct": 0,
+      "grounded_correct": 0,
+      "verdict": "tie"
+    },
+    {
+      "id": "GH-004",
+      "template": "depth_min",
+      "question": "Using the relative 3D centers at DAY1 12:02:55, which grounded object had the smallest z value and was closest to the camera?",
+      "choices": {
+        "A": "table",
+        "B": "plate",
+        "C": "kitchen",
+        "D": "puzzle_piece"
+      },
+      "gold": "C",
+      "gold_answer": "kitchen",
+      "evidence_triples": [
+        {
+          "id": "spatial_120255900_58",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "puzzle_piece",
+            "on",
+            "plate"
+          ],
+          "subject_center": [
+            -0.0003,
+            0.0368,
+            0.4118
+          ],
+          "object_center": [
+            -0.0003,
+            0.0757,
+            0.4745
+          ]
+        },
+        {
+          "id": "spatial_120255900_76",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "jigsaw puzzle",
+            "on",
+            "table"
+          ],
+          "subject_center": [
+            -0.0003,
+            0.0368,
+            0.4118
+          ],
+          "object_center": [
+            -0.0002,
+            0.0802,
+            0.502
+          ]
+        },
+        {
+          "id": "spatial_120255900_97",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "paper_bag",
+            "located_in",
+            "kitchen"
+          ],
+          "subject_center": [
+            0.004,
+            0.3956,
+            0.8078
+          ],
+          "object_center": [
+            -0.0001,
+            0.0161,
+            0.3255
+          ]
+        }
+      ],
+      "evidence_chunk": 120255900,
+      "evidence_chunk_label": "DAY1 12:02:55",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:02:55"
+      },
+      "trials": {
+        "plain": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "episodic",
+              "semantic",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 episodic: [No results] | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia) | R3 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (I, near, Katrina) (Katrina, in_front_of, I) (I, next_to, Katrina) (Katrina, next_to, I) (I, near, Tasha) (Tasha, near, I) (I, in_front_of, Tasha) (Tasha, nex...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "episodic",
+              "semantic",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 episodic: [No results] | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia) | R3 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (I, near, Katrina) (Katrina, in_front_of, I) (I, next_to, Katrina) (Katrina, next_to, I) (I, near, Tasha) (Tasha, near, I) (I, in_front_of, Tasha) (Tasha, nex...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "episodic",
+              "semantic",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 episodic: [No results] | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia) | R3 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (I, near, Katrina) (Katrina, in_front_of, I) (I, next_to, Katrina) (Katrina, next_to, I) (I, near, Tasha) (Tasha, near, I) (I, in_front_of, Tasha) (Tasha, nex...",
+            "num_rounds": 3
+          }
+        ],
+        "grounded": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "episodic",
+              "semantic",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 episodic: [No results] | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia) | R3 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "episodic",
+              "semantic",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 episodic: [No results] | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia) | R3 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "episodic",
+              "semantic",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 episodic: [No results] | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia) | R3 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]...",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "plain_correct": 0,
+      "grounded_correct": 0,
+      "verdict": "tie"
+    },
+    {
+      "id": "GH-005",
+      "template": "distance_pair",
+      "question": "Using the relative 3D centers at DAY1 12:02:55, which pair of grounded objects was closest to each other?",
+      "choices": {
+        "A": "puzzle_piece and jigsaw puzzle",
+        "B": "puzzle_piece and plate",
+        "C": "jigsaw puzzle and table",
+        "D": "water and kitchen"
+      },
+      "gold": "A",
+      "gold_answer": "puzzle_piece and jigsaw puzzle",
+      "evidence_triples": [
+        {
+          "id": "spatial_120255900_58",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "puzzle_piece",
+            "on",
+            "plate"
+          ],
+          "subject_center": [
+            -0.0003,
+            0.0368,
+            0.4118
+          ],
+          "object_center": [
+            -0.0003,
+            0.0757,
+            0.4745
+          ]
+        },
+        {
+          "id": "spatial_120255900_76",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "jigsaw puzzle",
+            "on",
+            "table"
+          ],
+          "subject_center": [
+            -0.0003,
+            0.0368,
+            0.4118
+          ],
+          "object_center": [
+            -0.0002,
+            0.0802,
+            0.502
+          ]
+        },
+        {
+          "id": "spatial_120255900_97",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "paper_bag",
+            "located_in",
+            "kitchen"
+          ],
+          "subject_center": [
+            0.004,
+            0.3956,
+            0.8078
+          ],
+          "object_center": [
+            -0.0001,
+            0.0161,
+            0.3255
+          ]
+        },
+        {
+          "id": "spatial_120255900_98",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "water",
+            "on",
+            "table"
+          ],
+          "subject_center": [
+            0.004,
+            0.3956,
+            0.8078
+          ],
+          "object_center": [
+            -0.0002,
+            0.0802,
+            0.502
+          ]
+        }
+      ],
+      "evidence_chunk": 120255900,
+      "evidence_chunk_label": "DAY1 12:02:55",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:02:55"
+      },
+      "trials": {
+        "plain": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "semantic",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, located_in, upstairs)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, next_to, shopping_cart)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, near, refrigerator)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (I, near, Katrina) (Katrina, in_front_of, I) (I, next_to, Katrina) (Katrina, next_to, I) (I, near, Tasha) (Tasha, near, I) (I, in_front_of, Tasha) (Tasha, nex... | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia) | R3 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, located_in, kitchen) (I, next_to, box) ",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "semantic",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, located_in, upstairs)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, next_to, shopping_cart)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, near, refrigerator)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (I, near, Katrina) (Katrina, in_front_of, I) (I, next_to, Katrina) (Katrina, next_to, I) (I, near, Tasha) (Tasha, near, I) (I, in_front_of, Tasha) (Tasha, nex... | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia) | R3 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, located_in, kitchen) (I, next_to, box) ",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "semantic",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, located_in, upstairs)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, next_to, shopping_cart)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, near, refrigerator)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (I, near, Katrina) (Katrina, in_front_of, I) (I, next_to, Katrina) (Katrina, next_to, I) (I, near, Tasha) (Tasha, near, I) (I, in_front_of, Tasha) (Tasha, nex... | R2 semantic: (I, collaborate with, Lucia) (I, works on and discusses puzzle assembly with, Lucia) (Lucia, gives advice/instructions to, I) (I, is traveling with, Lucia) (I, am shopping with, Lucia) | R3 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, located_in, kitchen) (I, next_to, box) ",
+            "num_rounds": 3
+          }
+        ],
+        "grounded": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, next_to, shopping_cart)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, left_of, puzzle_piece)\n(I, located_in, counter)\n(I, located_in, restaurant)\n(I, near, refrigerator)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 episodic: [No results] | R2 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R3 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in, kitchen) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, next_to, box) (I, ...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, next_to, shopping_cart)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, left_of, puzzle_piece)\n(I, located_in, counter)\n(I, located_in, restaurant)\n(I, near, refrigerator)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 episodic: [No results] | R2 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R3 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in, kitchen) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, next_to, box) (I, ...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)",
+              "(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, next_to, box)\n(I, near, box)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, next_to, shopping_cart)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, left_of, puzzle_piece)\n(I, located_in, counter)\n(I, located_in, restaurant)\n(I, near, refrigerator)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 episodic: [No results] | R2 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R3 spatial: (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in, kitchen) (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, next_to, box) (I, ...",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "plain_correct": 0,
+      "grounded_correct": 0,
+      "verdict": "tie"
+    },
+    {
+      "id": "GH-006",
+      "template": "depth_max",
+      "question": "Using the relative 3D centers at DAY1 12:02:55, which table item had a larger z value than jigsaw puzzle?",
+      "choices": {
+        "A": "water",
+        "B": "plate",
+        "C": "kitchen",
+        "D": "none of these"
+      },
+      "gold": "A",
+      "gold_answer": "water",
+      "evidence_triples": [
+        {
+          "id": "spatial_120255900_76",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "jigsaw puzzle",
+            "on",
+            "table"
+          ],
+          "subject_center": [
+            -0.0003,
+            0.0368,
+            0.4118
+          ],
+          "object_center": [
+            -0.0002,
+            0.0802,
+            0.502
+          ]
+        },
+        {
+          "id": "spatial_120255900_98",
+          "timestamp": 120255900,
+          "timestamp_label": "DAY1 12:02:55",
+          "triple": [
+            "water",
+            "on",
+            "table"
+          ],
+          "subject_center": [
+            0.004,
+            0.3956,
+            0.8078
+          ],
+          "object_center": [
+            -0.0002,
+            0.0802,
+            0.502
+          ]
+        }
+      ],
+      "evidence_chunk": 120255900,
+      "evidence_chunk_label": "DAY1 12:02:55",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:02:55"
+      },
+      "trials": {
+        "plain": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, left_of, puzzle_piece)\n(I, located_in, counter)\n(I, located_in, restaurant)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)",
+              "(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in, kitchen) (I, next_to, box) (I, ... | R3 spatial: (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, left_of, puzzle_piece)\n(I, located_in, counter)\n(I, located_in, restaurant)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)",
+              "(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in, kitchen) (I, next_to, box) (I, ... | R3 spatial: (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, next_to, box)\n(I, near, box)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, left_of, puzzle_piece)\n(I, located_in, counter)\n(I, located_in, restaurant)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)",
+              "(I, next_to, shopping_cart)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, near, Shure) (Shure, left_of, I) (Shure, behind, I) (Shure... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in, kitchen) (I, next_to, box) (I, ... | R3 spatial: (I, next_to, shopping_cart)",
+            "num_rounds": 3
+          }
+        ],
+        "grounded": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, next_to, box)\n(I, near, box)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, next_to, shopping_cart)",
+              "(I, located_in, supermarket)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, next_to, box) (I, near, box) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in... | R3 spatial: (I, located_in, supermarket)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, next_to, box)\n(I, near, box)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, next_to, shopping_cart)",
+              "(I, located_in, supermarket)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, next_to, box) (I, near, box) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in... | R3 spatial: (I, located_in, supermarket)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [near] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(I) [in_front_of] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, near, Shure)\n(Shure, left_of, I)\n(Shure, behind, I)\n(Shure, right_of, I)\n(I, near, Katrina)\n(Katrina, in_front_of, I)\n(I, next_to, Katrina)\n(Katrina, next_to, I)\n(I, near, Tasha)\n(Tasha, near, I)\n(I, in_front_of, Tasha)\n(Tasha, next_to, I)\n(Tasha, in_front_of, I)\n(I, next_to, Tasha)\n(I, left_of, Tasha)\n(Tasha, behind, I)",
+              "(I, near, Lucia)\n(Lucia, near, I)\n(I, next_to, Lucia)\n(I, behind, Lucia)\n(I, next_to, box)\n(I, near, box)\n(I, behind, Alice)\n(Alice, near, I)\n(I, next_to, Alice)\n(I, near, Alice)\n(Alice, in_front_of, I)\n(Alice, next_to, I)\n(I, located_in, kitchen)\n(I, on, phone)\n(I, in, phone)\n(I, near, phone)\n(I, located_in, dining_table)\n(I, on, dining_table)\n(I, near, dining_table)\n(I, next_to, dining_table)\n(I, left_of, puzzle_piece)\n(I, located_in, restaurant)\n(I, near, whiteboard)\n(I, in_front_of, whiteboard)\n(I, next_to, shopping_cart)",
+              "(I, located_in, supermarket)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I) [on] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative] (I) [located_in] (table @ (-0.00,0.08,0.50) rel) [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]... | R2 spatial: (I, near, Lucia) (Lucia, near, I) (I, next_to, Lucia) (I, behind, Lucia) (I, next_to, box) (I, near, box) (I, behind, Alice) (Alice, near, I) (I, next_to, Alice) (I, near, Alice) (Alice, in_front_of, I) (Alice, next_to, I) (I, located_in... | R3 spatial: (I, located_in, supermarket)",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "plain_correct": 0,
+      "grounded_correct": 0,
+      "verdict": "tie"
+    }
+  ]
+}
