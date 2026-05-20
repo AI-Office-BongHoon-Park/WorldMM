@@ -58,6 +58,7 @@ class Case:
     you_arrow: Optional[str] = None
     headline_phrase: str = "One extra spatial fact"
     why_panel_label: str = "key spatial triple"
+    plus_unit: str = "spatial fact"
     is_synthetic: bool = False
     is_new_scenario: bool = False
 
@@ -235,7 +236,7 @@ def render(case: Case) -> str:
     <div class="divider">
       <div class="plus">+</div>
       <div class="what">{html.escape(case.plus_label)}</div>
-      <div class="one">spatial fact</div>
+      <div class="one">{html.escape(case.plus_unit)}</div>
       <div class="arrow-down">↓</div>
     </div>
 
@@ -417,6 +418,45 @@ CASES: list[Case] = [
         thumb="q33_takeout_app.jpg", scene_label="DAY1 13:35 · same moment as Q33 / Q45",
         scene_caption_text="Authored scenario showing the cleanest possible spatial gain: a pure <b>WHERE-am-I</b> question. Episodic has the action; only spatial has the location as a fact.",
         scene_caption_small="grounding: spatial_extraction chunk DAY1 13:34:29  ·  (I, located_in, kitchen) appears 4 different chunks",
+        is_new_scenario=True,
+    ),
+    Case(
+        slide_id="new-group-locator-v2", direction="UP", deck_index=8, deck_total=9,
+        case_id="NEW-2", qtype="group locator (authored scenario)",
+        moment_label="A1_JAKE · DAY1 17:16 · group locator scenario",
+        question="It is late afternoon, and the wearer is reaching for an item from a shelf. Where is the whole group standing right now?",
+        choices={"A": "the bedroom", "B": "the Hema Fresh supermarket", "C": "the courtyard", "D": "the restaurant"}, gold="B",
+        baseline_letter="D", baseline_short="restaurant",
+        baseline_caption='Episodic captions describe price talk ("This is 5 yuan," "That one is 11 yuan"), grabbing items, and small chatter. The agent leans on prior restaurant scenes earlier in the day where prices were also discussed.',
+        baseline_actor_note='Without an explicit "we are at the supermarket" sentence, the agent picks the most recent shared-meal venue from episodic memory.',
+        plus_label="add FOUR",
+        plus_unit="parallel triples",
+        headline_phrase="Four parallel spatial facts",
+        why_panel_label="four parallel spatial triples (one chunk)",
+        spatial_letter="B", spatial_short="Hema Fresh",
+        triple_subj="(I, Shure, Lucia, Katrina)", triple_pred="located_in", triple_obj="supermarket",
+        spatial_reading="Four parallel <code>(person, located_in, supermarket)</code> triples in the same chunk lock the whole group's position. Episodic captions never say this directly.",
+        thumb="q53_supermarket.jpg", scene_label="DAY1 17:16:29 · Hema Fresh aisle",
+        scene_caption_text="One chunk carries the entire group's location as <b>four</b> parallel spatial triples. Episodic captures price talk; spatial captures WHERE.",
+        scene_caption_small="grounding: spatial_extraction chunk DAY1 17:16:29",
+        is_new_scenario=True,
+    ),
+    Case(
+        slide_id="new-left-of-direction-v2", direction="UP", deck_index=9, deck_total=9,
+        case_id="NEW-3", qtype="relative-direction (authored scenario)",
+        moment_label="A1_JAKE · DAY1 17:16 · relative-direction scenario",
+        question="As the wearer faces the supermarket shelf, Shure is standing on which side of the wearer?",
+        choices={"A": "in front", "B": "behind", "C": "to the left", "D": "to the right"}, gold="C",
+        baseline_letter="A", baseline_short="in front",
+        baseline_caption='Episodic captures conversation between the wearer and Shure ("Shure says, ‘We bought sterilized eggs.’") but never describes their physical orientation toward each other.',
+        baseline_actor_note='Dialogue exchanges sound face-to-face by default. The agent guesses <em>in front</em>.',
+        plus_label="add ONE",
+        spatial_letter="C", spatial_short="left",
+        triple_subj="Shure", triple_pred="left_of", triple_obj="I (wearer)",
+        spatial_reading="A single directional triple — <code>left_of</code>, one of seven directional predicates in the closed vocab — pins Shure's exact side. No episodic action verb encodes lateral orientation.",
+        thumb="q53_supermarket.jpg", scene_label="DAY1 17:16:29 · same chunk as NEW-2",
+        scene_caption_text="<b>Relative-direction triples</b> (<code>left_of</code>, <code>right_of</code>, <code>behind</code>, <code>in_front_of</code>) are pure spatial — episodic has no equivalent. This question is impossible to get right without the spatial axis.",
+        scene_caption_small="grounding: spatial_extraction chunk DAY1 17:16:29  ·  (Shure, left_of, I)",
         is_new_scenario=True,
     ),
 ]
