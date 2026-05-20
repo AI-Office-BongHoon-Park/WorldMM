@@ -317,3 +317,31 @@ uv run python eval/three_vs_four_axis_ablation.py \
     --max-n 60 --max-rounds 3 \
     --output output/three_vs_four_n60.json
 ```
+
+---
+
+## 7. Real-visual re-examination
+
+**Date:** 2026-05-20 KST
+
+Re-ran the six catalogued EgoLifeQA UP/DN cases plus nearby smoke IDs through `tools/run_targeted_cases.py` with the expanded real visual axis: 91 MP4 clips, `clip-ViT-B-32` visual embeddings, `ClipQueryEmbedder`, and the vision-capable LiteLLM path. Output: `output/targeted_case_review.json`.
+
+| Case | Catalog verdict | Real-visual targeted result | Visual image payloads | Status |
+|---|---|---|---:|---|
+| Q1 screwdriver | UP: 3a C, 4a B | 3a B, 4a C | 0 | Flipped to DN in this rerun; no visual evidence involved. |
+| Q33 takeout app | UP: 3a D, 4a A | 3a A, 4a A | 0 | Flipped to neutral/same-correct; visual was selected but returned no images. |
+| Q53 hot pot base | UP in WHERE-filter harness: baseline B, +spatial A | 3a A, 4a A | 0 | Flipped to neutral/same-correct under the targeted 3-vs-4 harness. |
+| Q6 grow flowers | DN: 3a D, 4a A | 3a A, 4a A | 0 | Flipped to neutral/same-wrong; original DN no longer reproduces. |
+| Q45 coffee timing | DN: 3a A, 4a D | 3a A, 4a C | 0 | Drifted but DN holds: spatial config still breaks a correct baseline answer. |
+| Q50 phone habit | DN: 3a D, 4a A | 3a B, 4a D | 0 | Flipped to UP: 4-axis now reaches gold while 3-axis misses. |
+
+Nearby smoke IDs:
+
+| ID | n=30 prefix result | Targeted real-visual result | Visual image payloads | Note |
+|---|---|---|---:|---|
+| Q11 | 3a C, 4a D | 3a C, 4a C | 0 | No visual-driven candidate. |
+| Q14 | 3a D, 4a A | 3a A, 4a A | 30 | Candidate visual-driven neutralizer: 3-axis retrieved 30 frames for `DAY1 12:28:00 - DAY1 12:29:00 puzzle table participants faces Katrina Tasha Alice Lucia` and changed from the n=30 wrong answer to gold A. Needs a dedicated slide only if we want a visual-axis example rather than a spatial-axis example. |
+| Q57 | Not in n=30 prefix | 3a A, 4a A | 0 | No visual-driven candidate. |
+
+**One-line summary:** adding real visual did not preserve the old spatial-signal/noise catalog verdicts; only Q45 still holds as DN, while Q14 emerges as the only nearby visual-image candidate and none of the six original catalogued cases changed because of image payloads.
+

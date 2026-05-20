@@ -73,15 +73,22 @@
   .triple .o{color:var(--ink)}
   .result .meta{margin-top:5px;color:var(--muted);font-family:var(--mono);font-size:10.5px}
   .score{
-    display:grid;grid-template-rows:auto auto 1fr;gap:10px;height:100%;border:2px solid var(--good);
-    border-radius:12px;padding:13px;background:linear-gradient(180deg,color-mix(in srgb,var(--good) 21%,transparent),color-mix(in srgb,var(--good) 9%,transparent));
+    display:grid;grid-template-rows:minmax(0,1.35fr) minmax(0,.82fr);gap:10px;height:100%;border:2px solid var(--good);
+    border-radius:12px;padding:12px;background:linear-gradient(180deg,color-mix(in srgb,var(--good) 21%,transparent),color-mix(in srgb,var(--good) 9%,transparent));
     box-shadow:0 0 28px color-mix(in srgb,var(--good) 24%,transparent);
   }
+  .snapshot{display:grid;gap:8px;min-height:0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:color-mix(in srgb,var(--bg) 30%,transparent)}
+  .snapshot.primary{grid-template-rows:auto auto 1fr;border-color:var(--good-edge);background:color-mix(in srgb,var(--good) 13%,transparent)}
+  .snapshot.mixed{gap:6px;border-color:color-mix(in srgb,var(--accent) 42%,var(--line));background:color-mix(in srgb,var(--accent) 10%,transparent)}
   .score .num{font-size:58px;line-height:.92;font-weight:900;letter-spacing:-.07em;color:var(--ink)}
+  .score .num.mixed{font-size:32px;letter-spacing:-.055em}
   .score .num .from{color:var(--muted)}
   .score .num .to{color:var(--good)}
   .score .sub{color:var(--muted);font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.8px}
-  .bars{height:190px;display:flex;gap:26px;align-items:end;justify-content:center;padding:9px 24px 0;border-top:1px solid var(--line)}
+  .score .delta{color:var(--good);font-family:var(--mono);font-size:14px;font-weight:900;letter-spacing:.2px}
+  .score .facts{color:var(--muted);font-family:var(--mono);font-size:10.5px;line-height:1.35}
+  .score .facts b{color:var(--ink)}
+  .bars{height:102px;display:flex;gap:26px;align-items:end;justify-content:center;padding:8px 36px 0;border-top:1px solid var(--line)}
   .bar-group{height:100%;display:grid;grid-template-rows:1fr auto;gap:7px;justify-items:center}
   .bar-track{width:68px;height:100%;display:flex;align-items:end;border:1px solid var(--line);border-radius:10px;background:color-mix(in srgb,var(--bg) 42%,transparent);overflow:hidden}
   .bar{width:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;font-family:var(--mono);font-size:12px;font-weight:900}
@@ -148,7 +155,7 @@
       <div class="proof-head">
         <div>
           <div class="proof-kicker">proof 02</div>
-          <h2>Grounded retrieval <span>(one call → text + image)</span></h2>
+          <h2>Grounded retrieval <span>(text + frame)</span></h2>
         </div>
         <div class="axis-chip">text + image</div>
       </div>
@@ -178,39 +185,46 @@
           </div>
         </div>
       </div>
-      <div class="caption">spatial triple anchors a frame thumbnail in one shot; vision-LLM consumes both</div>
+      <div class="caption">spatial triple anchors text + thumbnail for one vision-LLM call</div>
     </section>
 
     <section class="proof">
       <div class="proof-head">
         <div>
           <div class="proof-kicker">proof 03</div>
-          <h2>+15 %p on WHERE-grounded QA</h2>
+          <h2>Ablation snapshots</h2>
         </div>
         <div class="axis-chip">where</div>
       </div>
       <div class="body">
-        <div class="score">
-          <div class="num"><span class="from">80 %</span> → <span class="to">95 %</span></div>
-          <div class="sub">n=20 synthetic WHERE questions</div>
-          <div class="bars" aria-label="CSS bar chart comparing baseline and spatial QA accuracy">
-            <div class="bar-group">
-              <div class="bar-track"><div class="bar baseline">80</div></div>
-              <div class="bar-label">baseline</div>
+        <div class="score" aria-label="Ablation snapshots comparing baseline and spatial QA accuracy">
+          <div class="snapshot primary">
+            <div class="num"><span class="from">80 %</span> → <span class="to">95 %</span></div>
+            <div class="sub">+15 %p · n=20 · synthetic WHERE-only</div>
+            <div class="bars" aria-label="CSS bar chart comparing synthetic WHERE-only baseline and spatial QA accuracy">
+              <div class="bar-group">
+                <div class="bar-track"><div class="bar baseline">80</div></div>
+                <div class="bar-label">baseline</div>
+              </div>
+              <div class="bar-group">
+                <div class="bar-track"><div class="bar spatial">95</div></div>
+                <div class="bar-label">+spatial</div>
+              </div>
             </div>
-            <div class="bar-group">
-              <div class="bar-track"><div class="bar spatial">95</div></div>
-              <div class="bar-label">+spatial</div>
-            </div>
+          </div>
+          <div class="snapshot mixed">
+            <div class="num mixed"><span class="from">50 %</span> → <span class="to">53.3 %</span></div>
+            <div class="delta">+3.3 %p · n=30 · real visual</div>
+            <div class="facts"><b>15/30 → 16/30</b> · UP=3 · DN=2 · BothWrong=1</div>
           </div>
         </div>
       </div>
-      <div class="caption">spatial fixes <b>3 questions</b> baseline misses (P6, N1, C1); zero regressions</div>
+      <div class="caption">filter matters: spatial axis pays off on WHERE-grounded questions; on a representative slice it is near-zero.</div>
     </section>
   </main>
 
   <footer>
-    <div>three concrete proofs · trajectory · retrieval · QA</div>
+    <div>spatial axis · trajectory · grounded retrieval · +15 %p WHERE / +3.3 %p mixed</div>
     <div>33 / N slide deck</div>
   </footer>
 </div>
