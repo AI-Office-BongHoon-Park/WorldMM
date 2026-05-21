@@ -175,3 +175,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc.sisyphus/
+
+# AEA dataset artifacts (gated, large, time-limited URLs)
+data/AEA/
+# Research reports kept; analysis data not
