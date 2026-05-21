@@ -246,27 +246,42 @@ Honest verdict: spatial advantage still holds under visual-ON, but it shrank sha
 
 *Rows marked `*` use shipped `output/spatial_hero_results.json` visual-OFF counts because the ID was absent from `output/spatial_hero_topk_verified.json`.*
 
-## §12. GPT 16-frame visual axis re-examination (honest comparison)
+## §12. GPT 16-frame visual axis re-examination
 
-Protocol: same 10 curated cases, three independent trials per config. Replaces the middle-frame CLIP-ViT-B-32 visual encoder with a GPT-vision pipeline: 16 evenly-spaced frames per clip (≤384 px JPEG, base64), one `chatgpt/gpt-5.4` multi-image call per clip producing a single ~300-token rich prose description, MiniLM-L6-v2 384-d embedding of the description for retrieval. Build artifacts: `tools/build_visual_embeddings_gpt16.py`, `output/metadata/visual_memory/A1_JAKE/visual_descriptions_gpt16.json` (91 entries), `visual_embeddings_gpt16_minilm.pkl` (91 × 384 float32). Ablation harness: `tools/verify_spatial_hero_topk_gpt16.py`. Configs identical to §11 but with the GPT16-visual axis swapped in for the CLIP-visual axis.
+Protocol: rebuilt the visual axis as 16 evenly sampled GPT-vision descriptions per 30-second clip, embedded the descriptions with `sentence-transformers/all-MiniLM-L6-v2`, then reran the curated 10-case spatial-hero ablation for three trials per config. The `GPT16 3-axis` config used episodic + semantic + GPT16 visual via `memory_reasoning_3axis`; the `GPT16 4-axis` config used episodic + semantic + GPT16 visual + spatial via `memory_reasoning`.
 
-| Case | Visual-OFF 3-axis | Visual-OFF 4-axis | CLIP-visual 4-axis | GPT16-visual 3-axis | GPT16-visual 4-axis |
-|---|---:|---:|---:|---:|---:|
-| SH-A-001 | 1/3 | 3/3 | 0/3 | 1/3 | 0/3 |
-| SH-B-002 | 1/3 | 3/3 | 2/3 | 0/3 | 0/3 |
-| SH-C-006 * | 0/3 | 2/3 | 0/3 | 0/3 | 0/3 |
-| SH-E-004 * | 0/3 | 2/3 | 0/3 | 0/3 | 0/3 |
-| SH-F-005 | 2/3 | 3/3 | 3/3 | 1/3 | 0/3 |
-| SH-A-002 | 0/3 | 3/3 | 0/3 | 0/3 | 0/3 |
-| SH-B-001 | 0/3 | 3/3 | 1/3 | 0/3 | 0/3 |
-| SH-B-005 | 1/3 | 3/3 | 3/3 | 0/3 | 0/3 |
-| SH-B-008 | 1/3 | 3/3 | 2/3 | 0/3 | 0/3 |
-| SH-C-005 * | 1/3 | 2/3 | 0/3 | 0/3 | 0/3 |
+| Case | Template | Gold | OFF 3-axis | OFF 4-axis | CLIP 3-axis | CLIP 4-axis | GPT16 3-axis | GPT16 4-axis | GPT16 desc text? | GPT16 visual hits |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| SH-A-001 | A | A | 1/3 | 3/3 | 0/3 | 0/3 | 3/3 | 3/3 | yes | 6 |
+| SH-B-002 | B | C | 1/3 | 3/3 | 0/3 | 2/3 | 0/3 | 1/3 | yes | 5 |
+| SH-C-006 | C | C | 0/3 | 2/3 | 0/3 | 0/3 | 0/3 | 0/3 | yes | 3 |
+| SH-E-004 | E | B | 0/3 | 2/3 | 0/3 | 0/3 | 0/3 | 0/3 | no | 0 |
+| SH-F-005 | F | A | 2/3 | 3/3 | 1/3 | 3/3 | 3/3 | 3/3 | no | 0 |
+| SH-A-002 | A | C | 0/3 | 3/3 | 0/3 | 0/3 | 0/3 | 0/3 | yes | 6 |
+| SH-B-001 | B | A | 0/3 | 3/3 | 0/3 | 1/3 | 0/3 | 2/3 | yes | 4 |
+| SH-B-005 | B | B | 1/3 | 3/3 | 0/3 | 3/3 | 0/3 | 3/3 | yes | 3 |
+| SH-B-008 | B | D | 1/3 | 3/3 | 1/3 | 2/3 | 0/3 | 2/3 | yes | 4 |
+| SH-C-005 | C | C | 1/3 | 2/3 | 0/3 | 0/3 | 0/3 | 0/3 | yes | 6 |
+| **Total** |  |  | **7/30** | **27/30** | **2/30** | **11/30** | **6/30** | **14/30** | **8/10 cases** | **37 hits** |
 
-Aggregate: visual-OFF 4-axis 27/30 → CLIP-visual-ON 4-axis 11/30 → **GPT16-visual-ON 4-axis 0/30**. Visual retrieval hit 8/10 cases (description text reached the retrieval trace in 8 cases), but every per-trial visual hit count was 0 and zero cases produced a correct 4-axis answer.
+Verdict: GPT16 visual descriptions did carry text into the QA prompt in 8/10 cases, so this run tested real description-text retrieval rather than empty image placeholders. It did cause correctness-count flips versus the visual-OFF baseline in all 10 cases, but two flipped cases had no GPT16 description text and the CLIP visual rerun also flipped all 10 cases, so there is no GPT16-only flip that CLIP missed. Net effect remains negative for the spatial story: visual-OFF stayed strongest at 4-axis 27/30 with a +20 spatial gap, while GPT16 visual reached only 4-axis 14/30 with a +8 gap; GPT16 helped one 3-axis case (`SH-A-001`) but did not add robust signal beyond the spatial axis.
 
-Honest verdict: GPT16 visual is **worse than CLIP visual, which was already worse than visual-OFF**. Two effects compound:
-- Description-text-vs-query MiniLM retrieval is over-eager: rich English paragraphs share surface vocabulary with the MCQ prompt, so the reasoner keeps selecting the visual axis even when no genuine evidence sits there.
-- The prose format hides the answer. A description that lists "checkered table, several black zippered cases on it, smartphone in hand" does **not** carry the structured spatial fact `(hard_drive, on, dining_table)` that the spatial axis surfaces directly.
+## §14. GPT structured triples with frame anchors
 
-So the GPT16 axis carries DATA but no usable SIGNAL for these closed-vocab WHERE questions, and it actively pulls the reasoner away from the spatial chain that *does* answer them. Next useful experiment is structured GPT output (object-place pairs instead of prose) so retrieval can match against the same shape spatial uses, not free-form English paragraphs.
+Protocol: rebuilt the visual axis as GPT-emitted structured triples `(s, p, o)` embedded with `sentence-transformers/all-MiniLM-L6-v2`, then reran the same 10 curated spatial-hero cases for three trials per config. The handoff expected 70 fallback-middle clips plus 21 GPT-anchored clips; verified build state differed because the JSON had 50 resumable clips at launch, so final provenance is mixed as 50 `fallback_middle` clips and 41 newly generated clip slots, of which 40 retained `gpt_anchored` triples (577 fallback triples, 455 GPT-anchored triples). Existing resumable triples were normalized to frame 7 fallback; newly generated triples kept GPT's `f` and `ts_s`, and the reasoner received text triples only, not thumbnails.
+
+| Case | Template | Gold | OFF 4-axis | CLIP 4-axis | GPT16 prose 4-axis | GPT-triples 3-axis correct/3 | GPT-triples 4-axis correct/3 | f_anchored_hits |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| SH-A-001 | A | A | 3/3 | 0/3 | 3/3 | 2/3 | 3/3 | 0 |
+| SH-B-002 | B | C | 3/3 | 2/3 | 1/3 | 0/3 | 3/3 | 0 |
+| SH-C-006 | C | C | 2/3 | 0/3 | 0/3 | 0/3 | 2/3 | 0 |
+| SH-E-004 | E | B | 2/3 | 0/3 | 0/3 | 0/3 | 1/3 | 0 |
+| SH-F-005 | F | A | 3/3 | 3/3 | 3/3 | 2/3 | 3/3 | 0 |
+| SH-A-002 | A | C | 3/3 | 0/3 | 0/3 | 0/3 | 3/3 | 0 |
+| SH-B-001 | B | A | 3/3 | 1/3 | 2/3 | 3/3 | 3/3 | 0 |
+| SH-B-005 | B | B | 3/3 | 3/3 | 3/3 | 0/3 | 3/3 | 0 |
+| SH-B-008 | B | D | 3/3 | 2/3 | 2/3 | 3/3 | 3/3 | 0 |
+| SH-C-005 | C | C | 2/3 | 0/3 | 0/3 | 0/3 | 2/3 | 0 |
+| **Total** |  |  | **27/30** | **11/30** | **14/30** | **10/30** | **26/30** | **0** |
+
+Verdict: structured triples improved strongly over CLIP 4-axis (26/30 vs 11/30) and GPT16 prose 4-axis (26/30 vs 14/30), but still did not beat visual-OFF 4-axis (27/30). `f_anchored_hits=0` means the actual retrieved visual triples during these QA trials came from fallback-middle clips, so the measured gain is from structured text format plus MiniLM retrieval, not from real GPT frame anchors. No per-question flip exclusively proves visual encoder + format swap as the full explanation: gains remain entangled with spatial axis behavior, and anchor provenance did not participate in retrieved QA evidence.
