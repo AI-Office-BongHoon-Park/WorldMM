@@ -17,7 +17,7 @@ from dataclasses import dataclass
 
 from ...embedding import EmbeddingModel
 from .utils import SPATIAL_PREDICATE_VOCAB
-from .grounding import GeometricGrounding
+from .grounding import GazeTarget, GeometricGrounding, PlaceAnchor, Pose6DoF
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +32,9 @@ class SpatialTripleEntry:
     place: Optional[str] = None
     subject_grounding: Optional[GeometricGrounding] = None
     object_grounding: Optional[GeometricGrounding] = None
+    pose_6dof: Optional[Pose6DoF] = None
+    gaze_target: Optional[GazeTarget] = None
+    place_anchor: Optional[PlaceAnchor] = None
 
     @property
     def triple(self) -> List[str]:
@@ -71,6 +74,24 @@ class SpatialTripleEntry:
             base += f" [place={self.place}]"
         base += render_side("subj", self.subject_grounding)
         base += render_side("obj", self.object_grounding)
+        if self.pose_6dof:
+            pose = self.pose_6dof
+            base += (
+                f" [pose_6dof=({pose.tx:.2f},{pose.ty:.2f},{pose.tz:.2f})"
+                f" q=({pose.qw:.3f},{pose.qx:.3f},{pose.qy:.3f},{pose.qz:.3f})"
+                f" quality={pose.quality_score:.3f} frame={pose.frame}]"
+            )
+        if self.gaze_target:
+            gaze = self.gaze_target
+            base += f" [gaze_target=yaw:{gaze.yaw_rads_cpf:.3f} pitch:{gaze.pitch_rads_cpf:.3f}]"
+        if self.place_anchor:
+            anchor = self.place_anchor
+            centroid = anchor.centroid_world_m
+            label = f" label={anchor.label}" if anchor.label else ""
+            base += (
+                f" [place_anchor=({centroid[0]:.2f},{centroid[1]:.2f},{centroid[2]:.2f})"
+                f" frame={anchor.coordinate_frame_id}{label}]"
+            )
         return base
 
 
@@ -163,6 +184,9 @@ class SpatialMemory:
                 grounding_record = (grounding_data or {}).get(triple_id, {})
                 subject_grounding = grounding_record.get("subject_grounding")
                 object_grounding = grounding_record.get("object_grounding")
+                pose_6dof = grounding_record.get("pose_6dof")
+                gaze_target = grounding_record.get("gaze_target")
+                place_anchor = grounding_record.get("place_anchor")
                 entry = SpatialTripleEntry(
                     id=triple_id,
                     subject=triple[0],
@@ -172,6 +196,9 @@ class SpatialMemory:
                     place=place,
                     subject_grounding=GeometricGrounding(**subject_grounding) if subject_grounding else None,
                     object_grounding=GeometricGrounding(**object_grounding) if object_grounding else None,
+                    pose_6dof=Pose6DoF(**pose_6dof) if pose_6dof else None,
+                    gaze_target=GazeTarget(**gaze_target) if gaze_target else None,
+                    place_anchor=PlaceAnchor(**place_anchor) if place_anchor else None,
                 )
                 self.triple_id_to_entry[triple_id] = entry
                 timestamp_entries.append(entry)

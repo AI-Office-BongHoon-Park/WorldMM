@@ -473,3 +473,95 @@ Grounded ablation: plain 6/18, grounded 3/18; question flips to grounded 0, flip
 **Headline:** grounding did **not** improve accuracy in this run. It produced `0` positive flips, `1` negative flip, and reduced aggregate accuracy from `6/18` to `3/18`. The grounded display string was retrieved in every grounded question (`6/6` questions; all grounded trials had `retrieved_grounding_string=true`), so this is not a pure retrieval miss. The model saw strings like `table @ (-0.00,0.08,0.50) rel` and `[obj_center=(-0.00,0.08,0.50) ...]`, but did not reliably use the numeric coordinates for depth or distance reasoning.
 
 **Honest verdict:** this validates the data path, not the reasoning benefit. The geometric sidecar carries DATA into `WorldMemory.answer()`, and the retrieval trace proves the inline grounding string reaches the QA prompt. In this small measurable ablation, it did **not** carry usable SIGNAL for the model: coordinate questions still failed, and one simple containment question regressed when grounded context added extra coordinate-heavy distractors. Next useful test is prompt/schema work for coordinate interpretation, not more sidecar plumbing.
+
+---
+
+## §10. AEA spatial sidecar — first ingestion pass
+
+**Date:** 2026-05-21 KST
+
+**Scope shipped:** first code path from measured AEA MPS files into WorldMM-compatible spatial sidecar JSON. This is plumbing only: no ablation, no slide artifact, no reasoning-accuracy claim.
+
+**Build command:**
+
+```bash
+uv run python tools/build_aea_spatial_sidecar.py --aea-dir data/AEA/loc5_script4_seq6_rec1 --out-dir output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1 --time-window-ms 100
+```
+
+**Build stdout:**
+
+```text
+AEA sidecar build: sequence=loc5_script4_seq6_rec1 chunks=8 out_dir=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1 bytes=39265
+```
+
+**Output:** 8 chunk JSON files plus `aea_loc5_script4_seq6_rec1_summary.json`; total output is 39,265 bytes, below the 50 MB hard cap. Chunks are 30 s windows to mirror EgoLife chunk granularity. Each chunk carries median and mean `Pose6DoF`, up to 5 gaze samples, overlapping speech segments, trajectory length, and dwell speed.
+
+**Sample chunk JSON excerpt (`aea_loc5_script4_seq6_rec1_chunk_000.json`):**
+
+```json
+{
+  "schema_version": "aea_spatial_sidecar.v1",
+  "sequence_id": "loc5_script4_seq6_rec1",
+  "chunk_index": 0,
+  "time_range_us": [3110203114, 3140203113],
+  "pose_6dof_median": {
+    "tracking_timestamp_us": 3125204429,
+    "tx": -15.142394,
+    "ty": -11.428019,
+    "tz": -0.089172,
+    "qw": 0.2364480815696643,
+    "qx": 0.8814749072853492,
+    "qy": -0.007459717354215386,
+    "qz": -0.4087036153073591,
+    "quality_score": 1.0,
+    "graph_uid": "e32cc93e-64c5-3c5d-b4e8-bbb4f23258ca",
+    "units": "meters",
+    "frame": "world"
+  },
+  "gaze_samples": [
+    {
+      "tracking_timestamp_us": 3110103126,
+      "yaw_rads_cpf": 0.037605,
+      "pitch_rads_cpf": -0.43038,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.0255,
+        "yaw_high_rads_cpf": 0.049332,
+        "pitch_low_rads_cpf": -0.446241,
+        "pitch_high_rads_cpf": -0.4114350000000001
+      },
+      "session_uid": "c94fa63b-249a-4b41-a4bc-5124e3f355ae",
+      "nearest_pose_tracking_timestamp_us": 3110203114,
+      "nearest_pose_delta_us": -99988,
+      "aligned_within_time_window": true
+    }
+  ],
+  "speech_segments": [],
+  "trajectory_length_m": 10.179,
+  "dwell_speed_mps": 0.339,
+  "coverage_gaps": {
+    "geo_available": 0,
+    "gaze_depth_all_nan": true,
+    "online_calibration_parsed": false,
+    "place_clustering": false
+  }
+}
+```
+
+**Smoke-test command:**
+
+```bash
+uv run python tools/test_aea_sidecar_smoke.py --sidecar-dir output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1 --limit 3
+```
+
+**Smoke-test stdout:**
+
+```text
+aea_loc5_script4_seq6_rec1_chunk_000.json: (wearer, located_in, aea_world_frame) [place=loc5_script4_seq6_rec1] [pose_6dof=(-15.14,-11.43,-0.09) q=(0.236,0.881,-0.007,-0.409) quality=1.000 frame=world] [gaze_target=yaw:0.038 pitch:-0.430]
+aea_loc5_script4_seq6_rec1_chunk_001.json: (wearer, located_in, aea_world_frame) [place=loc5_script4_seq6_rec1] [pose_6dof=(-11.65,-8.31,0.09) q=(0.446,-0.533,0.514,0.503) quality=1.000 frame=world] [gaze_target=yaw:0.088 pitch:-0.144]
+aea_loc5_script4_seq6_rec1_chunk_002.json: (wearer, located_in, aea_world_frame) [place=loc5_script4_seq6_rec1] [pose_6dof=(-7.09,-1.39,0.08) q=(-0.096,-0.800,0.345,0.482) quality=1.000 frame=world] [gaze_target=yaw:0.007 pitch:-0.599]
+```
+
+**Data coverage notes:** this sequence has no GPS (`geo_available=0`), all gaze `depth_m` values are NaN, and speech is effectively empty. The source `speech.csv` contains one low-confidence row (`confidence=0.008`, text `you.`); the builder gates confidence below `0.05`, so emitted `speech_segments` is `[]`.
+
+**Intentionally out of scope:** no DBSCAN place clustering yet; no `online_calibration.jsonl` parsing yet; no speech handling beyond passthrough of overlapping confident segments; no `semidense_points.csv.gz` use yet; no ablation run against the generated AEA sidecar.
