@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
 import pickle
@@ -25,7 +26,6 @@ class GroundedVisualHit:
     frame_timestamp_s: float
     thumbnail_image: Path
     score: float
-    f_provenance: str
 
 
 def load_index(index_file: Path) -> Dict[str, Dict[str, Any]]:
@@ -59,7 +59,6 @@ def retrieve_visual_grounded(
     embedder: SentenceTransformer,
     top_k: int,
     out_dir: Path,
-    query_index: int = 1,
     max_side: int = 360,
 ) -> List[GroundedVisualHit]:
     rows = list(index.items())
@@ -71,12 +70,12 @@ def retrieve_visual_grounded(
     scores = (matrix @ query_emb) / np.maximum(denom, 1e-12)
     order = np.argsort(-scores)[:top_k]
     out_dir.mkdir(parents=True, exist_ok=True)
+    query_hash = hashlib.sha1(query.encode("utf-8")).hexdigest()[:10]
     hits: List[GroundedVisualHit] = []
     for rank, row_index in enumerate(order, start=1):
         triple_id, item = rows[int(row_index)]
-        provenance = str(item.get("f_provenance", "fallback_middle"))
-        frame_idx = int(item.get("frame_idx", 0)) if provenance == "gpt_anchored" else 7
-        thumb_path = out_dir / f"q{query_index}_r{rank}.jpg"
+        frame_idx = int(item.get("frame_idx", 0))
+        thumb_path = out_dir / f"{query_hash}_{rank}.jpg"
         image = extract_sampled_frame(Path(str(item.get("video_path", ""))), frame_idx, max_side=max_side)
         image.save(thumb_path, "JPEG", quality=82, optimize=True)
         hits.append(GroundedVisualHit(
@@ -86,7 +85,6 @@ def retrieve_visual_grounded(
             frame_timestamp_s=float(item.get("frame_timestamp_s", 0.0)),
             thumbnail_image=thumb_path,
             score=float(scores[int(row_index)]),
-            f_provenance=provenance,
         ))
     return hits
 
@@ -99,7 +97,6 @@ def hit_to_json(hit: GroundedVisualHit) -> dict[str, Any]:
         "frame_timestamp_s": hit.frame_timestamp_s,
         "thumbnail_image": str(hit.thumbnail_image),
         "score": hit.score,
-        "f_provenance": hit.f_provenance,
     }
 
 
@@ -111,7 +108,7 @@ def write_html(demo: dict[str, list[dict[str, Any]]], html_file: Path) -> None:
             src = html.escape(str(hit["thumbnail_image"]))
             triple = html.escape(hit["triple"])
             clip = html.escape(hit["clip_id"])
-            cards.append(f"""<div class="card"><img src="{src}" alt="thumbnail"><div><b>{triple}</b></div><div>{clip}</div><div>frame {hit['frame_idx']} | t={hit['frame_timestamp_s']:.3f}s | {html.escape(str(hit.get('f_provenance', '')))} | score={hit['score']:.3f}</div></div>""")
+            cards.append(f"""<div class="card"><img src="{src}" alt="thumbnail"><div><b>{triple}</b></div><div>{clip}</div><div>frame {hit['frame_idx']} | t={hit['frame_timestamp_s']:.3f}s | score={hit['score']:.3f}</div></div>""")
         sections.append(f"<section><h2>{html.escape(query)}</h2><div class=grid>{''.join(cards)}</div></section>")
     html_doc = f"""<!doctype html>
 <html><head><meta charset="utf-8"><title>Grounded Visual Triples Demo</title>
@@ -127,7 +124,7 @@ img{{width:100%;height:150px;object-fit:cover;border-radius:8px;background:#1f29
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--query", default="")
-    parser.add_argument("--examples", nargs="*", default=["hard drive on dining table", "jake at kitchen", "box near laptop"])
+    parser.add_argument("--examples", nargs="*", default=["hard drive on dining table", "box on table", "person near doorway"])
     parser.add_argument("--index-file", type=Path, default=Path("output/metadata/visual_memory/A1_JAKE/visual_triples_gpt_index.pkl"))
     parser.add_argument("--thumb-dir", type=Path, default=Path("output/grounded_visual_thumbnails"))
     parser.add_argument("--out-json", type=Path, default=Path("output/grounded_visual_retrieve.json"))
@@ -143,7 +140,7 @@ def main() -> None:
     queries = [args.query] if args.query else args.examples[:3]
     demo: dict[str, list[dict[str, Any]]] = {}
     for q_index, query in enumerate(queries, start=1):
-        hits = retrieve_visual_grounded(query, index, embedder, args.top_k, args.thumb_dir, query_index=q_index, max_side=args.max_side)
+        hits = retrieve_visual_grounded(query, index, embedder, args.top_k, args.thumb_dir, max_side=args.max_side)
         demo[query] = [hit_to_json(hit) for hit in hits]
         print(json.dumps({"query": query, "hits": demo[query]}, ensure_ascii=False), flush=True)
     args.out_json.parent.mkdir(parents=True, exist_ok=True)

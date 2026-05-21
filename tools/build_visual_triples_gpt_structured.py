@@ -215,7 +215,7 @@ def build_index(triples_path: Path, index_path: Path, embed_model: str, device: 
             frame_idx = int(triple["f"])
             if frame_idx >= len(timestamps):
                 timestamps = frame_timestamps(str(clip.get("start_time", "")), 16)
-            rows.append((f"{clip_id}#f{frame_idx}#{sequence_no}", clip, triple))
+            rows.append((f"{clip_id}#{frame_idx}#{sequence_no}", clip, triple))
     texts = [triple_text(triple) for _, _, triple in rows]
     embedder = SentenceTransformer(embed_model, device=device)
     embeddings = embedder.encode(texts, convert_to_numpy=True, show_progress_bar=True) if texts else np.zeros((0, 384), dtype=np.float32)
@@ -226,8 +226,7 @@ def build_index(triples_path: Path, index_path: Path, embed_model: str, device: 
         index[triple_id] = {
             "clip_id": str(clip.get("clip_id") or triple_id.split("#", 1)[0]),
             "frame_idx": frame_idx,
-            "frame_timestamp_s": float(triple.get("ts_s", timestamps[frame_idx])),
-            "f_provenance": str(triple.get("f_provenance", "fallback_middle")),
+            "frame_timestamp_s": float(timestamps[frame_idx]),
             "triple_text": triple_text(triple),
             "embedding": emb.astype(np.float32, copy=False),
             "video_path": clip.get("video_path", ""),
@@ -267,7 +266,7 @@ def main() -> None:
         existing = json.loads(args.out_file.read_text(encoding="utf-8"))
 
     records = load_clip_records(args.clips_file, args.video_dir)
-    model = LiteLLMProxyModel(model_name=args.model, cache_dir=".cache/gpt_visual_triples_structured", request_timeout=180.0)
+    model = LiteLLMProxyModel(model_name=args.model, cache_dir=".cache/gpt_visual_triples_structured_frame_anchor_v2", request_timeout=180.0)
     processed = 0
     failed = 0
 

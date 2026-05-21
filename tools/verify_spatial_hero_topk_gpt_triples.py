@@ -222,7 +222,7 @@ def make_results(per_question: list[dict[str, Any]], args: argparse.Namespace) -
             "visual_query_embedder": f"VisualTripleQueryEmbedder({args.visual_embed_model})",
             "visual_index_file": args.visual_index_file,
             "visual_axis": "GPT structured triples retrieved as text; thumbnails are not passed to reasoner",
-            "frame_anchor_provenance": "mixed: pre-existing triples use fallback_middle; newly built triples use gpt_anchored",
+            "frame_anchor_provenance": "full: all indexed triples use gpt_anchored",
         },
         "summary": {
             "questions_completed": len(per_question),

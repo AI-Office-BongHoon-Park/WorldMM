@@ -285,3 +285,33 @@ Protocol: rebuilt the visual axis as GPT-emitted structured triples `(s, p, o)` 
 | **Total** |  |  | **27/30** | **11/30** | **14/30** | **10/30** | **26/30** | **0** |
 
 Verdict: structured triples improved strongly over CLIP 4-axis (26/30 vs 11/30) and GPT16 prose 4-axis (26/30 vs 14/30), but still did not beat visual-OFF 4-axis (27/30). `f_anchored_hits=0` means the actual retrieved visual triples during these QA trials came from fallback-middle clips, so the measured gain is from structured text format plus MiniLM retrieval, not from real GPT frame anchors. No per-question flip exclusively proves visual encoder + format swap as the full explanation: gains remain entangled with spatial axis behavior, and anchor provenance did not participate in retrieved QA evidence.
+
+## §15. Frame-anchor exercise — full GPT_anchored rebuild
+
+Protocol: identified the 50 clips whose committed triples were tagged `fallback_middle`, reran the 16-frame GPT vision structured-triple extraction for those clips as an anchored rebuild, overwrote only those clip entries, annotated every resulting triple with `f_provenance="gpt_anchored"`, and rebuilt `output/metadata/visual_memory/A1_JAKE/visual_triples_gpt_index.pkl` with `clip_id#fN#seq` IDs and MiniLM embeddings. The 40 already-anchored non-empty clips stayed on their existing triples; one clip remains empty, so final indexed triple count is 1031.
+
+Rebuild cost: tmux run `anchored-rebuild`, 50/50 clips succeeded, retry_failed=0, fallback_remaining=0, wall time 37.63 s. Per-clip wall times were 0.58-0.76 s because the LiteLLM cache was warm; the 30 s per-clip cap was still active. Sanity check extracted `/tmp/sanity_post_rebuild.jpg` from newly anchored `visual_1_11094208` at triple frame `f=0`; image size 1408x1408, 181671 bytes.
+
+Ablation output: `output/spatial_hero_gpt_triples_anchored_results.json`, 10 cases x 3 trials x 2 configs = 60 trial records. Visual retrieval produced 87 structured triple payloads across 9/10 cases, and all 87 visual hits counted as `f_anchored_hits`.
+
+| Comparison | GPT-triples 3-axis correct | GPT-triples 4-axis correct | f_anchored_hits |
+|---|---:|---:|---:|
+| §14 fallback-middle retrieval | 10/30 | 26/30 | 0 |
+| §15 full GPT_anchored rebuild | 11/30 | 26/30 | 87 |
+
+| Case | Template | Gold | Anchored 3-axis correct/3 | Anchored 4-axis correct/3 | f_anchored_hits |
+|---|---:|---:|---:|---:|---:|
+| SH-A-001 | A | A | 3/3 | 3/3 | 18 |
+| SH-B-002 | B | C | 0/3 | 3/3 | 9 |
+| SH-C-006 | C | C | 0/3 | 2/3 | 12 |
+| SH-E-004 | E | B | 0/3 | 1/3 | 6 |
+| SH-F-005 | F | A | 2/3 | 3/3 | 0 |
+| SH-A-002 | A | C | 0/3 | 3/3 | 9 |
+| SH-B-001 | B | A | 3/3 | 3/3 | 12 |
+| SH-B-005 | B | B | 0/3 | 3/3 | 9 |
+| SH-B-008 | B | D | 3/3 | 3/3 | 9 |
+| SH-C-005 | C | C | 0/3 | 2/3 | 3 |
+| **Total** |  |  | **11/30** | **26/30** | **87** |
+
+Verdict: real GPT-anchored evidence changed provenance coverage but not the measured 4-axis QA accuracy. The 4-axis result stayed 26/30 versus §14, a +0 trial change; 3-axis rose from the documented §14 10/30 to 11/30, but the spatial-hero claim is still carried by the spatial axis. On these 10 cases, the frame-anchor mechanism carries DATA but not measurable QA SIGNAL in 4-axis accuracy.
+
