@@ -220,3 +220,53 @@ I lean back and rock slightly while looking down at my hands, then up at Shure a
 **Why spatial uniquely answers this:** The answer is a where-relation (co-location) anchored to object/place co-occurrence at a specific chunk. Episodic and semantic traces can describe activity or general facts, but the discriminating choice is the spatial triple itself.
 
 **Suggested slide angle:** Show the MCQ on the left, then highlight the retrieved spatial chain from DAY1 11:34:30 on the right. Use the baseline trace as the miss and the spatial trace as the clean correction.
+
+## §11. Visual-ON re-examination (honest comparison)
+
+Protocol: same 10 curated cases, three independent trials per config. Visual-ON 3-axis = episodic + semantic + visual via `memory_reasoning_3axis`; Visual-ON 4-axis = episodic + semantic + visual + spatial via `memory_reasoning`; both configs used the same memory data and `ClipQueryEmbedder` with `output/metadata/visual_memory/A1_JAKE/visual_embeddings_clip-ViT-B-32.pkl` plus `visual_clips_clip-ViT-B-32.json`.
+
+Note: visual-OFF values come from `output/spatial_hero_topk_verified.json` where present. `SH-C-006, SH-E-004, SH-C-005` were absent from that file, so their already-shipped visual-OFF counts are taken from `output/spatial_hero_results.json`; visual-OFF was not re-run.
+
+| Case | Visual-OFF 3-axis | Visual-OFF 4-axis | Visual-ON 3-axis | Visual-ON 4-axis | Delta in spatial gap |
+|---|---:|---:|---:|---:|---:|
+| SH-A-001 | 1/3 | 3/3 | 0/3 | 0/3 | -2 |
+| SH-B-002 | 1/3 | 3/3 | 0/3 | 2/3 | +0 |
+| SH-C-006 * | 0/3 | 2/3 | 0/3 | 0/3 | -2 |
+| SH-E-004 * | 0/3 | 2/3 | 0/3 | 0/3 | -2 |
+| SH-F-005 | 2/3 | 3/3 | 1/3 | 3/3 | +1 |
+| SH-A-002 | 0/3 | 3/3 | 0/3 | 0/3 | -3 |
+| SH-B-001 | 0/3 | 3/3 | 0/3 | 1/3 | -2 |
+| SH-B-005 | 1/3 | 3/3 | 0/3 | 3/3 | +1 |
+| SH-B-008 | 1/3 | 3/3 | 1/3 | 2/3 | -1 |
+| SH-C-005 * | 1/3 | 2/3 | 0/3 | 0/3 | -1 |
+
+Aggregate: visual-OFF 3-axis 7/30, visual-OFF 4-axis 27/30, spatial gap +20; visual-ON 3-axis 2/30, visual-ON 4-axis 11/30, spatial gap +9, delta -11. Visual retrieval returned non-zero clip hits on 8/10 cases (`SH-A-001, SH-B-002, SH-C-006, SH-A-002, SH-B-001, SH-B-005, SH-B-008, SH-C-005`), but image payload extraction was 0 on all cases.
+
+Honest verdict: spatial advantage still holds under visual-ON, but it shrank sharply: +20 trial wins in the visual-OFF comparison became +9 when visual was live. Visual now did some work on `SH-B-008` (one correct 3-axis visual trial and one correct 4-axis visual trial), but more often it distracted both reasoners away from spatial evidence, especially `SH-A-001`, `SH-A-002`, and `SH-C-006`. No case flipped purely because visual carried image payloads; the visual axis produced CLIP clip hits, but every image-payload count was 0, so payload-based visual evidence did not drive any flip.
+
+*Rows marked `*` use shipped `output/spatial_hero_results.json` visual-OFF counts because the ID was absent from `output/spatial_hero_topk_verified.json`.*
+
+## §12. GPT 16-frame visual axis re-examination (honest comparison)
+
+Protocol: same 10 curated cases, three independent trials per config. Replaces the middle-frame CLIP-ViT-B-32 visual encoder with a GPT-vision pipeline: 16 evenly-spaced frames per clip (≤384 px JPEG, base64), one `chatgpt/gpt-5.4` multi-image call per clip producing a single ~300-token rich prose description, MiniLM-L6-v2 384-d embedding of the description for retrieval. Build artifacts: `tools/build_visual_embeddings_gpt16.py`, `output/metadata/visual_memory/A1_JAKE/visual_descriptions_gpt16.json` (91 entries), `visual_embeddings_gpt16_minilm.pkl` (91 × 384 float32). Ablation harness: `tools/verify_spatial_hero_topk_gpt16.py`. Configs identical to §11 but with the GPT16-visual axis swapped in for the CLIP-visual axis.
+
+| Case | Visual-OFF 3-axis | Visual-OFF 4-axis | CLIP-visual 4-axis | GPT16-visual 3-axis | GPT16-visual 4-axis |
+|---|---:|---:|---:|---:|---:|
+| SH-A-001 | 1/3 | 3/3 | 0/3 | 1/3 | 0/3 |
+| SH-B-002 | 1/3 | 3/3 | 2/3 | 0/3 | 0/3 |
+| SH-C-006 * | 0/3 | 2/3 | 0/3 | 0/3 | 0/3 |
+| SH-E-004 * | 0/3 | 2/3 | 0/3 | 0/3 | 0/3 |
+| SH-F-005 | 2/3 | 3/3 | 3/3 | 1/3 | 0/3 |
+| SH-A-002 | 0/3 | 3/3 | 0/3 | 0/3 | 0/3 |
+| SH-B-001 | 0/3 | 3/3 | 1/3 | 0/3 | 0/3 |
+| SH-B-005 | 1/3 | 3/3 | 3/3 | 0/3 | 0/3 |
+| SH-B-008 | 1/3 | 3/3 | 2/3 | 0/3 | 0/3 |
+| SH-C-005 * | 1/3 | 2/3 | 0/3 | 0/3 | 0/3 |
+
+Aggregate: visual-OFF 4-axis 27/30 → CLIP-visual-ON 4-axis 11/30 → **GPT16-visual-ON 4-axis 0/30**. Visual retrieval hit 8/10 cases (description text reached the retrieval trace in 8 cases), but every per-trial visual hit count was 0 and zero cases produced a correct 4-axis answer.
+
+Honest verdict: GPT16 visual is **worse than CLIP visual, which was already worse than visual-OFF**. Two effects compound:
+- Description-text-vs-query MiniLM retrieval is over-eager: rich English paragraphs share surface vocabulary with the MCQ prompt, so the reasoner keeps selecting the visual axis even when no genuine evidence sits there.
+- The prose format hides the answer. A description that lists "checkered table, several black zippered cases on it, smartphone in hand" does **not** carry the structured spatial fact `(hard_drive, on, dining_table)` that the spatial axis surfaces directly.
+
+So the GPT16 axis carries DATA but no usable SIGNAL for these closed-vocab WHERE questions, and it actively pulls the reasoner away from the spatial chain that *does* answer them. Next useful experiment is structured GPT output (object-place pairs instead of prose) so retrieval can match against the same shape spatial uses, not free-form English paragraphs.

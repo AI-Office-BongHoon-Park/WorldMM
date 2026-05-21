@@ -8,7 +8,7 @@ import logging
 import numpy as np
 import torch
 import torch.nn.functional as F
-from typing import Dict, List, Any, Optional, Tuple, Union
+from typing import Dict, List, Any, Optional, Tuple, Union, cast
 from dataclasses import dataclass
 from PIL import Image
 
@@ -28,6 +28,7 @@ class VideoClipEntry:
     clip_start_sec: Optional[float] = None
     clip_end_sec: Optional[float] = None
     embedding: Optional[np.ndarray] = None  # Precomputed embedding
+    description: Optional[str] = None
     
     @property
     def timestamp_int(self) -> Tuple[int, int]:
@@ -239,6 +240,7 @@ class VisualMemory:
                 clip_start_sec=clip_start_sec,
                 clip_end_sec=clip_end_sec,
                 embedding=embedding,
+                description=entry.get("description"),
             )
             self.clips.append(clip_entry)
             self.clip_id_to_entry[clip_id] = clip_entry
@@ -348,7 +350,7 @@ class VisualMemory:
         fps: float = 1.0,
         max_frames: int = 64,
         as_context: bool = False,
-    ) -> Union[List[VideoClipEntry], Dict[str, List[Image.Image]]]:
+    ) -> Union[List[VideoClipEntry], Dict[str, List[Any]]]:
         """
         Retrieve top-k similar video clips using embedding similarity.
         
@@ -391,6 +393,14 @@ class VisualMemory:
         results = [self.indexed_entries[idx] for idx in top_indices.cpu().tolist()]
         
         if as_context:
+            described = {
+                clip.to_display_str(): [f"Visual description ({clip.to_display_str()}): {clip.description}"]
+                for clip in results
+                if clip.description
+            }
+            if described:
+                return cast(Dict[str, List[Any]], described)
+
             # Extract frames from all retrieved clips, organized by clip
             frames_by_clip: Dict[str, List[FrameEntry]] = {}
             for clip in results:
@@ -576,7 +586,7 @@ class VisualMemory:
             List of FrameEntry objects
         """
         try:
-            from decord import VideoReader, cpu
+            from decord import VideoReader, cpu  # type: ignore[reportMissingImports]
         except ImportError as e:
             raise ImportError("decord is required for frame extraction.") from e
         

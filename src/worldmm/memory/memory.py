@@ -7,7 +7,7 @@ import copy
 import json
 import logging
 import re
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple, cast
 from PIL import Image
 
 from ..llm import LLMModel, PromptTemplateManager
@@ -291,7 +291,9 @@ Retrieved:
             elif item.memory_type == "visual":
                 if isinstance(item.content, list):
                     for img in item.content:
-                        if isinstance(img, Image.Image):
+                        if isinstance(img, str):
+                            messages.append({"type": "text", "text": img})
+                        elif isinstance(img, Image.Image):
                             messages.append({"type": "image", "image": img})
                         elif isinstance(img, dict) and "image" in img:
                             messages.append({"type": "image", "image": img["image"]})
@@ -535,6 +537,9 @@ Step 2 (only if search): Pick one memory type (episodic/semantic/visual/spatial)
             
             # Get reasoning decision
             reasoning_messages = copy.deepcopy(reasoning_prompt)
+            if isinstance(reasoning_messages, str):
+                reasoning_messages = [{"role": "system", "content": reasoning_messages}]
+            reasoning_messages = cast(List[Dict[str, Any]], reasoning_messages)
             reasoning_messages.append({
                 "role": "user",
                 "content": user_content,
@@ -594,11 +599,14 @@ Step 2 (only if search): Pick one memory type (episodic/semantic/visual/spatial)
                     )
                     # Format visual content for round history
                     if images:
-                        content = f"[{len(sum(images.values(), []))} images from {len(images)} clips]"
-                        # Flatten images for retrieved items
-                        all_images = []
-                        for clip_images in images.values():
-                            all_images.extend(clip_images)
+                        flattened_visual_items = sum(images.values(), [])
+                        text_items = [item for item in flattened_visual_items if isinstance(item, str)]
+                        image_items = [item for item in flattened_visual_items if isinstance(item, Image.Image)]
+                        if text_items:
+                            content = "\n".join(text_items)
+                        else:
+                            content = f"[{len(image_items)} images from {len(images)} clips]"
+                        all_images = flattened_visual_items
                         retrieved_items.append(RetrievedItem(
                             memory_type="visual",
                             content=all_images,
@@ -648,6 +656,9 @@ Step 2 (only if search): Pick one memory type (episodic/semantic/visual/spatial)
             })
         
         qa_messages = copy.deepcopy(qa_prompt)
+        if isinstance(qa_messages, str):
+            qa_messages = [{"role": "system", "content": qa_messages}]
+        qa_messages = cast(List[Dict[str, Any]], qa_messages)
         qa_messages.append({
             "role": "user",
             "content": qa_content,
