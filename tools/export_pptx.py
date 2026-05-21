@@ -47,6 +47,7 @@ SLIDE_H_INCHES = 7.5
 def discover_slides(repo: Path) -> List[SlideSpec]:
     slides_dir = repo / "docs" / "slides"
     capstone = slides_dir / "spatial-capstone-v3.html"
+    visual_axis = slides_dir / "visual-axis-evolution.html"
     place_graph = slides_dir / "place-graph-A1_JAKE-DAY1.html"
     case_files_in_order = [
         "spatial-hero-SH-A-001.html",
@@ -62,6 +63,8 @@ def discover_slides(repo: Path) -> List[SlideSpec]:
     order: List[SlideSpec] = []
     if capstone.exists():
         order.append(SlideSpec(capstone, "capstone", 1400, 880, 1330, 860))
+    if visual_axis.exists():
+        order.append(SlideSpec(visual_axis, "visual-axis-evolution"))
     if place_graph.exists():
         order.append(SlideSpec(place_graph, "place-graph", 1920, 1080, 1880, 1040, wait_ms=1800))
     case_count = 0
