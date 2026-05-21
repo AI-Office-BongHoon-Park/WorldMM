@@ -1,0 +1,58 @@
+{
+  "schema_version": "aea_spatial_sidecar_summary.v1",
+  "sequence_id": "loc1_script4_seq4_rec1",
+  "chunk_size_s": 30,
+  "chunk_count": 16,
+  "time_range_us": [
+    1042203846,
+    1509200494
+  ],
+  "output_dir": "output/metadata/spatial_memory/AEA_loc1_script4_seq4_rec1",
+  "chunk_files": [
+    "aea_loc1_script4_seq4_rec1_chunk_000.json",
+    "aea_loc1_script4_seq4_rec1_chunk_001.json",
+    "aea_loc1_script4_seq4_rec1_chunk_002.json",
+    "aea_loc1_script4_seq4_rec1_chunk_003.json",
+    "aea_loc1_script4_seq4_rec1_chunk_004.json",
+    "aea_loc1_script4_seq4_rec1_chunk_005.json",
+    "aea_loc1_script4_seq4_rec1_chunk_006.json",
+    "aea_loc1_script4_seq4_rec1_chunk_007.json",
+    "aea_loc1_script4_seq4_rec1_chunk_008.json",
+    "aea_loc1_script4_seq4_rec1_chunk_009.json",
+    "aea_loc1_script4_seq4_rec1_chunk_010.json",
+    "aea_loc1_script4_seq4_rec1_chunk_011.json",
+    "aea_loc1_script4_seq4_rec1_chunk_012.json",
+    "aea_loc1_script4_seq4_rec1_chunk_013.json",
+    "aea_loc1_script4_seq4_rec1_chunk_014.json",
+    "aea_loc1_script4_seq4_rec1_chunk_015.json"
+  ],
+  "metadata": {
+    "location": 1,
+    "script": 4,
+    "sequence": 4,
+    "recording": 1,
+    "concurrent_recordings": [],
+    "dataset_version": "1.0",
+    "dataset_name": "AEA_2024"
+  },
+  "source_summary": {
+    "GazeInference": {
+      "status": "SUCCESS",
+      "message": ""
+    }
+  },
+  "totals": {
+    "trajectory_length_m": 79.14339964348272,
+    "gaze_samples_input": 4681,
+    "speech_segments_input": 88,
+    "speech_segments_emitted": 90
+  },
+  "coverage_gaps": {
+    "geo_available": 0,
+    "gaze_depth_all_nan": true,
+    "online_calibration_parsed": false,
+    "place_clustering": false,
+    "speech_confidence_floor": 0.05
+  },
+  "total_output_bytes": 88965
+}

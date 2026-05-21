@@ -51,6 +51,8 @@ def discover_slides(repo: Path) -> List[SlideSpec]:
     gs_mock = slides_dir / "spatial-retrieval-gs-mock.html"
     place_graph = slides_dir / "place-graph-A1_JAKE-DAY1.html"
     aea_place_graph = slides_dir / "place-graph-AEA-loc5_script4_seq6_rec1.html"
+    place_graph_comparison = slides_dir / "place-graph-comparison.html"
+    aea_gaze_fixation = slides_dir / "aea-gaze-fixation-loc5_script4_seq6_rec1.html"
     case_files_in_order = [
         "spatial-hero-SH-A-001.html",
         "spatial-hero-SH-B-002.html",
@@ -73,6 +75,10 @@ def discover_slides(repo: Path) -> List[SlideSpec]:
         order.append(SlideSpec(place_graph, "place-graph", 1920, 1080, 1880, 1040, wait_ms=1800))
     if aea_place_graph.exists():
         order.append(SlideSpec(aea_place_graph, "aea-place-graph", 1920, 1080, 1880, 1040, wait_ms=1800))
+    if place_graph_comparison.exists():
+        order.append(SlideSpec(place_graph_comparison, "place-graph-comparison", 1280, 720, 1280, 720, wait_ms=1800))
+    if aea_gaze_fixation.exists():
+        order.append(SlideSpec(aea_gaze_fixation, "aea-gaze-fixation", 1400, 880, 1330, 860, wait_ms=700))
     case_count = 0
     for name in case_files_in_order:
         p = slides_dir / name

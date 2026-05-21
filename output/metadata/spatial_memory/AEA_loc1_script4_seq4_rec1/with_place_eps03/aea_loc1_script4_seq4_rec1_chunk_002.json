@@ -1,0 +1,218 @@
+{
+  "schema_version": "aea_spatial_sidecar.v1",
+  "sequence_id": "loc1_script4_seq4_rec1",
+  "chunk_index": 2,
+  "time_range_us": [
+    1102203846,
+    1132203845
+  ],
+  "duration_s": 30.0,
+  "time_window_ms": 100,
+  "metadata": {
+    "location": 1,
+    "script": 4,
+    "sequence": 4,
+    "recording": 1,
+    "concurrent_recordings": [],
+    "dataset_version": "1.0",
+    "dataset_name": "AEA_2024"
+  },
+  "pose_6dof_mean": {
+    "tracking_timestamp_us": 1117203126,
+    "tx": 0.8168642055889542,
+    "ty": -1.149997154059589,
+    "tz": -0.02499443796657199,
+    "qw": -0.3527421123961563,
+    "qx": 0.5062252660822364,
+    "qy": -0.6804658977801458,
+    "qz": -0.3953165112672712,
+    "quality_score": 1.0,
+    "graph_uid": "4d17867a-9627-c654-99c1-3e9597044e46",
+    "units": "meters",
+    "frame": "world"
+  },
+  "pose_6dof_median": {
+    "tracking_timestamp_us": 1117203121,
+    "tx": 0.780206,
+    "ty": -1.143402,
+    "tz": 0.03467,
+    "qw": -0.20965796499393236,
+    "qx": 0.5002856664319331,
+    "qy": -0.7443557321320607,
+    "qz": -0.3894770002445634,
+    "quality_score": 1.0,
+    "graph_uid": "4d17867a-9627-c654-99c1-3e9597044e46",
+    "units": "meters",
+    "frame": "world"
+  },
+  "gaze_samples": [
+    {
+      "tracking_timestamp_us": 1102103858,
+      "yaw_rads_cpf": 0.02802,
+      "pitch_rads_cpf": 0.254272,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.016503,
+        "yaw_high_rads_cpf": 0.040275,
+        "pitch_low_rads_cpf": 0.238611,
+        "pitch_high_rads_cpf": 0.269567
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1102203846,
+      "nearest_pose_delta_us": -99988,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1108203858,
+      "yaw_rads_cpf": -0.004136,
+      "pitch_rads_cpf": -0.50639,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.028657,
+        "yaw_high_rads_cpf": 0.025625,
+        "pitch_low_rads_cpf": -0.537562,
+        "pitch_high_rads_cpf": -0.458558
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1108203846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1114303858,
+      "yaw_rads_cpf": -0.147651,
+      "pitch_rads_cpf": -0.312718,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.198572,
+        "yaw_high_rads_cpf": -0.110806,
+        "pitch_low_rads_cpf": -0.358369,
+        "pitch_high_rads_cpf": -0.2564
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1114303846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1120403858,
+      "yaw_rads_cpf": -0.048234,
+      "pitch_rads_cpf": 0.103891,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.0583929999999999,
+        "yaw_high_rads_cpf": -0.0363089999999999,
+        "pitch_low_rads_cpf": 0.090223,
+        "pitch_high_rads_cpf": 0.11925
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1120403846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1126503858,
+      "yaw_rads_cpf": -0.255129,
+      "pitch_rads_cpf": -0.379811,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.2684809999999999,
+        "yaw_high_rads_cpf": -0.241894,
+        "pitch_low_rads_cpf": -0.393831,
+        "pitch_high_rads_cpf": -0.363305
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1126503846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    }
+  ],
+  "speech_segments": [
+    {
+      "start_time_ns": 1103211000000,
+      "end_time_ns": 1104211000000,
+      "text": "And",
+      "confidence": 0.2673150599002838,
+      "language": null
+    },
+    {
+      "start_time_ns": 1104211000000,
+      "end_time_ns": 1104451000000,
+      "text": "we",
+      "confidence": 0.9970009922981262,
+      "language": null
+    },
+    {
+      "start_time_ns": 1104451000000,
+      "end_time_ns": 1104611000000,
+      "text": "got",
+      "confidence": 0.9869838953018188,
+      "language": null
+    },
+    {
+      "start_time_ns": 1104611000000,
+      "end_time_ns": 1104771000000,
+      "text": "a",
+      "confidence": 0.9976916313171388,
+      "language": null
+    },
+    {
+      "start_time_ns": 1104771000000,
+      "end_time_ns": 1104931000000,
+      "text": "little",
+      "confidence": 0.9998713731765748,
+      "language": null
+    },
+    {
+      "start_time_ns": 1105691000000,
+      "end_time_ns": 1106691000000,
+      "text": "avocado",
+      "confidence": 0.9002482891082764,
+      "language": null
+    },
+    {
+      "start_time_ns": 1106691000000,
+      "end_time_ns": 1107411000000,
+      "text": "oil.",
+      "confidence": 0.8164385557174683,
+      "language": null
+    },
+    {
+      "start_time_ns": 1107451000000,
+      "end_time_ns": 1108451000000,
+      "text": "Perfect.",
+      "confidence": 0.9902100563049316,
+      "language": null
+    }
+  ],
+  "trajectory_length_m": 5.5171515657870955,
+  "dwell_speed_mps": 0.18390505219290318,
+  "pose_sample_count": 30274,
+  "gaze_sample_count_input": 302,
+  "source_files": {
+    "closed_loop_trajectory": "closed_loop_trajectory.csv",
+    "general_eye_gaze": "general_eye_gaze.csv",
+    "speech": "speech.csv",
+    "metadata": "metadata.json"
+  },
+  "coverage_gaps": {
+    "geo_available": 0,
+    "gaze_depth_all_nan": true,
+    "online_calibration_parsed": false,
+    "place_clustering": false
+  },
+  "place_anchor": {
+    "coordinate_frame_id": "4d17867a-9627-c654-99c1-3e9597044e46",
+    "centroid_world_m": [
+      0.7388935113587655,
+      -1.062645267466781,
+      0.018985701243034718
+    ],
+    "time_range_us": [
+      1102203846,
+      1132203845
+    ],
+    "label": "place_0",
+    "evidence": []
+  }
+}

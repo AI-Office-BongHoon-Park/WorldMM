@@ -615,4 +615,130 @@ AEA place clustering summary: 1 places, 1 stops, mean dwell 212.1s, longest 212.
 **Cross-dataset comparison:** EgoLife DAY1 = 33 places / 48 stops in 45 min; AEA loc5 seq6 = 1 place / 1 stop in 3.5 min.
 
 **Intentionally out of scope:** cross-session place matching/re-localization, label naming via scene context, and GPS-anchored outdoor places.
+---
 
+## §12. Longer AEA sequence — place richness rerun
+
+**Date:** 2026-05-21 KST
+
+**Sequence selection:** picked `loc1_script4_seq4_rec1` from `data/AEA/AriaEverydayActivities_download_urls.json`. Among `loc1`/`loc2`/`loc3` sequences with `main_vrs` between 4-8 GB, the longer `loc2_script3_seq3_rec1` and `loc2_script3_seq3_rec2` candidates had MPS+annotations totals of `987.0 MiB` and `959.8 MiB`, above the hard cap. `loc3_script4_seq4_rec1` was `633.9 MiB`, also above cap. `loc1_script4_seq4_rec1` was the longest remaining valid candidate: `main_vrs=6,132,692,106 bytes` (`5.71 GiB`) and required MPS+annotations download `486,183,736 bytes` (`463.66 MiB`), below both the 500 MB hard cap and the 600 MB preference.
+
+**Chosen file-size breakdown:**
+
+| File type | Action | Size |
+|---|---|---:|
+| `main_vrs` | skipped | `6,132,692,106 bytes` (`5.71 GiB`) |
+| `video_main_rgb` | skipped | `520,134,993 bytes` (`496.04 MiB`) |
+| `mps_artifacts` | skipped | `486,181,972 bytes` (`463.66 MiB`) |
+| `mps_slam_trajectories` | downloaded | `51,979,935 bytes` (`49.57 MiB`) |
+| `mps_slam_calibration` | downloaded | `3,108,473 bytes` (`2.96 MiB`) |
+| `mps_slam_points` | downloaded | `430,961,703 bytes` (`411.00 MiB`) |
+| `mps_slam_summary` | downloaded | `751 bytes` (`0.00 MiB`) |
+| `mps_eye_gaze` | downloaded | `130,818 bytes` (`0.12 MiB`) |
+| `annotations` | downloaded | `2,056 bytes` (`0.00 MiB`) |
+| **MPS+annotations total** | **downloaded** | **`486,183,736 bytes` (`463.66 MiB`)** |
+
+**Download output:** MPS-only ZIPs were downloaded with `wget` and unzipped under `data/AEA/loc1_script4_seq4_rec1/`. Required extracted files are present: `closed_loop_trajectory.csv`, `general_eye_gaze.csv`, `speech.csv`, `summary.json`, and `semidense_points.csv.gz`.
+
+**Sidecar command:**
+
+```bash
+uv run python tools/build_aea_spatial_sidecar.py --aea-dir data/AEA/loc1_script4_seq4_rec1 --out-dir output/metadata/spatial_memory/AEA_loc1_script4_seq4_rec1 --time-window-ms 100
+```
+
+The builder currently fixes `chunk_size_s=30` internally and does not expose a `--chunk-seconds` CLI flag, so the actual command kept the existing loc5 layout without changing schema or tool code.
+
+**Sidecar stdout:**
+
+```text
+AEA sidecar build: sequence=loc1_script4_seq4_rec1 chunks=16 out_dir=output/metadata/spatial_memory/AEA_loc1_script4_seq4_rec1 bytes=88965
+```
+
+**Place clustering command (`eps=0.5` primary):**
+
+```bash
+uv run python tools/build_aea_place_anchors.py --aea-dir data/AEA/loc1_script4_seq4_rec1 --sidecar-dir output/metadata/spatial_memory/AEA_loc1_script4_seq4_rec1 --out-dir output/metadata/spatial_memory/AEA_loc1_script4_seq4_rec1/with_place --eps 0.5 --min-samples 200 --dwell-ms 1500
+```
+
+**Place clustering stdout (`eps=0.5`):**
+
+```text
+Per-place dwell summary:
+  place_0: dwell=467.0s visits=1 centroid=[0.74, -1.06, 0.02]
+AEA place clustering summary: 1 places, 1 stops, mean dwell 467.0s, longest 467.0s, coverage 100.0%, anchored 16/16 chunks, stride 101 to 4666 rows, DBSCAN eps=0.5m min_samples=2 effective.
+```
+
+**Required `eps=0.3` retry:** because `eps=0.5` still returned one place, reran once with `--eps 0.3` into `output/metadata/spatial_memory/AEA_loc1_script4_seq4_rec1/with_place_eps03`. Result stayed unchanged: `1` place, `1` stop, mean dwell `467.0s`, longest `467.0s`, `100.0%` coverage, and `16/16` anchored chunks.
+
+**Measured result:** `loc1_script4_seq4_rec1` has `466.997s` duration (`7.78 min`) from the generated AEA place summary time range, `79.14 m` trajectory length from `aea_loc1_script4_seq4_rec1_summary.json`, `1` DBSCAN place, `1` visit/stop, mean dwell `467.02s`, and `100.01%` coverage after rounding. Source `data/AEA/loc1_script4_seq4_rec1/summary.json` only reports `GazeInference` status and does not include duration or path length, so measured duration/path come from the generated trajectory summaries.
+
+**Side-by-side with loc5:**
+
+| Sequence | Location preference | Duration | Trajectory length | Chunks | DBSCAN eps | Places | Visits/stops | Mean dwell | Coverage |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `loc5_script4_seq6_rec1` | `loc5`, single-room reference | `212.0s` (`3.53 min`) | `62.33 m` | 8 | `0.5 m` | 1 | 1 | `212.08s` | `100.04%` |
+| `loc1_script4_seq4_rec1` | `loc1`, preferred multi-room location | `467.0s` (`7.78 min`) | `79.14 m` | 16 | `0.5 m` | 1 | 1 | `467.02s` | `100.01%` |
+| `loc1_script4_seq4_rec1` | `eps=0.3` retry | `467.0s` (`7.78 min`) | `79.14 m` | 16 | `0.3 m` | 1 | 1 | `467.02s` | `100.0%` |
+
+**Honest verdict:** the longer loc1 sequence did **not** make the place graph richer. It increased duration from `3.53 min` to `7.78 min` and kept measurable wearer movement (`79.14 m`), but DBSCAN still collapsed the whole trajectory into one dense component at both `eps=0.5 m` and `eps=0.3 m`. This implies the current density settings plus continuous pose stream are too permissive for room/place segmentation on AEA: at 10 Hz downsampling, `effective_min_samples=2` makes spatial connectivity easy, so hallway/transition samples can bridge rooms into one cluster. Next useful change is not another same-parameter rerun; it is stricter segmentation, such as higher effective min-samples after downsampling, speed/dwell gating before DBSCAN, or temporal break constraints that prevent thin transition corridors from connecting places.
+
+---
+
+## §13. AEA gaze fixation analysis on loc5_script4_seq6_rec1
+
+**Date:** 2026-05-21 KST
+
+**Scope shipped:** a gaze-anchored analysis for `loc5_script4_seq6_rec1` showing what AEA answers that EgoLife's MP4-derived pipeline cannot: 10 Hz yaw/pitch fixation bearings, rolling gaze stability, gaze-to-6DoF-pose alignment within `≤1 ms`, and gaze/speech overlap evidence for a quiet sequence.
+
+**Build command:**
+
+```bash
+uv run python tools/build_aea_gaze_analysis.py --aea-dir data/AEA/loc5_script4_seq6_rec1 --out-dir output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/gaze_analysis
+```
+
+**Build stdout:**
+
+```text
+AEA gaze analysis: 2131 samples over 213.1s at 10.0Hz; quiet gaze 7.3%; top fixation (2.0°, -31.2°) for 5.4s; wrote output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/gaze_analysis.
+```
+
+**Top-5 fixation bearings** (`0.1 rad` consecutive-sample merge radius):
+
+| Rank | Time range (s) | Samples | Dwell | Mean yaw | Mean pitch | Mean pose translation `(x,y,z)` |
+|---:|---:|---:|---:|---:|---:|---|
+| 1 | `61.3–66.6` | 54 | `5.4s` | `1.951°` | `-31.181°` | `(-7.388, -1.366, 0.027)` |
+| 2 | `101.1–103.8` | 28 | `2.8s` | `-6.600°` | `-27.216°` | `(-7.513, -1.292, -0.101)` |
+| 3 | `162.3–164.6` | 24 | `2.4s` | `2.314°` | `-16.462°` | `(-6.707, -2.205, 0.183)` |
+| 4 | `187.8–189.9` | 22 | `2.2s` | `3.767°` | `-21.033°` | `(-6.616, -2.425, 0.193)` |
+| 5 | `165.8–167.9` | 22 | `2.2s` | `5.822°` | `-15.959°` | `(-6.741, -2.155, 0.186)` |
+
+**First 3 `gaze_pose_aligned.json` entries:**
+
+```json
+[
+  {
+    "tracking_timestamp_us": 3110203126,
+    "time_s_from_start": 0.8,
+    "gaze": {"yaw_rad": 0.038092, "pitch_rad": -0.431948, "yaw_deg": 2.183, "pitch_deg": -24.749, "yaw_ci_width_rad": 0.023891, "pitch_ci_width_rad": 0.033998},
+    "pose": {"tracking_timestamp_us": 3110203114, "delta_us": 12, "translation_world_device": {"x": -10.844939, "y": -11.961004, "z": -0.172876}, "orientation_world_device_quat": {"x": 0.72596, "y": -0.17712, "z": -0.661295, "w": -0.065574}, "quality_score": 0.5}
+  },
+  {
+    "tracking_timestamp_us": 3110303126,
+    "time_s_from_start": 0.9,
+    "gaze": {"yaw_rad": 0.03117, "pitch_rad": -0.379981, "yaw_deg": 1.786, "pitch_deg": -21.771, "yaw_ci_width_rad": 0.023207, "pitch_ci_width_rad": 0.034106},
+    "pose": {"tracking_timestamp_us": 3110303114, "delta_us": 12, "translation_world_device": {"x": -10.844953, "y": -11.961151, "z": -0.172834}, "orientation_world_device_quat": {"x": 0.725922, "y": -0.177111, "z": -0.661318, "w": -0.065781}, "quality_score": 1.0}
+  },
+  {
+    "tracking_timestamp_us": 3110403126,
+    "time_s_from_start": 1.0,
+    "gaze": {"yaw_rad": 0.031448, "pitch_rad": -0.37286, "yaw_deg": 1.802, "pitch_deg": -21.363, "yaw_ci_width_rad": 0.023641, "pitch_ci_width_rad": 0.034929},
+    "pose": {"tracking_timestamp_us": 3110403114, "delta_us": 12, "translation_world_device": {"x": -10.845052, "y": -11.961285, "z": -0.172694}, "orientation_world_device_quat": {"x": 0.72597, "y": -0.177087, "z": -0.661281, "w": -0.06569}, "quality_score": 1.0}
+  }
+]
+```
+
+**Measured outputs:** `output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/gaze_analysis/gaze_polar_histogram.json`, `gaze_fixations_top5.json`, `gaze_pose_aligned.json`, and `gaze_stability.json`. The slide `docs/slides/aea-gaze-fixation-loc5_script4_seq6_rec1.html` is inserted immediately after the AEA place graph slide in `docs/slides/pptx/worldmm_spatial_deck.pptx`, which now exports `16` slides in this worktree.
+
+**Honest verdict:** loc5 remains a short stationary sequence, so gaze does not reveal room transitions or social attention. It does reveal attention within the single place: the dominant dwell is slightly right of center and downward (`yaw≈2°`, `pitch≈-31°`) for `5.4s`, with smaller repeated downward/right fixations between `-27°` and `-16°` pitch later in the clip. Rolling 1-second `yaw_std + pitch_std` marks only `7.321%` of samples as quiet gaze (`<0.05 rad`), so the temporal pattern is mostly scanning with short stable locks, not one long sustained fixation. Speech adds no content signal here: `speech.csv` has one low-confidence row (`confidence=0.008`), so confident gaze-speech overlap is `0.0s`.
+
+**Beyond-QA cross-reference:** gaze directly strengthens scenario S2 / AR overlay and re-encounter memory because an overlay can be anchored to what the wearer actually looked at from a known 6DoF pose, not merely what appeared somewhere in RGB. It also supports S9 / physical-world search because results can be ranked by seen-and-fixated evidence: "show places I looked at this object" is a gaze+pose query, impossible from MP4 alone without the AEA gaze stream. If a future sequence includes faces, the same gaze target stream would unlock S8-style social face-place memory by distinguishing a person merely visible in frame from a person actually fixated.
