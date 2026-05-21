@@ -565,3 +565,54 @@ aea_loc5_script4_seq6_rec1_chunk_002.json: (wearer, located_in, aea_world_frame)
 **Data coverage notes:** this sequence has no GPS (`geo_available=0`), all gaze `depth_m` values are NaN, and speech is effectively empty. The source `speech.csv` contains one low-confidence row (`confidence=0.008`, text `you.`); the builder gates confidence below `0.05`, so emitted `speech_segments` is `[]`.
 
 **Intentionally out of scope:** no DBSCAN place clustering yet; no `online_calibration.jsonl` parsing yet; no speech handling beyond passthrough of overlapping confident segments; no `semidense_points.csv.gz` use yet; no ablation run against the generated AEA sidecar.
+---
+
+## §11. AEA place clustering
+
+**Date:** 2026-05-21 KST
+
+**Scope shipped:** DBSCAN-based metric place clustering for the AEA `loc5_script4_seq6_rec1` pose stream, plus augmented sidecar chunks, a D3 place graph slide, and refreshed PPTX deck.
+
+**Build command:**
+
+```bash
+uv run python tools/build_aea_place_anchors.py --aea-dir data/AEA/loc5_script4_seq6_rec1 --sidecar-dir output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1 --out-dir output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_place --eps 0.5 --min-samples 200 --dwell-ms 1500
+```
+
+**DBSCAN parameters:** `eps=0.5m` keeps indoor pose samples within one local metric neighborhood without requiring semantic labels. `min_samples=200` is specified in raw-pose units, approximately 200 ms at the ~1 kHz AEA stream; after stride downsampling to 10 Hz the builder uses `effective_min_samples=2` so the density threshold preserves the same time meaning. `dwell_ms=1500` drops flicker visits shorter than 1.5 s and keeps only contiguous temporal stops.
+
+**Build stdout:**
+
+```text
+Per-place dwell summary:
+  place_0: dwell=212.1s visits=1 centroid=[-8.78, -4.25, 0.05]
+AEA place clustering summary: 1 places, 1 stops, mean dwell 212.1s, longest 212.1s, coverage 100.0%, anchored 8/8 chunks, stride 101 to 2120 rows, DBSCAN eps=0.5m min_samples=2 effective.
+```
+
+**Measured:** `1` place, `1` visit/stop, mean dwell `212.1s`, longest visit `212.1s`, and `100.0%` recording coverage after dwell filtering. The source trajectory has `214,041` raw rows, `2,120` downsampled rows, and `212.0s` duration.
+
+**Output:** augmented chunks are written under `output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_place/` so the original sidecars remain untouched. `output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/places_summary.json` records per-place dwell, centroids, visits, and transitions. `docs/slides/place-graph-AEA-loc5_script4_seq6_rec1.html` visualizes the resulting place graph, and `docs/slides/pptx/worldmm_spatial_deck.pptx` now exports 14 slides.
+
+**Sample `place_anchor` JSON (`aea_loc5_script4_seq6_rec1_chunk_000.json`):**
+
+```json
+{
+  "coordinate_frame_id": "e32cc93e-64c5-3c5d-b4e8-bbb4f23258ca",
+  "centroid_world_m": [
+    -8.781789631603774,
+    -4.251926316509435,
+    0.05194233773584906
+  ],
+  "time_range_us": [
+    3110203114,
+    3140203113
+  ],
+  "label": "place_0",
+  "evidence": []
+}
+```
+
+**Cross-dataset comparison:** EgoLife DAY1 = 33 places / 48 stops in 45 min; AEA loc5 seq6 = 1 place / 1 stop in 3.5 min.
+
+**Intentionally out of scope:** cross-session place matching/re-localization, label naming via scene context, and GPS-anchored outdoor places.
+

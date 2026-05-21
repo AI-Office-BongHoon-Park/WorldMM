@@ -48,7 +48,9 @@ def discover_slides(repo: Path) -> List[SlideSpec]:
     slides_dir = repo / "docs" / "slides"
     capstone = slides_dir / "spatial-capstone-v3.html"
     visual_axis = slides_dir / "visual-axis-evolution.html"
+    gs_mock = slides_dir / "spatial-retrieval-gs-mock.html"
     place_graph = slides_dir / "place-graph-A1_JAKE-DAY1.html"
+    aea_place_graph = slides_dir / "place-graph-AEA-loc5_script4_seq6_rec1.html"
     case_files_in_order = [
         "spatial-hero-SH-A-001.html",
         "spatial-hero-SH-B-002.html",
@@ -65,8 +67,12 @@ def discover_slides(repo: Path) -> List[SlideSpec]:
         order.append(SlideSpec(capstone, "capstone", 1400, 880, 1330, 860))
     if visual_axis.exists():
         order.append(SlideSpec(visual_axis, "visual-axis-evolution"))
+    if gs_mock.exists():
+        order.append(SlideSpec(gs_mock, "spatial-retrieval-gs-mock"))
     if place_graph.exists():
         order.append(SlideSpec(place_graph, "place-graph", 1920, 1080, 1880, 1040, wait_ms=1800))
+    if aea_place_graph.exists():
+        order.append(SlideSpec(aea_place_graph, "aea-place-graph", 1920, 1080, 1880, 1040, wait_ms=1800))
     case_count = 0
     for name in case_files_in_order:
         p = slides_dir / name
