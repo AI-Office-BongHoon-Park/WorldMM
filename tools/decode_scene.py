@@ -7,6 +7,7 @@ import argparse
 import json
 import shutil
 from pathlib import Path
+from typing import Any
 
 
 def parse_args() -> argparse.Namespace:
@@ -49,22 +50,61 @@ def count_ply_vertices(path: Path) -> int:
     raise ValueError(f"PLY header lacks vertex count: {path}")
 
 
+def decode_triposr(scene_latent_ref: dict[str, Any], point_cloud: dict[str, Any] | None, ref_path: Path, output_path: Path) -> int:
+    source_path = resolve_storage_uri(scene_latent_ref["storage_uri"], ref_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    if source_path.exists():
+        shutil.copyfile(source_path, output_path)
+        return count_ply_vertices(output_path)
+    if point_cloud and point_cloud.get("points_world_m") is not None:
+        points_world_m = point_cloud["points_world_m"]
+        write_ascii_ply(points_world_m, output_path)
+        return len(points_world_m)
+    raise FileNotFoundError(f"Missing TripoSR mesh PLY and inline point cloud fallback: {source_path}")
+
+
+def load_mast3r_points(source_path: Path) -> list[list[float]]:
+    import torch
+
+    payload: dict[str, Any] = torch.load(source_path, map_location="cpu", weights_only=False)
+    points = payload.get("points_world_m")
+    if points is None:
+        pointmap = payload.get("pointmap")
+        confidence = payload.get("confidence")
+        if pointmap is None or confidence is None:
+            raise ValueError(f"MASt3R pointmap payload lacks points_world_m or pointmap/confidence: {source_path}")
+        points_tensor = pointmap.reshape(-1, 3).float()
+        confidence_tensor = confidence.reshape(-1).float()
+        mask = points_tensor.isfinite().all(dim=1) & confidence_tensor.isfinite() & (confidence_tensor > 0)
+        points = points_tensor[mask]
+    if hasattr(points, "detach"):
+        points = points.detach().cpu().float().tolist()
+    return [[float(x), float(y), float(z)] for x, y, z in points]
+
+
 def main() -> None:
     args = parse_args()
     chunk = json.loads(args.ref.read_text())
     scene_latent_ref = chunk.get("scene_latent_ref")
     if not scene_latent_ref:
         raise ValueError(f"Missing scene_latent_ref in {args.ref}")
-    if scene_latent_ref.get("backend") != "semidense_points":
+    backend = scene_latent_ref.get("backend")
+    if backend not in {"semidense_points", "mast3r_pointmap", "triplane_triposr"}:
         raise ValueError(f"Unsupported scene latent backend: {scene_latent_ref.get('backend')}")
 
     point_cloud = chunk.get("point_cloud")
-    if point_cloud and point_cloud.get("points_world_m") is not None:
+    source_path = resolve_storage_uri(scene_latent_ref["storage_uri"], args.ref)
+    if backend == "triplane_triposr":
+        point_count = decode_triposr(scene_latent_ref, point_cloud, args.ref, args.output)
+    elif backend == "mast3r_pointmap" and source_path.exists():
+        points_world_m = load_mast3r_points(source_path)
+        write_ascii_ply(points_world_m, args.output)
+        point_count = len(points_world_m)
+    elif point_cloud and point_cloud.get("points_world_m") is not None:
         points_world_m = point_cloud["points_world_m"]
         write_ascii_ply(points_world_m, args.output)
         point_count = len(points_world_m)
     else:
-        source_path = resolve_storage_uri(scene_latent_ref["storage_uri"], args.ref)
         args.output.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source_path, args.output)
         point_count = count_ply_vertices(args.output)

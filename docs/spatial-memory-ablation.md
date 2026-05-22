@@ -825,3 +825,128 @@ element vertex 1000
 ```
 
 **Intentionally out of scope:** no 3DGS yet, no DUSt3R yet, no cross-sequence alignment.
+
+---
+
+## §15. MASt3R pointmap backend (PoC, single EgoLife chunk)
+
+**Date:** 2026-05-22 KST
+
+**License notice:** MASt3R code and checkpoint are CC BY-NC-SA 4.0 non-commercial. This PoC is research-only and not for production or commercial deployment.
+
+**Scope shipped:** single-chunk `mast3r_pointmap` sidecar builder for EgoLife MP4 chunks, plus `tools/decode_scene.py --format ply` support. The smoke run selected the largest available A1_JAKE DAY1 MP4 by file size: `data/EgoLife/A1_JAKE/DAY1/DAY1_A1_JAKE_17513000.mp4` (`21,029,087` bytes).
+
+**Builder command:**
+
+```bash
+uv run python tools/build_scene_latent_mast3r.py --video data/EgoLife/A1_JAKE/DAY1/DAY1_A1_JAKE_17513000.mp4 --out-dir output/metadata/spatial_memory/A1_JAKE/scene_latents_mast3r --num-keyframes 2 --device cuda
+```
+
+**Builder stdout summary:**
+
+```text
+MASt3R pointmap scene latent: chunk=DAY1_A1_JAKE_17513000.mp4 keyframes=[0, 599] selected_side=pred2_lower_confidence inference_time_s=0.76 vram_peak_bytes=3252095488 points_before_sample=196608 points_after_sample=1000 pt_file=output/metadata/spatial_memory/A1_JAKE/scene_latents_mast3r/DAY1_A1_JAKE_17513000_mast3r_pointmap.pt pt_bytes=6294601 json_file=output/metadata/spatial_memory/A1_JAKE/scene_latents_mast3r/DAY1_A1_JAKE_17513000_mast3r_pointmap_sample.json json_bytes=113211. License: MASt3R is CC BY-NC-SA 4.0 non-commercial; this artifact is PoC only, not production/commercial.
+```
+
+**Measured:** wall/inference time `0.76s`; CUDA peak allocated `3,252,095,488` bytes (`3.03 GiB`). The full `.pt` pointmap stores `196,608` valid points; the JSON sidecar carries `1,000` sampled inline points.
+
+**Decoder command and stdout:**
+
+```bash
+uv run python tools/decode_scene.py --ref output/metadata/spatial_memory/A1_JAKE/scene_latents_mast3r/DAY1_A1_JAKE_17513000_mast3r_pointmap_sample.json --format ply --output /tmp/mast3r_scene.ply
+```
+
+```text
+input=output/metadata/spatial_memory/A1_JAKE/scene_latents_mast3r/DAY1_A1_JAKE_17513000_mast3r_pointmap_sample.json point_count=196608 output=/tmp/mast3r_scene.ply output_file_size=5596168
+```
+
+**Sample PLY first 3 lines + last 3 lines (`/tmp/mast3r_scene.ply`):**
+
+```text
+ply
+format ascii 1.0
+element vertex 196608
+-0.950494 0.739397 2.846060
+-0.862399 0.682952 2.517946
+-0.750247 0.776511 2.547985
+```
+
+**Matching `scene_latent_ref` JSON excerpt (`DAY1_A1_JAKE_17513000_mast3r_pointmap_sample.json`):**
+
+```json
+{
+  "backend": "mast3r_pointmap",
+  "storage_uri": "output/metadata/spatial_memory/A1_JAKE/scene_latents_mast3r/DAY1_A1_JAKE_17513000_mast3r_pointmap.pt",
+  "coord_frame_id": "mast3r:DAY1_A1_JAKE_17513000",
+  "time_us": 0,
+  "state_kind": "static_scene",
+  "decoder_version": "mast3r_512_catmlpdpt_metric",
+  "confidence": 1.0,
+  "provenance_frames": [
+    "video:data/EgoLife/A1_JAKE/DAY1/DAY1_A1_JAKE_17513000.mp4:0",
+    "video:data/EgoLife/A1_JAKE/DAY1/DAY1_A1_JAKE_17513000.mp4:599"
+  ],
+  "storage_bytes": 6294601
+}
+```
+
+**Intentionally out of scope:** no multi-chunk stitching, no NeRF training, no commercial deployment.
+
+---
+
+## §16. Triplane / TripoSR backend (PoC, single EgoLife frame)
+
+**Date:** 2026-05-22 KST
+
+**Scope shipped:** single-chunk, single-image LRM backend for `SceneLatentRef`: one EgoLife MP4 middle frame → TripoSR feedforward triplane → marching-cubes mesh → ASCII PLY scene latent → `tools/decode_scene.py --format ply` passthrough. This uses the existing `triplane_triposr` backend string and does not attempt multi-view reconstruction.
+
+**License notice:** TripoSR official source and pretrained model are released under the MIT license by VAST-AI-Research / Stability AI / Tripo AI. PyPI package `triposr` was not available in this environment, so the MIT GitHub repo was cloned to ignored path `tools/_triposr_src/` and minimal runtime dependencies were installed.
+
+**Build command:**
+
+```bash
+uv run python tools/build_scene_latent_triposr.py --video data/EgoLife/A1_JAKE/DAY1/DAY1_A1_JAKE_17513000.mp4 --out-dir output/metadata/spatial_memory/A1_JAKE/scene_latents_triposr --device cuda --mesh-format ply
+```
+
+**Build stdout:**
+
+```text
+TripoSR scene latent PoC: video=data/EgoLife/A1_JAKE/DAY1/DAY1_A1_JAKE_17513000.mp4 frame=300/600 device=cuda inference_s=26.741 vram_peak_mb=4243.6 vertices=95271 faces=189880 mesh=output/metadata/spatial_memory/A1_JAKE/scene_latents_triposr/DAY1_A1_JAKE_17513000_triposr_mesh.ply mesh_bytes=6422674 json=output/metadata/spatial_memory/A1_JAKE/scene_latents_triposr/DAY1_A1_JAKE_17513000_triposr.json json_bytes=104907 license=MIT verdict=single-frame object-level proxy, not faithful room reconstruction.
+```
+
+**Source frame and decoded mesh stats:** source chunk is the largest non-empty `A1_JAKE` EgoLife MP4 by file size: `data/EgoLife/A1_JAKE/DAY1/DAY1_A1_JAKE_17513000.mp4` (`21,029,087` bytes). Builder selected middle frame `300` of `600` via decord and resized the RGB image to `512x512`. CUDA path succeeded on RTX 3050: wall time `26.741s`, VRAM peak `4,243.6 MiB`. Source mesh has `95,271` vertices and `189,880` triangular faces; inline `PointCloudSidecar` stores `1,000` uniformly sampled vertices.
+
+**Decoder command and stdout:**
+
+```bash
+uv run python tools/decode_scene.py --ref output/metadata/spatial_memory/A1_JAKE/scene_latents_triposr/DAY1_A1_JAKE_17513000_triposr.json --format ply --output /tmp/triposr_scene.ply
+```
+
+```text
+input=output/metadata/spatial_memory/A1_JAKE/scene_latents_triposr/DAY1_A1_JAKE_17513000_triposr.json point_count=95271 output=/tmp/triposr_scene.ply output_file_size=6422674
+```
+
+**Decoded mesh check:** source PLY and decoded PLY both report `element vertex 95271` and `element face 189880`; decoded output is a direct mesh passthrough when linked PLY exists, with vertex-only fallback from inline `point_cloud.points_world_m` if the linked mesh is missing.
+
+**Matching `scene_latent_ref` JSON excerpt (`DAY1_A1_JAKE_17513000_triposr.json`):**
+
+```json
+{
+  "backend": "triplane_triposr",
+  "storage_uri": "output/metadata/spatial_memory/A1_JAKE/scene_latents_triposr/DAY1_A1_JAKE_17513000_triposr_mesh.ply",
+  "coord_frame_id": "egolife:DAY1_A1_JAKE_17513000:triposr_single_frame_proxy",
+  "time_us": 64290000000,
+  "state_kind": "object_instance",
+  "decoder_version": "triposr_v1",
+  "confidence": 0.35,
+  "provenance_frames": [
+    "egolife:DAY1_A1_JAKE_17513000.mp4:frame_300_of_600"
+  ],
+  "storage_bytes": 6422674
+}
+```
+
+**Honest verdict:** this is an object-level proxy from one egocentric frame, not a faithful room reconstruction. It produces a plausible 3D proxy mesh the agent can reference through the same `SceneLatentRef` / decoder contract, but it is not ground-truth scene geometry and should not be read as room-scale layout, metric alignment, or persistent spatial memory.
+
+**Explicitly out of scope:** no full-scene 3DGS, no texture baking, no multi-frame consistency, no COLMAP/SfM, no MASt3R/AEA builder changes.
+
