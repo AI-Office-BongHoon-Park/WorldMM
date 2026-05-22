@@ -8,6 +8,7 @@ PPR can walk between them.
 """
 
 import json
+import hashlib
 import logging
 import torch
 import torch.nn.functional as F
@@ -17,7 +18,7 @@ from dataclasses import dataclass
 
 from ...embedding import EmbeddingModel
 from .utils import SPATIAL_PREDICATE_VOCAB
-from .grounding import GazeTarget, GeometricGrounding, PlaceAnchor, Pose6DoF
+from .grounding import GazeTarget, GeometricGrounding, PlaceAnchor, PointCloudSidecar, Pose6DoF, SceneLatentRef
 
 logger = logging.getLogger(__name__)
 
@@ -35,6 +36,8 @@ class SpatialTripleEntry:
     pose_6dof: Optional[Pose6DoF] = None
     gaze_target: Optional[GazeTarget] = None
     place_anchor: Optional[PlaceAnchor] = None
+    scene_latent_ref: Optional[SceneLatentRef] = None
+    point_cloud: Optional[PointCloudSidecar] = None
 
     @property
     def triple(self) -> List[str]:
@@ -92,6 +95,11 @@ class SpatialTripleEntry:
                 f" [place_anchor=({centroid[0]:.2f},{centroid[1]:.2f},{centroid[2]:.2f})"
                 f" frame={anchor.coordinate_frame_id}{label}]"
             )
+        if self.scene_latent_ref:
+            storage_hash = hashlib.sha1(self.scene_latent_ref.storage_uri.encode("utf-8")).hexdigest()[:6]
+            base += f" [scene_latent={self.scene_latent_ref.backend}#{storage_hash}]"
+        if self.point_cloud:
+            base += f" [points={len(self.point_cloud.points_world_m)} pts]"
         return base
 
 
@@ -187,6 +195,8 @@ class SpatialMemory:
                 pose_6dof = grounding_record.get("pose_6dof")
                 gaze_target = grounding_record.get("gaze_target")
                 place_anchor = grounding_record.get("place_anchor")
+                scene_latent_ref = grounding_record.get("scene_latent_ref")
+                point_cloud = grounding_record.get("point_cloud")
                 entry = SpatialTripleEntry(
                     id=triple_id,
                     subject=triple[0],
@@ -199,6 +209,8 @@ class SpatialMemory:
                     pose_6dof=Pose6DoF(**pose_6dof) if pose_6dof else None,
                     gaze_target=GazeTarget(**gaze_target) if gaze_target else None,
                     place_anchor=PlaceAnchor(**place_anchor) if place_anchor else None,
+                    scene_latent_ref=SceneLatentRef(**scene_latent_ref) if scene_latent_ref else None,
+                    point_cloud=PointCloudSidecar(**point_cloud) if point_cloud else None,
                 )
                 self.triple_id_to_entry[triple_id] = entry
                 timestamp_entries.append(entry)

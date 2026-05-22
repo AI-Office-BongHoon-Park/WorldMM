@@ -742,3 +742,86 @@ AEA gaze analysis: 2131 samples over 213.1s at 10.0Hz; quiet gaze 7.3%; top fixa
 **Honest verdict:** loc5 remains a short stationary sequence, so gaze does not reveal room transitions or social attention. It does reveal attention within the single place: the dominant dwell is slightly right of center and downward (`yaw≈2°`, `pitch≈-31°`) for `5.4s`, with smaller repeated downward/right fixations between `-27°` and `-16°` pitch later in the clip. Rolling 1-second `yaw_std + pitch_std` marks only `7.321%` of samples as quiet gaze (`<0.05 rad`), so the temporal pattern is mostly scanning with short stable locks, not one long sustained fixation. Speech adds no content signal here: `speech.csv` has one low-confidence row (`confidence=0.008`), so confident gaze-speech overlap is `0.0s`.
 
 **Beyond-QA cross-reference:** gaze directly strengthens scenario S2 / AR overlay and re-encounter memory because an overlay can be anchored to what the wearer actually looked at from a known 6DoF pose, not merely what appeared somewhere in RGB. It also supports S9 / physical-world search because results can be ranked by seen-and-fixated evidence: "show places I looked at this object" is a gaze+pose query, impossible from MP4 alone without the AEA gaze stream. If a future sequence includes faces, the same gaze target stream would unlock S8-style social face-place memory by distinguishing a person merely visible in frame from a person actually fixated.
+
+---
+
+## §14. AEA semidense → PointCloudSidecar (first delivery of the 3D reconstruction extension)
+
+**Date:** 2026-05-22 KST
+
+**Scope shipped:** smallest end-to-end 3D reconstruction loop for Spatial Memory: AEA `semidense_points.csv.gz` → inline `PointCloudSidecar` → `SpatialTripleEntry` placeholders → `tools/decode_scene.py --format ply` → renderable ASCII PLY. No new ML dependencies were added.
+
+**Build command:**
+
+```bash
+uv run python tools/build_scene_latent_aea_semidense.py --aea-dir data/AEA/loc5_script4_seq6_rec1 --sidecar-dir output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_place --out-dir output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene --max-points-per-chunk 1000 --quality-filter "inv_dist_std<=0.005,dist_std<=0.01"
+```
+
+**Build stdout:**
+
+```text
+aea_loc5_script4_seq6_rec1_chunk_000.json: points_in_filter=462850 points_after_downsample=1000 output_path=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_000.json
+aea_loc5_script4_seq6_rec1_chunk_001.json: points_in_filter=462850 points_after_downsample=1000 output_path=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_001.json
+aea_loc5_script4_seq6_rec1_chunk_002.json: points_in_filter=462850 points_after_downsample=1000 output_path=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_002.json
+aea_loc5_script4_seq6_rec1_chunk_003.json: points_in_filter=462850 points_after_downsample=1000 output_path=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_003.json
+aea_loc5_script4_seq6_rec1_chunk_004.json: points_in_filter=462850 points_after_downsample=1000 output_path=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_004.json
+aea_loc5_script4_seq6_rec1_chunk_005.json: points_in_filter=462850 points_after_downsample=1000 output_path=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_005.json
+aea_loc5_script4_seq6_rec1_chunk_006.json: points_in_filter=462850 points_after_downsample=1000 output_path=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_006.json
+aea_loc5_script4_seq6_rec1_chunk_007.json: points_in_filter=462850 points_after_downsample=1000 output_path=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_007.json
+AEA semidense scene latent build: raw_points=1115096 filtered_points=462850 chunks=8 out_dir=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene
+```
+
+**Per-chunk numbers:** all 8 chunks used the same global semidense map sample for this first delivery. Source rows: `1,115,096`; after `inv_dist_std<=0.005,dist_std<=0.01`: `462,850`; after deterministic uniform downsample: `1,000` inline points per chunk. Output count: `8` augmented JSON chunks plus `8` external ASCII PLY files under `with_scene/scene_latents/`.
+
+**Smoke-test command:**
+
+```bash
+uv run python tools/test_aea_scene_latent_smoke.py --sidecar-dir output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene --chunk-index 0
+```
+
+**Smoke-test stdout:**
+
+```text
+aea_loc5_script4_seq6_rec1_chunk_000.json: (wearer, located_in, aea_world_frame) [place=loc5_script4_seq6_rec1] [scene_latent=semidense_points#5e8b18] [points=1000 pts]
+```
+
+**Decoder command and stdout:**
+
+```bash
+uv run python tools/decode_scene.py --ref output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_000.json --format ply --output /tmp/scene_0.ply
+```
+
+```text
+input=output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/aea_loc5_script4_seq6_rec1_chunk_000.json point_count=1000 output=/tmp/scene_0.ply output_file_size=30185
+```
+
+**Sample PLY first 3 lines + last 3 lines (`/tmp/scene_0.ply`):**
+
+```text
+ply
+format ascii 1.0
+element vertex 1000
+-10.684368 -9.326726 -1.397533
+-10.966641 -9.211161 -0.665973
+-11.380312 -7.725941 -1.313510
+```
+
+**Matching `scene_latent_ref` JSON excerpt (`aea_loc5_script4_seq6_rec1_chunk_000.json`):**
+
+```json
+{
+  "backend": "semidense_points",
+  "storage_uri": "output/metadata/spatial_memory/AEA_loc5_script4_seq6_rec1/with_scene/scene_latents/aea_loc5_script4_seq6_rec1_chunk_000_semidense.ply",
+  "coord_frame_id": "e32cc93e-64c5-3c5d-b4e8-bbb4f23258ca",
+  "time_us": 3110203114,
+  "state_kind": "static_scene",
+  "decoder_version": "aea_semidense_ascii_ply.v1",
+  "confidence": 1.0,
+  "provenance_frames": [
+    "aea:loc5_script4_seq6_rec1:chunk_000"
+  ],
+  "storage_bytes": 30185
+}
+```
+
+**Intentionally out of scope:** no 3DGS yet, no DUSt3R yet, no cross-sequence alignment.

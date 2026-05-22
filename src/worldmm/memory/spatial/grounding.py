@@ -6,6 +6,9 @@ from typing import List, Literal, Optional, Tuple
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
+MAX_INLINE_POINTS = 1000
+
+
 class GeometricGrounding(BaseModel):
     """Relative or metric 3D grounding for one side of a spatial triple."""
 
@@ -87,6 +90,64 @@ class PlaceAnchor(BaseModel):
     time_range_us: Tuple[int, int]
     label: Optional[str] = None
     evidence: List[str] = []
+
+
+class SceneLatentRef(BaseModel):
+    """Reference to reconstructable 3D state stored out-of-band."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    backend: Literal[
+        "compact_3dgs",
+        "dust3r_pointmap",
+        "mast3r_pointmap",
+        "triplane_triposr",
+        "shap_e_sdf",
+        "semidense_points",
+    ]
+    storage_uri: str
+    coord_frame_id: str
+    time_us: int
+    state_kind: Literal["static_scene", "dynamic_event", "object_instance"]
+    decoder_version: str
+    confidence: float = Field(..., ge=0.0, le=1.0)
+    provenance_frames: List[str] = Field(default_factory=list)
+    storage_bytes: int
+
+
+class PointCloudSidecar(BaseModel):
+    """Inline point cloud small enough to carry with a spatial memory entry."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    points_world_m: List[List[float]]
+    uncertainty: Optional[List[float]] = None
+    graph_uid: str
+    time_range_us: Tuple[int, int]
+    source: str
+
+    @field_validator("points_world_m")
+    @classmethod
+    def _validate_points_world_m(cls, value: List[List[float]]) -> List[List[float]]:
+        if len(value) > MAX_INLINE_POINTS:
+            raise ValueError(f"points_world_m cannot exceed {MAX_INLINE_POINTS} points")
+        validated: List[List[float]] = []
+        for row in value:
+            if not isinstance(row, list) or len(row) != 3:
+                raise ValueError("each point must be a length-3 list")
+            try:
+                validated.append([float(item) for item in row])
+            except (TypeError, ValueError) as exc:
+                raise ValueError("each point coordinate must be float-convertible") from exc
+        return validated
+
+    @model_validator(mode="after")
+    def _validate_uncertainty(self) -> "PointCloudSidecar":
+        if self.uncertainty is not None:
+            self.uncertainty = [float(item) for item in self.uncertainty]
+            if len(self.uncertainty) != len(self.points_world_m):
+                raise ValueError("uncertainty length must match points_world_m")
+        return self
 
 
 class SpeechSegment(BaseModel):
