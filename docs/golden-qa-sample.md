@@ -1,6 +1,6 @@
 # Golden QA Sample: Spatial Axis Isolation
 
-Date: 2026-05-24 KST
+Date: 2026-05-25 KST
 
 ## Purpose
 
@@ -8,132 +8,43 @@ This golden set isolates when the fourth spatial axis adds unique value, when it
 
 ## Categorization Methodology
 
-Each question receives exactly one label.
-
 | Type | Definition | Rule used here |
 |---|---|---|
-| Type1 | Spatial-required | spatial-hero closed-vocab object/place templates; gold appears in `evidence_triples` / spatial triples only. |
+| Type1 | Spatial-required | full-DAY1 `spatial_extraction_results_chatgpt-gpt-5.4.json` real object/place triples converted to closed-vocab WHERE questions. |
 | Type2 | Spatial-supported | EgoLifeQA text matches place-noun regex and action/person predicate regex; answer remains in `reason`. |
 | Type3 | Non-spatial control | EgoLifeQA answer derivable from `reason`; question lacks required spatial predicate. |
 | Type4 | Spatial-distractor | WHERE-shaped question synthesized from EgoLifeQA TaskMaster/EventRecall rows; gold comes from narration/reason, not spatial triples. |
-
-Deterministic first pass used `PLACE_RE`, spatial predicate vocabulary, and gold-answer shape. LLM fallback was reserved for ambiguous rows but not used in default build. Type4 synthesis is explicit because source pools did not provide four clean natural distractors.
 
 ## Per-Type Counts
 
 | Type | Count | Source |
 |---|---:|---|
-| Type1 | 12 | spatial-hero V2 curated/top-k catalog and pool |
-| Type2 | 8 | EgoLifeQA mixed place+action/person rows |
-| Type3 | 8 | EgoLifeQA action/preference/planning controls |
-| Type4 | 4 | synthesized WHERE-shaped distractors from EgoLifeQA narration |
+| Type1 | 24 | full-DAY1 spatial extraction triples, 828 chunks / 1,262 triples |
+| Type2 | 12 | EgoLifeQA mixed place+action/person rows |
+| Type3 | 12 | EgoLifeQA action/preference/planning controls |
+| Type4 | 6 | synthesized WHERE-shaped distractors from EgoLifeQA narration |
 
 ## Ablation Table
 
 | Type | spatial-OFF correct/N | spatial-ON correct/N | Δ | spatial-axis verdict |
 |---|---:|---:|---:|---|
-| 1 | 15/12 x 3 (41.7%) | 32/12 x 3 (88.9%) | +17 (+47.2 pp) | required |
-| 2 | 18/8 x 3 (75.0%) | 18/8 x 3 (75.0%) | +0 (+0.0 pp) | not helpful in this run |
-| 3 | 12/8 x 3 (50.0%) | 9/8 x 3 (37.5%) | -3 (-12.5 pp) | signal leak |
-| 4 | 9/4 x 3 (75.0%) | 9/4 x 3 (75.0%) | +0 (+0.0 pp) | no distractor penalty |
+| 1 | 53/24 x 3 (73.6%) | 50/24 x 3 (69.4%) | -3 (-4.2 pp) | not cleanly required |
+| 2 | 16/12 x 3 (44.4%) | 16/12 x 3 (44.4%) | +0 (+0.0 pp) | not helpful in this run |
+| 3 | 14/12 x 3 (38.9%) | 20/12 x 3 (55.6%) | +6 (+16.7 pp) | signal leak |
+| 4 | 5/6 x 3 (27.8%) | 8/6 x 3 (44.4%) | +3 (+16.7 pp) | no distractor penalty |
 
-Execution note: Type1 rows use `output/spatial_hero_topk_verified.json`, a real three-trial spatial-hero run. Type2-Type4 rows use `output/three_vs_four_n60.json` replayed into three trial slots because the fresh tmux run began but exceeded practical wall time after the first-question smoke test; those rows should be treated as broad-run evidence, not independent multi-seed evidence.
-
-## Broad EgoLifeQA Comparison
-
-Existing broad comparison from `docs/three-vs-four-axis-ablation.md`: unfiltered EgoLifeQA n=60 was 37/60 (61.7%) for 3-axis and 36/60 (60.0%) for 4-axis, Δ -1.7 pp. Existing §8.1 visual-coverage rerun n=30 was 15/30 (50.0%) for 3-axis and 16/30 (53.3%) for 4-axis, Δ +3.3 pp. The golden subset shows a much larger Type1 lift (+47.2 pp), but Type3/Type4 do not remain cleanly neutral/distracting.
+Execution note: `output/golden_qa_results.json` contains 3 independent trials per config per question, 324 direct LLM calls with 4 workers. Full memory-stack retrieval was attempted first but exceeded the 2-hour cap; completed results use the direct golden-evidence protocol recorded in JSON metadata.
 
 ## Honest Verdict
 
-spatial axis does not differentiate cleanly: Type3/Type4 still leak or fail to show distractor penalty.
-
-Type1 differentiates strongly: spatial ON wins when gold is in triples. Type2 did not show additional lift in this replayed broad-run slice. Type3 leaked signal negatively, meaning adding spatial changed some non-spatial answers. Type4 did not hurt; WHERE-shaped distractors tied instead of producing the expected penalty.
+Type1 lift did **not** improve versus n=91: it changed from +47.2 pp to -4.2 pp. Type3 signal leak did not shrink; it changed from -12.5 pp to +16.7 pp. Type2 stayed neutral. Type4 still showed no distractor penalty.
 
 ## Example Cases
 
-### Type1
+### Top Type1 Cases By ON-OFF Margin
 
-- `GQA-T1-SH-A-001`: Where was hard drive at approximately DAY1 11:14:30?
-  - Gold: A (dining table)
-  - Evidence: spatial_triple at chunk DAY1 11:14:30: (hard drive, on, dining table)
-  - 3-axis trace: pred B; R1 episodic: [DAY1 11:14:00 - DAY1 11:14:30] "Yes, your second life is all in here," I say as I look back and forth. I point to th...
-  - 4-axis trace: pred A; R1 spatial: (hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)
-
-- `GQA-T1-SH-A-002`: Where was box at approximately DAY1 11:14:30?
-  - Gold: C (another box)
-  - Evidence: spatial_triple at chunk DAY1 11:14:30: (box, on, another box)
-  - 3-axis trace: pred B; R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30] I hold the box with both hands, grab it back, set it upright, and close it. Shure say...
-  - 4-axis trace: pred C; R1 spatial: (hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)
-
-- `GQA-T1-SH-A-003`: Where was data at approximately DAY1 11:14:30?
-  - Gold: D (hard drive)
-  - Evidence: spatial_triple at chunk DAY1 11:14:30: (data, in, hard drive)
-  - 3-axis trace: pred D; R1 episodic: [DAY1 11:12:00 - DAY1 11:15:00] **I invited the group into my bedroom to view the workstation and introduced the reco...
-  - 4-axis trace: pred D; R1 spatial: (hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)
-
-### Type2
-
-- `GQA-Type2-EGO-10`: Who was the first to write the meeting notes on the whiteboard in the meeting room?
-  - Gold: A (Shure)
-  - Evidence: EgoLifeQA row ID 10 reason field: I saw Shure writing on the whiteboard
-  - 3-axis trace: pred A; Replay of existing broad EgoLifeQA n=60 three_axis result; original output does not retain round trace.
-  - 4-axis trace: pred A; Replay of existing broad EgoLifeQA n=60 four_axis result; original output does not retain round trace.
-
-- `GQA-Type2-EGO-12`: When I handed out the charging cables just now, who had already started charging?
-  - Gold: D (Shure)
-  - Evidence: EgoLifeQA row ID 12 reason field: I noticed Shure had already plugged in the power bank
-  - 3-axis trace: pred D; Replay of existing broad EgoLifeQA n=60 three_axis result; original output does not retain round trace.
-  - 4-axis trace: pred D; Replay of existing broad EgoLifeQA n=60 four_axis result; original output does not retain round trace.
-
-- `GQA-Type2-EGO-15`: While puzzling, who am I guiding to use the app on the phone
-  - Gold: B (Katrina, Alice)
-  - Evidence: EgoLifeQA row ID 15 reason field: In the video, I am guiding Katrina and Alice on how to use this app
-  - 3-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 three_axis result; original output does not retain round trace.
-  - 4-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 four_axis result; original output does not retain round trace.
-
-### Type3
-
-- `GQA-Type3-EGO-13`: Now Lucia asks, "What is this, is this a hedgehog?" What were we discussing the last time she asked a question?
-  - Gold: C (Cake Making)
-  - Evidence: EgoLifeQA row ID 13 reason field: Lucia asked if it was like pudding
-  - 3-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 three_axis result; original output does not retain round trace.
-  - 4-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 four_axis result; original output does not retain round trace.
-
-- `GQA-Type3-EGO-20`: We are currently discussing the details of the puzzle. When was this discussed before?
-  - Gold: D (About an hour ago)
-  - Evidence: EgoLifeQA row ID 20 reason field: Alice said it wasn't completely assembled
-  - 3-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 three_axis result; original output does not retain round trace.
-  - 4-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 four_axis result; original output does not retain round trace.
-
-- `GQA-Type3-EGO-24`: What are the lunch options?
-  - Gold: A (Beijing-style Braised Pork)
-  - Evidence: EgoLifeQA row ID 24 reason field: Shure is naming the dishes
-  - 3-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 three_axis result; original output does not retain round trace.
-  - 4-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 four_axis result; original output does not retain round trace.
-
-### Type4
-
-- `GQA-T4-SYN-001`: Where did the lunch plan land after discussion?
-  - Gold: D (KFC)
-  - Evidence: EgoLifeQA row ID 32 reason field: I said let's order KFC
-  - 3-axis trace: pred D; Replay of existing broad EgoLifeQA n=60 three_axis result; original output does not retain round trace.
-  - 4-axis trace: pred D; Replay of existing broad EgoLifeQA n=60 four_axis result; original output does not retain round trace.
-
-- `GQA-T4-SYN-002`: Where did the group land for lunch after everyone discussed it?
-  - Gold: A (KFC)
-  - Evidence: EgoLifeQA row ID 34 reason field: Because after everyone's discussion, we decided to eat Kfc
-  - 3-axis trace: pred A; Replay of existing broad EgoLifeQA n=60 three_axis result; original output does not retain round trace.
-  - 4-axis trace: pred A; Replay of existing broad EgoLifeQA n=60 four_axis result; original output does not retain round trace.
-
-- `GQA-T4-SYN-003`: Where did Shure, Katrina, and Lucia's shopping role land?
-  - Gold: D (Alcohol)
-  - Evidence: EgoLifeQA row ID 38 reason field: Tasha pointed at Shure's shopping cart and said this is the alcohol group
-  - 3-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 three_axis result; original output does not retain round trace.
-  - 4-axis trace: pred B; Replay of existing broad EgoLifeQA n=60 four_axis result; original output does not retain round trace.
-
-## Reproduction
-
-```bash
-uv run python tools/build_golden_qa_sample.py --egolifeqa-file data/EgoLife/EgoLifeQA/EgoLifeQA_A1_JAKE.json --synthetic-pool output/spatial_hero_pool.json --spatial-hero-curated output/spatial_hero_curated.json --out output/golden_qa_sample.json --target-balance 12-8-8-4
-tmux new-session -d -s golden-qa-ablation "cd /home/default/workspace/WorldMM && uv run python tools/run_golden_qa_ablation.py --sample output/golden_qa_sample.json --output output/golden_qa_results.json --trials 3 --model chatgpt-gpt-5.4 --max-rounds 3"
-```
+- `GQA-T1-SP-111143000-03`: Where was box at approximately DAY1 11:14:30? Gold `C` (shelf); OFF 0/3, ON 3/3, Δ +3. Evidence: spatial_triple at chunk DAY1 11:14:30: (box, on, shelf)
+- `GQA-T1-SP-112093000-07`: Where was director's board at approximately DAY1 12:09:30? Gold `C` (left-hand side); OFF 0/3, ON 2/3, Δ +2. Evidence: spatial_triple at chunk DAY1 12:09:30: (director's board, on, left-hand side)
+- `GQA-T1-SP-112080000-01`: Where was mixing at approximately DAY1 12:08:00? Gold `C` (counter); OFF 3/3, ON 3/3, Δ +0. Evidence: spatial_triple at chunk DAY1 12:08:00: (mixing, on, counter)
+- `GQA-T1-SP-112073000-01`: Where was director's slate at approximately DAY1 12:07:30? Gold `B` (floor); OFF 3/3, ON 3/3, Δ +0. Evidence: spatial_triple at chunk DAY1 12:07:30: (director's slate, on, floor)
+- `GQA-T1-SP-112043000-04`: Where was data cable at approximately DAY1 12:04:30? Gold `B` (table); OFF 3/3, ON 3/3, Δ +0. Evidence: spatial_triple at chunk DAY1 12:04:30: (data cable, on, table)

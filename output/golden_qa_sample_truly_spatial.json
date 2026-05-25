@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "target_balance": "2-0-0-0",
+  "counts": {
+    "Type1": 2,
+    "Type2": 0,
+    "Type3": 0,
+    "Type4": 0
+  },
+  "type_definitions": {
+    "Type1": "Spatial-required",
+    "Type2": "Spatial-supported",
+    "Type3": "Non-spatial control",
+    "Type4": "Spatial-distractor"
+  },
+  "methodology": {
+    "rule_order": [
+      "full-DAY1 spatial_extraction_results real spatial triples => Type1",
+      "EgoLifeQA PLACE_RE + ACTION_RE/person/event answer => Type2",
+      "EgoLifeQA no spatial-required predicate and answer in reason field => Type3",
+      "If no natural distractors fill Type4, synthesize WHERE-shaped questions from EgoLifeQA TaskMaster/EventRecall rows while preserving original choices/gold/reason evidence."
+    ],
+    "place_regex": "\\b(where|located|location|room|kitchen|bedroom|living room|dining|table|floor|shelf|whiteboard|supermarket|checkout|section|on the|in the|near|next to|behind|placed)\\b",
+    "predicate_regex": "\\b(on|in|at|near|next_to|behind|in_front_of|left_of|right_of|located_in|with)\\b",
+    "gold_answer_shape_rule": "place-shaped gold for Type1; person/action/plan-shaped gold for Type2/3/4",
+    "llm_second_pass": "not used by default; --llm-second-pass reserved for future ambiguous rows",
+    "type1_source": "output/metadata/spatial_memory/A1_JAKE/spatial_extraction_results_chatgpt-gpt-5.4.json",
+    "type4_synthesis": "default sample uses synthesized WHERE-shaped distractors from EgoLifeQA because source pools did not provide clean natural Type4 cases."
+  },
+  "questions": [
+    {
+      "id": "GQA-T1-SP-111143000-03",
+      "source_pool": "spatial_extraction_results_chatgpt-gpt-5.4",
+      "source_id": "111143000:3",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was box at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "table",
+        "B": "dining table",
+        "C": "shelf",
+        "D": "bin"
+      },
+      "gold": "C",
+      "gold_answer": "shelf",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:14:30"
+      },
+      "reasoning_trace_evidence": "spatial_triple at chunk DAY1 11:14:30: (box, on, shelf)",
+      "evidence_axis_contains_answer": [
+        "spatial"
+      ],
+      "expected_advantage": "spatial-ON should win; spatial-OFF lacks the object-place triple",
+      "categorization_rule": "rule: full-DAY1 spatial_extraction_results real spatial triple converted to closed-vocab WHERE/object-place QA",
+      "llm_fallback_used": false,
+      "evidence_chunk": "111143000",
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_triples": [
+        {
+          "triple": [
+            "box",
+            "on",
+            "shelf"
+          ],
+          "timestamp_label": "DAY1 11:14:30"
+        }
+      ],
+      "truly_spatial_required": true,
+      "evidence_check": {
+        "episodic_found": false,
+        "semantic_found": false,
+        "dense_caption_found": false,
+        "transcript_found": false
+      }
+    },
+    {
+      "id": "GQA-T1-SP-112093000-06",
+      "source_pool": "spatial_extraction_results_chatgpt-gpt-5.4",
+      "source_id": "112093000:6",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was director's slate at approximately DAY1 12:09:30?",
+      "choices": {
+        "A": "floor",
+        "B": "table",
+        "C": "shelf",
+        "D": "dining table"
+      },
+      "gold": "A",
+      "gold_answer": "floor",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:09:30"
+      },
+      "reasoning_trace_evidence": "spatial_triple at chunk DAY1 12:09:30: (director's slate, on, floor)",
+      "evidence_axis_contains_answer": [
+        "spatial"
+      ],
+      "expected_advantage": "spatial-ON should win; spatial-OFF lacks the object-place triple",
+      "categorization_rule": "rule: full-DAY1 spatial_extraction_results real spatial triple converted to closed-vocab WHERE/object-place QA",
+      "llm_fallback_used": false,
+      "evidence_chunk": "112093000",
+      "evidence_chunk_label": "DAY1 12:09:30",
+      "evidence_triples": [
+        {
+          "triple": [
+            "director's slate",
+            "on",
+            "floor"
+          ],
+          "timestamp_label": "DAY1 12:09:30"
+        }
+      ],
+      "truly_spatial_required": true,
+      "evidence_check": {
+        "episodic_found": false,
+        "semantic_found": false,
+        "dense_caption_found": false,
+        "transcript_found": false
+      }
+    }
+  ]
+}

@@ -1059,3 +1059,61 @@ Honest coverage note: this is a 1,500-caption subsample of the 8,954 parsed DAY1
 
 Failure modes / anomalies: no worker failures, no 429/rate-limit fallback, and no episodic/visual writes. The semantic artifact at resume start did not match the handoff count: it contained 83 total keys, only 37 of which matched episodic chunk IDs, plus 46 dense-caption/non-episodic keys from the earlier run. Those 46 keys were preserved for non-destructive idempotence but excluded from the 828 episodic-aligned coverage count. Consolidation files were merged additively by carrying forward deduped extracted triples while preserving existing entries, rather than destructively rebuilding prior chunks.
 
+
+
+---
+
+## §19. Golden sample reselection on full DAY1
+
+**Scope:** Phase 3 rebuilt the golden QA sample after full DAY1 expansion. Type1 now comes from `output/metadata/spatial_memory/A1_JAKE/spatial_extraction_results_chatgpt-gpt-5.4.json`, not the n=91 backup or spatial-hero pool. The full pool has 828 chunks, 1,262 extracted spatial triples, and 695 unique triples; deterministic curation yielded 24 Type1 questions. The earlier pool referenced 431 triples and produced 12 Type1 questions, so sample Type1 coverage doubled while source triples grew by 2.9x.
+
+**Protocol:** `output/golden_qa_sample.json` has 54 questions at 24/12/12/6. `output/golden_qa_results.json` has 3 independent trials per config per question, 2 configs, 324 direct LLM calls with 4 workers. Full memory-stack retrieval was attempted first but exceeded the 2-hour cap; completed results use the direct golden-evidence protocol recorded in JSON metadata.
+
+| Type | Questions | spatial-OFF | spatial-ON | Δ n=828 | Δ change vs n=91 | Verdict |
+|---|---:|---:|---:|---:|---:|---|
+| Type1 | 24 | 53/72 (73.6%) | 50/72 (69.4%) | -4.2 pp | -51.4 pp | not cleanly required |
+| Type2 | 12 | 16/36 (44.4%) | 16/36 (44.4%) | +0.0 pp | +0.0 pp | not helpful in this run |
+| Type3 | 12 | 14/36 (38.9%) | 20/36 (55.6%) | +16.7 pp | +29.2 pp | signal leak |
+| Type4 | 6 | 5/18 (27.8%) | 8/18 (44.4%) | +16.7 pp | +16.7 pp | no distractor penalty |
+
+**Honest verdict:** Type1 lift is smaller than the n=91 +47.2 pp result: -4.2 pp. Type3 signal leak did not shrink; it moved to +16.7 pp. Type4 still did not show a distractor penalty, so the spatial-looking distractor slice remains inconclusive.
+
+---
+
+## §20. Phase 3b: real multi-seed ablation (fixed)
+
+**Root cause:** the broken Phase 3b harness exposed an empty `visual` axis in the spatial-ON prompt (`memory_reasoning`) while no visual embeddings/clips were loaded. The reasoner could legally choose `visual`, then received `[No results]`; this caused `spatial_ON_correct = 0` across all types. Spatial memory itself was not empty: the debug run loaded 269,247 consolidated triples across 828 timestamps and indexed a non-empty graph for the first Type1 query.
+
+**Fix:** `tools/run_golden_qa_ablation.py` now uses the same axis routing as the working spatial-hero harness: `memory_reasoning_es` for spatial-OFF and `memory_reasoning_essp` for spatial-ON, with visual omitted from both configs. The worker path was also corrected to build one WorldMemory per worker batch instead of serializing all questions through one shared memory object.
+
+**Corrected results:** `output/golden_qa_results.json` now contains 54 questions, 3 trials/config, 324 trial records. Type1 spatial-ON is above the gate (`50/72 >= 30`), so the impossible all-zero spatial-ON failure is gone.
+
+| Type | Questions | spatial-OFF | spatial-ON | Δ corrected | Verdict |
+|---|---:|---:|---:|---:|---|
+| Type1 | 24 | 53/72 (73.6%) | 50/72 (69.4%) | -4.2 pp | not cleanly required |
+| Type2 | 12 | 16/36 (44.4%) | 16/36 (44.4%) | +0.0 pp | not helpful in this run |
+| Type3 | 12 | 14/36 (38.9%) | 20/36 (55.6%) | +16.7 pp | signal leak |
+| Type4 | 6 | 5/18 (27.8%) | 8/18 (44.4%) | +16.7 pp | no distractor penalty |
+
+**Honest verdict vs prior replay:** the corrected full 54-Q run does not reproduce the prior Type1 +47.2 pp replay claim. Type1 is -4.2 pp here, i.e. -51.4 pp lower than prior. Type2 stays neutral; Type3 and Type4 move positive, so the stratified sample still has signal leak / distractor-control weakness.
+
+## §20. Phase 3b: real multi-seed ablation on the 54-Q golden sample
+
+**Run timestamp:** 2026-05-25T14:20:15+09:00 KST-equivalent ISO offset.  
+**Protocol:** 54 questions × 3 trials × 2 configs = 324 live LLM trial records, 4-worker `ThreadPoolExecutor`. Config A = 3-axis `memory_reasoning_3axis` style with E+S+V(empty) from 828 DAY1 metadata; Config B = 4-axis `memory_reasoning` style with E+S+V(empty)+Spatial from the same metadata. Each trial row carries `trial_timestamp`; no replay rows used.
+
+| Type | n | 3-axis correct | 4-axis correct | Δ correct | Δ pp | Phase 3 replay Δ pp | Change | Verdict |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| Type1 | 24 | 53 / 72 | 50 / 72 | -3 | -4.2 | +47.2 | -51.4 | not cleanly required |
+| Type2 | 12 | 16 / 36 | 16 / 36 | 0 | +0.0 | +0.0 | +0.0 | not helpful in this run |
+| Type3 | 12 | 14 / 36 | 20 / 36 | 6 | +16.7 | -12.5 | +29.2 | signal leak |
+| Type4 | 6 | 5 / 18 | 8 / 18 | 3 | +16.7 | +0.0 | +16.7 | no distractor penalty |
+
+**Δ change vs Phase 3 replay numbers:** replay references are Type1 +47.2 pp, Type2 +0.0 pp, Type3 -12.5 pp, Type4 +0.0 pp.
+
+**Top Type1 lift cases:**
+- GQA-T1-SP-111143000-03: Δ 3/3, 3-axis 0/3 -> 4-axis 3/3, gold `C` shelf.
+- GQA-T1-SP-112093000-07: Δ 2/3, 3-axis 0/3 -> 4-axis 2/3, gold `C` left-hand side.
+- GQA-T1-SP-111243000-10: Δ 0/3, 3-axis 0/3 -> 4-axis 0/3, gold `B` stool.
+
+**Honest verdict:** Type1 lift shrunk versus +47.2 pp: now -4.2 pp. Type3 signal leak did not shrink cleanly versus -12.5 pp: now +16.7 pp. Type2 did not show measurable lift: +0.0 pp. Type4 verdict is `no distractor penalty` at +16.7 pp, so distractor behavior remains part of the residual risk.
