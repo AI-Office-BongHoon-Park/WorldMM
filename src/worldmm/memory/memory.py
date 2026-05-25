@@ -191,7 +191,7 @@ class WorldMemory:
         Args:
             until_time: Timestamp in integer format (day + time.zfill(8))
         """
-        if self.indexed_time >= until_time:
+        if self.indexed_time == until_time:
             logger.debug(f"Already indexed up to {self.indexed_time}, skipping")
             return
         
@@ -499,7 +499,7 @@ Retrieved:
             QAResult with the answer and retrieval history
         """
         # Index if needed
-        if until_time and until_time > self.indexed_time:
+        if until_time and until_time != self.indexed_time:
             self.index(until_time)
         
         # Format query with choices if provided

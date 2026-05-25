@@ -260,6 +260,13 @@ class SpatialMemory:
             logger.debug(f"Already indexed timestamp {closest_timestamp}, skipping")
             return
 
+        # Fix stale spatial index for non-chronological worker batches: a backward
+        # query must rebuild every per-index field before retrieval can read it.
+        self.indexed_entries = []
+        self.embeddings = None
+        self.graph = None
+        self.triple_to_entities = {}
+
         entries_to_index = list(self.timestamp_to_triples.get(closest_timestamp, []))
         if not entries_to_index:
             logger.debug(f"No entries at timestamp {closest_timestamp}")
@@ -271,24 +278,23 @@ class SpatialMemory:
             return
 
         all_entities: Set[str] = set()
-        self.triple_to_entities = {}
+        triple_to_entities: Dict[str, Tuple[str, str]] = {}
         for entry in entries_to_index:
             subj, obj = entry.subject, entry.object
             if subj:
                 all_entities.add(subj)
             if obj:
                 all_entities.add(obj)
-            self.triple_to_entities[entry.id] = (subj, obj)
+            triple_to_entities[entry.id] = (subj, obj)
 
         graph = ig.Graph()
-        self.graph = graph
         entity_list = list(all_entities)
         graph.add_vertices(entity_list)
         entity_to_vertex = {entity: i for i, entity in enumerate(entity_list)}
 
         edges_to_add: List[Tuple[int, int]] = []
         for entry in entries_to_index:
-            subj, obj = self.triple_to_entities.get(entry.id, ("", ""))
+            subj, obj = triple_to_entities.get(entry.id, ("", ""))
             if subj in entity_to_vertex and obj in entity_to_vertex:
                 sv = entity_to_vertex[subj]
                 ov = entity_to_vertex[obj]
@@ -300,11 +306,14 @@ class SpatialMemory:
         all_texts = [entry.text for entry in entries_to_index]
         all_embeddings = self.embedding_model.encode_text(all_texts)
 
-        self.embeddings = torch.tensor(
+        embeddings = torch.tensor(
             all_embeddings,
             dtype=torch.float32,
             device="cuda" if torch.cuda.is_available() else "cpu",
         )
+        self.graph = graph
+        self.embeddings = embeddings
+        self.triple_to_entities = triple_to_entities
         self.indexed_entries = entries_to_index
         self.indexed_time = until_time
         self.indexed_timestamp = closest_timestamp

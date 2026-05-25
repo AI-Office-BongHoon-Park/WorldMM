@@ -39,14 +39,18 @@ def launch_chromium(playwright):
 def discover_slides(repo: Path) -> List[SlideSpec]:
     slides_dir = repo / "docs" / "slides"
     scenario = slides_dir / "worldmm-4axis-scenario.html"
+    distance_case = slides_dir / "worldmm-spatial-distance-case.html"
     cases = sorted(slides_dir.glob("worldmm-spatial-case-*.html"))
     if not scenario.exists():
         raise FileNotFoundError(f"Missing scenario slide: {scenario}")
+    if not distance_case.exists():
+        raise FileNotFoundError(f"Missing distance case slide: {distance_case}")
     if not cases:
         raise FileNotFoundError("No worldmm-spatial-case-*.html slides found")
-    return [SlideSpec(scenario, "worldmm-4axis-scenario")] + [
-        SlideSpec(case, case.stem) for case in cases
-    ]
+    return [
+        SlideSpec(scenario, "worldmm-4axis-scenario"),
+        SlideSpec(distance_case, "worldmm-spatial-distance-case"),
+    ] + [SlideSpec(case, case.stem) for case in cases]
 
 
 def render_to_png(specs: List[SlideSpec], tmpdir: Path) -> List[Path]:

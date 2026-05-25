@@ -1185,3 +1185,158 @@ Failure modes / anomalies: no worker failures, no 429/rate-limit fallback, and n
 ```
 
 **Honest verdict:** Geometry-wired spatial axis is positive on this smoke set: grounded beats OFF by +23.8 pp and text-only beats OFF by +9.5 pp, so grounding adds +14.3 pp over text-only. This flips the earlier Type1 -4.2 pp direction on this 7-question smoke, but sample is tiny and not statistically meaningful. Treat as directional smoke only, not proof of full-pool recovery.
+
+---
+
+## §22. Debug: spatial-ON-grounded 0/15 root cause
+
+**Date:** 2026-05-25 KST  
+**Bug name:** monotonic stale spatial index under non-chronological worker batches.  
+**Chosen failing question:** `GQA-T1-SP-111143000-03`, `Where was box at approximately DAY1 11:14:30?`, gold `C = shelf`, evidence triple `['box', 'on', 'shelf']`.
+
+**Debug command:**
+
+```bash
+uv run python tools/debug_truly_spatial_q.py --question-id GQA-T1-SP-111143000-03
+```
+
+**Per-hypothesis verdict table:**
+
+| Hyp | Question | Verdict | Evidence |
+|---|---|---|---|
+| 1 | Gold in spatial triples? | yes | Extraction chunk `111143000` contains `002: ['box', 'on', 'shelf']`; ±1 window chunks `111140000` and `111150000` have 0 triples. |
+| 2 | Reasoner picked spatial? | yes | `spatial_ON_grounded` axes per trial were `['spatial', 'visual', 'visual']` ×3. Routing did not skip spatial, but the following visual calls were allowed despite visual data loading being off. |
+| 3 | Prompt overflow? | no | Saved spatial block was 590 chars. Geometry metadata is compact, not context-window sized. |
+| 4 | Template correct? | no | `tools/run_golden_qa_grounded_subset.py` uses `memory_reasoning_3axis` for `spatial_OFF` and generic `memory_reasoning` for `spatial_ON_grounded`; requested templates were `memory_reasoning_es` and `memory_reasoning_essp`. |
+| 5 | Retrieval hits gold? | yes on a fresh correct-time index | Direct MiniLM/PPR top-5 at `111143000` includes `spatial_111143000_2: (box, on, shelf)` at rank 4. The smoke trial did not use this fresh index. |
+
+**Actual rendered `to_display_str()` snippet from saved spatial-ON-grounded trial:**
+
+```text
+(box, under, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, near, box) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, behind, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, near, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(Alice, right_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(Tasha, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, near, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+```
+
+This is the wrong timestamp. It is chunk `117513000` (`DAY1 17:51:30`), not the question evidence chunk `111143000` (`DAY1 11:14:30`). The grounder was loaded, but it grounded the stale future index.
+
+**Fresh direct retrieval top-5 at the correct timestamp (`111143000`):**
+
+```text
+1. spatial_111143000_7: (screen, located_in, jake's_room)
+2. spatial_111143000_10: (Jake's desk, located_in, jake's_room)
+3. spatial_111143000_11: (Jake's workstation, located_in, jake's_room)
+4. spatial_111143000_2: (box, on, shelf)  <-- GOLD
+5. spatial_111143000_8: (Jake, near, Shure)
+```
+
+**Worker-order proof:**
+
+```text
+payload_spatial_ON_grounded_1_1.json
+  GQA-GROUND-117513000-34 chunk=117513000 until=117513000 DAY1 17:51:30  <-- FUTURE BEFORE TARGET
+  GQA-T1-SP-111143000-03 chunk=111143000 until=111143000 DAY1 11:14:30
+payload_spatial_ON_grounded_2_1.json
+  GQA-GROUND-117513000-34 chunk=117513000 until=117513000 DAY1 17:51:30  <-- FUTURE BEFORE TARGET
+  GQA-T1-SP-111143000-03 chunk=111143000 until=111143000 DAY1 11:14:30
+payload_spatial_ON_grounded_3_1.json
+  GQA-GROUND-117513000-34 chunk=117513000 until=117513000 DAY1 17:51:30  <-- FUTURE BEFORE TARGET
+  GQA-T1-SP-111143000-03 chunk=111143000 until=111143000 DAY1 11:14:30
+```
+
+`WorldMemory.answer()` indexes only when `until_time > self.indexed_time`. The worker reuses one `WorldMemory` across its payload. After the first future question, `indexed_time` is `117513000`; the later-in-payload true question has `until_time=111143000`, so no reindex happens and spatial retrieval reads the future `117513000` graph.
+
+**Final root cause:** the smoke result is contaminated by a stale future spatial index caused by non-chronological worker payload order plus monotonic-only indexing. This is not evidence that geometry grounding hurts. Secondary harness bug: the smoke runner also uses generic visual-enabled templates instead of the intended ES/ESSP templates, so it routes to unloaded visual memory and adds noise.
+
+**One-line fix recommendation:** sort each worker payload by `to_until_time()` or reset/reindex `WorldMemory` when query time decreases, then set `spatial_OFF -> memory_reasoning_es` and `spatial_ON_grounded -> memory_reasoning_essp` before rerunning the smoke.
+
+---
+
+## §22. Phase 4: geometry expansion + clean golden curation
+
+**Run timestamp:** 2026-05-26 KST
+**Scope:** top 30 spatial-rich A1_JAKE DAY1 chunks selected from `output/metadata/spatial_memory/A1_JAKE/spatial_extraction_results_chatgpt-gpt-5.4.json`, excluding prior grounded chunks `120255900` and `17513000`.
+**Tools:** `tools/build_geometric_grounding_batch.py`, `tools/build_unified_spatial_grounding.py`, `tools/generate_phase4_golden_qa.py`, `tools/run_golden_qa_phase4_ablation.py`, `tools/complete_phase4_ablation_singleton.py`, `tools/curate_phase4_golden_qa.py`.
+
+**Coverage:** geometry sidecars expanded from 3/828 assets to ~33/828 assets: 30 new Depth-Anything-V2 bbox sidecars plus the 3 prior grounded sidecars. Depth sidecar JSON count is now 31 files, with 30/30 selected Phase 4 chunks present.
+**Golden set:** `output/golden_qa_phase4.json` has 60 generated Type 1 questions from 30 grounded chunks; each question has `evidence_axis_contains_answer=["spatial+grounded"]`.
+**Ablation:** 3 configs × 3 trials × 60 questions = 540 scheduled judgments. Completion used singleton fill for one stuck worker; final JSON has 3 trials per config per Q, with 1 timeout/error trial recorded as incorrect.
+
+| Config | Correct / total | Accuracy | Δ vs spatial-OFF |
+|---|---:|---:|---:|
+| spatial-OFF | 27 / 180 | 15.0% | baseline |
+| spatial-ON-text | 90 / 180 | 50.0% | +35.0 pp |
+| spatial-ON-grounded | 112 / 180 | 62.2% | +47.2 pp |
+
+| Delta | Value |
+|---|---:|
+| spatial-ON-text − spatial-OFF | +35.0 pp |
+| spatial-ON-grounded − spatial-OFF | +47.2 pp |
+| geometry-vs-text-only delta | +12.2 pp |
+
+**Top 5 highest-lift case studies:**
+
+| ID | Question | Gold | OFF | Text | Grounded | Δ grounded-text | Evidence snippet |
+|---|---|---|---:|---:|---:|---:|---|
+| `GQA-PH4-DIST-117263000` | Using grounded relative 3D centers at DAY1 17:26:30, which subject-object pair was closest? | box and shopping cart | 0/3 | 0/3 | 3/3 | +3 | `(Tasha @ (0.00,0.02,0.29) rel) [in_front_of] (cabinet @ (0.00,0.02,0.29) rel) [subj_center=(0.00,0.02,0.29) subj_extent=(0.03,0.01,0.07) units=relative] [obj_center=(0.00,0.02,0...` |
+| `GQA-PH4-DIST-117313000` | Using grounded relative 3D centers at DAY1 17:31:30, which subject-object pair was closest? | two cartons of milk and cart | 0/3 | 0/3 | 3/3 | +3 | `(Tasha @ (-0.00,0.21,0.53) rel) [left_of] (I) [subj_center=(-0.00,0.21,0.53) subj_extent=(0.42,0.11,0.47) units=relative] / (Tasha @ (-0.00,0.21,0.53) rel) [right_of] (I) [subj_...` |
+| `GQA-PH4-DIST-119253000` | Using grounded relative 3D centers at DAY1 19:25:30, which subject-object pair was closest? | Katrina and ground | 0/3 | 0/3 | 3/3 | +3 | `(Katrina @ (0.02,0.11,0.31) rel) [on] (ground @ (0.02,0.11,0.31) rel) [subj_center=(0.02,0.11,0.31) subj_extent=(0.01,0.03,0.08) units=relative] [obj_center=(0.02,0.11,0.31) obj...` |
+| `GQA-PH4-DIST-119353000` | Using grounded relative 3D centers at DAY1 19:35:30, which subject-object pair was closest? | Katrina and ground | 0/3 | 0/3 | 3/3 | +3 | `(I, near, table) / (I) [located_in] (living_room @ (-0.00,0.06,0.25) rel) [obj_center=(-0.00,0.06,0.25) obj_extent=(0.01,0.07,0.33) units=relative] / (I) [located_in] (second_fl...` |
+| `GQA-PH4-DIST-119453000` | Using grounded relative 3D centers at DAY1 19:45:30, which subject-object pair was closest? | Katrina and ground | 0/3 | 0/3 | 3/3 | +3 | `(I, located_in, table) / (I) [located_in] (doorway_of_the_second-floor_living_room @ (-0.00,0.02,0.07) rel) [obj_center=(-0.00,0.02,0.07) obj_extent=(0.00,0.01,0.11) units=relat...` |
+
+**Curated output:** `output/golden_qa_phase4_curated.json` stores the top 20 highest-lift questions. Each record includes `delta_grounding_vs_text`, `accuracy_lift_grounded_vs_off_pp`, and a `top_display_str_snippet` captured from `SpatialTripleEntry.to_display_str()` retrieval text.
+
+**Honest verdict:** the prior +26.7 pp smoke lift did not shrink; Phase 4 measured +47.2 pp grounded vs spatial-OFF on 60 questions. Text spatial triples alone were already strong at +35.0 pp, so the key geometry-specific value is the additional +12.2 pp over text-only. This supports geometry adding value beyond text triples on this generated Type 1 set, but the result is still synthetic/closed-vocab and one singleton trial timed out, so it should be treated as stronger evidence than the 5Q smoke, not a final human-authored benchmark.
+
+
+---
+
+## §23. Phase 4 rerun after stale-index fix
+
+**Date:** 2026-05-26 KST  
+**Bug fixed:** monotonic stale spatial index under non-chronological worker batches.
+
+**Bug fix diff summary:** `WorldMemory.answer()` now reindexes whenever `until_time` changes instead of only when time increases. `SpatialMemory.index()` clears `indexed_entries`, `embeddings`, `graph`, and `triple_to_entities` before rebuilding a different timestamp graph, preventing a future worker-batch graph from surviving a backward query.
+
+**Before vs after debug trace excerpt (`tools/debug_truly_spatial_q.py --question-id GQA-T1-SP-111143000-03`):**
+
+```text
+Before: simulated stale index timestamp: 117513000 (DAY1 17:51:30), entries=163
+Before: stale future-index top-8: spatial_117513000_49 (box, under, I); spatial_117513000_110 (I, near, box); ...
+After:  after backward reindex timestamp: 111143000 (DAY1 11:14:30), entries=15
+After:  fixed backward-reindex top-8 includes spatial_111143000_2: (box @ (0.01,0.02,0.12) rel) [on] (shelf @ (0.01,0.02,0.12) rel)  <-- GOLD
+After:  fixed backward reindex contains gold: yes
+```
+
+**Corrected 3-config aggregate (60 Qs × 3 trials = 180 judgments/config):**
+
+| Config | Correct / total | Accuracy | Δ vs spatial-OFF |
+|---|---:|---:|---:|
+| spatial-OFF | 27 / 180 | 15.0% | baseline |
+| spatial-ON-text | 104 / 180 | 57.8% | +42.8 pp |
+| spatial-ON-grounded | 125 / 180 | 69.4% | +54.4 pp |
+
+| Delta | Value |
+|---|---:|
+| spatial-ON-text − spatial-OFF | +42.8 pp |
+| spatial-ON-grounded − spatial-OFF | +54.4 pp |
+| grounded − text-only | +11.7 pp |
+
+**Top 5 spatial-ON-grounded lift cases:**
+
+| ID | Question | Gold | OFF | Text | Grounded | Δ grounded-OFF | Evidence / trace snippet |
+|---|---|---|---:|---:|---:|---:|---|
+| `GQA-PH4-DIST-120460000` | Using grounded relative 3D centers at DAY1 20:46:00, which subject-object pair was closest? | A = power outlet and desk | 0/3 | 0/3 | 3/3 | +3 | (I, located_in, living_room) / (I) [behind] (Lucia @ (-0.12,0.29,0.69) rel) [obj_center=(-0.12,0.29,0.69) obj_extent=(0.24,0.09,0.15) units=relative] / (Katrina, near, I) / (I) [located_in] (second_floor_living_room @ (- |
+| `GQA-PH4-DIST-120410000` | Using grounded relative 3D centers at DAY1 20:41:00, which subject-object pair was closest? | A = Katrina and living room | 0/3 | 0/3 | 3/3 | +3 | (I, located_in, living_room) / (Lucia @ (-0.12,0.37,0.82) rel) [located_in] (living_room @ (-0.12,0.37,0.82) rel) [subj_center=(-0.12,0.37,0.82) subj_extent=(0.09,0.07,0.13) units=relative] [obj_center=(-0.12,0.37,0.82)  |
+| `GQA-PH4-DIST-119453000` | Using grounded relative 3D centers at DAY1 19:45:30, which subject-object pair was closest? | A = Katrina and ground | 0/3 | 0/3 | 3/3 | +3 | (I, located_in, table) / (I) [located_in] (doorway_of_the_second-floor_living_room @ (-0.00,0.02,0.07) rel) [obj_center=(-0.00,0.02,0.07) obj_extent=(0.00,0.01,0.11) units=relative] / (I) [located_in] (center_of_the_livi |
+| `GQA-PH4-DIST-119353000` | Using grounded relative 3D centers at DAY1 19:35:30, which subject-object pair was closest? | A = Katrina and ground | 0/3 | 0/3 | 3/3 | +3 | (I, near, table) / (I) [located_in] (living_room @ (-0.00,0.06,0.25) rel) [obj_center=(-0.00,0.06,0.25) obj_extent=(0.01,0.07,0.33) units=relative] / (I) [located_in] (second_floor_living_room @ (-0.00,0.06,0.25) rel) [o |
+| `GQA-PH4-DIST-117313000` | Using grounded relative 3D centers at DAY1 17:31:30, which subject-object pair was closest? | A = two cartons of milk and cart | 0/3 | 0/3 | 3/3 | +3 | (Tasha @ (-0.00,0.21,0.53) rel) [left_of] (I) [subj_center=(-0.00,0.21,0.53) subj_extent=(0.42,0.11,0.47) units=relative] / (Tasha @ (-0.00,0.21,0.53) rel) [right_of] (I) [subj_center=(-0.00,0.21,0.53) subj_extent=(0.42, |
+
+**Curated output:** `output/golden_qa_phase4_curated.json` now stores exactly these 5 highest-lift questions. Each record includes per-config trial predictions, axis selections, reasoning traces, retrieved spatial text for grounded trials, and the unified grounding entries loaded for that evidence chunk with bbox centers/extents plus sidecar or point-cloud/scene references when present.
+
+**Honest verdict:** geometry helps on this 60-question generated Type 1 sample. After the stale-index fix, spatial-ON-grounded reaches 125/180 (69.4%), beating spatial-OFF by +54.4 pp and text-only spatial by +11.7 pp. Text triples alone still explain most of the gain (104/180, +42.8 pp over OFF), so the geometry-specific claim should stay narrower: grounded bbox/sidecar metadata adds measurable incremental value on this synthetic closed-vocabulary spatial set, not proof of broad open-world visual QA improvement.
