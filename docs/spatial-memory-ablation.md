@@ -950,3 +950,112 @@ input=output/metadata/spatial_memory/A1_JAKE/scene_latents_triposr/DAY1_A1_JAKE_
 
 **Explicitly out of scope:** no full-scene 3DGS, no texture baking, no multi-frame consistency, no COLMAP/SfM, no MASt3R/AEA builder changes.
 
+---
+
+## §19. Stratified DAY1 episodic rebuild (1,500 of 8,954 captions, 4× parallel)
+
+This rebuild used a deterministic stratified subsample rather than full DAY1 coverage. Each of the 10 DAY1 DenseCaption SRT hour files was parsed, sorted by absolute timestamp, then sampled with a closest-to-uniform stride targeting 150 captions per hour. The extractor shard size was 50 captions, yielding 30 shards, with at most 4 tmux shard-worker sessions active at once. To keep the LiteLLM worker cap honest, the v2 wrapper used the existing `preprocess/episodic_memory/extract_episodic_triples.py` function while limiting OpenIE's internal thread pool to one call per shard worker.
+
+| Hour bin | Available captions | Selected captions | First selected | Last selected |
+|---|---:|---:|---:|---:|
+| 11:00 | 1478 | 150 | 11094350 | 12000080 |
+| 12:00 | 1732 | 150 | 12000106 | 13000053 |
+| 13:00 | 1774 | 150 | 13000053 | 14000093 |
+| 14:00 | 530 | 150 | 14000096 | 14184540 |
+| 17:00 | 563 | 150 | 17110180 | 18000313 |
+| 18:00 | 416 | 150 | 18000313 | 18430366 |
+| 19:00 | 949 | 150 | 19024190 | 20000453 |
+| 20:00 | 662 | 150 | 20000453 | 20491495 |
+| 21:00 | 688 | 150 | 21355996 | 22000000 |
+| 22:00 | 162 | 150 | 22000126 | 22054900 |
+
+Shard outputs were written under `.log/day1_full_rebuild_v2/shards/episodic/outputs/`, then merged into `output/metadata/episodic_memory/A1_JAKE/episodic_triple_results_chatgpt-gpt-5.4.json` and `output/metadata/episodic_memory/A1_JAKE/openie_results_chatgpt-gpt-5.4.json`.
+
+| Metric | Value |
+|---|---:|
+| Total sampled captions | 1500 |
+| Completed captions | 1500 |
+| Completed shards | 30 / 30 |
+| Total wall time | 50.7 min |
+| Logical LLM calls, best effort | 3000 |
+| Before triples | n=91 backup artifact: 9631 triples across 808 timestamps |
+| After triples | 2205 triples across 1500 timestamps |
+| OpenIE chunks | 1260 |
+| Verification gate | Triple-count gate did not pass (>15,000); see honest note below. |
+
+| Shard | Status | Attempts | Wall time |
+|---|---:|---:|---:|
+| 0000 | completed | 1 | 2.1 s |
+| 0001 | completed | 1 | 6.2 s |
+| 0002 | completed | 1 | 2.2 min |
+| 0003 | completed | 1 | 11.5 s |
+| 0004 | completed | 1 | 5.6 min |
+| 0005 | completed | 2 | 1.8 s |
+| 0006 | completed | 1 | 5.1 min |
+| 0007 | completed | 1 | 5.1 min |
+| 0008 | completed | 1 | 7.9 min |
+| 0009 | completed | 1 | 8.6 min |
+| 0010 | completed | 1 | 6.9 min |
+| 0011 | completed | 1 | 7.0 min |
+| 0012 | completed | 1 | 6.2 min |
+| 0013 | completed | 1 | 7.9 min |
+| 0014 | completed | 1 | 7.1 min |
+| 0015 | completed | 1 | 8.1 min |
+| 0016 | completed | 1 | 7.9 min |
+| 0017 | completed | 1 | 7.2 min |
+| 0018 | completed | 1 | 7.1 min |
+| 0019 | completed | 1 | 8.0 min |
+| 0020 | completed | 1 | 7.1 min |
+| 0021 | completed | 1 | 7.0 min |
+| 0022 | completed | 1 | 6.4 min |
+| 0023 | completed | 1 | 7.2 min |
+| 0024 | completed | 1 | 8.7 min |
+| 0025 | completed | 1 | 7.9 min |
+| 0026 | completed | 1 | 8.6 min |
+| 0027 | completed | 1 | 7.8 min |
+| 0028 | completed | 1 | 7.3 min |
+| 0029 | completed | 1 | 5.9 min |
+
+Honest coverage note: this is a 1,500-caption subsample of the 8,954 parsed DAY1 DenseCaption entries, not full DAY1 coverage. Downstream golden-sample selection should treat this as stratified coverage across hour bins, not exhaustive evidence. No final shard failures. Recovered retries: 0005.
+
+---
+
+---
+
+## §18. Full DAY1 pipeline rebuild (828 chunks, 4× parallel)
+
+**Run timestamp:** 2026-05-25 04:55:00 KST
+**LLM backend:** LiteLLM proxy -> `chatgpt/gpt-5.4`
+**Scope:** 828 synchronized video chunks derived from 8,954 dense caption entries; episodic worker pool ran at 4× parallel. A later dense-caption shard recreation produced 180 shard files from the saved 8,954-caption source, but only 15/180 were completed before stopping and those partial outputs were not used for the final §18 counts.
+**Total wall:** 1h 36m 16s for orchestrated run; semantic was rerun idempotently afterward and completed from existing artifacts.
+
+| Step | n=91 wall | n=91 count | n=828 wall | n=828 count |
+|---|---:|---:|---:|---:|
+| Episodic OpenIE | ~30 min whole pipeline | 9,631 triples | 47m 21s | 12,261 triples |
+| Semantic extraction | included in ~30 min | 1,261 raw triples | 2m 49s | 698 raw triples |
+| Semantic consolidation | included in ~30 min | 826 consolidated entries | included above | 489 consolidated entries |
+| Spatial extraction | included in ~30 min | 598 raw triples | 1m 43s | 598 raw triples |
+| Spatial consolidation | included in ~30 min | 431 consolidated entries | included above | 286 consolidated entries |
+| Visual embeddings | included in ~30 min | 91 clips | 2m 52s | 828 clips |
+
+**LLM call count (best effort):** episodic `2,768`, semantic `570`, spatial `241`, visual `0` from LiteLLM cache-row deltas.
+**Retries / failed shards:** orchestrated 828-chunk run had 0 permanent failed shards. Dense-caption 180-shard verification attempt completed 15 shards only and is excluded from final metadata.
+**Shard completion:** final 828-chunk episodic output has 83/83 10-chunk shard outputs and final merged `A1_JAKE` artifacts. Verification gate item `>=50,000` episodic triples was not met by actual extractor output; measured final count is `12,261`.
+
+### §18.1 Phase 2 semantic/spatial resume (2026-05-25 KST)
+
+**Resume window:** semantic `09:13:43-09:24:40 KST`; spatial `09:26:08-09:32:36 KST`.
+**Resume wall:** semantic `10m 57s`; spatial `6m 28s`; axis-sum `17m 25s`.
+**Executor:** dedicated tmux sessions `day1_semantic_resume` and `day1_spatial_resume`; 4 subprocess workers via `ThreadPoolExecutor`; no rate-limit fallback needed.
+
+| Axis | Pre-resume episodic coverage | Added episodic chunks | Final episodic coverage | Final file keys | Final triples / embeddings |
+|---|---:|---:|---:|---:|---:|
+| Episodic | 828 | 0 | 828 | 828 | 12,261 triples |
+| Semantic extraction | 37 | 791 | 828 | 874 | 4,230 raw triples |
+| Semantic consolidation | 37 | 791 | 828 | 874 | additive union entries |
+| Spatial extraction | 83 | 745 | 828 | 828 | 1,262 raw triples |
+| Spatial consolidation | 83 | 745 | 828 | 828 | additive union entries |
+| Visual CLIP | 828 | 0 | 828 | 828 | 828 embeddings |
+
+Failure modes / anomalies: no worker failures, no 429/rate-limit fallback, and no episodic/visual writes. The semantic artifact at resume start did not match the handoff count: it contained 83 total keys, only 37 of which matched episodic chunk IDs, plus 46 dense-caption/non-episodic keys from the earlier run. Those 46 keys were preserved for non-destructive idempotence but excluded from the 828 episodic-aligned coverage count. Consolidation files were merged additively by carrying forward deduped extracted triples while preserving existing entries, rather than destructively rebuilding prior chunks.
+
