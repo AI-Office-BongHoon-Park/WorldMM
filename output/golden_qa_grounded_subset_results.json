@@ -1,0 +1,1751 @@
+{
+  "protocol": {
+    "subject": "A1_JAKE",
+    "day": "DAY1",
+    "trials_per_config": 3,
+    "workers": 4,
+    "configs": {
+      "spatial_OFF": "E+S+V, no spatial axis",
+      "spatial_ON_text": "E+S+V+Spatial, text triples only",
+      "spatial_ON_grounded": "E+S+V+Spatial, unified geometry grounding"
+    },
+    "model": "chatgpt-gpt-5.4",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "sample_file": "output/golden_qa_grounded_subset_sample.json",
+    "spatial_file": "output/golden_qa_grounded_subset_spatial.json",
+    "grounding_file": "output/metadata/spatial_memory/A1_JAKE/unified_grounding_a1_jake.json",
+    "visual_embeddings_file": "output/metadata/visual_memory/A1_JAKE/visual_embeddings_clip-ViT-B-32.pkl",
+    "visual_clips_file": "output/metadata/visual_memory/A1_JAKE/visual_clips_clip-ViT-B-32.json",
+    "axis_data_loaded": {
+      "episodic": false,
+      "semantic": false,
+      "visual": false,
+      "spatial_text": true,
+      "spatial_grounding": true
+    }
+  },
+  "coverage": {
+    "truly_spatial_questions": 2,
+    "grounded_chunk_questions": 5,
+    "grounded_chunks": [
+      "120255900",
+      "17513000 (loaded as timestamp 117513000)"
+    ],
+    "near_pool_questions_within_5min": 0,
+    "generated_fallback_used": true
+  },
+  "aggregates": {
+    "spatial_OFF": {
+      "correct": 6,
+      "total": 21,
+      "accuracy": 0.2857
+    },
+    "spatial_ON_text": {
+      "correct": 8,
+      "total": 21,
+      "accuracy": 0.381
+    },
+    "spatial_ON_grounded": {
+      "correct": 11,
+      "total": 21,
+      "accuracy": 0.5238
+    }
+  },
+  "delta_analysis": {
+    "spatial_ON_text_minus_spatial_OFF_pp": 9.5,
+    "spatial_ON_grounded_minus_spatial_OFF_pp": 23.8,
+    "grounded_minus_text_pp": 14.3
+  },
+  "geometry_display_sample": "(I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Lucia) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, in_front_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]",
+  "per_question": [
+    {
+      "id": "GQA-GROUND-117513000-33",
+      "source_pool": "grounded_smoke_generated",
+      "source_id": "117513000:33",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was director's slate at approximately DAY1 17:51:30?",
+      "choices": {
+        "A": "floor",
+        "B": "table",
+        "C": "stool",
+        "D": "left-hand side"
+      },
+      "gold": "A",
+      "gold_answer": "floor",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:51:30"
+      },
+      "reasoning_trace_evidence": "generated from grounded chunk 117513000: (director's slate, on, floor)",
+      "evidence_axis_contains_answer": [
+        "spatial"
+      ],
+      "evidence_chunk": "117513000",
+      "evidence_chunk_label": "DAY1 17:51:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117513000_33",
+          "triple": [
+            "director's slate",
+            "on",
+            "floor"
+          ]
+        }
+      ],
+      "trials": {
+        "spatial_OFF": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 visual: [No results]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_text": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(I, right_of, whiteboard)\n(I, left_of, whiteboard)\n(I, near, whiteboard)\n(I, on, whiteboard)\n(I, near, Lucia)\n(Katrina, near, I)\n(Katrina, in_front_of, I)\n(I, right_of, Tasha)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (I, right_of, whiteboard) (I, left_of, whiteboard) (I, near, whiteboard) (I, on, whiteboard) (I, near, Lucia) (Katrina, near, I) (Katrina, in_front_of, I) (I, right_of, Tasha) | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, right_of, whiteboard)\n(I, left_of, whiteboard)\n(I, near, whiteboard)\n(I, on, whiteboard)\n(I, near, Lucia)\n(Katrina, near, I)\n(Katrina, in_front_of, I)\n(I, right_of, Tasha)",
+              "(Tasha, near, I)\n(I, near, Tasha)\n(I, behind, Alice)\n(I, near, Alice)\n(Alice, right_of, I)\n(I, behind, Shure)\n(I, left_of, original_position)\n(I, right_of, original_position)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (I, right_of, whiteboard) (I, left_of, whiteboard) (I, near, whiteboard) (I, on, whiteboard) (I, near, Lucia) (Katrina, near, I) (Katrina, in_front_of, I) (I, right_of, Tasha) | R3 spatial: (Tasha, near, I) (I, near, Tasha) (I, behind, Alice) (I, near, Alice) (Alice, right_of, I) (I, behind, Shure) (I, left_of, original_position) (I, right_of, original_position)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(Katrina, near, I)\n(Katrina, in_front_of, I)\n(I, near, Lucia)\n(I, right_of, whiteboard)\n(I, left_of, whiteboard)\n(I, near, whiteboard)\n(I, on, whiteboard)\n(I, right_of, Tasha)",
+              "(I, in_front_of, table)\n(I, near, table)\n(I, behind, Alice)\n(I, near, Alice)\n(Alice, right_of, I)\n(I, on, stool)\n(I, left_of, phone)\n(I, on, phone)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (Katrina, near, I) (Katrina, in_front_of, I) (I, near, Lucia) (I, right_of, whiteboard) (I, left_of, whiteboard) (I, near, whiteboard) (I, on, whiteboard) (I, right_of, Tasha) | R3 spatial: (I, in_front_of, table) (I, near, table) (I, behind, Alice) (I, near, Alice) (Alice, right_of, I) (I, on, stool) (I, left_of, phone) (I, on, phone)",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_grounded": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Lucia) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, in_front_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f... | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(Katrina, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, in_front_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Lucia) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (Katrina, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (Katrina, in_front_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, Lucia) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [po... | R3 visual: [No results]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Lucia) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, in_front_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f... | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "spatial_OFF_correct": 0,
+      "spatial_OFF_axis_selections": [
+        [
+          "visual",
+          "visual",
+          "visual"
+        ],
+        [
+          "visual",
+          "visual",
+          "visual"
+        ],
+        [
+          "visual",
+          "visual",
+          "visual"
+        ]
+      ],
+      "spatial_ON_text_correct": 0,
+      "spatial_ON_text_axis_selections": [
+        [
+          "visual",
+          "spatial",
+          "visual"
+        ],
+        [
+          "visual",
+          "spatial",
+          "spatial"
+        ],
+        [
+          "visual",
+          "spatial",
+          "spatial"
+        ]
+      ],
+      "spatial_ON_grounded_correct": 0,
+      "spatial_ON_grounded_axis_selections": [
+        [
+          "visual",
+          "spatial",
+          "visual"
+        ],
+        [
+          "visual",
+          "spatial",
+          "visual"
+        ],
+        [
+          "visual",
+          "spatial",
+          "visual"
+        ]
+      ]
+    },
+    {
+      "id": "GQA-GROUND-117513000-34",
+      "source_pool": "grounded_smoke_generated",
+      "source_id": "117513000:34",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was director's board at approximately DAY1 17:51:30?",
+      "choices": {
+        "A": "left-hand side",
+        "B": "floor",
+        "C": "table",
+        "D": "stool"
+      },
+      "gold": "A",
+      "gold_answer": "left-hand side",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:51:30"
+      },
+      "reasoning_trace_evidence": "generated from grounded chunk 117513000: (director's board, on, left-hand side)",
+      "evidence_axis_contains_answer": [
+        "spatial"
+      ],
+      "evidence_chunk": "117513000",
+      "evidence_chunk_label": "DAY1 17:51:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117513000_34",
+          "triple": [
+            "director's board",
+            "on",
+            "left-hand side"
+          ]
+        }
+      ],
+      "trials": {
+        "spatial_OFF": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "episodic"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 episodic: [No results]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_text": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, behind, Shure)\n(I, right_of, whiteboard)\n(I, left_of, whiteboard)\n(I, near, whiteboard)\n(I, on, whiteboard)\n(Katrina, near, I)\n(Katrina, in_front_of, I)\n(I, near, Lucia)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (I, behind, Shure) (I, right_of, whiteboard) (I, left_of, whiteboard) (I, near, whiteboard) (I, on, whiteboard) (Katrina, near, I) (Katrina, in_front_of, I) (I, near, Lucia)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "semantic"
+            ],
+            "retrieved_spatial_text": [
+              "(I, behind, Shure)\n(I, right_of, whiteboard)\n(I, left_of, whiteboard)\n(I, near, whiteboard)\n(I, on, whiteboard)\n(Katrina, near, I)\n(Katrina, in_front_of, I)\n(I, near, Lucia)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (I, behind, Shure) (I, right_of, whiteboard) (I, left_of, whiteboard) (I, near, whiteboard) (I, on, whiteboard) (Katrina, near, I) (Katrina, in_front_of, I) (I, near, Lucia) | R2 visual: [No results] | R3 semantic: [No results]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, behind, Shure)\n(I, right_of, whiteboard)\n(I, left_of, whiteboard)\n(I, near, whiteboard)\n(I, on, whiteboard)\n(Katrina, near, I)\n(Katrina, in_front_of, I)\n(I, near, Lucia)",
+              "(I, in_front_of, table)\n(I, near, table)\n(I, on, stool)\n(I, right_of, Tasha)\n(Tasha, near, I)\n(I, near, Tasha)\n(I, behind, Alice)\n(I, near, Alice)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (I, behind, Shure) (I, right_of, whiteboard) (I, left_of, whiteboard) (I, near, whiteboard) (I, on, whiteboard) (Katrina, near, I) (Katrina, in_front_of, I) (I, near, Lucia) | R3 spatial: (I, in_front_of, table) (I, near, table) (I, on, stool) (I, right_of, Tasha) (Tasha, near, I) (I, near, Tasha) (I, behind, Alice) (I, near, Alice)",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_grounded": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, behind, Shure) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, in_front_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Lucia) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (I, behind, Shure) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f]...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(I, behind, Shure) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, in_front_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Lucia) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I, behind, Shure) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f]... | R2 visual: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(I, behind, Shure) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Katrina, in_front_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Lucia) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]",
+              "(I, in_front_of, table) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, table) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, on, stool) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Tasha, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, behind, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (I, behind, Shure) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f]... | R2 visual: [No results] | R3 spatial: (I, in_front_of, table) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, table) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, on, stool) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 p...",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "spatial_OFF_correct": 0,
+      "spatial_OFF_axis_selections": [
+        [
+          "visual",
+          "visual",
+          "episodic"
+        ],
+        [
+          "visual",
+          "visual",
+          "visual"
+        ],
+        [
+          "visual",
+          "visual",
+          "visual"
+        ]
+      ],
+      "spatial_ON_text_correct": 0,
+      "spatial_ON_text_axis_selections": [
+        [
+          "visual",
+          "spatial"
+        ],
+        [
+          "spatial",
+          "visual",
+          "semantic"
+        ],
+        [
+          "visual",
+          "spatial",
+          "spatial"
+        ]
+      ],
+      "spatial_ON_grounded_correct": 1,
+      "spatial_ON_grounded_axis_selections": [
+        [
+          "visual",
+          "spatial"
+        ],
+        [
+          "spatial",
+          "visual",
+          "visual"
+        ],
+        [
+          "spatial",
+          "visual",
+          "spatial"
+        ]
+      ]
+    },
+    {
+      "id": "GQA-GROUND-120255900-58",
+      "source_pool": "grounded_smoke_generated",
+      "source_id": "120255900:58",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was puzzle_piece at approximately DAY1 20:25:59?",
+      "choices": {
+        "A": "plate",
+        "B": "table",
+        "C": "kitchen",
+        "D": "paper_bag"
+      },
+      "gold": "A",
+      "gold_answer": "plate",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:25:59"
+      },
+      "reasoning_trace_evidence": "generated from grounded chunk 120255900: (puzzle_piece, on, plate)",
+      "evidence_axis_contains_answer": [
+        "spatial"
+      ],
+      "evidence_chunk": "120255900",
+      "evidence_chunk_label": "DAY1 20:25:59",
+      "evidence_triples": [
+        {
+          "id": "spatial_120255900_58",
+          "triple": [
+            "puzzle_piece",
+            "on",
+            "plate"
+          ]
+        }
+      ],
+      "trials": {
+        "spatial_OFF": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "episodic",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 episodic: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "episodic",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 episodic: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "episodic",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 episodic: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_text": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder)",
+            "num_rounds": 2
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder)",
+            "num_rounds": 2
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder)",
+            "num_rounds": 2
+          }
+        ],
+        "spatial_ON_grounded": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative]\n(jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative] (jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50)...",
+            "num_rounds": 2
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative]\n(jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative] (jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50)...",
+            "num_rounds": 2
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative]\n(jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative] (jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50)...",
+            "num_rounds": 2
+          }
+        ]
+      },
+      "spatial_OFF_correct": 0,
+      "spatial_OFF_axis_selections": [
+        [
+          "visual",
+          "episodic",
+          "visual"
+        ],
+        [
+          "visual",
+          "episodic",
+          "visual"
+        ],
+        [
+          "visual",
+          "episodic",
+          "visual"
+        ]
+      ],
+      "spatial_ON_text_correct": 3,
+      "spatial_ON_text_axis_selections": [
+        [
+          "spatial"
+        ],
+        [
+          "spatial"
+        ],
+        [
+          "spatial"
+        ]
+      ],
+      "spatial_ON_grounded_correct": 3,
+      "spatial_ON_grounded_axis_selections": [
+        [
+          "spatial"
+        ],
+        [
+          "spatial"
+        ],
+        [
+          "spatial"
+        ]
+      ]
+    },
+    {
+      "id": "GQA-GROUND-120255900-76",
+      "source_pool": "grounded_smoke_generated",
+      "source_id": "120255900:76",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was jigsaw puzzle at approximately DAY1 20:25:59?",
+      "choices": {
+        "A": "plate",
+        "B": "table",
+        "C": "kitchen",
+        "D": "paper_bag"
+      },
+      "gold": "B",
+      "gold_answer": "table",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:25:59"
+      },
+      "reasoning_trace_evidence": "generated from grounded chunk 120255900: (jigsaw puzzle, on, table)",
+      "evidence_axis_contains_answer": [
+        "spatial"
+      ],
+      "evidence_chunk": "120255900",
+      "evidence_chunk_label": "DAY1 20:25:59",
+      "evidence_triples": [
+        {
+          "id": "spatial_120255900_76",
+          "triple": [
+            "jigsaw puzzle",
+            "on",
+            "table"
+          ]
+        }
+      ],
+      "trials": {
+        "spatial_OFF": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "episodic",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 episodic: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "episodic"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 episodic: [No results]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "episodic"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 episodic: [No results]",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_text": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder)",
+            "num_rounds": 2
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder)",
+            "num_rounds": 2
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder)",
+            "num_rounds": 2
+          }
+        ],
+        "spatial_ON_grounded": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative]\n(jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative] (jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50)...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative]\n(jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative] (jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50)...",
+            "num_rounds": 2
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative]\n(jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative] (jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50)...",
+            "num_rounds": 2
+          }
+        ]
+      },
+      "spatial_OFF_correct": 3,
+      "spatial_OFF_axis_selections": [
+        [
+          "visual",
+          "episodic",
+          "visual"
+        ],
+        [
+          "visual",
+          "visual",
+          "episodic"
+        ],
+        [
+          "visual",
+          "visual",
+          "episodic"
+        ]
+      ],
+      "spatial_ON_text_correct": 3,
+      "spatial_ON_text_axis_selections": [
+        [
+          "spatial"
+        ],
+        [
+          "spatial"
+        ],
+        [
+          "spatial"
+        ]
+      ],
+      "spatial_ON_grounded_correct": 3,
+      "spatial_ON_grounded_axis_selections": [
+        [
+          "visual",
+          "spatial"
+        ],
+        [
+          "spatial"
+        ],
+        [
+          "spatial"
+        ]
+      ]
+    },
+    {
+      "id": "GQA-GROUND-120255900-DIST",
+      "source_pool": "grounded_smoke_generated",
+      "source_id": "120255900:58+76",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using the relative 3D centers at DAY1 20:25:59, which grounded object pair was closest?",
+      "choices": {
+        "A": "puzzle_piece and plate",
+        "B": "puzzle_piece and jigsaw puzzle",
+        "C": "jigsaw puzzle and table",
+        "D": "plate and table"
+      },
+      "gold": "B",
+      "gold_answer": "puzzle_piece and jigsaw puzzle",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:25:59"
+      },
+      "reasoning_trace_evidence": "generated from grounded bbox centers in chunk 120255900",
+      "evidence_axis_contains_answer": [
+        "spatial"
+      ],
+      "evidence_chunk": "120255900",
+      "evidence_chunk_label": "DAY1 20:25:59",
+      "evidence_triples": [
+        {
+          "id": "spatial_120255900_58",
+          "triple": [
+            "puzzle_piece",
+            "on",
+            "plate"
+          ]
+        },
+        {
+          "id": "spatial_120255900_76",
+          "triple": [
+            "jigsaw puzzle",
+            "on",
+            "table"
+          ]
+        }
+      ],
+      "trials": {
+        "spatial_OFF": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [No results] | R3 visual: [No results]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [No results]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [No results] | R3 visual: [No results]",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_text": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) | R3 visual: [No results]",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_grounded": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative]\n(jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative] (jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50)...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative]\n(jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative] (jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50)...",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative]\n(jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.50) obj_extent=(0.45,0.16,0.53) units=relative]\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (puzzle_piece @ (-0.00,0.04,0.41) rel) [on] (plate @ (-0.00,0.08,0.47) rel) [subj_center=(-0.00,0.04,0.41) subj_extent=(0.25,0.14,0.51) units=relative] [obj_center=(-0.00,0.08,0.47) obj_extent=(0.14,0.10,0.50) units=relative] (jigsaw puzzle @ (-0.00,0.04,0.41) rel) [on] (table @ (-0.00,0.08,0.50)...",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "spatial_OFF_correct": 0,
+      "spatial_OFF_axis_selections": [
+        [
+          "visual",
+          "visual",
+          "visual"
+        ],
+        [
+          "visual",
+          "visual"
+        ],
+        [
+          "visual",
+          "visual",
+          "visual"
+        ]
+      ],
+      "spatial_ON_text_correct": 0,
+      "spatial_ON_text_axis_selections": [
+        [
+          "visual",
+          "spatial"
+        ],
+        [
+          "visual",
+          "spatial"
+        ],
+        [
+          "visual",
+          "spatial",
+          "visual"
+        ]
+      ],
+      "spatial_ON_grounded_correct": 3,
+      "spatial_ON_grounded_axis_selections": [
+        [
+          "visual",
+          "spatial"
+        ],
+        [
+          "visual",
+          "spatial"
+        ],
+        [
+          "visual",
+          "spatial"
+        ]
+      ]
+    },
+    {
+      "id": "GQA-T1-SP-111143000-03",
+      "source_pool": "spatial_extraction_results_chatgpt-gpt-5.4",
+      "source_id": "111143000:3",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was box at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "table",
+        "B": "dining table",
+        "C": "shelf",
+        "D": "bin"
+      },
+      "gold": "C",
+      "gold_answer": "shelf",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:14:30"
+      },
+      "reasoning_trace_evidence": "spatial_triple at chunk DAY1 11:14:30: (box, on, shelf)",
+      "evidence_axis_contains_answer": [
+        "spatial"
+      ],
+      "expected_advantage": "spatial-ON should win; spatial-OFF lacks the object-place triple",
+      "categorization_rule": "rule: full-DAY1 spatial_extraction_results real spatial triple converted to closed-vocab WHERE/object-place QA",
+      "llm_fallback_used": false,
+      "evidence_chunk": "111143000",
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_triples": [
+        {
+          "triple": [
+            "box",
+            "on",
+            "shelf"
+          ],
+          "timestamp_label": "DAY1 11:14:30"
+        }
+      ],
+      "truly_spatial_required": true,
+      "evidence_check": {
+        "episodic_found": false,
+        "semantic_found": false,
+        "dense_caption_found": false,
+        "transcript_found": false
+      },
+      "trials": {
+        "spatial_OFF": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "episodic"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 episodic: [No results]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "episodic",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 episodic: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "episodic"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 episodic: [No results]",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_text": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(box, under, I)\n(I, near, box)\n(I, behind, Alice)\n(I, near, Alice)\n(Alice, right_of, I)\n(I, right_of, Tasha)\n(Tasha, near, I)\n(I, near, Tasha)",
+              "(I, in_front_of, table)\n(I, near, table)\n(I, on, stool)\n(I, near, shelf)\n(I, right_of, whiteboard)\n(I, left_of, whiteboard)\n(I, near, whiteboard)\n(I, on, whiteboard)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (box, under, I) (I, near, box) (I, behind, Alice) (I, near, Alice) (Alice, right_of, I) (I, right_of, Tasha) (Tasha, near, I) (I, near, Tasha) | R2 visual: [No results] | R3 spatial: (I, in_front_of, table) (I, near, table) (I, on, stool) (I, near, shelf) (I, right_of, whiteboard) (I, left_of, whiteboard) (I, near, whiteboard) (I, on, whiteboard)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(box, under, I)\n(I, near, box)\n(I, behind, Alice)\n(I, near, Alice)\n(Alice, right_of, I)\n(I, right_of, Tasha)\n(Tasha, near, I)\n(I, near, Tasha)",
+              "(I, in_front_of, table)\n(I, near, table)\n(I, on, stool)\n(I, left_of, phone)\n(I, on, phone)\n(I, behind, Shure)\n(I, right_of, dining_table)\n(Katrina, near, I)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (box, under, I) (I, near, box) (I, behind, Alice) (I, near, Alice) (Alice, right_of, I) (I, right_of, Tasha) (Tasha, near, I) (I, near, Tasha) | R2 visual: [No results] | R3 spatial: (I, in_front_of, table) (I, near, table) (I, on, stool) (I, left_of, phone) (I, on, phone) (I, behind, Shure) (I, right_of, dining_table) (Katrina, near, I)",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(box, under, I)\n(I, near, box)\n(I, behind, Alice)\n(I, near, Alice)\n(Alice, right_of, I)\n(I, right_of, Tasha)\n(Tasha, near, I)\n(I, near, Tasha)",
+              "(I, in_front_of, table)\n(I, near, table)\n(I, on, stool)\n(I, near, shelf)\n(I, right_of, whiteboard)\n(I, left_of, whiteboard)\n(I, near, whiteboard)\n(I, on, whiteboard)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (box, under, I) (I, near, box) (I, behind, Alice) (I, near, Alice) (Alice, right_of, I) (I, right_of, Tasha) (Tasha, near, I) (I, near, Tasha) | R2 visual: [No results] | R3 spatial: (I, in_front_of, table) (I, near, table) (I, on, stool) (I, near, shelf) (I, right_of, whiteboard) (I, left_of, whiteboard) (I, near, whiteboard) (I, on, whiteboard)",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_grounded": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(box, under, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, box) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, behind, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Alice, right_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Tasha, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (box, under, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, box) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, behind, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (Alice... | R2 visual: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(box, under, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, box) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, behind, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Alice, right_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Tasha, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (box, under, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, box) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, behind, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (Alice... | R2 visual: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(box, under, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, box) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, behind, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Alice, right_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(Tasha, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]\n(I, near, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]"
+            ],
+            "retrieved_grounding_string": true,
+            "reasoning_summary": "R1 spatial: (box, under, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, box) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, behind, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (I, near, Alice) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts] (Alice... | R2 visual: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "spatial_OFF_correct": 1,
+      "spatial_OFF_axis_selections": [
+        [
+          "visual",
+          "visual",
+          "episodic"
+        ],
+        [
+          "visual",
+          "episodic",
+          "visual"
+        ],
+        [
+          "visual",
+          "visual",
+          "episodic"
+        ]
+      ],
+      "spatial_ON_text_correct": 1,
+      "spatial_ON_text_axis_selections": [
+        [
+          "spatial",
+          "visual",
+          "spatial"
+        ],
+        [
+          "spatial",
+          "visual",
+          "spatial"
+        ],
+        [
+          "spatial",
+          "visual",
+          "spatial"
+        ]
+      ],
+      "spatial_ON_grounded_correct": 0,
+      "spatial_ON_grounded_axis_selections": [
+        [
+          "spatial",
+          "visual",
+          "visual"
+        ],
+        [
+          "spatial",
+          "visual",
+          "visual"
+        ],
+        [
+          "spatial",
+          "visual",
+          "visual"
+        ]
+      ]
+    },
+    {
+      "id": "GQA-T1-SP-112093000-06",
+      "source_pool": "spatial_extraction_results_chatgpt-gpt-5.4",
+      "source_id": "112093000:6",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was director's slate at approximately DAY1 12:09:30?",
+      "choices": {
+        "A": "floor",
+        "B": "table",
+        "C": "shelf",
+        "D": "dining table"
+      },
+      "gold": "A",
+      "gold_answer": "floor",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:09:30"
+      },
+      "reasoning_trace_evidence": "spatial_triple at chunk DAY1 12:09:30: (director's slate, on, floor)",
+      "evidence_axis_contains_answer": [
+        "spatial"
+      ],
+      "expected_advantage": "spatial-ON should win; spatial-OFF lacks the object-place triple",
+      "categorization_rule": "rule: full-DAY1 spatial_extraction_results real spatial triple converted to closed-vocab WHERE/object-place QA",
+      "llm_fallback_used": false,
+      "evidence_chunk": "112093000",
+      "evidence_chunk_label": "DAY1 12:09:30",
+      "evidence_triples": [
+        {
+          "triple": [
+            "director's slate",
+            "on",
+            "floor"
+          ],
+          "timestamp_label": "DAY1 12:09:30"
+        }
+      ],
+      "truly_spatial_required": true,
+      "evidence_check": {
+        "episodic_found": false,
+        "semantic_found": false,
+        "dense_caption_found": false,
+        "transcript_found": false
+      },
+      "trials": {
+        "spatial_OFF": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "episodic",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 episodic: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "visual",
+              "episodic"
+            ],
+            "retrieved_spatial_text": [],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 visual: [0 images from 1 clips] | R3 episodic: [No results]",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_text": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) | R2 visual: [No results] | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "spatial",
+              "visual",
+              "spatial"
+            ],
+            "retrieved_spatial_text": [
+              "(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)",
+              "(puzzle_piece, on, plate)\n(jigsaw puzzle, on, table)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 spatial: (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) | R2 visual: [No results] | R3 spatial: (puzzle_piece, on, plate) (jigsaw puzzle, on, table) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder)",
+            "num_rounds": 3
+          }
+        ],
+        "spatial_ON_grounded": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "visual",
+              "spatial",
+              "visual"
+            ],
+            "retrieved_spatial_text": [
+              "(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)\n(placeholder, near, placeholder)"
+            ],
+            "retrieved_grounding_string": false,
+            "reasoning_summary": "R1 visual: [No results] | R2 spatial: (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) (placeholder, near, placeholder) | R3 visual: [0 images from 1 clips]",
+            "num_rounds": 3
+          }
+        ]
+      },
+      "spatial_OFF_correct": 2,
+      "spatial_OFF_axis_selections": [
+        [
+          "visual",
+          "episodic",
+          "visual"
+        ],
+        [
+          "visual",
+          "visual",
+          "visual"
+        ],
+        [
+          "visual",
+          "visual",
+          "episodic"
+        ]
+      ],
+      "spatial_ON_text_correct": 1,
+      "spatial_ON_text_axis_selections": [
+        [
+          "spatial",
+          "visual",
+          "visual"
+        ],
+        [
+          "visual",
+          "spatial",
+          "visual"
+        ],
+        [
+          "spatial",
+          "visual",
+          "spatial"
+        ]
+      ],
+      "spatial_ON_grounded_correct": 1,
+      "spatial_ON_grounded_axis_selections": [
+        [
+          "visual",
+          "spatial",
+          "visual"
+        ],
+        [
+          "visual",
+          "spatial",
+          "visual"
+        ],
+        [
+          "visual",
+          "spatial",
+          "visual"
+        ]
+      ]
+    }
+  ]
+}

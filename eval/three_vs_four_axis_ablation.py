@@ -22,9 +22,9 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List
 
-from worldmm.embedding import EmbeddingModel
-from worldmm.llm import LLMModel, PromptTemplateManager
-from worldmm.memory import WorldMemory
+from worldmm.embedding import EmbeddingModel  # type: ignore[reportMissingImports]
+from worldmm.llm import LLMModel, PromptTemplateManager  # type: ignore[reportMissingImports]
+from worldmm.memory import WorldMemory  # type: ignore[reportMissingImports]
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
 from clip_query_embedder import ClipQueryEmbedder  # type: ignore
@@ -43,6 +43,7 @@ def build_memory(
     spatial_file: str,
     max_rounds: int,
     episodic_cache_tag: str,
+    spatial_grounding_file: str = "",
     visual_embeddings_file: str = "",
     visual_clips_file: str = "",
 ) -> WorldMemory:
@@ -63,7 +64,10 @@ def build_memory(
     if os.path.exists(semantic_file):
         wm.load_semantic_triples(file_path=semantic_file)
     if os.path.exists(spatial_file):
-        wm.load_spatial_triples(file_path=spatial_file)
+        if spatial_grounding_file and os.path.exists(spatial_grounding_file):
+            wm.spatial_memory.load_triples_from_file(spatial_file, grounding_file=spatial_grounding_file)
+        else:
+            wm.load_spatial_triples(file_path=spatial_file)
     if visual_embeddings_file and visual_clips_file \
             and os.path.exists(visual_embeddings_file) and os.path.exists(visual_clips_file):
         wm.visual_memory.embedding_model = ClipQueryEmbedder()
@@ -129,6 +133,11 @@ def main() -> None:
         "--spatial-file",
         default="output/metadata/spatial_memory/A1_JAKE/spatial_consolidation_results_chatgpt-gpt-5.4.json",
     )
+    parser.add_argument(
+        "--spatial-grounding-file",
+        default="",
+        help="Optional unified SpatialMemory grounding sidecar.",
+    )
     parser.add_argument("--visual-embeddings-file", default="output/metadata/visual_memory/A1_JAKE/visual_embeddings_clip-ViT-B-32.pkl")
     parser.add_argument("--visual-clips-file", default="output/metadata/visual_memory/A1_JAKE/visual_clips_clip-ViT-B-32.json")
     parser.add_argument("--qa-file", default="data/EgoLife/EgoLifeQA/EgoLifeQA_A1_JAKE.json")
@@ -165,6 +174,7 @@ def main() -> None:
         episodic_caption_files=available,
         semantic_file=args.semantic_file,
         spatial_file=args.spatial_file,
+        spatial_grounding_file=args.spatial_grounding_file,
         max_rounds=args.max_rounds,
         episodic_cache_tag="3axis",
         visual_embeddings_file=args.visual_embeddings_file,
@@ -178,6 +188,7 @@ def main() -> None:
         episodic_caption_files=available,
         semantic_file=args.semantic_file,
         spatial_file=args.spatial_file,
+        spatial_grounding_file=args.spatial_grounding_file,
         max_rounds=args.max_rounds,
         episodic_cache_tag="4axis",
         visual_embeddings_file=args.visual_embeddings_file,

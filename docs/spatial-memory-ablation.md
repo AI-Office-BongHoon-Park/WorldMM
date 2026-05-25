@@ -1117,3 +1117,71 @@ Failure modes / anomalies: no worker failures, no 429/rate-limit fallback, and n
 - GQA-T1-SP-111243000-10: Δ 0/3, 3-axis 0/3 -> 4-axis 0/3, gold `B` stool.
 
 **Honest verdict:** Type1 lift shrunk versus +47.2 pp: now -4.2 pp. Type3 signal leak did not shrink cleanly versus -12.5 pp: now +16.7 pp. Type2 did not show measurable lift: +0.0 pp. Type4 verdict is `no distractor penalty` at +16.7 pp, so distractor behavior remains part of the residual risk.
+
+---
+
+## §21. Geometry wired into spatial axis (smoke test on grounded chunks)
+
+**Date:** 2026-05-25 KST  
+**Runtime path:** `tools/run_golden_qa_ablation.py --spatial-grounding-file output/metadata/spatial_memory/A1_JAKE/unified_grounding_a1_jake.json`  
+**Grounding build:** `tools/build_unified_spatial_grounding.py` merged depth grounding, MASt3R pointmap sidecar, and TripoSR mesh sidecar into `output/metadata/spatial_memory/A1_JAKE/unified_grounding_a1_jake.json`.
+
+**Coverage:** only 3 chunks of A1_JAKE/DAY1 have geometry sidecars: 3/828. These are sparse PoCs: depth bbox records for `120255900`, MASt3R pointmap for `DAY1_A1_JAKE_17513000`, and TripoSR mesh for `DAY1_A1_JAKE_17513000`. The current consolidation maps `DAY1_A1_JAKE_17513000` to timestamp `117513000`; the direct golden QA sample had zero Type1 questions with evidence on those grounded chunks, so this smoke uses generated Type1 spatial questions from grounded triples.
+
+**Questions tested:**
+
+| ID | Question | Gold | spatial-OFF | spatial-ON-with-grounding | Δ |
+|---|---|---|---:|---:|---:|
+| `GQA-GROUND-117513000-33` | Where was director's slate at approximately DAY1 17:51:30? | floor | 0/3 | 0/3 | +0 |
+| `GQA-GROUND-117513000-34` | Where was director's board at approximately DAY1 17:51:30? | left-hand side | 0/3 | 1/3 | +1 |
+| `GQA-GROUND-120255900-58` | Where was puzzle_piece at approximately DAY1 20:25:59? | plate | 0/3 | 2/3 | +2 |
+| `GQA-GROUND-120255900-76` | Where was jigsaw puzzle at approximately DAY1 20:25:59? | table | 3/3 | 2/3 | -1 |
+| `GQA-GROUND-120255900-DIST` | Using the relative 3D centers at DAY1 20:25:59, which grounded object pair was closest? | puzzle_piece and jigsaw puzzle | 0/3 | 2/3 | +2 |
+
+**Aggregate:** spatial-OFF scored 3/15 (20.0%); spatial-ON-with-grounding scored 7/15 (46.7%); Δ = +4/15 (+26.7 pp).
+
+**Honest verdict:** spatial-ON-with-grounding beats spatial-OFF on this tiny generated grounded subset. This is not a general conclusion: n=5 questions, 15 trials/config, and geometry coverage is only 3/828 chunks. The previous negative spatial-axis result can still be baked in elsewhere, especially retrieval/routing and sparse geometry coverage. Smoke result says wiring geometry into SpatialMemory is live and can help when the tested question actually touches grounded chunks.
+
+**Next step:** expand geometry coverage to 30+ chunks with Depth-Anything-v2 + 2D detection, then rerun the same two-config ablation on naturally occurring Type1 questions before claiming Phase 3B spatial lift.
+
+
+---
+
+## §21. Combined smoke: truly-spatial Qs + geometry-wired spatial axis
+
+**Coverage:** 2 truly-spatial Qs + 5 grounded-chunk Qs = 7 total smoke Qs. No broader Type1 pool questions were within ±5 min of grounded chunks, so the grounded slice used generated closed-vocab WHERE/geometry questions from chunks `120255900` and `17513000` (loaded as timestamp `117513000`).
+
+**Protocol:** `output/golden_qa_grounded_subset_results.json`; 7 questions × 3 trials × 3 configs = 63 trial records. Final run used 4 `ThreadPoolExecutor` workers + subprocess workers. Configs: spatial-OFF = no spatial axis; spatial-ON-text = spatial axis with text triples; spatial-ON-grounded = spatial axis with `output/metadata/spatial_memory/A1_JAKE/unified_grounding_a1_jake.json`. Harness arg `--spatial-grounding-file` exists in `tools/run_golden_qa_ablation.py`, and shared builder passes it to `SpatialMemory.load_triples_from_file(..., grounding_file=...)`. Smoke runner kept episodic/semantic/visual data loading off to finish within cap; `axis_data_loaded` in JSON records this.
+
+| Config | Correct / total | Accuracy |
+|---|---:|---:|
+| spatial-OFF | 6/21 (28.6%) | 28.6% |
+| spatial-ON-text | 8/21 (38.1%) | 38.1% |
+| spatial-ON-grounded | 11/21 (52.4%) | 52.4% |
+
+**Δ analysis:** spatial-ON-text − spatial-OFF = +9.5 pp. spatial-ON-grounded − spatial-OFF = +23.8 pp. Grounded − text-only = +14.3 pp.
+
+| Question | Gold | OFF | ON-text | ON-grounded | OFF axes | ON-text axes | ON-grounded axes |
+|---|---|---:|---:|---:|---|---|---|
+| `GQA-GROUND-117513000-33` | A `floor` | 0/3 | 0/3 | 0/3 | visual+visual+visual<br>visual+visual+visual<br>visual+visual+visual | visual+spatial+visual<br>visual+spatial+spatial<br>visual+spatial+spatial | visual+spatial+visual<br>visual+spatial+visual<br>visual+spatial+visual |
+| `GQA-GROUND-117513000-34` | A `left-hand side` | 0/3 | 0/3 | 1/3 | visual+visual+episodic<br>visual+visual+visual<br>visual+visual+visual | visual+spatial<br>spatial+visual+semantic<br>visual+spatial+spatial | visual+spatial<br>spatial+visual+visual<br>spatial+visual+spatial |
+| `GQA-GROUND-120255900-58` | A `plate` | 0/3 | 3/3 | 3/3 | visual+episodic+visual<br>visual+episodic+visual<br>visual+episodic+visual | spatial<br>spatial<br>spatial | spatial<br>spatial<br>spatial |
+| `GQA-GROUND-120255900-76` | B `table` | 3/3 | 3/3 | 3/3 | visual+episodic+visual<br>visual+visual+episodic<br>visual+visual+episodic | spatial<br>spatial<br>spatial | visual+spatial<br>spatial<br>spatial |
+| `GQA-GROUND-120255900-DIST` | B `puzzle_piece and jigsaw puzzle` | 0/3 | 0/3 | 3/3 | visual+visual+visual<br>visual+visual<br>visual+visual+visual | visual+spatial<br>visual+spatial<br>visual+spatial+visual | visual+spatial<br>visual+spatial<br>visual+spatial |
+| `GQA-T1-SP-111143000-03` | C `shelf` | 1/3 | 1/3 | 0/3 | visual+visual+episodic<br>visual+episodic+visual<br>visual+visual+episodic | spatial+visual+spatial<br>spatial+visual+spatial<br>spatial+visual+spatial | spatial+visual+visual<br>spatial+visual+visual<br>spatial+visual+visual |
+| `GQA-T1-SP-112093000-06` | A `floor` | 2/3 | 1/3 | 1/3 | visual+episodic+visual<br>visual+visual+visual<br>visual+visual+episodic | spatial+visual+visual<br>visual+spatial+visual<br>spatial+visual+spatial | visual+spatial+visual<br>visual+spatial+visual<br>visual+spatial+visual |
+
+**Rendered `to_display_str()` geometry sample from spatial-ON-grounded:**
+
+```text
+(I, right_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, left_of, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, near, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, on, whiteboard) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, near, Lucia) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(Katrina, near, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(Katrina, in_front_of, I) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+(I, right_of, Tasha) [scene_latent=mast3r_pointmap#429d6f] [points=1000 pts]
+```
+
+**Honest verdict:** Geometry-wired spatial axis is positive on this smoke set: grounded beats OFF by +23.8 pp and text-only beats OFF by +9.5 pp, so grounding adds +14.3 pp over text-only. This flips the earlier Type1 -4.2 pp direction on this 7-question smoke, but sample is tiny and not statistically meaningful. Treat as directional smoke only, not proof of full-pool recovery.
