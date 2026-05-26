@@ -1,0 +1,2523 @@
+{
+  "schema_version": 2,
+  "target_balance": "phase4 grounded Type1 natural Korean/English conversational rewrite",
+  "counts": {
+    "Type1": 60
+  },
+  "coverage": {
+    "selected_chunks": 30,
+    "grounded_chunks_with_questions": 30,
+    "questions": 60,
+    "grounded_chunks": [
+      "111143000",
+      "111193000",
+      "111243000",
+      "111343000",
+      "111543000",
+      "112093000",
+      "112143000",
+      "113193000",
+      "113343000",
+      "114093000",
+      "114113000",
+      "114143000",
+      "117163000",
+      "117263000",
+      "117313000",
+      "117463000",
+      "117563000",
+      "118113000",
+      "118263000",
+      "119103000",
+      "119203000",
+      "119253000",
+      "119353000",
+      "119453000",
+      "120260000",
+      "120310000",
+      "120360000",
+      "120410000",
+      "120460000",
+      "121570000"
+    ]
+  },
+  "questions": [
+    {
+      "id": "GQA-PH4-WHERE-120460000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120460000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 20:46:00, where was kitchen_light_upstairs? Choose from the options: A. upstairs, B. Lucia, C. second floor living room, D. table.",
+      "choices": {
+        "A": "upstairs",
+        "B": "Lucia",
+        "C": "second floor living room",
+        "D": "table"
+      },
+      "gold": "A",
+      "gold_answer": "upstairs",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:46:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120460000: (kitchen_light_upstairs, located_in, upstairs)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120460000",
+      "evidence_chunk_label": "DAY1 20:46:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120460000_1",
+          "triple": [
+            "kitchen_light_upstairs",
+            "located_in",
+            "upstairs"
+          ]
+        }
+      ],
+      "original_question": "Where was kitchen light upstairs at approximately DAY1 20:46:00?",
+      "question_kr": "DAY1 20:46:00쯤 부엌 조명 위층 어디 있었더라? 보기에서 골라줘.",
+      "question_en": "At about DAY1 20:46:00, where was kitchen_light_upstairs? Choose from the options: A. upstairs, B. Lucia, C. second floor living room, D. table.",
+      "template_id": "A",
+      "template_description": "Where-was-object"
+    },
+    {
+      "id": "GQA-PH4-DIST-120460000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120460000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what was closest to power outlet? Choose the closest pair from the options: A. power outlet and desk, B. food and table, C. schoolbag and table, D. schoolbag and sofa.",
+      "choices": {
+        "A": "power outlet and desk",
+        "B": "food and table",
+        "C": "schoolbag and table",
+        "D": "schoolbag and sofa"
+      },
+      "gold": "A",
+      "gold_answer": "power outlet and desk",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:46:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120460000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120460000",
+      "evidence_chunk_label": "DAY1 20:46:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120460000_4",
+          "triple": [
+            "power_outlet",
+            "next_to",
+            "desk"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 20:46:00, which subject-object pair was closest?",
+      "question_kr": "그때 콘센트 근처에 바로 붙어 있던 건 뭐였어? 가장 가까운 조합을 골라줘.",
+      "question_en": "At that time, what was closest to power outlet? Choose the closest pair from the options: A. power outlet and desk, B. food and table, C. schoolbag and table, D. schoolbag and sofa.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-WHERE-119453000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119453000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was Alice located in kitchen? Pick the option that names the correct place or object: A. kitchen, B. phone, C. table, D. doorway of the second-floor living room.",
+      "choices": {
+        "A": "kitchen",
+        "B": "phone",
+        "C": "table",
+        "D": "doorway of the second-floor living room"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:45:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119453000: (Alice, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119453000",
+      "evidence_chunk_label": "DAY1 19:45:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119453000_0",
+          "triple": [
+            "Alice",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ],
+      "original_question": "Where was Alice at approximately DAY1 19:45:30?",
+      "question_kr": "앨리스가 부엌 쪽에 있었던 거 맞지? 같은 의미인 답을 보기에서 골라줘.",
+      "question_en": "Was Alice located in kitchen? Pick the option that names the correct place or object: A. kitchen, B. phone, C. table, D. doorway of the second-floor living room.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-DIST-119453000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119453000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was the closest pair Katrina and ground? Pick the option with the closest pair: A. Katrina and ground, B. Alice and kitchen, C. Tasha and table, D. Katrina and floor.",
+      "choices": {
+        "A": "Katrina and ground",
+        "B": "Alice and kitchen",
+        "C": "Tasha and table",
+        "D": "Katrina and floor"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and ground",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:45:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119453000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119453000",
+      "evidence_chunk_label": "DAY1 19:45:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119453000_8",
+          "triple": [
+            "Katrina",
+            "on",
+            "ground"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 19:45:30, which subject-object pair was closest?",
+      "question_kr": "카트리나랑 바닥이 서로 바로 붙어 있던 조합 맞아? 보기에서 맞는 조합을 골라줘.",
+      "question_en": "Was the closest pair Katrina and ground? Pick the option with the closest pair: A. Katrina and ground, B. Alice and kitchen, C. Tasha and table, D. Katrina and floor.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-WHERE-119353000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119353000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which place contained Katrina? Choose one option: A. ground, B. second floor living room, C. sofa, D. I.",
+      "choices": {
+        "A": "ground",
+        "B": "second floor living room",
+        "C": "sofa",
+        "D": "I"
+      },
+      "gold": "A",
+      "gold_answer": "ground",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:35:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119353000: (Katrina, on, ground)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119353000",
+      "evidence_chunk_label": "DAY1 19:35:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119353000_0",
+          "triple": [
+            "Katrina",
+            "on",
+            "ground"
+          ]
+        }
+      ],
+      "original_question": "Where was Katrina at approximately DAY1 19:35:30?",
+      "question_kr": "그 시각에 카트리나가 어느 공간에 속해 있었는지 확인해줘. 보기 중 하나만.",
+      "question_en": "At that moment, which place contained Katrina? Choose one option: A. ground, B. second floor living room, C. sofa, D. I.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-DIST-119353000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119353000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 19:35:30, which subject-object pair was closest? Choose from the options: A. Katrina and ground, B. computer and sofa, C. corner of the second floor living room and second floor living room, D. the other computer and ground.",
+      "choices": {
+        "A": "Katrina and ground",
+        "B": "computer and sofa",
+        "C": "corner of the second floor living room and second floor living room",
+        "D": "the other computer and ground"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and ground",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:35:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119353000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119353000",
+      "evidence_chunk_label": "DAY1 19:35:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119353000_0",
+          "triple": [
+            "Katrina",
+            "on",
+            "ground"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 19:35:30, which subject-object pair was closest?",
+      "question_kr": "DAY1 19:35:30쯤 서로 제일 가까이 붙어 있던 조합이 뭐였지? 보기에서 골라줘.",
+      "question_en": "At about DAY1 19:35:30, which subject-object pair was closest? Choose from the options: A. Katrina and ground, B. computer and sofa, C. corner of the second floor living room and second floor living room, D. the other computer and ground.",
+      "template_id": "D",
+      "template_description": "Closest-pair"
+    },
+    {
+      "id": "GQA-PH4-WHERE-113193000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "113193000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what place or nearby anchor was associated with whiteboard? Choose from the options: A. rack, B. whiteboard, C. Shure, D. Shure stand bracket.",
+      "choices": {
+        "A": "rack",
+        "B": "whiteboard",
+        "C": "Shure",
+        "D": "Shure stand bracket"
+      },
+      "gold": "A",
+      "gold_answer": "rack",
+      "query_time": {
+        "date": "DAY1",
+        "time": "13:19:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 113193000: (whiteboard, on, rack)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "113193000",
+      "evidence_chunk_label": "DAY1 13:19:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_113193000_0",
+          "triple": [
+            "whiteboard",
+            "on",
+            "rack"
+          ]
+        }
+      ],
+      "original_question": "Where was whiteboard at approximately DAY1 13:19:30?",
+      "question_kr": "그때 화이트보드 근처나 자리로 기억나는 곳이 어디였지? 보기 중에서 골라줘.",
+      "question_en": "At that time, what place or nearby anchor was associated with whiteboard? Choose from the options: A. rack, B. whiteboard, C. Shure, D. Shure stand bracket.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-DIST-113193000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "113193000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. whiteboard and rack, B. whiteboard and rack, C. whiteboard and rack, D. whiteboard and rack.",
+      "choices": {
+        "A": "whiteboard and rack",
+        "B": "whiteboard and rack",
+        "C": "whiteboard and rack",
+        "D": "whiteboard and rack"
+      },
+      "gold": "A",
+      "gold_answer": "whiteboard and rack",
+      "query_time": {
+        "date": "DAY1",
+        "time": "13:19:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 113193000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "113193000",
+      "evidence_chunk_label": "DAY1 13:19:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_113193000_0",
+          "triple": [
+            "whiteboard",
+            "on",
+            "rack"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 13:19:30, which subject-object pair was closest?",
+      "question_kr": "앞뒤 깊이까지 보면 어떤 두 대상이 제일 붙어 있었어? 보기 중에서 골라줘.",
+      "question_en": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. whiteboard and rack, B. whiteboard and rack, C. whiteboard and rack, D. whiteboard and rack.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-WHERE-120410000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120410000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "In that scene, what was the correct remembered location for Katrina? Choose from the options: A. second floor, B. living room, C. Lucia, D. microwave.",
+      "choices": {
+        "A": "second floor",
+        "B": "living room",
+        "C": "Lucia",
+        "D": "microwave"
+      },
+      "gold": "A",
+      "gold_answer": "second floor",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:41:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120410000: (Katrina, located_in, second_floor)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120410000",
+      "evidence_chunk_label": "DAY1 20:41:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120410000_0",
+          "triple": [
+            "Katrina",
+            "located_in",
+            "second_floor"
+          ]
+        }
+      ],
+      "original_question": "Where was Katrina at approximately DAY1 20:41:00?",
+      "question_kr": "그 장면에서 카트리나 기준으로 기억해야 할 위치가 어디였어? 보기 중 맞는 걸 골라줘.",
+      "question_en": "In that scene, what was the correct remembered location for Katrina? Choose from the options: A. second floor, B. living room, C. Lucia, D. microwave.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-DIST-120410000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120410000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Katrina and living room, B. Jake and living room, C. Lucia and living room, D. food and microwave.",
+      "choices": {
+        "A": "Katrina and living room",
+        "B": "Jake and living room",
+        "C": "Lucia and living room",
+        "D": "food and microwave"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and living room",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:41:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120410000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120410000",
+      "evidence_chunk_label": "DAY1 20:41:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120410000_1",
+          "triple": [
+            "Katrina",
+            "located_in",
+            "living_room"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 20:41:00, which subject-object pair was closest?",
+      "question_kr": "그 시각에 같은 자리처럼 가장 가까웠던 대상 묶음은 뭐였지? 보기 중 하나만.",
+      "question_en": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Katrina and living room, B. Jake and living room, C. Lucia and living room, D. food and microwave.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-WHERE-119203000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119203000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 19:20:30, where was kitchen_light? Choose from the options: A. kitchen, B. I, C. upstairs, D. refrigerator.",
+      "choices": {
+        "A": "kitchen",
+        "B": "I",
+        "C": "upstairs",
+        "D": "refrigerator"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:20:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119203000: (kitchen_light, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119203000",
+      "evidence_chunk_label": "DAY1 19:20:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119203000_1",
+          "triple": [
+            "kitchen_light",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ],
+      "original_question": "Where was kitchen light at approximately DAY1 19:20:30?",
+      "question_kr": "DAY1 19:20:30쯤 부엌 조명 어디 있었더라? 보기에서 골라줘.",
+      "question_en": "At about DAY1 19:20:30, where was kitchen_light? Choose from the options: A. kitchen, B. I, C. upstairs, D. refrigerator.",
+      "template_id": "A",
+      "template_description": "Where-was-object"
+    },
+    {
+      "id": "GQA-PH4-DIST-119203000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119203000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what was closest to kitchen light? Choose the closest pair from the options: A. kitchen light and kitchen, B. cola and refrigerator, C. entryway light and entryway, D. bag and ground.",
+      "choices": {
+        "A": "kitchen light and kitchen",
+        "B": "cola and refrigerator",
+        "C": "entryway light and entryway",
+        "D": "bag and ground"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen light and kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:20:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119203000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119203000",
+      "evidence_chunk_label": "DAY1 19:20:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119203000_1",
+          "triple": [
+            "kitchen_light",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 19:20:30, which subject-object pair was closest?",
+      "question_kr": "그때 부엌 조명 근처에 바로 붙어 있던 건 뭐였어? 가장 가까운 조합을 골라줘.",
+      "question_en": "At that time, what was closest to kitchen light? Choose the closest pair from the options: A. kitchen light and kitchen, B. cola and refrigerator, C. entryway light and entryway, D. bag and ground.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-WHERE-120260000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120260000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was Tasha located in kitchen? Pick the option that names the correct place or object: A. kitchen, B. first floor, C. dining table, D. table.",
+      "choices": {
+        "A": "kitchen",
+        "B": "first floor",
+        "C": "dining table",
+        "D": "table"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:26:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120260000: (Tasha, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120260000",
+      "evidence_chunk_label": "DAY1 20:26:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120260000_0",
+          "triple": [
+            "Tasha",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ],
+      "original_question": "Where was Tasha at approximately DAY1 20:26:00?",
+      "question_kr": "타샤가 부엌 쪽에 있었던 거 맞지? 같은 의미인 답을 보기에서 골라줘.",
+      "question_en": "Was Tasha located in kitchen? Pick the option that names the correct place or object: A. kitchen, B. first floor, C. dining table, D. table.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-DIST-120260000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120260000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was the closest pair Tasha and phone? Pick the option with the closest pair: A. Tasha and phone, B. Tasha and kitchen, C. Jake and kitchen, D. food and dining table.",
+      "choices": {
+        "A": "Tasha and phone",
+        "B": "Tasha and kitchen",
+        "C": "Jake and kitchen",
+        "D": "food and dining table"
+      },
+      "gold": "A",
+      "gold_answer": "Tasha and phone",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:26:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120260000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120260000",
+      "evidence_chunk_label": "DAY1 20:26:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120260000_8",
+          "triple": [
+            "Tasha",
+            "on",
+            "phone"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 20:26:00, which subject-object pair was closest?",
+      "question_kr": "타샤랑 휴대폰이 서로 바로 붙어 있던 조합 맞아? 보기에서 맞는 조합을 골라줘.",
+      "question_en": "Was the closest pair Tasha and phone? Pick the option with the closest pair: A. Tasha and phone, B. Tasha and kitchen, C. Jake and kitchen, D. food and dining table.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-WHERE-111143000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111143000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which place contained Everyone at the table? Choose one option: A. table, B. shelf, C. dining table, D. bin.",
+      "choices": {
+        "A": "table",
+        "B": "shelf",
+        "C": "dining table",
+        "D": "bin"
+      },
+      "gold": "A",
+      "gold_answer": "table",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111143000: (Everyone at the table, located_in, table)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111143000",
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111143000_0",
+          "triple": [
+            "Everyone at the table",
+            "located_in",
+            "table"
+          ]
+        }
+      ],
+      "original_question": "Where was Everyone at the table at approximately DAY1 11:14:30?",
+      "question_kr": "그 시각에 테이블 주변에 있던 모두가 어느 공간에 속해 있었는지 확인해줘. 보기 중 하나만.",
+      "question_en": "At that moment, which place contained Everyone at the table? Choose one option: A. table, B. shelf, C. dining table, D. bin.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-DIST-111143000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111143000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 11:14:30, which subject-object pair was closest? Choose from the options: A. Everyone at the table and table, B. hard drives and table, C. box and shelf, D. trash and bin.",
+      "choices": {
+        "A": "Everyone at the table and table",
+        "B": "hard drives and table",
+        "C": "box and shelf",
+        "D": "trash and bin"
+      },
+      "gold": "A",
+      "gold_answer": "Everyone at the table and table",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111143000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111143000",
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111143000_0",
+          "triple": [
+            "Everyone at the table",
+            "located_in",
+            "table"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 11:14:30, which subject-object pair was closest?",
+      "question_kr": "DAY1 11:14:30쯤 서로 제일 가까이 붙어 있던 조합이 뭐였지? 보기에서 골라줘.",
+      "question_en": "At about DAY1 11:14:30, which subject-object pair was closest? Choose from the options: A. Everyone at the table and table, B. hard drives and table, C. box and shelf, D. trash and bin.",
+      "template_id": "D",
+      "template_description": "Closest-pair"
+    },
+    {
+      "id": "GQA-PH4-WHERE-111243000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111243000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what place or nearby anchor was associated with Shure? Choose from the options: A. Changchun, B. jilin province, C. box, D. myself.",
+      "choices": {
+        "A": "Changchun",
+        "B": "jilin province",
+        "C": "box",
+        "D": "myself"
+      },
+      "gold": "A",
+      "gold_answer": "Changchun",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:24:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111243000: (Shure, located_in, Changchun)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111243000",
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111243000_0",
+          "triple": [
+            "Shure",
+            "located_in",
+            "Changchun"
+          ]
+        }
+      ],
+      "original_question": "Where was Shure at approximately DAY1 11:24:30?",
+      "question_kr": "그때 슈어 근처나 자리로 기억나는 곳이 어디였지? 보기 중에서 골라줘.",
+      "question_en": "At that time, what place or nearby anchor was associated with Shure? Choose from the options: A. Changchun, B. jilin province, C. box, D. myself.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-DIST-111243000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111243000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. Shure and Changchun, B. Changchun and jilin province, C. Jilin City and jilin province, D. stick and box.",
+      "choices": {
+        "A": "Shure and Changchun",
+        "B": "Changchun and jilin province",
+        "C": "Jilin City and jilin province",
+        "D": "stick and box"
+      },
+      "gold": "A",
+      "gold_answer": "Shure and Changchun",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:24:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111243000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111243000",
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111243000_0",
+          "triple": [
+            "Shure",
+            "located_in",
+            "Changchun"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 11:24:30, which subject-object pair was closest?",
+      "question_kr": "앞뒤 깊이까지 보면 어떤 두 대상이 제일 붙어 있었어? 보기 중에서 골라줘.",
+      "question_en": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. Shure and Changchun, B. Changchun and jilin province, C. Jilin City and jilin province, D. stick and box.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-WHERE-117263000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117263000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "In that scene, what was the correct remembered location for Tasha? Choose from the options: A. drink station, B. shopping cart, C. Jake, D. Tasha.",
+      "choices": {
+        "A": "drink station",
+        "B": "shopping cart",
+        "C": "Jake",
+        "D": "Tasha"
+      },
+      "gold": "A",
+      "gold_answer": "drink station",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:26:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117263000: (Tasha, located_in, drink_station)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117263000",
+      "evidence_chunk_label": "DAY1 17:26:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117263000_0",
+          "triple": [
+            "Tasha",
+            "located_in",
+            "drink_station"
+          ]
+        }
+      ],
+      "original_question": "Where was Tasha at approximately DAY1 17:26:30?",
+      "question_kr": "그 장면에서 타샤 기준으로 기억해야 할 위치가 어디였어? 보기 중 맞는 걸 골라줘.",
+      "question_en": "In that scene, what was the correct remembered location for Tasha? Choose from the options: A. drink station, B. shopping cart, C. Jake, D. Tasha.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-DIST-117263000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117263000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which pair occupied the closest shared spot? Choose one option: A. box and shopping cart, B. Tasha and drink station, C. boxed item and shopping cart, D. Tasha and Jake.",
+      "choices": {
+        "A": "box and shopping cart",
+        "B": "Tasha and drink station",
+        "C": "boxed item and shopping cart",
+        "D": "Tasha and Jake"
+      },
+      "gold": "A",
+      "gold_answer": "box and shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:26:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117263000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117263000",
+      "evidence_chunk_label": "DAY1 17:26:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117263000_1",
+          "triple": [
+            "box",
+            "in",
+            "shopping_cart"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 17:26:30, which subject-object pair was closest?",
+      "question_kr": "그 시각에 같은 자리처럼 가장 가까웠던 대상 묶음은 뭐였지? 보기 중 하나만.",
+      "question_en": "At that moment, which pair occupied the closest shared spot? Choose one option: A. box and shopping cart, B. Tasha and drink station, C. boxed item and shopping cart, D. Tasha and Jake.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-WHERE-119103000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119103000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 19:10:30, where was Jake? Choose from the options: A. singapore, B. courtyard, C. room, D. foyer.",
+      "choices": {
+        "A": "singapore",
+        "B": "courtyard",
+        "C": "room",
+        "D": "foyer"
+      },
+      "gold": "A",
+      "gold_answer": "singapore",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:10:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119103000: (Jake, located_in, singapore)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119103000",
+      "evidence_chunk_label": "DAY1 19:10:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119103000_0",
+          "triple": [
+            "Jake",
+            "located_in",
+            "singapore"
+          ]
+        }
+      ],
+      "original_question": "Where was Jake at approximately DAY1 19:10:30?",
+      "question_kr": "DAY1 19:10:30쯤 제이크 어디 있었더라? 보기에서 골라줘.",
+      "question_en": "At about DAY1 19:10:30, where was Jake? Choose from the options: A. singapore, B. courtyard, C. room, D. foyer.",
+      "template_id": "A",
+      "template_description": "Where-was-object"
+    },
+    {
+      "id": "GQA-PH4-DIST-119103000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119103000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what was closest to Jake? Choose the closest pair from the options: A. Jake and singapore, B. light and entryway, C. groceries and fridge, D. it and fridge.",
+      "choices": {
+        "A": "Jake and singapore",
+        "B": "light and entryway",
+        "C": "groceries and fridge",
+        "D": "it and fridge"
+      },
+      "gold": "A",
+      "gold_answer": "Jake and singapore",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:10:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119103000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119103000",
+      "evidence_chunk_label": "DAY1 19:10:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119103000_0",
+          "triple": [
+            "Jake",
+            "located_in",
+            "singapore"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 19:10:30, which subject-object pair was closest?",
+      "question_kr": "그때 제이크 근처에 바로 붙어 있던 건 뭐였어? 가장 가까운 조합을 골라줘.",
+      "question_en": "At that time, what was closest to Jake? Choose the closest pair from the options: A. Jake and singapore, B. light and entryway, C. groceries and fridge, D. it and fridge.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-WHERE-120310000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120310000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was Tasha near blackboard? Pick the option that names the correct place or object: A. blackboard, B. bedroom, C. table, D. computer.",
+      "choices": {
+        "A": "blackboard",
+        "B": "bedroom",
+        "C": "table",
+        "D": "computer"
+      },
+      "gold": "A",
+      "gold_answer": "blackboard",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:31:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120310000: (Tasha, near, blackboard)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120310000",
+      "evidence_chunk_label": "DAY1 20:31:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120310000_0",
+          "triple": [
+            "Tasha",
+            "near",
+            "blackboard"
+          ]
+        }
+      ],
+      "original_question": "Where was Tasha at approximately DAY1 20:31:00?",
+      "question_kr": "타샤가 blackboard 쪽에 있었던 거 맞지? 같은 의미인 답을 보기에서 골라줘.",
+      "question_en": "Was Tasha near blackboard? Pick the option that names the correct place or object: A. blackboard, B. bedroom, C. table, D. computer.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-DIST-120310000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120310000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was the closest pair cable and computer? Pick the option with the closest pair: A. cable and computer, B. Tasha and blackboard, C. glasses and table, D. computer and bedroom.",
+      "choices": {
+        "A": "cable and computer",
+        "B": "Tasha and blackboard",
+        "C": "glasses and table",
+        "D": "computer and bedroom"
+      },
+      "gold": "A",
+      "gold_answer": "cable and computer",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:31:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120310000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120310000",
+      "evidence_chunk_label": "DAY1 20:31:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120310000_3",
+          "triple": [
+            "cable",
+            "in",
+            "computer"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 20:31:00, which subject-object pair was closest?",
+      "question_kr": "cable랑 컴퓨터가 서로 바로 붙어 있던 조합 맞아? 보기에서 맞는 조합을 골라줘.",
+      "question_en": "Was the closest pair cable and computer? Pick the option with the closest pair: A. cable and computer, B. Tasha and blackboard, C. glasses and table, D. computer and bedroom.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-WHERE-117563000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117563000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which place contained Jake? Choose one option: A. seafood counter, B. I, C. right side, D. shopping cart.",
+      "choices": {
+        "A": "seafood counter",
+        "B": "I",
+        "C": "right side",
+        "D": "shopping cart"
+      },
+      "gold": "A",
+      "gold_answer": "seafood counter",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:56:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117563000: (Jake, located_in, seafood_counter)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117563000",
+      "evidence_chunk_label": "DAY1 17:56:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117563000_0",
+          "triple": [
+            "Jake",
+            "located_in",
+            "seafood_counter"
+          ]
+        }
+      ],
+      "original_question": "Where was Jake at approximately DAY1 17:56:30?",
+      "question_kr": "그 시각에 제이크가 어느 공간에 속해 있었는지 확인해줘. 보기 중 하나만.",
+      "question_en": "At that moment, which place contained Jake? Choose one option: A. seafood counter, B. I, C. right side, D. shopping cart.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-DIST-117563000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117563000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 17:56:30, which subject-object pair was closest? Choose from the options: A. Shure and right side, B. Jake and seafood counter, C. Tasha and shopping cart, D. Fresh tofu and shopping cart.",
+      "choices": {
+        "A": "Shure and right side",
+        "B": "Jake and seafood counter",
+        "C": "Tasha and shopping cart",
+        "D": "Fresh tofu and shopping cart"
+      },
+      "gold": "A",
+      "gold_answer": "Shure and right side",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:56:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117563000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117563000",
+      "evidence_chunk_label": "DAY1 17:56:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117563000_3",
+          "triple": [
+            "Shure",
+            "located_in",
+            "right_side"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 17:56:30, which subject-object pair was closest?",
+      "question_kr": "DAY1 17:56:30쯤 서로 제일 가까이 붙어 있던 조합이 뭐였지? 보기에서 골라줘.",
+      "question_en": "At about DAY1 17:56:30, which subject-object pair was closest? Choose from the options: A. Shure and right side, B. Jake and seafood counter, C. Tasha and shopping cart, D. Fresh tofu and shopping cart.",
+      "template_id": "D",
+      "template_description": "Closest-pair"
+    },
+    {
+      "id": "GQA-PH4-WHERE-118113000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "118113000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what place or nearby anchor was associated with logic chain? Choose from the options: A. shelf, B. Jake, C. Alice, D. Katrina.",
+      "choices": {
+        "A": "shelf",
+        "B": "Jake",
+        "C": "Alice",
+        "D": "Katrina"
+      },
+      "gold": "A",
+      "gold_answer": "shelf",
+      "query_time": {
+        "date": "DAY1",
+        "time": "18:11:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 118113000: (logic chain, on, shelf)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "118113000",
+      "evidence_chunk_label": "DAY1 18:11:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_118113000_0",
+          "triple": [
+            "logic chain",
+            "on",
+            "shelf"
+          ]
+        }
+      ],
+      "original_question": "Where was logic chain at approximately DAY1 18:11:30?",
+      "question_kr": "그때 logic chain 근처나 자리로 기억나는 곳이 어디였지? 보기 중에서 골라줘.",
+      "question_en": "At that time, what place or nearby anchor was associated with logic chain? Choose from the options: A. shelf, B. Jake, C. Alice, D. Katrina.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-DIST-118113000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "118113000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. logic chain and shelf, B. phone and shelf, C. Katrina and Lucia, D. Shure and Katrina.",
+      "choices": {
+        "A": "logic chain and shelf",
+        "B": "phone and shelf",
+        "C": "Katrina and Lucia",
+        "D": "Shure and Katrina"
+      },
+      "gold": "A",
+      "gold_answer": "logic chain and shelf",
+      "query_time": {
+        "date": "DAY1",
+        "time": "18:11:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 118113000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "118113000",
+      "evidence_chunk_label": "DAY1 18:11:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_118113000_0",
+          "triple": [
+            "logic chain",
+            "on",
+            "shelf"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 18:11:30, which subject-object pair was closest?",
+      "question_kr": "앞뒤 깊이까지 보면 어떤 두 대상이 제일 붙어 있었어? 보기 중에서 골라줘.",
+      "question_en": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. logic chain and shelf, B. phone and shelf, C. Katrina and Lucia, D. Shure and Katrina.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-WHERE-121570000-02",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "121570000:2",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "In that scene, what was the correct remembered location for Lucia? Choose from the options: A. small horse, B. bed, C. stool, D. Katrina.",
+      "choices": {
+        "A": "small horse",
+        "B": "bed",
+        "C": "stool",
+        "D": "Katrina"
+      },
+      "gold": "A",
+      "gold_answer": "small horse",
+      "query_time": {
+        "date": "DAY1",
+        "time": "21:57:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 121570000: (Lucia, on, small_horse)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "121570000",
+      "evidence_chunk_label": "DAY1 21:57:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_121570000_2",
+          "triple": [
+            "Lucia",
+            "on",
+            "small_horse"
+          ]
+        }
+      ],
+      "original_question": "Where was Lucia at approximately DAY1 21:57:00?",
+      "question_kr": "그 장면에서 루시아 기준으로 기억해야 할 위치가 어디였어? 보기 중 맞는 걸 골라줘.",
+      "question_en": "In that scene, what was the correct remembered location for Lucia? Choose from the options: A. small horse, B. bed, C. stool, D. Katrina.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-DIST-121570000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "121570000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Lucia and small horse, B. Alice and Katrina, C. Alice and Lucia, D. Katrina and Lucia.",
+      "choices": {
+        "A": "Lucia and small horse",
+        "B": "Alice and Katrina",
+        "C": "Alice and Lucia",
+        "D": "Katrina and Lucia"
+      },
+      "gold": "A",
+      "gold_answer": "Lucia and small horse",
+      "query_time": {
+        "date": "DAY1",
+        "time": "21:57:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 121570000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "121570000",
+      "evidence_chunk_label": "DAY1 21:57:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_121570000_2",
+          "triple": [
+            "Lucia",
+            "on",
+            "small_horse"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 21:57:00, which subject-object pair was closest?",
+      "question_kr": "그 시각에 같은 자리처럼 가장 가까웠던 대상 묶음은 뭐였지? 보기 중 하나만.",
+      "question_en": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Lucia and small horse, B. Alice and Katrina, C. Alice and Lucia, D. Katrina and Lucia.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-WHERE-113343000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "113343000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 13:34:30, where was Katrina? Choose from the options: A. software engineering, B. kitchen, C. first floor, D. upstairs.",
+      "choices": {
+        "A": "software engineering",
+        "B": "kitchen",
+        "C": "first floor",
+        "D": "upstairs"
+      },
+      "gold": "A",
+      "gold_answer": "software engineering",
+      "query_time": {
+        "date": "DAY1",
+        "time": "13:34:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 113343000: (Katrina, located_in, software_engineering)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "113343000",
+      "evidence_chunk_label": "DAY1 13:34:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_113343000_1",
+          "triple": [
+            "Katrina",
+            "located_in",
+            "software_engineering"
+          ]
+        }
+      ],
+      "original_question": "Where was Katrina at approximately DAY1 13:34:30?",
+      "question_kr": "DAY1 13:34:30쯤 카트리나 어디 있었더라? 보기에서 골라줘.",
+      "question_en": "At about DAY1 13:34:30, where was Katrina? Choose from the options: A. software engineering, B. kitchen, C. first floor, D. upstairs.",
+      "template_id": "A",
+      "template_description": "Where-was-object"
+    },
+    {
+      "id": "GQA-PH4-DIST-113343000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "113343000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what was closest to Katrina? Choose the closest pair from the options: A. Katrina and software engineering, B. meeting room and here, C. kitchen and here, D. dessert table and here.",
+      "choices": {
+        "A": "Katrina and software engineering",
+        "B": "meeting room and here",
+        "C": "kitchen and here",
+        "D": "dessert table and here"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and software engineering",
+      "query_time": {
+        "date": "DAY1",
+        "time": "13:34:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 113343000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "113343000",
+      "evidence_chunk_label": "DAY1 13:34:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_113343000_1",
+          "triple": [
+            "Katrina",
+            "located_in",
+            "software_engineering"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 13:34:30, which subject-object pair was closest?",
+      "question_kr": "그때 카트리나 근처에 바로 붙어 있던 건 뭐였어? 가장 가까운 조합을 골라줘.",
+      "question_en": "At that time, what was closest to Katrina? Choose the closest pair from the options: A. Katrina and software engineering, B. meeting room and here, C. kitchen and here, D. dessert table and here.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-WHERE-117313000-03",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117313000:3",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was two cartons of milk in cart? Pick the option that names the correct place or object: A. cart, B. I, C. items ahead, D. left.",
+      "choices": {
+        "A": "cart",
+        "B": "I",
+        "C": "items ahead",
+        "D": "left"
+      },
+      "gold": "A",
+      "gold_answer": "cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:31:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117313000: (two cartons of milk, in, cart)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117313000",
+      "evidence_chunk_label": "DAY1 17:31:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117313000_3",
+          "triple": [
+            "two cartons of milk",
+            "in",
+            "cart"
+          ]
+        }
+      ],
+      "original_question": "Where was two cartons of milk at approximately DAY1 17:31:30?",
+      "question_kr": "two cartons of 우유가 카트 안에 있었던 거 맞지? 같은 의미인 답을 보기에서 골라줘.",
+      "question_en": "Was two cartons of milk in cart? Pick the option that names the correct place or object: A. cart, B. I, C. items ahead, D. left.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-DIST-117313000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117313000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was the closest pair two cartons of milk and cart? Pick the option with the closest pair: A. two cartons of milk and cart, B. drinks and cart, C. heavy cream and yogurt, D. heavy cream and freezer section.",
+      "choices": {
+        "A": "two cartons of milk and cart",
+        "B": "drinks and cart",
+        "C": "heavy cream and yogurt",
+        "D": "heavy cream and freezer section"
+      },
+      "gold": "A",
+      "gold_answer": "two cartons of milk and cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:31:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117313000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117313000",
+      "evidence_chunk_label": "DAY1 17:31:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117313000_3",
+          "triple": [
+            "two cartons of milk",
+            "in",
+            "cart"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 17:31:30, which subject-object pair was closest?",
+      "question_kr": "two cartons of 우유랑 카트가 서로 바로 붙어 있던 조합 맞아? 보기에서 맞는 조합을 골라줘.",
+      "question_en": "Was the closest pair two cartons of milk and cart? Pick the option with the closest pair: A. two cartons of milk and cart, B. drinks and cart, C. heavy cream and yogurt, D. heavy cream and freezer section.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-WHERE-117463000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117463000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which place contained Tasha? Choose one option: A. shopping cart, B. I, C. deli section, D. Alice.",
+      "choices": {
+        "A": "shopping cart",
+        "B": "I",
+        "C": "deli section",
+        "D": "Alice"
+      },
+      "gold": "A",
+      "gold_answer": "shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:46:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117463000: (Tasha, on, shopping_cart)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117463000",
+      "evidence_chunk_label": "DAY1 17:46:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117463000_1",
+          "triple": [
+            "Tasha",
+            "on",
+            "shopping_cart"
+          ]
+        }
+      ],
+      "original_question": "Where was Tasha at approximately DAY1 17:46:30?",
+      "question_kr": "그 시각에 타샤가 어느 공간에 속해 있었는지 확인해줘. 보기 중 하나만.",
+      "question_en": "At that moment, which place contained Tasha? Choose one option: A. shopping cart, B. I, C. deli section, D. Alice.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-DIST-117463000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117463000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 17:46:30, which subject-object pair was closest? Choose from the options: A. Tasha and shopping cart, B. Alice and deli section, C. Tasha and Alice, D. Salt and shopping cart.",
+      "choices": {
+        "A": "Tasha and shopping cart",
+        "B": "Alice and deli section",
+        "C": "Tasha and Alice",
+        "D": "Salt and shopping cart"
+      },
+      "gold": "A",
+      "gold_answer": "Tasha and shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:46:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117463000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117463000",
+      "evidence_chunk_label": "DAY1 17:46:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117463000_1",
+          "triple": [
+            "Tasha",
+            "on",
+            "shopping_cart"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 17:46:30, which subject-object pair was closest?",
+      "question_kr": "DAY1 17:46:30쯤 서로 제일 가까이 붙어 있던 조합이 뭐였지? 보기에서 골라줘.",
+      "question_en": "At about DAY1 17:46:30, which subject-object pair was closest? Choose from the options: A. Tasha and shopping cart, B. Alice and deli section, C. Tasha and Alice, D. Salt and shopping cart.",
+      "template_id": "D",
+      "template_description": "Closest-pair"
+    },
+    {
+      "id": "GQA-PH4-WHERE-118263000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "118263000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what place or nearby anchor was associated with bagged items? Choose from the options: A. shopping cart, B. supermarket entrance, C. hand of Tasha, D. service counter.",
+      "choices": {
+        "A": "shopping cart",
+        "B": "supermarket entrance",
+        "C": "hand of Tasha",
+        "D": "service counter"
+      },
+      "gold": "A",
+      "gold_answer": "shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "18:26:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 118263000: (bagged items, in, shopping_cart)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "118263000",
+      "evidence_chunk_label": "DAY1 18:26:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_118263000_0",
+          "triple": [
+            "bagged items",
+            "in",
+            "shopping_cart"
+          ]
+        }
+      ],
+      "original_question": "Where was bagged items at approximately DAY1 18:26:30?",
+      "question_kr": "그때 bagged items 근처나 자리로 기억나는 곳이 어디였지? 보기 중에서 골라줘.",
+      "question_en": "At that time, what place or nearby anchor was associated with bagged items? Choose from the options: A. shopping cart, B. supermarket entrance, C. hand of Tasha, D. service counter.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-DIST-118263000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "118263000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. bagged items and shopping cart, B. shopping bag and hand of Tasha, C. water bottle and car, D. Tasha and Alice.",
+      "choices": {
+        "A": "bagged items and shopping cart",
+        "B": "shopping bag and hand of Tasha",
+        "C": "water bottle and car",
+        "D": "Tasha and Alice"
+      },
+      "gold": "A",
+      "gold_answer": "bagged items and shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "18:26:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 118263000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "118263000",
+      "evidence_chunk_label": "DAY1 18:26:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_118263000_0",
+          "triple": [
+            "bagged items",
+            "in",
+            "shopping_cart"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 18:26:30, which subject-object pair was closest?",
+      "question_kr": "앞뒤 깊이까지 보면 어떤 두 대상이 제일 붙어 있었어? 보기 중에서 골라줘.",
+      "question_en": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. bagged items and shopping cart, B. shopping bag and hand of Tasha, C. water bottle and car, D. Tasha and Alice.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-WHERE-119253000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119253000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "In that scene, what was the correct remembered location for Katrina? Choose from the options: A. blackboard, B. ground, C. chair, D. table.",
+      "choices": {
+        "A": "blackboard",
+        "B": "ground",
+        "C": "chair",
+        "D": "table"
+      },
+      "gold": "A",
+      "gold_answer": "blackboard",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:25:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119253000: (Katrina, next_to, blackboard)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119253000",
+      "evidence_chunk_label": "DAY1 19:25:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119253000_0",
+          "triple": [
+            "Katrina",
+            "next_to",
+            "blackboard"
+          ]
+        }
+      ],
+      "original_question": "Where was Katrina at approximately DAY1 19:25:30?",
+      "question_kr": "그 장면에서 카트리나 기준으로 기억해야 할 위치가 어디였어? 보기 중 맞는 걸 골라줘.",
+      "question_en": "In that scene, what was the correct remembered location for Katrina? Choose from the options: A. blackboard, B. ground, C. chair, D. table.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-DIST-119253000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119253000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Katrina and ground, B. Katrina and blackboard, C. Tasha and chair, D. unwanted trash and ground.",
+      "choices": {
+        "A": "Katrina and ground",
+        "B": "Katrina and blackboard",
+        "C": "Tasha and chair",
+        "D": "unwanted trash and ground"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and ground",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:25:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119253000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119253000",
+      "evidence_chunk_label": "DAY1 19:25:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119253000_1",
+          "triple": [
+            "Katrina",
+            "on",
+            "ground"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 19:25:30, which subject-object pair was closest?",
+      "question_kr": "그 시각에 같은 자리처럼 가장 가까웠던 대상 묶음은 뭐였지? 보기 중 하나만.",
+      "question_en": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Katrina and ground, B. Katrina and blackboard, C. Tasha and chair, D. unwanted trash and ground.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-WHERE-111193000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111193000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 11:19:30, where was Katrina? Choose from the options: A. windowsill, B. desk, C. Alice, D. I.",
+      "choices": {
+        "A": "windowsill",
+        "B": "desk",
+        "C": "Alice",
+        "D": "I"
+      },
+      "gold": "A",
+      "gold_answer": "windowsill",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:19:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111193000: (Katrina, near, windowsill)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111193000",
+      "evidence_chunk_label": "DAY1 11:19:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111193000_0",
+          "triple": [
+            "Katrina",
+            "near",
+            "windowsill"
+          ]
+        }
+      ],
+      "original_question": "Where was Katrina at approximately DAY1 11:19:30?",
+      "question_kr": "DAY1 11:19:30쯤 카트리나 어디 있었더라? 보기에서 골라줘.",
+      "question_en": "At about DAY1 11:19:30, where was Katrina? Choose from the options: A. windowsill, B. desk, C. Alice, D. I.",
+      "template_id": "A",
+      "template_description": "Where-was-object"
+    },
+    {
+      "id": "GQA-PH4-DIST-111193000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111193000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what was closest to Katrina? Choose the closest pair from the options: A. Katrina and windowsill, B. Katrina and windowsill, C. Katrina and windowsill, D. Katrina and windowsill.",
+      "choices": {
+        "A": "Katrina and windowsill",
+        "B": "Katrina and windowsill",
+        "C": "Katrina and windowsill",
+        "D": "Katrina and windowsill"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and windowsill",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:19:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111193000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111193000",
+      "evidence_chunk_label": "DAY1 11:19:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111193000_0",
+          "triple": [
+            "Katrina",
+            "near",
+            "windowsill"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 11:19:30, which subject-object pair was closest?",
+      "question_kr": "그때 카트리나 근처에 바로 붙어 있던 건 뭐였어? 가장 가까운 조합을 골라줘.",
+      "question_en": "At that time, what was closest to Katrina? Choose the closest pair from the options: A. Katrina and windowsill, B. Katrina and windowsill, C. Katrina and windowsill, D. Katrina and windowsill.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-WHERE-114143000-04",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114143000:4",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was Katrina next to neighbors? Pick the option that names the correct place or object: A. neighbors, B. KFC, C. restaurant, D. courtyard.",
+      "choices": {
+        "A": "neighbors",
+        "B": "KFC",
+        "C": "restaurant",
+        "D": "courtyard"
+      },
+      "gold": "A",
+      "gold_answer": "neighbors",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 114143000: (Katrina, next_to, neighbors)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114143000",
+      "evidence_chunk_label": "DAY1 14:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114143000_4",
+          "triple": [
+            "Katrina",
+            "next_to",
+            "neighbors"
+          ]
+        }
+      ],
+      "original_question": "Where was Katrina at approximately DAY1 14:14:30?",
+      "question_kr": "카트리나가 neighbors 쪽에 있었던 거 맞지? 같은 의미인 답을 보기에서 골라줘.",
+      "question_en": "Was Katrina next to neighbors? Pick the option that names the correct place or object: A. neighbors, B. KFC, C. restaurant, D. courtyard.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-DIST-114143000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114143000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was the closest pair Katrina and neighbors? Pick the option with the closest pair: A. Katrina and neighbors, B. 二环 and 北京, C. 北航 and 学院路, D. food and table.",
+      "choices": {
+        "A": "Katrina and neighbors",
+        "B": "二环 and 北京",
+        "C": "北航 and 学院路",
+        "D": "food and table"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and neighbors",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 114143000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114143000",
+      "evidence_chunk_label": "DAY1 14:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114143000_4",
+          "triple": [
+            "Katrina",
+            "next_to",
+            "neighbors"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 14:14:30, which subject-object pair was closest?",
+      "question_kr": "카트리나랑 neighbors가 서로 바로 붙어 있던 조합 맞아? 보기에서 맞는 조합을 골라줘.",
+      "question_en": "Was the closest pair Katrina and neighbors? Pick the option with the closest pair: A. Katrina and neighbors, B. 二环 and 北京, C. 北航 and 学院路, D. food and table.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-WHERE-117163000-02",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117163000:2",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which place contained power bank? Choose one option: A. seat, B. car, C. door, D. Shure Katrina.",
+      "choices": {
+        "A": "seat",
+        "B": "car",
+        "C": "door",
+        "D": "Shure Katrina"
+      },
+      "gold": "A",
+      "gold_answer": "seat",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:16:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117163000: (power bank, in, seat)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117163000",
+      "evidence_chunk_label": "DAY1 17:16:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117163000_2",
+          "triple": [
+            "power bank",
+            "in",
+            "seat"
+          ]
+        }
+      ],
+      "original_question": "Where was power bank at approximately DAY1 17:16:30?",
+      "question_kr": "그 시각에 power bank가 어느 공간에 속해 있었는지 확인해줘. 보기 중 하나만.",
+      "question_en": "At that moment, which place contained power bank? Choose one option: A. seat, B. car, C. door, D. Shure Katrina.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-DIST-117163000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117163000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 17:16:30, which subject-object pair was closest? Choose from the options: A. car door and door, B. power bank and seat, C. supermarket and beijing, D. Katrina Shure Lucia and front door.",
+      "choices": {
+        "A": "car door and door",
+        "B": "power bank and seat",
+        "C": "supermarket and beijing",
+        "D": "Katrina Shure Lucia and front door"
+      },
+      "gold": "A",
+      "gold_answer": "car door and door",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:16:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117163000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117163000",
+      "evidence_chunk_label": "DAY1 17:16:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117163000_1",
+          "triple": [
+            "car_door",
+            "contains",
+            "door"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 17:16:30, which subject-object pair was closest?",
+      "question_kr": "DAY1 17:16:30쯤 서로 제일 가까이 붙어 있던 조합이 뭐였지? 보기에서 골라줘.",
+      "question_en": "At about DAY1 17:16:30, which subject-object pair was closest? Choose from the options: A. car door and door, B. power bank and seat, C. supermarket and beijing, D. Katrina Shure Lucia and front door.",
+      "template_id": "D",
+      "template_description": "Closest-pair"
+    },
+    {
+      "id": "GQA-PH4-WHERE-120360000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120360000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what place or nearby anchor was associated with Alice? Choose from the options: A. kitchen, B. I, C. second floor, D. living room.",
+      "choices": {
+        "A": "kitchen",
+        "B": "I",
+        "C": "second floor",
+        "D": "living room"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:36:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120360000: (Alice, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120360000",
+      "evidence_chunk_label": "DAY1 20:36:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120360000_0",
+          "triple": [
+            "Alice",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ],
+      "original_question": "Where was Alice at approximately DAY1 20:36:00?",
+      "question_kr": "그때 앨리스 근처나 자리로 기억나는 곳이 어디였지? 보기 중에서 골라줘.",
+      "question_en": "At that time, what place or nearby anchor was associated with Alice? Choose from the options: A. kitchen, B. I, C. second floor, D. living room.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-DIST-120360000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120360000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. bag of food and microwave, B. Alice and kitchen, C. Lucia and kitchen, D. computer and sofa.",
+      "choices": {
+        "A": "bag of food and microwave",
+        "B": "Alice and kitchen",
+        "C": "Lucia and kitchen",
+        "D": "computer and sofa"
+      },
+      "gold": "A",
+      "gold_answer": "bag of food and microwave",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:36:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120360000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120360000",
+      "evidence_chunk_label": "DAY1 20:36:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120360000_5",
+          "triple": [
+            "bag of food",
+            "in",
+            "microwave"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 20:36:00, which subject-object pair was closest?",
+      "question_kr": "앞뒤 깊이까지 보면 어떤 두 대상이 제일 붙어 있었어? 보기 중에서 골라줘.",
+      "question_en": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. bag of food and microwave, B. Alice and kitchen, C. Lucia and kitchen, D. computer and sofa.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-WHERE-111343000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111343000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "In that scene, what was the correct remembered location for Shure? Choose from the options: A. whiteboard, B. stool, C. Shure, D. Shure's original seat.",
+      "choices": {
+        "A": "whiteboard",
+        "B": "stool",
+        "C": "Shure",
+        "D": "Shure's original seat"
+      },
+      "gold": "A",
+      "gold_answer": "whiteboard",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:34:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111343000: (Shure, on, whiteboard)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111343000",
+      "evidence_chunk_label": "DAY1 11:34:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111343000_1",
+          "triple": [
+            "Shure",
+            "on",
+            "whiteboard"
+          ]
+        }
+      ],
+      "original_question": "Where was Shure at approximately DAY1 11:34:30?",
+      "question_kr": "그 장면에서 슈어 기준으로 기억해야 할 위치가 어디였어? 보기 중 맞는 걸 골라줘.",
+      "question_en": "In that scene, what was the correct remembered location for Shure? Choose from the options: A. whiteboard, B. stool, C. Shure, D. Shure's original seat.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-DIST-111343000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111343000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Shure and side, B. Shure and whiteboard, C. Shure and whiteboard, D. Shure and board.",
+      "choices": {
+        "A": "Shure and side",
+        "B": "Shure and whiteboard",
+        "C": "Shure and whiteboard",
+        "D": "Shure and board"
+      },
+      "gold": "A",
+      "gold_answer": "Shure and side",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:34:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111343000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111343000",
+      "evidence_chunk_label": "DAY1 11:34:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111343000_4",
+          "triple": [
+            "Shure",
+            "located_in",
+            "side"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 11:34:30, which subject-object pair was closest?",
+      "question_kr": "그 시각에 같은 자리처럼 가장 가까웠던 대상 묶음은 뭐였지? 보기 중 하나만.",
+      "question_en": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Shure and side, B. Shure and whiteboard, C. Shure and whiteboard, D. Shure and board.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-WHERE-111543000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111543000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 11:54:30, where was piece of paper? Choose from the options: A. I left hand, B. bedroom, C. outside, D. Jake.",
+      "choices": {
+        "A": "I left hand",
+        "B": "bedroom",
+        "C": "outside",
+        "D": "Jake"
+      },
+      "gold": "A",
+      "gold_answer": "I left hand",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:54:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111543000: (piece of paper, in, I left hand)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111543000",
+      "evidence_chunk_label": "DAY1 11:54:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111543000_1",
+          "triple": [
+            "piece of paper",
+            "in",
+            "I left hand"
+          ]
+        }
+      ],
+      "original_question": "Where was piece of paper at approximately DAY1 11:54:30?",
+      "question_kr": "DAY1 11:54:30쯤 piece of paper 어디 있었더라? 보기에서 골라줘.",
+      "question_en": "At about DAY1 11:54:30, where was piece of paper? Choose from the options: A. I left hand, B. bedroom, C. outside, D. Jake.",
+      "template_id": "A",
+      "template_description": "Where-was-object"
+    },
+    {
+      "id": "GQA-PH4-DIST-111543000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111543000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what was closest to piece of paper? Choose the closest pair from the options: A. piece of paper and I left hand, B. Katrina and whiteboard, C. Katrina and whiteboard, D. Katrina and whiteboard.",
+      "choices": {
+        "A": "piece of paper and I left hand",
+        "B": "Katrina and whiteboard",
+        "C": "Katrina and whiteboard",
+        "D": "Katrina and whiteboard"
+      },
+      "gold": "A",
+      "gold_answer": "piece of paper and I left hand",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:54:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111543000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111543000",
+      "evidence_chunk_label": "DAY1 11:54:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111543000_1",
+          "triple": [
+            "piece of paper",
+            "in",
+            "I left hand"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 11:54:30, which subject-object pair was closest?",
+      "question_kr": "그때 piece of paper 근처에 바로 붙어 있던 건 뭐였어? 가장 가까운 조합을 골라줘.",
+      "question_en": "At that time, what was closest to piece of paper? Choose the closest pair from the options: A. piece of paper and I left hand, B. Katrina and whiteboard, C. Katrina and whiteboard, D. Katrina and whiteboard.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-WHERE-112093000-02",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "112093000:2",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was charger located in kitchen? Pick the option that names the correct place or object: A. kitchen, B. Shure, C. bedroom, D. floor.",
+      "choices": {
+        "A": "kitchen",
+        "B": "Shure",
+        "C": "bedroom",
+        "D": "floor"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:09:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 112093000: (charger, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "112093000",
+      "evidence_chunk_label": "DAY1 12:09:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_112093000_2",
+          "triple": [
+            "charger",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ],
+      "original_question": "Where was charger at approximately DAY1 12:09:30?",
+      "question_kr": "충전기가 부엌 쪽에 있었던 거 맞지? 같은 의미인 답을 보기에서 골라줘.",
+      "question_en": "Was charger located in kitchen? Pick the option that names the correct place or object: A. kitchen, B. Shure, C. bedroom, D. floor.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-DIST-112093000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "112093000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Was the closest pair director's slate and floor? Pick the option with the closest pair: A. director's slate and floor, B. charger and kitchen, C. director's board and left-hand side, D. mixing and counter.",
+      "choices": {
+        "A": "director's slate and floor",
+        "B": "charger and kitchen",
+        "C": "director's board and left-hand side",
+        "D": "mixing and counter"
+      },
+      "gold": "A",
+      "gold_answer": "director's slate and floor",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:09:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 112093000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "112093000",
+      "evidence_chunk_label": "DAY1 12:09:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_112093000_5",
+          "triple": [
+            "director's slate",
+            "on",
+            "floor"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 12:09:30, which subject-object pair was closest?",
+      "question_kr": "director's slate랑 바닥이 서로 바로 붙어 있던 조합 맞아? 보기에서 맞는 조합을 골라줘.",
+      "question_en": "Was the closest pair director's slate and floor? Pick the option with the closest pair: A. director's slate and floor, B. charger and kitchen, C. director's board and left-hand side, D. mixing and counter.",
+      "template_id": "C",
+      "template_description": "Did-I-leave-it-there"
+    },
+    {
+      "id": "GQA-PH4-WHERE-112143000-03",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "112143000:3",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which place contained bouquet? Choose one option: A. table, B. desserts, C. phone, D. I.",
+      "choices": {
+        "A": "table",
+        "B": "desserts",
+        "C": "phone",
+        "D": "I"
+      },
+      "gold": "A",
+      "gold_answer": "table",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 112143000: (bouquet, on, table)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "112143000",
+      "evidence_chunk_label": "DAY1 12:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_112143000_3",
+          "triple": [
+            "bouquet",
+            "on",
+            "table"
+          ]
+        }
+      ],
+      "original_question": "Where was bouquet at approximately DAY1 12:14:30?",
+      "question_kr": "그 시각에 bouquet가 어느 공간에 속해 있었는지 확인해줘. 보기 중 하나만.",
+      "question_en": "At that moment, which place contained bouquet? Choose one option: A. table, B. desserts, C. phone, D. I.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    },
+    {
+      "id": "GQA-PH4-DIST-112143000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "112143000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At about DAY1 12:14:30, which subject-object pair was closest? Choose from the options: A. dessert table and desserts, B. bouquet and table, C. Shure and whiteboard, D. Hugh and whiteboard.",
+      "choices": {
+        "A": "dessert table and desserts",
+        "B": "bouquet and table",
+        "C": "Shure and whiteboard",
+        "D": "Hugh and whiteboard"
+      },
+      "gold": "A",
+      "gold_answer": "dessert table and desserts",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 112143000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "112143000",
+      "evidence_chunk_label": "DAY1 12:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_112143000_0",
+          "triple": [
+            "dessert_table",
+            "contains",
+            "desserts"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 12:14:30, which subject-object pair was closest?",
+      "question_kr": "DAY1 12:14:30쯤 서로 제일 가까이 붙어 있던 조합이 뭐였지? 보기에서 골라줘.",
+      "question_en": "At about DAY1 12:14:30, which subject-object pair was closest? Choose from the options: A. dessert table and desserts, B. bouquet and table, C. Shure and whiteboard, D. Hugh and whiteboard.",
+      "template_id": "D",
+      "template_description": "Closest-pair"
+    },
+    {
+      "id": "GQA-PH4-WHERE-114093000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114093000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that time, what place or nearby anchor was associated with ladle? Choose from the options: A. bucket, B. here, C. kitchen, D. oven.",
+      "choices": {
+        "A": "bucket",
+        "B": "here",
+        "C": "kitchen",
+        "D": "oven"
+      },
+      "gold": "A",
+      "gold_answer": "bucket",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:09:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 114093000: (ladle, in, bucket)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114093000",
+      "evidence_chunk_label": "DAY1 14:09:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114093000_0",
+          "triple": [
+            "ladle",
+            "in",
+            "bucket"
+          ]
+        }
+      ],
+      "original_question": "Where was ladle at approximately DAY1 14:09:30?",
+      "question_kr": "그때 국자 근처나 자리로 기억나는 곳이 어디였지? 보기 중에서 골라줘.",
+      "question_en": "At that time, what place or nearby anchor was associated with ladle? Choose from the options: A. bucket, B. here, C. kitchen, D. oven.",
+      "template_id": "B",
+      "template_description": "What-was-near"
+    },
+    {
+      "id": "GQA-PH4-DIST-114093000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114093000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. ladle and bucket, B. other spoon and bucket, C. tableware and bucket, D. bowl and here.",
+      "choices": {
+        "A": "ladle and bucket",
+        "B": "other spoon and bucket",
+        "C": "tableware and bucket",
+        "D": "bowl and here"
+      },
+      "gold": "A",
+      "gold_answer": "ladle and bucket",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:09:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 114093000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114093000",
+      "evidence_chunk_label": "DAY1 14:09:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114093000_0",
+          "triple": [
+            "ladle",
+            "in",
+            "bucket"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 14:09:30, which subject-object pair was closest?",
+      "question_kr": "앞뒤 깊이까지 보면 어떤 두 대상이 제일 붙어 있었어? 보기 중에서 골라줘.",
+      "question_en": "Considering the grounded 3D depth as well, which two targets were closest? Choose from the options: A. ladle and bucket, B. other spoon and bucket, C. tableware and bucket, D. bowl and here.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-WHERE-114113000-05",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114113000:5",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "In that scene, what was the correct remembered location for Katrina? Choose from the options: A. phone, B. takeout, C. the right, D. forward.",
+      "choices": {
+        "A": "phone",
+        "B": "takeout",
+        "C": "the right",
+        "D": "forward"
+      },
+      "gold": "A",
+      "gold_answer": "phone",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:11:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 114113000: (Katrina, on, phone)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114113000",
+      "evidence_chunk_label": "DAY1 14:11:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114113000_5",
+          "triple": [
+            "Katrina",
+            "on",
+            "phone"
+          ]
+        }
+      ],
+      "original_question": "Where was Katrina at approximately DAY1 14:11:30?",
+      "question_kr": "그 장면에서 카트리나 기준으로 기억해야 할 위치가 어디였어? 보기 중 맞는 걸 골라줘.",
+      "question_en": "In that scene, what was the correct remembered location for Katrina? Choose from the options: A. phone, B. takeout, C. the right, D. forward.",
+      "template_id": "E",
+      "template_description": "Depth-ordering"
+    },
+    {
+      "id": "GQA-PH4-DIST-114113000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114113000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Katrina and phone, B. Katrina and phone, C. Katrina and phone, D. Katrina and phone.",
+      "choices": {
+        "A": "Katrina and phone",
+        "B": "Katrina and phone",
+        "C": "Katrina and phone",
+        "D": "Katrina and phone"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and phone",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:11:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 114113000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114113000",
+      "evidence_chunk_label": "DAY1 14:11:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114113000_5",
+          "triple": [
+            "Katrina",
+            "on",
+            "phone"
+          ]
+        }
+      ],
+      "original_question": "Using grounded relative 3D centers at DAY1 14:11:30, which subject-object pair was closest?",
+      "question_kr": "그 시각에 같은 자리처럼 가장 가까웠던 대상 묶음은 뭐였지? 보기 중 하나만.",
+      "question_en": "At that moment, which pair occupied the closest shared spot? Choose one option: A. Katrina and phone, B. Katrina and phone, C. Katrina and phone, D. Katrina and phone.",
+      "template_id": "F",
+      "template_description": "Group-locator"
+    }
+  ],
+  "source_file": "output/golden_qa_phase4.json",
+  "template_descriptions": {
+    "A": "Where-was-object",
+    "B": "What-was-near",
+    "C": "Did-I-leave-it-there",
+    "D": "Closest-pair",
+    "E": "Depth-ordering",
+    "F": "Group-locator"
+  },
+  "template_counts": {
+    "A": 6,
+    "B": 12,
+    "C": 12,
+    "D": 6,
+    "E": 12,
+    "F": 12
+  }
+}
