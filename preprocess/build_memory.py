@@ -115,6 +115,49 @@ def run_semantic(video_ids, caption_dir, output_dir, model_name, llm_model,
             logger.info(f"[{i+1}/{len(video_ids)}] Skipping semantic consolidation for {video_id} (already exists)")
 
 
+def run_spatial(video_ids, caption_dir, output_dir, model_name, llm_model,
+                embedding_model: Optional[EmbeddingModel] = None):
+    from spatial_memory.extract_spatial_triples import run_spatial_extraction
+    from spatial_memory.consolidate_spatial_memory import run_spatial_consolidation
+
+    safe_model = model_name.replace('/', '_')
+
+    for i, video_id in enumerate(video_ids):
+        caption_file = os.path.join(caption_dir, video_id, "10sec.json")
+        episodic_dir = os.path.join(output_dir, "episodic_memory", video_id)
+        spatial_dir = os.path.join(output_dir, "spatial_memory", video_id)
+
+        openie_file = os.path.join(episodic_dir, f"openie_results_{model_name}.json")
+        if not os.path.exists(openie_file):
+            logger.warning(f"[{i+1}/{len(video_ids)}] Skipping spatial for {video_id}: no openie results")
+            continue
+
+        extraction_file = os.path.join(spatial_dir, f"spatial_extraction_results_{safe_model}.json")
+        consolidation_file = os.path.join(spatial_dir, f"spatial_consolidation_results_{safe_model}.json")
+
+        if not os.path.exists(extraction_file):
+            logger.info(f"[{i+1}/{len(video_ids)}] Spatial extraction: {video_id}")
+            run_spatial_extraction(
+                caption_file, openie_file, spatial_dir,
+                model_name=model_name, llm_model=llm_model,
+            )
+        else:
+            logger.info(f"[{i+1}/{len(video_ids)}] Skipping spatial extraction for {video_id} (already exists)")
+
+        if not os.path.exists(consolidation_file):
+            if not os.path.exists(extraction_file):
+                logger.warning(f"  Cannot consolidate {video_id}: extraction results missing")
+                continue
+            logger.info(f"[{i+1}/{len(video_ids)}] Spatial consolidation: {video_id}")
+            run_spatial_consolidation(
+                extraction_file, spatial_dir,
+                model_name=model_name, llm_model=llm_model,
+                embedding_model=embedding_model,
+            )
+        else:
+            logger.info(f"[{i+1}/{len(video_ids)}] Skipping spatial consolidation for {video_id} (already exists)")
+
+
 def run_visual_worker(video_ids, caption_dir, output_dir, num_frames):
     from visual_memory.extract_visual_features import process_caption_dir
 
@@ -179,7 +222,7 @@ def main():
     parser.add_argument("--caption-dir", type=str, required=True, help="Root caption directory with {videoID}/ subdirs.")
     parser.add_argument("--output-dir", type=str, required=True, help="Root output directory (e.g., output/metadata/videomme).")
     parser.add_argument("--model", type=str, default="gpt-5-mini", help="LLM model name.")
-    parser.add_argument("--step", type=str, default="all", choices=["episodic", "semantic", "visual", "all"], help="Which steps to run.")
+    parser.add_argument("--step", type=str, default="all", choices=["episodic", "semantic", "spatial", "visual", "all"], help="Which steps to run.")
     parser.add_argument("--gpu", type=str, default="0", help="Comma-separated GPU token list for visual extraction.")
     parser.add_argument("--num-frames", "--num_frames", dest="num_frames", type=int, default=16, help="Number of frames to extract from each visual segment.")
     parser.add_argument("--split-id", type=int, default=None, help="Worker split ID for internal visual processing.")
@@ -208,11 +251,11 @@ def main():
     logger.info(f"Found {len(video_ids)} videos to process")
 
     llm_model = None
-    if args.step in ("episodic", "semantic", "all"):
+    if args.step in ("episodic", "semantic", "spatial", "all"):
         llm_model = LLMModel(model_name=args.model)
 
     embedding_model = None
-    if args.step in ("semantic", "all"):
+    if args.step in ("semantic", "spatial", "all"):
         embedding_model = EmbeddingModel(text_model_name="Qwen/Qwen3-Embedding-4B")
         embedding_model.load_model(model_type="text")
 
@@ -221,6 +264,9 @@ def main():
 
     if args.step in ("semantic", "all"):
         run_semantic(video_ids, args.caption_dir, args.output_dir, args.model, llm_model, embedding_model)
+
+    if args.step in ("spatial", "all"):
+        run_spatial(video_ids, args.caption_dir, args.output_dir, args.model, llm_model, embedding_model)
 
     if args.step in ("visual", "all"):
         run_visual(video_ids, args.caption_dir, args.output_dir, args.model, args.gpu, args.num_frames, split_id=args.split_id, num_splits=args.num_splits)

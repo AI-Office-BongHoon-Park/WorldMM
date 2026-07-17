@@ -1,0 +1,298 @@
+{
+  "spatial_120255900_58": {
+    "subject_grounding": {
+      "bbox_center": [
+        -0.0003,
+        0.0368,
+        0.4118
+      ],
+      "bbox_extent": [
+        0.2468,
+        0.1398,
+        0.5098
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.44,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    },
+    "object_grounding": {
+      "bbox_center": [
+        -0.0003,
+        0.0757,
+        0.4745
+      ],
+      "bbox_extent": [
+        0.1422,
+        0.1041,
+        0.502
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.46,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  },
+  "spatial_120255900_62": {
+    "subject_grounding": null,
+    "object_grounding": {
+      "bbox_center": [
+        -0.0002,
+        0.0802,
+        0.502
+      ],
+      "bbox_extent": [
+        0.4517,
+        0.1604,
+        0.5294
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.48,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  },
+  "spatial_120255900_64": {
+    "subject_grounding": null,
+    "object_grounding": {
+      "bbox_center": [
+        -0.0002,
+        0.0802,
+        0.502
+      ],
+      "bbox_extent": [
+        0.4517,
+        0.1604,
+        0.5294
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.48,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  },
+  "spatial_120255900_65": {
+    "subject_grounding": null,
+    "object_grounding": {
+      "bbox_center": [
+        -0.0002,
+        0.0802,
+        0.502
+      ],
+      "bbox_extent": [
+        0.4517,
+        0.1604,
+        0.5294
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.48,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  },
+  "spatial_120255900_75": {
+    "subject_grounding": null,
+    "object_grounding": {
+      "bbox_center": [
+        -0.0002,
+        0.0802,
+        0.502
+      ],
+      "bbox_extent": [
+        0.4517,
+        0.1604,
+        0.5294
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.48,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  },
+  "spatial_120255900_76": {
+    "subject_grounding": {
+      "bbox_center": [
+        -0.0003,
+        0.0368,
+        0.4118
+      ],
+      "bbox_extent": [
+        0.2468,
+        0.1398,
+        0.5098
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.44,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    },
+    "object_grounding": {
+      "bbox_center": [
+        -0.0002,
+        0.0802,
+        0.502
+      ],
+      "bbox_extent": [
+        0.4517,
+        0.1604,
+        0.5294
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.48,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  },
+  "spatial_120255900_97": {
+    "subject_grounding": {
+      "bbox_center": [
+        0.004,
+        0.3956,
+        0.8078
+      ],
+      "bbox_extent": [
+        0.1847,
+        0.0086,
+        0.2118
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.99,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    },
+    "object_grounding": {
+      "bbox_center": [
+        -0.0001,
+        0.0161,
+        0.3255
+      ],
+      "bbox_extent": [
+        0.3123,
+        0.2277,
+        0.6196
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.42,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  },
+  "spatial_120255900_98": {
+    "subject_grounding": {
+      "bbox_center": [
+        0.004,
+        0.3956,
+        0.8078
+      ],
+      "bbox_extent": [
+        0.1847,
+        0.0086,
+        0.2118
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.99,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    },
+    "object_grounding": {
+      "bbox_center": [
+        -0.0002,
+        0.0802,
+        0.502
+      ],
+      "bbox_extent": [
+        0.4517,
+        0.1604,
+        0.5294
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.48,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  },
+  "spatial_120255900_310": {
+    "subject_grounding": {
+      "bbox_center": [
+        0.004,
+        0.3956,
+        0.8078
+      ],
+      "bbox_extent": [
+        0.1847,
+        0.0086,
+        0.2118
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.99,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    },
+    "object_grounding": {
+      "bbox_center": [
+        -0.0002,
+        0.0802,
+        0.502
+      ],
+      "bbox_extent": [
+        0.4517,
+        0.1604,
+        0.5294
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.48,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  },
+  "spatial_120255900_316": {
+    "subject_grounding": {
+      "bbox_center": [
+        0.004,
+        0.3956,
+        0.8078
+      ],
+      "bbox_extent": [
+        0.1847,
+        0.0086,
+        0.2118
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.99,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    },
+    "object_grounding": {
+      "bbox_center": [
+        -0.0002,
+        0.0802,
+        0.502
+      ],
+      "bbox_extent": [
+        0.4517,
+        0.1604,
+        0.5294
+      ],
+      "units": "relative",
+      "source": "depth_anything_v2_small_hf+opencv_saliency_detector+fov70_intrinsics",
+      "confidence": 0.48,
+      "keyframe_ts": 120255900,
+      "instance_disambiguation": "single_match"
+    }
+  }
+}

@@ -44,7 +44,11 @@ def run_semantic_consolidation(semantic_file: str, output_dir: str, model_name: 
     logger.info(f"Total semantic triples before consolidation: {total_triples_before}")
 
     if embedding_model is None:
-        embedding_model = EmbeddingModel(text_model_name="Qwen/Qwen3-Embedding-4B")
+        embed_name = os.environ.get(
+            "WORLDMM_EMBED_MODEL", "Qwen/Qwen3-Embedding-4B"
+        )
+        embed_device = os.environ.get("WORLDMM_EMBED_DEVICE", "auto")
+        embedding_model = EmbeddingModel(text_model_name=embed_name, device=embed_device)
         embedding_model.load_model(model_type="text")
 
     if llm_model is None:

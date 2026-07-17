@@ -1,0 +1,281 @@
+{
+  "schema_version": "aea_spatial_sidecar.v1",
+  "sequence_id": "loc1_script4_seq4_rec1",
+  "chunk_index": 13,
+  "time_range_us": [
+    1432203846,
+    1462203845
+  ],
+  "duration_s": 30.0,
+  "time_window_ms": 100,
+  "metadata": {
+    "location": 1,
+    "script": 4,
+    "sequence": 4,
+    "recording": 1,
+    "concurrent_recordings": [],
+    "dataset_version": "1.0",
+    "dataset_name": "AEA_2024"
+  },
+  "pose_6dof_mean": {
+    "tracking_timestamp_us": 1447203404,
+    "tx": 0.8934479201546034,
+    "ty": -1.04662661973506,
+    "tz": -0.009687754649664695,
+    "qw": -0.2144535703310161,
+    "qx": 0.4109567423097197,
+    "qy": -0.8218232391548708,
+    "qz": -0.3312563745914314,
+    "quality_score": 1.0,
+    "graph_uid": "4d17867a-9627-c654-99c1-3e9597044e46",
+    "units": "meters",
+    "frame": "world"
+  },
+  "pose_6dof_median": {
+    "tracking_timestamp_us": 1447203846,
+    "tx": 0.869346,
+    "ty": -1.014853,
+    "tz": -0.001064,
+    "qw": -0.2165552404604026,
+    "qx": 0.41429684105829323,
+    "qy": -0.8312739372447517,
+    "qz": -0.3007417439862068,
+    "quality_score": 1.0,
+    "graph_uid": "4d17867a-9627-c654-99c1-3e9597044e46",
+    "units": "meters",
+    "frame": "world"
+  },
+  "gaze_samples": [
+    {
+      "tracking_timestamp_us": 1432103858,
+      "yaw_rads_cpf": -0.063804,
+      "pitch_rads_cpf": -0.319696,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.0856389999999999,
+        "yaw_high_rads_cpf": -0.04338,
+        "pitch_low_rads_cpf": -0.34438,
+        "pitch_high_rads_cpf": -0.2874
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1432203846,
+      "nearest_pose_delta_us": -99988,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1438203858,
+      "yaw_rads_cpf": -0.003764,
+      "pitch_rads_cpf": -0.313143,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.018039,
+        "yaw_high_rads_cpf": 0.010076,
+        "pitch_low_rads_cpf": -0.330243,
+        "pitch_high_rads_cpf": -0.289358
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1438203846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1444303858,
+      "yaw_rads_cpf": 0.010176,
+      "pitch_rads_cpf": -0.351281,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.003935,
+        "yaw_high_rads_cpf": 0.023813,
+        "pitch_low_rads_cpf": -0.36814,
+        "pitch_high_rads_cpf": -0.32869
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1444303846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1450403858,
+      "yaw_rads_cpf": -0.18405,
+      "pitch_rads_cpf": -0.310102,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.197532,
+        "yaw_high_rads_cpf": -0.1696089999999999,
+        "pitch_low_rads_cpf": -0.325901,
+        "pitch_high_rads_cpf": -0.287594
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1450403846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1456503858,
+      "yaw_rads_cpf": 0.046832,
+      "pitch_rads_cpf": -0.342835,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.0303589999999999,
+        "yaw_high_rads_cpf": 0.062599,
+        "pitch_low_rads_cpf": -0.362511,
+        "pitch_high_rads_cpf": -0.3153809999999999
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1456503846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    }
+  ],
+  "speech_segments": [
+    {
+      "start_time_ns": 1431651000000,
+      "end_time_ns": 1432531000000,
+      "text": "Alright,",
+      "confidence": 0.8380751013755798,
+      "language": null
+    },
+    {
+      "start_time_ns": 1432531000000,
+      "end_time_ns": 1432691000000,
+      "text": "I",
+      "confidence": 0.9999434947967528,
+      "language": null
+    },
+    {
+      "start_time_ns": 1432691000000,
+      "end_time_ns": 1432851000000,
+      "text": "gotta",
+      "confidence": 0.9766393303871156,
+      "language": null
+    },
+    {
+      "start_time_ns": 1432851000000,
+      "end_time_ns": 1433091000000,
+      "text": "I",
+      "confidence": 0.9615971446037292,
+      "language": null
+    },
+    {
+      "start_time_ns": 1433091000000,
+      "end_time_ns": 1433171000000,
+      "text": "need",
+      "confidence": 0.9999052286148072,
+      "language": null
+    },
+    {
+      "start_time_ns": 1433171000000,
+      "end_time_ns": 1433331000000,
+      "text": "a",
+      "confidence": 0.9997891783714294,
+      "language": null
+    },
+    {
+      "start_time_ns": 1433331000000,
+      "end_time_ns": 1433411000000,
+      "text": "few",
+      "confidence": 0.9999239444732666,
+      "language": null
+    },
+    {
+      "start_time_ns": 1433411000000,
+      "end_time_ns": 1433571000000,
+      "text": "more",
+      "confidence": 0.9998348951339722,
+      "language": null
+    },
+    {
+      "start_time_ns": 1433571000000,
+      "end_time_ns": 1433811000000,
+      "text": "minutes",
+      "confidence": 0.9998908042907716,
+      "language": null
+    },
+    {
+      "start_time_ns": 1433811000000,
+      "end_time_ns": 1434051000000,
+      "text": "to",
+      "confidence": 0.9989523887634276,
+      "language": null
+    },
+    {
+      "start_time_ns": 1434051000000,
+      "end_time_ns": 1434131000000,
+      "text": "get",
+      "confidence": 0.9999490976333618,
+      "language": null
+    },
+    {
+      "start_time_ns": 1434131000000,
+      "end_time_ns": 1434291000000,
+      "text": "these",
+      "confidence": 0.9905829429626464,
+      "language": null
+    },
+    {
+      "start_time_ns": 1434291000000,
+      "end_time_ns": 1434611000000,
+      "text": "eggs",
+      "confidence": 0.999943733215332,
+      "language": null
+    },
+    {
+      "start_time_ns": 1434611000000,
+      "end_time_ns": 1434931000000,
+      "text": "cooked",
+      "confidence": 0.9992496371269226,
+      "language": null
+    },
+    {
+      "start_time_ns": 1434931000000,
+      "end_time_ns": 1435011000000,
+      "text": "up",
+      "confidence": 0.9995703101158142,
+      "language": null
+    },
+    {
+      "start_time_ns": 1435291000000,
+      "end_time_ns": 1436291000000,
+      "text": "but",
+      "confidence": 0.999280035495758,
+      "language": null
+    },
+    {
+      "start_time_ns": 1436291000000,
+      "end_time_ns": 1436691000000,
+      "text": "I'm",
+      "confidence": 0.99901282787323,
+      "language": null
+    },
+    {
+      "start_time_ns": 1436691000000,
+      "end_time_ns": 1436771000000,
+      "text": "almost",
+      "confidence": 0.9999713897705078,
+      "language": null
+    },
+    {
+      "start_time_ns": 1436971000000,
+      "end_time_ns": 1437971000000,
+      "text": "done.",
+      "confidence": 0.590924084186554,
+      "language": null
+    }
+  ],
+  "trajectory_length_m": 4.028513498021559,
+  "dwell_speed_mps": 0.1342837832673853,
+  "pose_sample_count": 30271,
+  "gaze_sample_count_input": 302,
+  "source_files": {
+    "closed_loop_trajectory": "closed_loop_trajectory.csv",
+    "general_eye_gaze": "general_eye_gaze.csv",
+    "speech": "speech.csv",
+    "metadata": "metadata.json"
+  },
+  "coverage_gaps": {
+    "geo_available": 0,
+    "gaze_depth_all_nan": true,
+    "online_calibration_parsed": false,
+    "place_clustering": false
+  }
+}

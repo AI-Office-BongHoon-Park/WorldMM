@@ -1,0 +1,2025 @@
+{
+  "protocol": {
+    "subject": "A1_JAKE",
+    "day": "DAY1",
+    "trials_per_config": 3,
+    "configs": {
+      "three_axis": "episodic+semantic, memory_reasoning_3axis, visual omitted",
+      "four_axis": "episodic+semantic+spatial, memory_reasoning, visual omitted"
+    },
+    "model": "chatgpt-gpt-5.4",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "visual_axis": "omitted deliberately to isolate spatial signal"
+  },
+  "summary": {
+    "questions_completed": 15,
+    "candidate_winners": 9,
+    "candidate_losers": 2
+  },
+  "per_question": [
+    {
+      "id": "SH-A-001",
+      "template": "A",
+      "question": "Where was hard drive at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "dining table",
+        "B": "bedroom",
+        "C": "another box",
+        "D": "hard drive"
+      },
+      "gold": "A",
+      "gold_answer": "dining table",
+      "evidence_triples": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "hard drive",
+            "on",
+            "dining table"
+          ]
+        }
+      ],
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:14:00",
+              "DAY1 11:14:30",
+              "DAY1 11:13:30",
+              "DAY1 11:14:00",
+              "DAY1 11:12:00",
+              "DAY1 11:15:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:14:00 - DAY1 11:14:30]\n\"Yes, your second life is all in here,\" I say as I look back and forth. I point to th...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:14:30",
+              "DAY1 11:15:00",
+              "DAY1 11:12:00",
+              "DAY1 11:15:00",
+              "DAY1 11:14:00",
+              "DAY1 11:14:30"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:14:30 - DAY1 11:15:00]\n\"I guess that tells the hard drive it needs to work. Yeah, and then this cable...\" I ...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:10:31",
+              "DAY1 11:11:00",
+              "DAY1 11:13:30",
+              "DAY1 11:14:00",
+              "DAY1 11:14:00",
+              "DAY1 11:14:30"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:10:31 - DAY1 11:11:00]\nI point out the USBs and touch the hard drive on the dining table. \"These USBs, maybe...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 1,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "1/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-A-002",
+      "template": "A",
+      "question": "Where was box at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "hard drive",
+        "B": "dining table",
+        "C": "another box",
+        "D": "bedroom"
+      },
+      "gold": "C",
+      "gold_answer": "another box",
+      "evidence_triples": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "box",
+            "on",
+            "another box"
+          ]
+        }
+      ],
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:12:30",
+              "DAY1 11:12:59",
+              "DAY1 11:36:00",
+              "DAY1 11:39:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30]\nI hold the box with both hands, grab it back, set it upright, and close it. Shure say...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:12:30",
+              "DAY1 11:12:59",
+              "DAY1 11:21:30",
+              "DAY1 11:22:00",
+              "DAY1 11:21:00",
+              "DAY1 11:24:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:12:30 - DAY1 11:12:59]\nI remove the box insert, gather the plastic bag, lining, and Alice's cardboard box, s...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:14:00",
+              "DAY1 11:14:30",
+              "DAY1 11:13:30",
+              "DAY1 11:14:00",
+              "DAY1 11:13:00",
+              "DAY1 11:13:30"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:14:00 - DAY1 11:14:30]\n\"Yes, your second life is all in here,\" I say as I look back and forth. I point to th...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-B-008",
+      "template": "B",
+      "question": "What object was on/at box at approximately DAY1 11:24:30?",
+      "choices": {
+        "A": "data",
+        "B": "Katrina",
+        "C": "hard drive",
+        "D": "box"
+      },
+      "gold": "D",
+      "gold_answer": "box",
+      "evidence_triples": [
+        {
+          "timestamp": 111243000,
+          "timestamp_label": "DAY1 11:24:30",
+          "triple": [
+            "box",
+            "in",
+            "box"
+          ]
+        }
+      ],
+      "evidence_chunk": 111243000,
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:09:43",
+              "DAY1 11:19:43",
+              "DAY1 11:12:30",
+              "DAY1 11:12:59"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30]\nI hold the box with both hands, grab it back, set it upright, and close it. Shure say...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:39:00",
+              "DAY1 11:42:00",
+              "DAY1 12:00:00",
+              "DAY1 12:10:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30]\nI hold the box with both hands, grab it back, set it upright, and close it. Shure say...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:21:00",
+              "DAY1 11:24:00",
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:21:00",
+              "DAY1 11:21:30"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:21:00 - DAY1 11:24:00]\n**Packing and organizing supplies** I moved along the side, opened a cardboard box, a...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, on, stool)\n(box, on, table)\n(I, located...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, on, table)\n(I, on, stool)\n(I, located...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, on, table)\n(I, on, stool)\n(box, on, s...",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 1,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "1/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-C-002",
+      "template": "C",
+      "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
+      "choices": {
+        "A": "Shure",
+        "B": "Tasha",
+        "C": "Angela",
+        "D": "Lucia"
+      },
+      "gold": "A",
+      "gold_answer": "Shure",
+      "evidence_triples": [
+        {
+          "timestamp": 111193000,
+          "timestamp_label": "DAY1 11:19:30",
+          "triple": [
+            "Shure",
+            "next_to",
+            "I"
+          ]
+        }
+      ],
+      "evidence_chunk": 111193000,
+      "evidence_chunk_label": "DAY1 11:19:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:10:00",
+              "DAY1 11:10:30",
+              "DAY1 12:11:30",
+              "DAY1 12:12:00",
+              "DAY1 12:06:00",
+              "DAY1 12:09:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:10:00 - DAY1 11:10:30]\nI put a mobile phone in front of everyone and hand it to Katrina so each person can m...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:38:30",
+              "DAY1 11:39:00",
+              "DAY1 11:10:00",
+              "DAY1 11:10:30"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30]\nI hold the box with both hands, grab it back, set it upright, and close it. Shure say...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:18:30",
+              "DAY1 11:19:00",
+              "DAY1 11:15:00",
+              "DAY1 11:18:00",
+              "DAY1 11:18:00",
+              "DAY1 11:18:29"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:18:30 - DAY1 11:19:00]\nI watch Tasha and the others fix things, turning my head from side to side to follow ...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I,...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:18:30",
+              "DAY1 11:19:00",
+              "DAY1 11:18:00",
+              "DAY1 11:18:29",
+              "DAY1 11:15:00",
+              "DAY1 11:18:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:18:30 - DAY1 11:19:00]\nI watch Tasha and the others fix things, turning my head from side to side to follow ...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I,...",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 1,
+      "four_axis_correct": 2,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "1/3",
+        "four_axis": "2/3"
+      }
+    },
+    {
+      "id": "SH-B-005",
+      "template": "B",
+      "question": "What object was on/at Changchun at approximately DAY1 11:24:30?",
+      "choices": {
+        "A": "hard drive",
+        "B": "Shure",
+        "C": "data",
+        "D": "box"
+      },
+      "gold": "B",
+      "gold_answer": "Shure",
+      "evidence_triples": [
+        {
+          "timestamp": 111243000,
+          "timestamp_label": "DAY1 11:24:30",
+          "triple": [
+            "Shure",
+            "located_in",
+            "Changchun"
+          ]
+        }
+      ],
+      "evidence_chunk": 111243000,
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:20:00",
+              "DAY1 11:20:30",
+              "DAY1 11:18:00",
+              "DAY1 11:21:00",
+              "DAY1 11:19:31",
+              "DAY1 11:20:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:20:00 - DAY1 11:20:30]\nI glance right, then left, scanning the room as people work on fixing things. Shure s...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:19:31",
+              "DAY1 11:20:00",
+              "DAY1 11:20:00",
+              "DAY1 11:20:30",
+              "DAY1 11:18:00",
+              "DAY1 11:21:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:19:31 - DAY1 11:20:00]\nI answer a question and look left as Shure says, \"My hometown in the Great Northeast....",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:19:31",
+              "DAY1 11:20:00",
+              "DAY1 11:20:00",
+              "DAY1 11:20:30",
+              "DAY1 11:18:00",
+              "DAY1 11:21:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:19:31 - DAY1 11:20:00]\nI answer a question and look left as Shure says, \"My hometown in the Great Northeast....",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, in, box)\n(I, on, stool)\n(I, located_in, dining_table...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (box, in, box)\n(box, on, table)\n(box, on, stool)\n(box, on, another_box)\n(box, on, bed)\n(box, in, corner)\n(Shure, next...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (box, in, box)\n(box, on, table)\n(box, on, stool)\n(box, on, another_box)\n(box, on, bed)\n(box, in, corner)\n(Shure, next...",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 1,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "1/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-A-010",
+      "template": "A",
+      "question": "Where was box at approximately DAY1 11:24:30?",
+      "choices": {
+        "A": "bedroom",
+        "B": "dining table",
+        "C": "another box",
+        "D": "table"
+      },
+      "gold": "D",
+      "gold_answer": "table",
+      "evidence_triples": [
+        {
+          "timestamp": 111243000,
+          "timestamp_label": "DAY1 11:24:30",
+          "triple": [
+            "box",
+            "on",
+            "table"
+          ]
+        }
+      ],
+      "evidence_chunk": 111243000,
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:21:00",
+              "DAY1 11:24:00",
+              "DAY1 11:20:00",
+              "DAY1 11:30:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30]\nI hold the box with both hands, grab it back, set it upright, and close it. Shure say...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:20:00",
+              "DAY1 11:30:00",
+              "DAY1 11:12:30",
+              "DAY1 11:12:59"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30]\nI hold the box with both hands, grab it back, set it upright, and close it. Shure say...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:21:00",
+              "DAY1 11:24:00",
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:21:30",
+              "DAY1 11:22:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:21:00 - DAY1 11:24:00]\n**Packing and organizing supplies** I moved along the side, opened a cardboard box, a...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "visual"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 visual: [No results]",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "visual"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 visual: [No results]",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, in, box)\n(I, on, stool)\n(I, located_in, dining_table...",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 2,
+      "four_axis_correct": 0,
+      "verdict": "candidate_loser",
+      "verdict_across_trials": {
+        "three_axis": "2/3",
+        "four_axis": "0/3"
+      }
+    },
+    {
+      "id": "SH-G-001",
+      "template": "G",
+      "question": "Place inventory at DAY1 11:24:30: which objects shared jilin province?",
+      "choices": {
+        "A": "Shure",
+        "B": "Changchun, Jilin City",
+        "C": "Changchun",
+        "D": "strip"
+      },
+      "gold": "B",
+      "gold_answer": "Changchun, Jilin City",
+      "evidence_triples": [
+        {
+          "timestamp": 111243000,
+          "timestamp_label": "DAY1 11:24:30",
+          "triple": [
+            "Changchun",
+            "located_in",
+            "jilin province"
+          ]
+        },
+        {
+          "timestamp": 111243000,
+          "timestamp_label": "DAY1 11:24:30",
+          "triple": [
+            "Jilin City",
+            "located_in",
+            "jilin province"
+          ]
+        }
+      ],
+      "evidence_chunk": 111243000,
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "semantic"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 semantic: (I, can explain the workstation setup, Shure)\n(Shure, talks with, I)\n(I, often interact with, Shure)\n(Lucia, is a men...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "semantic"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 semantic: (I, can explain the workstation setup, Shure)\n(Shure, talks with, I)\n(I, often interact with, Shure)\n(Lucia, is a men...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "axis_selections": [
+              "semantic"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 semantic: (I, can explain the workstation setup, Shure)\n(Shure, talks with, I)\n(I, often interact with, Shure)\n(Lucia, is a men...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, on, stool...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, in, box)\n(I, located_in, dining_table)\n(I, on, stool...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "visual"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 visual: [No results]",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-F-005",
+      "template": "F",
+      "question": "Co-location chain: was these two with each other at any point on DAY1?",
+      "choices": {
+        "A": "yes",
+        "B": "only before DAY1",
+        "C": "not enough evidence",
+        "D": "no"
+      },
+      "gold": "A",
+      "gold_answer": "yes",
+      "evidence_triples": [
+        {
+          "timestamp": 113193000,
+          "timestamp_label": "DAY1 13:19:30",
+          "triple": [
+            "these two",
+            "next_to",
+            "each other"
+          ]
+        }
+      ],
+      "evidence_chunk": 113193000,
+      "evidence_chunk_label": "DAY1 13:19:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 12:53:31",
+              "DAY1 12:53:59",
+              "DAY1 12:51:31",
+              "DAY1 12:52:00",
+              "DAY1 13:03:00",
+              "DAY1 13:06:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 12:53:31 - DAY1 12:53:59]\nI work on my phone for a few moments while Alice says, \"Managing 120 groups.\" I put m...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 12:53:31",
+              "DAY1 12:53:59",
+              "DAY1 13:03:00",
+              "DAY1 13:06:00",
+              "DAY1 12:00:00",
+              "DAY1 13:00:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 12:53:31 - DAY1 12:53:59]\nI work on my phone for a few moments while Alice says, \"Managing 120 groups.\" I put m...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 13:08:31",
+              "DAY1 13:09:00",
+              "DAY1 13:16:31",
+              "DAY1 13:16:59",
+              "DAY1 12:37:01",
+              "DAY1 12:37:30"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 13:08:31 - DAY1 13:09:00]\nI finish installing the shelf and continue assembling the rack with Shure. \"Brilliant...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(I, next_to, box)\n(I, near, box)\n(Shur...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure...",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 2,
+      "four_axis_correct": 3,
+      "verdict": "spatial_better",
+      "verdict_across_trials": {
+        "three_axis": "2/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-A-003",
+      "template": "A",
+      "question": "Where was data at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "dining table",
+        "B": "another box",
+        "C": "bedroom",
+        "D": "hard drive"
+      },
+      "gold": "D",
+      "gold_answer": "hard drive",
+      "evidence_triples": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "data",
+            "in",
+            "hard drive"
+          ]
+        }
+      ],
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:12:00",
+              "DAY1 11:15:00",
+              "DAY1 11:11:32",
+              "DAY1 11:12:00",
+              "DAY1 11:09:43",
+              "DAY1 11:12:43"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:12:00 - DAY1 11:15:00]\n**I invited the group into my bedroom to view the workstation and introduced the reco...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:12:00",
+              "DAY1 11:15:00",
+              "DAY1 11:11:32",
+              "DAY1 11:12:00",
+              "DAY1 11:09:43",
+              "DAY1 11:12:43"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:12:00 - DAY1 11:15:00]\n**I invited the group into my bedroom to view the workstation and introduced the reco...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:14:00",
+              "DAY1 11:14:30",
+              "DAY1 11:13:30",
+              "DAY1 11:14:00",
+              "DAY1 11:13:00",
+              "DAY1 11:13:30"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:14:00 - DAY1 11:14:30]\n\"Yes, your second life is all in here,\" I say as I look back and forth. I point to th...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 3,
+      "four_axis_correct": 3,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "3/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-B-001",
+      "template": "B",
+      "question": "What object was on/at another box at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "box",
+        "B": "Katrina",
+        "C": "data",
+        "D": "hard drive"
+      },
+      "gold": "A",
+      "gold_answer": "box",
+      "evidence_triples": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "box",
+            "on",
+            "another box"
+          ]
+        }
+      ],
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 12:04:01",
+              "DAY1 12:04:30",
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:21:00",
+              "DAY1 11:24:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 12:04:01 - DAY1 12:04:30]\nShure says, \"OK. Point three.\" I crouch down, pick up the box, and open it. I hold th...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:12:30",
+              "DAY1 11:12:59",
+              "DAY1 11:12:00",
+              "DAY1 11:12:30",
+              "DAY1 11:20:31",
+              "DAY1 11:21:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:12:30 - DAY1 11:12:59]\nI remove the box insert, gather the plastic bag, lining, and Alice's cardboard box, s...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:11:32",
+              "DAY1 11:12:00",
+              "DAY1 11:12:00",
+              "DAY1 11:12:30",
+              "DAY1 11:12:30",
+              "DAY1 11:12:59"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:11:32 - DAY1 11:12:00]\nI keep organizing the data cables, tidying a cable in my hand as I walk forward. I pu...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-B-002",
+      "template": "B",
+      "question": "What object was on/at dining table at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "Katrina",
+        "B": "box",
+        "C": "hard drive",
+        "D": "data"
+      },
+      "gold": "C",
+      "gold_answer": "hard drive",
+      "evidence_triples": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "hard drive",
+            "on",
+            "dining table"
+          ]
+        }
+      ],
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:12:30",
+              "DAY1 11:12:59",
+              "DAY1 11:09:43",
+              "DAY1 11:09:58",
+              "DAY1 11:36:00",
+              "DAY1 11:39:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:12:30 - DAY1 11:12:59]\nI remove the box insert, gather the plastic bag, lining, and Alice's cardboard box, s...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:12:30",
+              "DAY1 11:12:59",
+              "DAY1 11:09:43",
+              "DAY1 11:09:58",
+              "DAY1 11:37:30",
+              "DAY1 11:37:59"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:12:30 - DAY1 11:12:59]\nI remove the box insert, gather the plastic bag, lining, and Alice's cardboard box, s...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:14:00",
+              "DAY1 11:14:30",
+              "DAY1 11:13:30",
+              "DAY1 11:14:00",
+              "DAY1 11:10:31",
+              "DAY1 11:11:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:14:00 - DAY1 11:14:30]\n\"Yes, your second life is all in here,\" I say as I look back and forth. I point to th...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 1,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "1/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-B-003",
+      "template": "B",
+      "question": "What object was on/at hard drive at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "hard drive",
+        "B": "data",
+        "C": "Katrina",
+        "D": "box"
+      },
+      "gold": "B",
+      "gold_answer": "data",
+      "evidence_triples": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "data",
+            "in",
+            "hard drive"
+          ]
+        }
+      ],
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:14:00",
+              "DAY1 11:14:30",
+              "DAY1 11:13:30",
+              "DAY1 11:14:00",
+              "DAY1 11:12:00",
+              "DAY1 11:15:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:14:00 - DAY1 11:14:30]\n\"Yes, your second life is all in here,\" I say as I look back and forth. I point to th...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:14:00",
+              "DAY1 11:14:30",
+              "DAY1 11:12:00",
+              "DAY1 11:15:00",
+              "DAY1 11:13:30",
+              "DAY1 11:14:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:14:00 - DAY1 11:14:30]\n\"Yes, your second life is all in here,\" I say as I look back and forth. I point to th...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:14:00",
+              "DAY1 11:14:30",
+              "DAY1 11:13:30",
+              "DAY1 11:14:00",
+              "DAY1 11:10:31",
+              "DAY1 11:11:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:14:00 - DAY1 11:14:30]\n\"Yes, your second life is all in here,\" I say as I look back and forth. I point to th...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 3,
+      "four_axis_correct": 3,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "3/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-C-003",
+      "template": "C",
+      "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:19:30?",
+      "choices": {
+        "A": "Angela",
+        "B": "Shure",
+        "C": "Tasha",
+        "D": "Lucia"
+      },
+      "gold": "B",
+      "gold_answer": "Shure",
+      "evidence_triples": [
+        {
+          "timestamp": 111193000,
+          "timestamp_label": "DAY1 11:19:30",
+          "triple": [
+            "I",
+            "next_to",
+            "Shure"
+          ]
+        }
+      ],
+      "evidence_chunk": 111193000,
+      "evidence_chunk_label": "DAY1 11:19:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:10:00",
+              "DAY1 11:10:30",
+              "DAY1 11:38:30",
+              "DAY1 11:39:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30]\nI hold the box with both hands, grab it back, set it upright, and close it. Shure say...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:23:00",
+              "DAY1 11:23:30",
+              "DAY1 11:38:30",
+              "DAY1 11:39:00",
+              "DAY1 11:10:00",
+              "DAY1 11:10:30"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:23:00 - DAY1 11:23:30]\nI hold the box with both hands, grab it back, set it upright, and close it. Shure say...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:18:30",
+              "DAY1 11:19:00",
+              "DAY1 11:15:00",
+              "DAY1 11:18:00",
+              "DAY1 11:18:00",
+              "DAY1 11:18:29"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:18:30 - DAY1 11:19:00]\nI watch Tasha and the others fix things, turning my head from side to side to follow ...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I,...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:18:30",
+              "DAY1 11:19:00",
+              "DAY1 11:18:00",
+              "DAY1 11:18:29",
+              "DAY1 11:15:00",
+              "DAY1 11:18:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:18:30 - DAY1 11:19:00]\nI watch Tasha and the others fix things, turning my head from side to side to follow ...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:18:30",
+              "DAY1 11:19:00",
+              "DAY1 11:18:00",
+              "DAY1 11:18:29",
+              "DAY1 11:15:00",
+              "DAY1 11:18:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:18:30 - DAY1 11:19:00]\nI watch Tasha and the others fix things, turning my head from side to side to follow ...",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 2,
+      "four_axis_correct": 1,
+      "verdict": "candidate_loser",
+      "verdict_across_trials": {
+        "three_axis": "2/3",
+        "four_axis": "1/3"
+      }
+    },
+    {
+      "id": "SH-E-001",
+      "template": "E",
+      "question": "Path-pair: which place connects bedroom and my room in Jake's DAY1 trajectory?",
+      "choices": {
+        "A": "dining table",
+        "B": "Shure's original seat",
+        "C": "bedroom",
+        "D": "my room"
+      },
+      "gold": "A",
+      "gold_answer": "dining table",
+      "evidence_triples": [
+        {
+          "timestamp": 111193000,
+          "timestamp_label": "DAY1 11:19:30",
+          "triple": [
+            "Katrina",
+            "near",
+            "windowsill"
+          ]
+        }
+      ],
+      "evidence_chunk": 111193000,
+      "evidence_chunk_label": "DAY1 11:19:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:12:00",
+              "DAY1 11:15:00",
+              "DAY1 11:13:00",
+              "DAY1 11:13:30",
+              "DAY1 12:05:00",
+              "DAY1 12:05:28"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:12:00 - DAY1 11:15:00]\n**I invited the group into my bedroom to view the workstation and introduced the reco...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:13:00",
+              "DAY1 11:13:30",
+              "DAY1 11:12:00",
+              "DAY1 11:15:00",
+              "DAY1 12:07:01",
+              "DAY1 12:07:28"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:13:00 - DAY1 11:13:30]\nI point back toward my bedroom and the screen in my room. \"Actually, you can't see th...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:12:00",
+              "DAY1 11:15:00",
+              "DAY1 11:13:00",
+              "DAY1 11:13:30",
+              "DAY1 11:12:30",
+              "DAY1 11:12:59"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:12:00 - DAY1 11:15:00]\n**I invited the group into my bedroom to view the workstation and introduced the reco...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I,...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I,...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I,...",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 1,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "1/3",
+        "four_axis": "3/3"
+      }
+    },
+    {
+      "id": "SH-F-003",
+      "template": "F",
+      "question": "Co-location chain: was Shure with whiteboard at any point on DAY1?",
+      "choices": {
+        "A": "only before DAY1",
+        "B": "no",
+        "C": "not enough evidence",
+        "D": "yes"
+      },
+      "gold": "D",
+      "gold_answer": "yes",
+      "evidence_triples": [
+        {
+          "timestamp": 111343000,
+          "timestamp_label": "DAY1 11:34:30",
+          "triple": [
+            "Shure",
+            "near",
+            "whiteboard"
+          ]
+        }
+      ],
+      "evidence_chunk": 111343000,
+      "evidence_chunk_label": "DAY1 11:34:30",
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 13:15:00",
+              "DAY1 13:18:00",
+              "DAY1 13:15:00",
+              "DAY1 13:15:30",
+              "DAY1 13:15:30",
+              "DAY1 13:16:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 13:15:00 - DAY1 13:18:00]\n**I help the group install and align the whiteboard.** I turn to the whiteboard, stea...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 13:15:00",
+              "DAY1 13:18:00",
+              "DAY1 13:16:00",
+              "DAY1 13:16:30",
+              "DAY1 13:15:00",
+              "DAY1 13:15:30"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 13:15:00 - DAY1 13:18:00]\n**I help the group install and align the whiteboard.** I turn to the whiteboard, stea...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "episodic"
+            ],
+            "chosen_chunk_ids": [
+              "DAY1 11:30:00",
+              "DAY1 11:33:00",
+              "DAY1 11:31:31",
+              "DAY1 11:32:00",
+              "DAY1 11:27:00",
+              "DAY1 11:30:00"
+            ],
+            "reasoning_summary": "R1 episodic: [DAY1 11:30:00 - DAY1 11:33:00]\n**[The group drafted a plan on the whiteboard and refined the wording of the invitati...",
+            "num_rounds": 1
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, located_in, Changchun)\n(Shure, on, whiteboard)\n(Sh...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, located_in, Changchun)\n(Shure, located_in, board)\n...",
+            "num_rounds": 1
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "axis_selections": [
+              "spatial"
+            ],
+            "chosen_chunk_ids": [],
+            "reasoning_summary": "R1 spatial: (Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, located_in, Changchun)\n(Shure, next_to, Alice)\n(Sh...",
+            "num_rounds": 1
+          }
+        ]
+      },
+      "three_axis_correct": 3,
+      "four_axis_correct": 3,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "3/3",
+        "four_axis": "3/3"
+      }
+    }
+  ]
+}

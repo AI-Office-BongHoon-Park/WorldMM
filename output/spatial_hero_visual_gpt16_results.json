@@ -1,0 +1,2327 @@
+{
+  "protocol": {
+    "subject": "A1_JAKE",
+    "day": "DAY1",
+    "trials_per_config": 3,
+    "cases": 10,
+    "configs": {
+      "three_axis": "episodic+semantic+GPT16 visual, memory_reasoning_3axis, spatial unavailable",
+      "four_axis": "episodic+semantic+GPT16 visual+spatial, memory_reasoning, all four axes available"
+    },
+    "model": "chatgpt-gpt-5.4",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "visual_query_embedder": "MiniLMQueryEmbedder(sentence-transformers/all-MiniLM-L6-v2)",
+    "visual_embeddings_file": "output/metadata/visual_memory/A1_JAKE/visual_embeddings_gpt16_minilm.pkl",
+    "visual_clips_file": "output/metadata/visual_memory/A1_JAKE/visual_clips_gpt16_minilm.json",
+    "visual_axis": "GPT16 descriptions embedded and retrieved as QA text"
+  },
+  "summary": {
+    "questions_completed": 10,
+    "three_axis_correct_total": 6,
+    "four_axis_correct_total": 14,
+    "candidate_winners": 3,
+    "candidate_losers": 0,
+    "visual_hit_cases": 8,
+    "description_text_cases": 8
+  },
+  "per_question": [
+    {
+      "case_num": 1,
+      "id": "SH-A-001",
+      "template": "A",
+      "question": "Where was hard drive at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "dining table",
+        "B": "bedroom",
+        "C": "another box",
+        "D": "hard drive"
+      },
+      "gold": "A",
+      "gold_answer": "dining table",
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "hard drive",
+            "on",
+            "dining table"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 hard drive location scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 hard drive scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 hard drive location scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 hard drive scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 hard drive scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 hard drive scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ]
+      },
+      "three_axis_correct": 3,
+      "four_axis_correct": 3,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "3/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 3,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        },
+        "four_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 3,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        }
+      }
+    },
+    {
+      "case_num": 2,
+      "id": "SH-B-002",
+      "template": "B",
+      "question": "What object was on/at dining table at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "Katrina",
+        "B": "box",
+        "C": "hard drive",
+        "D": "data"
+      },
+      "gold": "C",
+      "gold_answer": "hard drive",
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "hard drive",
+            "on",
+            "dining table"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 dining table",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 dining table",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 dining table",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "dining table DAY1 11:14:30 object on at",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 dining table",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 dining table",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 1,
+      "verdict": "spatial_better",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "1/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 3,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        },
+        "four_axis": {
+          "visual_selections": 2,
+          "visual_hit_count": 2,
+          "image_payload_count": 0,
+          "clip_payload_count": 2,
+          "description_payload_count": 2,
+          "image_description_text_retrieved": true
+        }
+      }
+    },
+    {
+      "case_num": 3,
+      "id": "SH-C-006",
+      "template": "C",
+      "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:39:30?",
+      "choices": {
+        "A": "Katrina",
+        "B": "Angela",
+        "C": "Shure",
+        "D": "Jake"
+      },
+      "gold": "C",
+      "gold_answer": "Shure",
+      "evidence_chunk": 111393000,
+      "evidence_chunk_label": "DAY1 11:39:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111393000,
+          "timestamp_label": "DAY1 11:39:30",
+          "triple": [
+            "Shure",
+            "near",
+            "I"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:39:30 Jake interaction same place scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:14:30 - DAY1 11:15:00): The clip takes place first in a cramped bedroom or hotel-style room and then opens into a brighter shared living/work room. In the bedroom, the most prominent objects are an unmade bed with white bedding along the left and back wall under a curtained window, a cluttered desk and chair in the lower foregr...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "Jake interaction approximately DAY1 11:39:30 who was in the same place",
+                "retrieved_content_summary": "[DAY1 11:38:30 - DAY1 11:39:00] I sit back and watch everyone, glancing left and right. Katrina says, \"You can make and raise your own. And then distribute them to everyone, it's pretty nice. It also fits well with the 7-day cycle.\" \"Hmm,\" I say, nodding. Alice asks, \"Hmm, why don't we wake him up first?\" Katrina says, \"Hmm, sure. Today I definitely want...",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:39:30 interaction scene with Jake same place who present",
+                "retrieved_content_summary": "Visual description (DAY1 11:25:30 - DAY1 11:26:00): This appears to be an indoor meeting or filming setup in a small dining or studio room, viewed from a seated first-person position at the near end of a long rectangular table. The most prominent objects are the pink-checkered table dominating the center foreground, a clapperboard lying near the camera at...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "DAY1 11:39:30 Jake interaction who was present",
+                "retrieved_content_summary": "[DAY1 11:38:30 - DAY1 11:39:00] I sit back and watch everyone, glancing left and right. Katrina says, \"You can make and raise your own. And then distribute them to everyone, it's pretty nice. It also fits well with the 7-day cycle.\" \"Hmm,\" I say, nodding. Alice asks, \"Hmm, why don't we wake him up first?\" Katrina says, \"Hmm, sure. Today I definitely want...",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "DAY1 11:39:30 interaction involving Jake who was present same place",
+                "retrieved_content_summary": "[DAY1 11:38:30 - DAY1 11:39:00] I sit back and watch everyone, glancing left and right. Katrina says, \"You can make and raise your own. And then distribute them to everyone, it's pretty nice. It also fits well with the 7-day cycle.\" \"Hmm,\" I say, nodding. Alice asks, \"Hmm, why don't we wake him up first?\" Katrina says, \"Hmm, sure. Today I definitely want...",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:39:30 interaction scene with Jake",
+                "retrieved_content_summary": "Visual description (DAY1 11:25:30 - DAY1 11:26:00): This appears to be an indoor meeting or filming setup in a small dining or studio room, viewed from a seated first-person position at the near end of a long rectangular table. The most prominent objects are the pink-checkered table dominating the center foreground, a clapperboard lying near the camera at...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 0,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "0/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 2,
+          "visual_hit_count": 2,
+          "image_payload_count": 0,
+          "clip_payload_count": 6,
+          "description_payload_count": 2,
+          "image_description_text_retrieved": true
+        },
+        "four_axis": {
+          "visual_selections": 1,
+          "visual_hit_count": 1,
+          "image_payload_count": 0,
+          "clip_payload_count": 3,
+          "description_payload_count": 1,
+          "image_description_text_retrieved": true
+        }
+      }
+    },
+    {
+      "case_num": 4,
+      "id": "SH-E-004",
+      "template": "E",
+      "question": "Path-pair: which place connects Shure's original seat and bedroom in Jake's DAY1 trajectory?",
+      "choices": {
+        "A": "dining table",
+        "B": "restaurant",
+        "C": "my room",
+        "D": "bedroom"
+      },
+      "gold": "B",
+      "gold_answer": "restaurant",
+      "evidence_chunk": 111393000,
+      "evidence_chunk_label": "DAY1 11:39:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111393000,
+          "timestamp_label": "DAY1 11:39:30",
+          "triple": [
+            "I",
+            "located_in",
+            "restaurant"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "Jake DAY1 trajectory Shure original seat bedroom connecting place",
+                "retrieved_content_summary": "[DAY1 11:12:00 - DAY1 11:15:00] **I invited the group into my bedroom to view the workstation and introduced the recording setup.** I moved the screen aside, asked everyone to come in, pushed the stool forward, and pointed out my desk and the computers while clarifying they were welcome in the room. I explained that there were multiple computers in the ro...",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "Jake DAY1 trajectory Shure original seat bedroom place connects path pair",
+                "retrieved_content_summary": "[DAY1 11:33:01 - DAY1 11:33:30] I hold the stool with both hands and watch Shure write, nodding at him. Shure says, \"To start. The activity content part?\" \"Yes,\" I say. I stay seated, lean forward, and keep watching as we write. Shure says, \"I think this is a tough one, we're going to chew on this for a while. So should we start with this directly?\" \"Mm-h...",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "Jake DAY1 trajectory Shure original seat bedroom connecting place",
+                "retrieved_content_summary": "[DAY1 11:13:00 - DAY1 11:13:30] I point back toward my bedroom and the screen in my room. \"Actually, you can't see this place. Or you guys can come over. Walk around,\" I say, waving everyone over. I watch Shure come over, then turn and walk toward the bedroom, moving the screen back. \"Just check out my workstation,\" I say, pointing into the room. I walk i...",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Shure original seat bedroom Jake DAY1 trajectory connecting place",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, located_in, restaurant) (Shure, located_in, Changchun) (I, behind, Alice) (I, located_in, dining_table)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, located_in, restaurant)\n(Shure, located_in, Changchun)\n(I, behind, Alice)\n(I, located_in, dining_table)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Shure original seat bedroom Jake DAY1 trajectory connecting place",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, located_in, restaurant) (Shure, located_in, Changchun) (I, behind, Alice) (I, located_in, dining_table)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, located_in, restaurant)\n(Shure, located_in, Changchun)\n(I, behind, Alice)\n(I, located_in, dining_table)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Shure original seat and bedroom path DAY1 Jake trajectory",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (Shure, located_in, Changchun) (Shure, located_in, board) (Shure, on, board) (Shure, on, whiteboard)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(Shure, located_in, Changchun)\n(Shure, located_in, board)\n(Shure, on, board)\n(Shure, on, whiteboard)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 0,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "0/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "image_payload_count": 0,
+          "clip_payload_count": 0,
+          "description_payload_count": 0,
+          "image_description_text_retrieved": false
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "image_payload_count": 0,
+          "clip_payload_count": 0,
+          "description_payload_count": 0,
+          "image_description_text_retrieved": false
+        }
+      }
+    },
+    {
+      "case_num": 5,
+      "id": "SH-F-005",
+      "template": "F",
+      "question": "Co-location chain: was these two with each other at any point on DAY1?",
+      "choices": {
+        "A": "yes",
+        "B": "only before DAY1",
+        "C": "not enough evidence",
+        "D": "no"
+      },
+      "gold": "A",
+      "gold_answer": "yes",
+      "evidence_chunk": 113193000,
+      "evidence_chunk_label": "DAY1 13:19:30",
+      "spatial_chain": [
+        {
+          "timestamp": 113193000,
+          "timestamp_label": "DAY1 13:19:30",
+          "triple": [
+            "these two",
+            "next_to",
+            "each other"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "DAY1 these two together co-location with each other",
+                "retrieved_content_summary": "[DAY1 13:16:31 - DAY1 13:16:59] I pause, turn right, and listen as Tasha says, \"Seems okay,\" and Lucia says, \"Okay, okay... Yeah, seems okay.\" I walk forward, turn left a few times, and stop to look right at the whiteboard while Lucia says, \"But if so... it seems like it won't fit here. But these two are definitely next to each other.\" Tasha says, \"But th...",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "DAY1 co-location chain these two together with each other",
+                "retrieved_content_summary": "[DAY1 13:08:31 - DAY1 13:09:00] I finish installing the shelf and continue assembling the rack with Shure. \"Brilliant, good, good,\" I say. Shure says, \"Good, good, good.\" I stand up, pat the shelf, and walk over to a box. Alice asks, \"Do these two look like they're together?\" Shure says, \"Human wisdom.\" I crouch down, move the box aside, rummage through i...",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "DAY1 co-location chain these two together with each other",
+                "retrieved_content_summary": "[DAY1 13:08:31 - DAY1 13:09:00] I finish installing the shelf and continue assembling the rack with Shure. \"Brilliant, good, good,\" I say. Shure says, \"Good, good, good.\" I stand up, pat the shelf, and walk over to a box. Alice asks, \"Do these two look like they're together?\" Shure says, \"Human wisdom.\" I crouch down, move the box aside, rummage through i...",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "DAY1 co-location these two together",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, on, table) (I, located_in, table) (I, near, table)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, on, table)\n(I, located_in, table)\n(I, near, table)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "DAY1 co-location chain two people with each other",
+                "retrieved_content_summary": "(I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "DAY1 co-location these two with each other",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, next_to, box) (I, near, box) (I, on, table)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, next_to, box)\n(I, near, box)\n(I, on, table)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 3,
+      "four_axis_correct": 3,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "3/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "image_payload_count": 0,
+          "clip_payload_count": 0,
+          "description_payload_count": 0,
+          "image_description_text_retrieved": false
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "image_payload_count": 0,
+          "clip_payload_count": 0,
+          "description_payload_count": 0,
+          "image_description_text_retrieved": false
+        }
+      }
+    },
+    {
+      "case_num": 6,
+      "id": "SH-A-002",
+      "template": "A",
+      "question": "Where was box at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "hard drive",
+        "B": "dining table",
+        "C": "another box",
+        "D": "bedroom"
+      },
+      "gold": "C",
+      "gold_answer": "another box",
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "box",
+            "on",
+            "another box"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 box location scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 box location scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 box location scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 box scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 box scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 box scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 0,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "0/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 3,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        },
+        "four_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 3,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        }
+      }
+    },
+    {
+      "case_num": 7,
+      "id": "SH-B-001",
+      "template": "B",
+      "question": "What object was on/at another box at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "box",
+        "B": "Katrina",
+        "C": "data",
+        "D": "hard drive"
+      },
+      "gold": "A",
+      "gold_answer": "box",
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "box",
+            "on",
+            "another box"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 another box object on box",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 box on another box object",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 box another box object on at",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 box on another box scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:09:42 - DAY1 11:10:12): This clip takes place in a small indoor dining or kitchen area being used like a casual workshop or meeting space, with a rectangular table in the center, a bright kitchen counter and sink along the right, and a whiteboard on the back wall. The most prominent objects are the checkered table occupying the...",
+                "image_payload_count": 0,
+                "clip_payload_count": 1,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 1,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "DAY1 11:14:30 box on/at another box",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "DAY1 11:14:30 box on/at another box",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 2,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "2/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 3,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        },
+        "four_axis": {
+          "visual_selections": 1,
+          "visual_hit_count": 1,
+          "image_payload_count": 0,
+          "clip_payload_count": 1,
+          "description_payload_count": 1,
+          "image_description_text_retrieved": true
+        }
+      }
+    },
+    {
+      "case_num": 8,
+      "id": "SH-B-005",
+      "template": "B",
+      "question": "What object was on/at Changchun at approximately DAY1 11:24:30?",
+      "choices": {
+        "A": "hard drive",
+        "B": "Shure",
+        "C": "data",
+        "D": "box"
+      },
+      "gold": "B",
+      "gold_answer": "Shure",
+      "evidence_chunk": 111243000,
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111243000,
+          "timestamp_label": "DAY1 11:24:30",
+          "triple": [
+            "Shure",
+            "located_in",
+            "Changchun"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:24:30 Changchun object on at Changchun",
+                "retrieved_content_summary": "Visual description (DAY1 11:15:00 - DAY1 11:15:30): This appears to be a small apartment dining/work room used as an informal setup or meeting space, filmed from a head-mounted or chest-mounted viewpoint. The most prominent objects are a rectangular table with a pink checkered tablecloth in the center foreground-to-middle, covered with small black cases,...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:24:30 Changchun scene object on at Changchun",
+                "retrieved_content_summary": "Visual description (DAY1 11:15:00 - DAY1 11:15:30): This appears to be a small apartment dining/work room used as an informal setup or meeting space, filmed from a head-mounted or chest-mounted viewpoint. The most prominent objects are a rectangular table with a pink checkered tablecloth in the center foreground-to-middle, covered with small black cases,...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:24:30 Changchun object on at Changchun",
+                "retrieved_content_summary": "Visual description (DAY1 11:15:00 - DAY1 11:15:30): This appears to be a small apartment dining/work room used as an informal setup or meeting space, filmed from a head-mounted or chest-mounted viewpoint. The most prominent objects are a rectangular table with a pink checkered tablecloth in the center foreground-to-middle, covered with small black cases,...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Changchun DAY1 11:24:30 object on at location",
+                "retrieved_content_summary": "(box, in, box) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (I, on, stool) (I, located_in, dining_table) (I, located_in, bedroom) (I, located_in, my_room)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, on, stool)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I, located_in, my_room)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Changchun DAY1 11:24:30 object on at location",
+                "retrieved_content_summary": "(box, in, box) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (I, on, stool) (I, located_in, dining_table) (I, located_in, bedroom) (I, located_in, my_room)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, on, stool)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I, located_in, my_room)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Changchun DAY1 11:24:30 object at/on location",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (box, in, box) (I, on, stool) (I, located_in, dining_table) (I, located_in, bedroom) (I, located_in, my_room)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, in, box)\n(I, on, stool)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I, located_in, my_room)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 9,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "image_payload_count": 0,
+          "clip_payload_count": 0,
+          "description_payload_count": 0,
+          "image_description_text_retrieved": false
+        }
+      }
+    },
+    {
+      "case_num": 9,
+      "id": "SH-B-008",
+      "template": "B",
+      "question": "What object was on/at box at approximately DAY1 11:24:30?",
+      "choices": {
+        "A": "data",
+        "B": "Katrina",
+        "C": "hard drive",
+        "D": "box"
+      },
+      "gold": "D",
+      "gold_answer": "box",
+      "evidence_chunk": 111243000,
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111243000,
+          "timestamp_label": "DAY1 11:24:30",
+          "triple": [
+            "box",
+            "in",
+            "box"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:24:30 box object on box",
+                "retrieved_content_summary": "Visual description (DAY1 11:18:00 - DAY1 11:18:30): This appears to be an indoor workshop or studio room where several people sit around a rectangular table with a pink checkered tablecloth, apparently handling small electronics or accessories. The most prominent objects are the table in the center foreground, multiple open cardboard boxes and black recta...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:24:30 box object on box",
+                "retrieved_content_summary": "Visual description (DAY1 11:18:00 - DAY1 11:18:30): This appears to be an indoor workshop or studio room where several people sit around a rectangular table with a pink checkered tablecloth, apparently handling small electronics or accessories. The most prominent objects are the table in the center foreground, multiple open cardboard boxes and black recta...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:24:30 box object on box",
+                "retrieved_content_summary": "Visual description (DAY1 11:18:00 - DAY1 11:18:30): This appears to be an indoor workshop or studio room where several people sit around a rectangular table with a pink checkered tablecloth, apparently handling small electronics or accessories. The most prominent objects are the table in the center foreground, multiple open cardboard boxes and black recta...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "box location/object on at DAY1 11:24:30",
+                "retrieved_content_summary": "(box, in, box) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (box, on, table) (I, on, stool) (I, located_in, dining_table) (box, on, stool)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, on, table)\n(I, on, stool)\n(I, located_in, dining_table)\n(box, on, stool)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "box DAY 1 11:24:30 object on at box",
+                "retrieved_content_summary": "(box, in, box) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (I, located_in, dining_table) (I, on, stool) (box, on, table) (box, on, stool)",
+                "image_payload_count": 0,
+                "clip_payload_count": 0,
+                "image_description_text_retrieved": false
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "image_payload_count": 0,
+            "clip_payload_count": 0,
+            "description_payload_count": 0,
+            "image_description_text_retrieved": false,
+            "spatial_chain_quoted": [
+              "(box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, on, stool)\n(box, on, table)\n(box, on, stool)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:24:30 box scene",
+                "retrieved_content_summary": "Visual description (DAY1 11:14:30 - DAY1 11:15:00): The clip takes place first in a cramped bedroom or hotel-style room and then opens into a brighter shared living/work room. In the bedroom, the most prominent objects are an unmade bed with white bedding along the left and back wall under a curtained window, a cluttered desk and chair in the lower foregr...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 2,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "2/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 9,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        },
+        "four_axis": {
+          "visual_selections": 1,
+          "visual_hit_count": 1,
+          "image_payload_count": 0,
+          "clip_payload_count": 3,
+          "description_payload_count": 1,
+          "image_description_text_retrieved": true
+        }
+      }
+    },
+    {
+      "case_num": 10,
+      "id": "SH-C-005",
+      "template": "C",
+      "question": "Who was in the same place as Shure when the interaction happened at approximately DAY1 11:34:30?",
+      "choices": {
+        "A": "Angela",
+        "B": "Katrina",
+        "C": "Alice",
+        "D": "Jake"
+      },
+      "gold": "C",
+      "gold_answer": "Alice",
+      "evidence_chunk": 111343000,
+      "evidence_chunk_label": "DAY1 11:34:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111343000,
+          "timestamp_label": "DAY1 11:34:30",
+          "triple": [
+            "Shure",
+            "next_to",
+            "Alice"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:34:30 Shure interaction scene same place people present",
+                "retrieved_content_summary": "Visual description (DAY1 11:25:30 - DAY1 11:26:00): This appears to be an indoor meeting or filming setup in a small dining or studio room, viewed from a seated first-person position at the near end of a long rectangular table. The most prominent objects are the pink-checkered table dominating the center foreground, a clapperboard lying near the camera at...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:34:30 Shure interaction scene who is with Shure",
+                "retrieved_content_summary": "Visual description (DAY1 11:25:30 - DAY1 11:26:00): This appears to be an indoor meeting or filming setup in a small dining or studio room, viewed from a seated first-person position at the near end of a long rectangular table. The most prominent objects are the pink-checkered table dominating the center foreground, a clapperboard lying near the camera at...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:34:30 Shure interaction same place who present",
+                "retrieved_content_summary": "Visual description (DAY1 11:25:30 - DAY1 11:26:00): This appears to be an indoor meeting or filming setup in a small dining or studio room, viewed from a seated first-person position at the near end of a long rectangular table. The most prominent objects are the pink-checkered table dominating the center foreground, a clapperboard lying near the camera at...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:34:30 scene with Shure interaction same place",
+                "retrieved_content_summary": "Visual description (DAY1 11:24:30 - DAY1 11:25:00): The clip appears to take place inside a small multilevel home being used as a casual filming or studio setup, beginning in an upstairs room and ending in a brighter downstairs dining/work area. The most prominent objects are a large white projector screen mounted on the wall ahead in the dark-tiled room,...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:34:30 scene with Shure interaction",
+                "retrieved_content_summary": "Visual description (DAY1 11:25:30 - DAY1 11:26:00): This appears to be an indoor meeting or filming setup in a small dining or studio room, viewed from a seated first-person position at the near end of a long rectangular table. The most prominent objects are the pink-checkered table dominating the center foreground, a clapperboard lying near the camera at...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:34:30 scene with Shure interaction",
+                "retrieved_content_summary": "Visual description (DAY1 11:24:30 - DAY1 11:25:00): The clip appears to take place inside a small multilevel home being used as a casual filming or studio setup, beginning in an upstairs room and ending in a brighter downstairs dining/work area. The most prominent objects are a large white projector screen mounted on the wall ahead in the dark-tiled room,...",
+                "image_payload_count": 0,
+                "clip_payload_count": 3,
+                "image_description_text_retrieved": true
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "image_payload_count": 0,
+            "clip_payload_count": 3,
+            "description_payload_count": 1,
+            "image_description_text_retrieved": true,
+            "spatial_chain_quoted": []
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 0,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "0/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 9,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        },
+        "four_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "image_payload_count": 0,
+          "clip_payload_count": 9,
+          "description_payload_count": 3,
+          "image_description_text_retrieved": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorldMM · Q1 screwdriver — Spatial UP case</title>
+<style>
+  :root {
+    --bg:#0b1020; --panel:#11192f; --line:#1c2746; --ink:#e9ecf5; --muted:#8aa0c8;
+    --good:#22c55e; --bad:#ef4444; --accent:#60a5fa; --hl:#fbbf24;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:var(--sans); }
+  .slide {
+    width:1280px; height:720px; margin:24px auto; padding:36px 44px;
+    background:var(--panel); border-radius:16px; position:relative;
+    box-shadow:0 8px 40px rgba(0,0,0,.45); display:grid;
+    grid-template-rows:auto 1fr auto;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  header { display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:8px; }
+  header .tag { color:var(--accent); font-family:var(--mono); font-size:14px; letter-spacing:1px; text-transform:uppercase; }
+  header h1 { margin:0; font-size:28px; font-weight:600; }
+  header .meta { color:var(--muted); font-size:13px; font-family:var(--mono); }
+  .body { display:grid; grid-template-columns: 1.1fr 0.9fr; gap:20px; min-height:0; }
+  .col { display:flex; flex-direction:column; gap:14px; min-height:0; }
+  .card { background:#0e1730; border:1px solid var(--line); border-radius:12px; padding:14px 16px; }
+  .card h2 { margin:0 0 8px 0; font-size:14px; font-weight:600; color:var(--muted); letter-spacing:.5px; text-transform:uppercase; }
+  .question { font-size:22px; line-height:1.35; font-weight:600; }
+  .choices { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
+  .choice {
+    padding:10px 12px; border-radius:10px; background:#0a1429; border:1px solid var(--line);
+    display:flex; gap:10px; align-items:center; font-size:15px;
+  }
+  .choice .k { font-family:var(--mono); font-weight:700; color:var(--muted); width:18px; }
+  .choice.gold { border-color:var(--good); background:linear-gradient(180deg,rgba(34,197,94,.15),rgba(34,197,94,.05)); }
+  .choice.gold .k { color:var(--good); }
+  .pred-row { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  .pred {
+    border-radius:12px; padding:12px 14px; border:1px solid var(--line);
+    display:flex; flex-direction:column; gap:4px;
+  }
+  .pred.bad  { border-color:var(--bad);  background:linear-gradient(180deg,rgba(239,68,68,.12),rgba(239,68,68,.04)); }
+  .pred.good { border-color:var(--good); background:linear-gradient(180deg,rgba(34,197,94,.16),rgba(34,197,94,.06)); }
+  .pred .label { font-size:12px; color:var(--muted); letter-spacing:.5px; text-transform:uppercase; }
+  .pred .answer { font-size:22px; font-weight:700; font-family:var(--mono); }
+  .pred .answer .x { color:var(--bad);  margin-left:6px; }
+  .pred .answer .o { color:var(--good); margin-left:6px; }
+  .caption { font-size:13px; line-height:1.45; color:#cfd8ee; max-height:120px; overflow:hidden; }
+  .caption em { color:var(--hl); font-style:normal; font-weight:600; }
+  .triples { font-family:var(--mono); font-size:12.5px; line-height:1.55; }
+  .triples .row { color:#a9b7da; }
+  .triples .row.key { color:var(--good); font-weight:700; }
+  .triples .ts { color:var(--accent); }
+  .video-link { display:flex; gap:10px; align-items:center; padding:10px 12px; border:1px dashed var(--accent); border-radius:10px; }
+  .video-link a { color:var(--accent); font-family:var(--mono); font-size:12.5px; text-decoration:none; word-break:break-all; }
+  .why { font-size:14px; line-height:1.5; }
+  .why b { color:var(--hl); }
+  footer { display:flex; justify-content:space-between; color:var(--muted); font-size:12px; font-family:var(--mono); border-top:1px solid var(--line); padding-top:8px; }
+</style>
+</head>
+<body>
+
+<div class="slide" id="q1">
+
+  <header>
+    <div>
+      <div class="tag">spatial memory · signal case 1 / 6</div>
+      <h1>Q1 — Who used the screwdriver first?</h1>
+    </div>
+    <div class="meta">EgoLifeQA / A1_JAKE / DAY1 11:15:24 (target)<br>EntityLog · n = 60 ablation, 3-axis vs 4-axis</div>
+  </header>
+
+  <div class="body">
+
+    <div class="col">
+      <div class="card">
+        <h2>question</h2>
+        <div class="question">Who used the screwdriver first?</div>
+        <div class="choices">
+          <div class="choice"><span class="k">A</span><span>Tasha</span></div>
+          <div class="choice gold"><span class="k">B</span><span>Alice <span style="color:var(--good);font-size:11px;margin-left:8px;">GOLD</span></span></div>
+          <div class="choice"><span class="k">C</span><span>Shure</span></div>
+          <div class="choice"><span class="k">D</span><span>Lucia</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>predictions</h2>
+        <div class="pred-row">
+          <div class="pred bad">
+            <div class="label">3-axis (E + S + V no-op)</div>
+            <div class="answer">C — Shure<span class="x">✗</span></div>
+          </div>
+          <div class="pred good">
+            <div class="label">4-axis (+ Spatial)</div>
+            <div class="answer">B — Alice<span class="o">✓</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>video evidence · DAY1 11:15:00 – 11:15:30</h2>
+        <div class="caption">
+          "I glance at Shure and keep walking while holding the small tripod. ‘Oh, no. We're not that rich yet…' Katrina walks toward the windowsill. I reach back for the small tripod, bring it in front of me, walk to the desk, and stop. ‘Right,' I say. Shure says, ‘Thank you.' …"
+          <br><span style="color:var(--muted);">(Episodic does NOT directly name who picked up the screwdriver — hence 3-axis miss.)</span>
+        </div>
+        <div class="video-link" style="margin-top:8px;">
+          <span>▶</span>
+          <a href="https://huggingface.co/datasets/lmms-lab/EgoLife/resolve/main/A1_JAKE/DAY1/DAY1_A1_JAKE_11150000.mp4">huggingface.co/datasets/lmms-lab/EgoLife/…/DAY1_A1_JAKE_11150000.mp4</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <h2>spatial triples surfaced @ chunk DAY1 11:19:30</h2>
+        <div class="triples">
+          <div class="row">(Katrina, near, windowsill)</div>
+          <div class="row key">(I, behind, <em style="color:var(--hl);font-style:normal;">Alice</em>)&nbsp;&nbsp;<span style="color:var(--good)">← decisive</span></div>
+          <div class="row">(right hand, on, table)</div>
+          <div class="row">(Shure, next_to, I)</div>
+          <div class="row">(I, next_to, Shure)</div>
+          <div class="row">(I, behind, Shure)</div>
+        </div>
+        <div style="margin-top:10px;color:var(--muted);font-size:12px;">
+          + nearby chunk DAY1 11:14:30: (hard drive, on, dining_table); (I, located_in, bedroom); …
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>why spatial won</h2>
+        <div class="why">
+          Episodic captures speech and small motions but never tags the *first* user of the screwdriver. The spatial layer made it concrete: the camera wearer was <b>behind Alice</b> — placing Alice in the natural position to be doing the close-up screw work. Combined with the episodic keyword "tighten screws", the agent committed to <b>Alice</b>.
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>pattern</h2>
+        <div class="why" style="color:#cfd8ee;">
+          When the episodic layer is dense on dialogue but silent on *who-touched-what*, the spatial layer's relative-position triples (<span class="triples"><em style="color:var(--hl);font-style:normal;">behind</em>, <em style="color:var(--hl);font-style:normal;">next_to</em>, <em style="color:var(--hl);font-style:normal;">in_front_of</em></span>) act as a tie-breaker among candidates.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div>worldmm · feat/spatial-memory · n=60 ablation, 3-axis 37/60 vs 4-axis 36/60 (Δ −1.7 %p)</div>
+    <div>signal case · UP flip · 1 / 6</div>
+  </footer>
+</div>
+
+</body>
+</html>

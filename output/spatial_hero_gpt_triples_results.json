@@ -1,0 +1,2609 @@
+{
+  "protocol": {
+    "subject": "A1_JAKE",
+    "day": "DAY1",
+    "trials_per_config": 3,
+    "cases": 10,
+    "configs": {
+      "three_axis": "episodic+semantic+GPT structured triples visual, memory_reasoning_3axis, spatial unavailable",
+      "four_axis": "episodic+semantic+GPT structured triples visual+spatial, memory_reasoning, all four axes available"
+    },
+    "model": "chatgpt-gpt-5.4",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "visual_query_embedder": "VisualTripleQueryEmbedder(sentence-transformers/all-MiniLM-L6-v2)",
+    "visual_index_file": "output/metadata/visual_memory/A1_JAKE/visual_triples_gpt_index.pkl",
+    "visual_axis": "GPT structured triples retrieved as text; thumbnails are not passed to reasoner",
+    "frame_anchor_provenance": "mixed: pre-existing triples use fallback_middle; newly built triples use gpt_anchored"
+  },
+  "summary": {
+    "questions_completed": 10,
+    "three_axis_correct_total": 10,
+    "four_axis_correct_total": 26,
+    "candidate_winners": 5,
+    "candidate_losers": 0,
+    "visual_hit_cases": 9,
+    "visual_triple_payload_total": 87,
+    "f_anchored_hits_total": 0
+  },
+  "per_question": [
+    {
+      "case_num": 1,
+      "id": "SH-A-001",
+      "template": "A",
+      "question": "Where was hard drive at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "dining table",
+        "B": "bedroom",
+        "C": "another box",
+        "D": "hard drive"
+      },
+      "gold": "A",
+      "gold_answer": "dining table",
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "hard drive",
+            "on",
+            "dining table"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 hard drive location scene",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (tripod, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (chair, right_of, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 hard drive location",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (black_case, on, table) [visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (chair, right_of, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(black_case, on, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(black_case, on, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 hard drive location scene",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (tripod, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (chair, right_of, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 hard drive scene",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (black_case, on, table) [visual_1_11094208 frame=7 t=40195.205s] (tripod, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(black_case, on, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(black_case, on, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 hard drive scene",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (black_case, on, table) [visual_1_11094208 frame=7 t=40195.205s] (tripod, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(black_case, on, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(black_case, on, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 hard drive scene",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (black_case, on, table) [visual_1_11094208 frame=7 t=40195.205s] (tripod, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(black_case, on, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(black_case, on, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          }
+        ]
+      },
+      "three_axis_correct": 2,
+      "four_axis_correct": 3,
+      "verdict": "spatial_better",
+      "verdict_across_trials": {
+        "three_axis": "2/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "visual_triple_payload_count": 9,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+          "frame_timestamp_s_set": [
+            40195.205
+          ]
+        },
+        "four_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "visual_triple_payload_count": 9,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(black_case, on, table)",
+          "frame_timestamp_s_set": [
+            40195.205
+          ]
+        }
+      }
+    },
+    {
+      "case_num": 2,
+      "id": "SH-B-002",
+      "template": "B",
+      "question": "What object was on/at dining table at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "Katrina",
+        "B": "box",
+        "C": "hard drive",
+        "D": "data"
+      },
+      "gold": "C",
+      "gold_answer": "hard drive",
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "hard drive",
+            "on",
+            "dining table"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 dining table",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (chair, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 dining table",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (chair, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 dining table",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (chair, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "dining table DAY1 11:14:30 object location",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "dining table DAY1 11:14:30",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "dining table DAY1 11:14:30 objects",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "visual_triple_payload_count": 9,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(kitchen_counter, right_of, table)",
+          "frame_timestamp_s_set": [
+            40195.205
+          ]
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "visual_triple_payload_count": 0,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": null,
+          "frame_timestamp_s_set": []
+        }
+      }
+    },
+    {
+      "case_num": 3,
+      "id": "SH-C-006",
+      "template": "C",
+      "question": "Who was in the same place as Jake when the interaction happened at approximately DAY1 11:39:30?",
+      "choices": {
+        "A": "Katrina",
+        "B": "Angela",
+        "C": "Shure",
+        "D": "Jake"
+      },
+      "gold": "C",
+      "gold_answer": "Shure",
+      "evidence_chunk": 111393000,
+      "evidence_chunk_label": "DAY1 11:39:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111393000,
+          "timestamp_label": "DAY1 11:39:30",
+          "triple": [
+            "Shure",
+            "near",
+            "I"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:39:30 Jake interaction same place scene",
+                "retrieved_content_summary": "[visual_1_11243000 frame=7 t=41083.125s] (bed, in, bedroom) [visual_1_11353000 frame=7 t=41743.125s] (projector_screen, behind, person_in_peach) [visual_1_11153000 frame=7 t=40543.125s] (mirror, next_to, doorway)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(bed, in, bedroom)",
+                "frame_timestamp_s_set": [
+                  40543.125,
+                  41083.125,
+                  41743.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(bed, in, bedroom)",
+            "frame_timestamp_s_set": [
+              40543.125,
+              41083.125,
+              41743.125
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:39:30 interaction scene with Jake same place",
+                "retrieved_content_summary": "[visual_1_11353000 frame=7 t=41743.125s] (projector_screen, behind, person_in_peach) [visual_1_11243000 frame=7 t=41083.125s] (bed, in, bedroom) [visual_1_11210000 frame=7 t=40873.125s] (window, behind, people)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(projector_screen, behind, person_in_peach)",
+                "frame_timestamp_s_set": [
+                  40873.125,
+                  41083.125,
+                  41743.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(projector_screen, behind, person_in_peach)",
+            "frame_timestamp_s_set": [
+              40873.125,
+              41083.125,
+              41743.125
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:39:30 Jake interaction same place scene",
+                "retrieved_content_summary": "[visual_1_11243000 frame=7 t=41083.125s] (bed, in, bedroom) [visual_1_11353000 frame=7 t=41743.125s] (projector_screen, behind, person_in_peach) [visual_1_11153000 frame=7 t=40543.125s] (mirror, next_to, doorway)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(bed, in, bedroom)",
+                "frame_timestamp_s_set": [
+                  40543.125,
+                  41083.125,
+                  41743.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(bed, in, bedroom)",
+            "frame_timestamp_s_set": [
+              40543.125,
+              41083.125,
+              41743.125
+            ],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "DAY1 11:39:30 interaction involving Jake same place who was present",
+                "retrieved_content_summary": "[DAY1 11:30:00 - DAY1 11:40:00] **The group completed the invitation section on the whiteboard and simplified its wording.** Shure said they might be reported the next day and suggested filming a police-related scene tomorrow; I watched him write, suggested using a simpler character for “invite,” and Tasha added the example of bringing eggs and receiving...",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "DAY1 11:39:30 interaction with Jake who was present same place",
+                "retrieved_content_summary": "[DAY1 11:30:00 - DAY1 11:40:00] **The group completed the invitation section on the whiteboard and simplified its wording.** Shure said they might be reported the next day and suggested filming a police-related scene tomorrow; I watched him write, suggested using a simpler character for “invite,” and Tasha added the example of bringing eggs and receiving...",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:39:20 - DAY 1 11:39:40 interaction scene with Jake",
+                "retrieved_content_summary": "[visual_1_11353000 frame=7 t=41743.125s] (projector_screen, behind, person_in_peach) [visual_1_11243000 frame=7 t=41083.125s] (bed, in, bedroom) [visual_1_11153000 frame=7 t=40543.125s] (phone, on, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(projector_screen, behind, person_in_peach)",
+                "frame_timestamp_s_set": [
+                  40543.125,
+                  41083.125,
+                  41743.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(projector_screen, behind, person_in_peach)",
+            "frame_timestamp_s_set": [
+              40543.125,
+              41083.125,
+              41743.125
+            ],
+            "spatial_chain_quoted": []
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 2,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "2/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "visual_triple_payload_count": 9,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(bed, in, bedroom)",
+          "frame_timestamp_s_set": [
+            40543.125,
+            40873.125,
+            41083.125,
+            41743.125
+          ]
+        },
+        "four_axis": {
+          "visual_selections": 1,
+          "visual_hit_count": 1,
+          "visual_triple_payload_count": 3,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(projector_screen, behind, person_in_peach)",
+          "frame_timestamp_s_set": [
+            40543.125,
+            41083.125,
+            41743.125
+          ]
+        }
+      }
+    },
+    {
+      "case_num": 4,
+      "id": "SH-E-004",
+      "template": "E",
+      "question": "Path-pair: which place connects Shure's original seat and bedroom in Jake's DAY1 trajectory?",
+      "choices": {
+        "A": "dining table",
+        "B": "restaurant",
+        "C": "my room",
+        "D": "bedroom"
+      },
+      "gold": "B",
+      "gold_answer": "restaurant",
+      "evidence_chunk": 111393000,
+      "evidence_chunk_label": "DAY1 11:39:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111393000,
+          "timestamp_label": "DAY1 11:39:30",
+          "triple": [
+            "I",
+            "located_in",
+            "restaurant"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 Jake trajectory Shure original seat bedroom connecting place",
+                "retrieved_content_summary": "[visual_1_11350000 frame=7 t=41713.125s] (bed, right_of, desk) [visual_1_11243000 frame=7 t=41083.125s] (bed, in, bedroom) [visual_1_11143000 frame=7 t=40483.125s] (bed, left_of, man)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(bed, right_of, desk)",
+                "frame_timestamp_s_set": [
+                  40483.125,
+                  41083.125,
+                  41713.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(bed, right_of, desk)",
+            "frame_timestamp_s_set": [
+              40483.125,
+              41083.125,
+              41713.125
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "Jake DAY1 trajectory Shure original seat bedroom connected place",
+                "retrieved_content_summary": "[DAY1 11:33:01 - DAY1 11:33:30] I hold the stool with both hands and watch Shure write, nodding at him. Shure says, \"To start. The activity content part?\" \"Yes,\" I say. I stay seated, lean forward, and keep watching as we write. Shure says, \"I think this is a tough one, we're going to chew on this for a while. So should we start with this directly?\" \"Mm-h...",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 Jake trajectory Shure original seat bedroom connecting place",
+                "retrieved_content_summary": "[visual_1_11350000 frame=7 t=41713.125s] (bed, right_of, desk) [visual_1_11243000 frame=7 t=41083.125s] (bed, in, bedroom) [visual_1_11263000 frame=7 t=41203.125s] (kitchen, right_of, dining_room)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(bed, right_of, desk)",
+                "frame_timestamp_s_set": [
+                  41083.125,
+                  41203.125,
+                  41713.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(bed, right_of, desk)",
+            "frame_timestamp_s_set": [
+              41083.125,
+              41203.125,
+              41713.125
+            ],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Shure original seat bedroom path DAY1 Jake trajectory",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, located_in, restaurant) (Shure, located_in, Changchun) (Shure, located_in, board) (Shure, on, board)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, located_in, restaurant)\n(Shure, located_in, Changchun)\n(Shure, located_in, board)\n(Shure, on, board)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Shure original seat bedroom path connection DAY1 Jake trajectory",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (Shure, located_in, Changchun) (Shure, located_in, board) (Shure, on, board) (Shure, on, whiteboard)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(Shure, located_in, Changchun)\n(Shure, located_in, board)\n(Shure, on, board)\n(Shure, on, whiteboard)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Shure original seat bedroom path DAY1",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, located_in, restaurant) (Shure, located_in, Changchun) (I, behind, Alice) (I, located_in, dining_table)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, located_in, restaurant)\n(Shure, located_in, Changchun)\n(I, behind, Alice)\n(I, located_in, dining_table)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 1,
+      "verdict": "spatial_better",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "1/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 2,
+          "visual_hit_count": 2,
+          "visual_triple_payload_count": 6,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(bed, right_of, desk)",
+          "frame_timestamp_s_set": [
+            40483.125,
+            41083.125,
+            41203.125,
+            41713.125
+          ]
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "visual_triple_payload_count": 0,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": null,
+          "frame_timestamp_s_set": []
+        }
+      }
+    },
+    {
+      "case_num": 5,
+      "id": "SH-F-005",
+      "template": "F",
+      "question": "Co-location chain: was these two with each other at any point on DAY1?",
+      "choices": {
+        "A": "yes",
+        "B": "only before DAY1",
+        "C": "not enough evidence",
+        "D": "no"
+      },
+      "gold": "A",
+      "gold_answer": "yes",
+      "evidence_chunk": 113193000,
+      "evidence_chunk_label": "DAY1 13:19:30",
+      "spatial_chain": [
+        {
+          "timestamp": 113193000,
+          "timestamp_label": "DAY1 13:19:30",
+          "triple": [
+            "these two",
+            "next_to",
+            "each other"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "DAY1 co-location chain these two with each other",
+                "retrieved_content_summary": "[DAY1 13:08:31 - DAY1 13:09:00] I finish installing the shelf and continue assembling the rack with Shure. \"Brilliant, good, good,\" I say. Shure says, \"Good, good, good.\" I stand up, pat the shelf, and walk over to a box. Alice asks, \"Do these two look like they're together?\" Shure says, \"Human wisdom.\" I crouch down, move the box aside, rummage through i...",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "DAY1 co-location chain these two with each other",
+                "retrieved_content_summary": "[DAY1 13:08:31 - DAY1 13:09:00] I finish installing the shelf and continue assembling the rack with Shure. \"Brilliant, good, good,\" I say. Shure says, \"Good, good, good.\" I stand up, pat the shelf, and walk over to a box. Alice asks, \"Do these two look like they're together?\" Shure says, \"Human wisdom.\" I crouch down, move the box aside, rummage through i...",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "semantic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "semantic",
+                "search_query": "co-location chain identities these two DAY1 referents",
+                "retrieved_content_summary": "(I, works on jigsaw puzzles with, Lucia) (I, has a friendly rapport with, Lucia) (Lucia, gives advice to, I) (I, collaborate with, Lucia) (I, can explain the workstation setup, Shure) (I, frequently watches, Shure) (I, know, Shure) (I, works on jigsaw puzzles with, Shure) (I, has a friendly relationship with, Shure) (Shure, gives assembly guidance to, I)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "co-location these two DAY1 together",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, on, table) (I, located_in, table) (I, near, table)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, on, table)\n(I, located_in, table)\n(I, near, table)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "co-location of the two people on DAY1 with each other",
+                "retrieved_content_summary": "(I, on, table) (I, located_in, table) (I, near, table) (I, in_front_of, table) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(I, on, table)\n(I, located_in, table)\n(I, near, table)\n(I, in_front_of, table)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "DAY1 co-location these two with each other",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, near, I) (I, left_of, Shure) (I, next_to, box) (I, near, box) (I, on, table)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, near, I)\n(I, left_of, Shure)\n(I, next_to, box)\n(I, near, box)\n(I, on, table)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 2,
+      "four_axis_correct": 3,
+      "verdict": "spatial_better",
+      "verdict_across_trials": {
+        "three_axis": "2/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "visual_triple_payload_count": 0,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": null,
+          "frame_timestamp_s_set": []
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "visual_triple_payload_count": 0,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": null,
+          "frame_timestamp_s_set": []
+        }
+      }
+    },
+    {
+      "case_num": 6,
+      "id": "SH-A-002",
+      "template": "A",
+      "question": "Where was box at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "hard drive",
+        "B": "dining table",
+        "C": "another box",
+        "D": "bedroom"
+      },
+      "gold": "C",
+      "gold_answer": "another box",
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "box",
+            "on",
+            "another box"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 box location scene",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (tripod, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table) [visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(tripod, right_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(tripod, right_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 box location scene",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (bag, under, table) [visual_1_11094208 frame=7 t=40195.205s] (tripod, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(bag, under, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(bag, under, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 box location scene",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (tripod, right_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table) [visual_1_11094208 frame=7 t=40195.205s] (kitchen_counter, right_of, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(tripod, right_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(tripod, right_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "box location DAY1 11:14:30",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "box location DAY1 11:14:30",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "box location DAY1 11:14:30",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "visual_triple_payload_count": 9,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(tripod, right_of, table)",
+          "frame_timestamp_s_set": [
+            40195.205
+          ]
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "visual_triple_payload_count": 0,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": null,
+          "frame_timestamp_s_set": []
+        }
+      }
+    },
+    {
+      "case_num": 7,
+      "id": "SH-B-001",
+      "template": "B",
+      "question": "What object was on/at another box at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "box",
+        "B": "Katrina",
+        "C": "data",
+        "D": "hard drive"
+      },
+      "gold": "A",
+      "gold_answer": "box",
+      "evidence_chunk": 111143000,
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111143000,
+          "timestamp_label": "DAY1 11:14:30",
+          "triple": [
+            "box",
+            "on",
+            "another box"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:14:30 box on another box object",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (softbox, left_of, table) [visual_1_11094208 frame=7 t=40195.205s] (red_bottle, on, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(softbox, left_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(softbox, left_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 another box object on box",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (softbox, left_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table) [visual_1_11094208 frame=7 t=40195.205s] (red_bottle, on, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(softbox, left_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(softbox, left_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 another box object on at box scene",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (softbox, left_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table) [visual_1_11094208 frame=7 t=40195.205s] (tripod, right_of, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(softbox, left_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(softbox, left_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:14:30 boxes object on another box",
+                "retrieved_content_summary": "[visual_1_11094208 frame=7 t=40195.205s] (softbox, left_of, table) [visual_1_11094208 frame=7 t=40195.205s] (bag, under, table) [visual_1_11094208 frame=7 t=40195.205s] (red_bottle, on, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(softbox, left_of, table)",
+                "frame_timestamp_s_set": [
+                  40195.205
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(softbox, left_of, table)",
+            "frame_timestamp_s_set": [
+              40195.205
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "DAY1 11:14:30 box on/at another box",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "A",
+            "letter": "A",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "DAY1 11:14:30 box at/on another box",
+                "retrieved_content_summary": "(hard drive, on, dining_table) (box, on, another_box) (I, located_in, bedroom) (data, in, hard_drive)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(hard drive, on, dining_table)\n(box, on, another_box)\n(I, located_in, bedroom)\n(data, in, hard_drive)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 3,
+      "four_axis_correct": 3,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "3/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "visual_triple_payload_count": 9,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(softbox, left_of, table)",
+          "frame_timestamp_s_set": [
+            40195.205
+          ]
+        },
+        "four_axis": {
+          "visual_selections": 1,
+          "visual_hit_count": 1,
+          "visual_triple_payload_count": 3,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(softbox, left_of, table)",
+          "frame_timestamp_s_set": [
+            40195.205
+          ]
+        }
+      }
+    },
+    {
+      "case_num": 8,
+      "id": "SH-B-005",
+      "template": "B",
+      "question": "What object was on/at Changchun at approximately DAY1 11:24:30?",
+      "choices": {
+        "A": "hard drive",
+        "B": "Shure",
+        "C": "data",
+        "D": "box"
+      },
+      "gold": "B",
+      "gold_answer": "Shure",
+      "evidence_chunk": 111243000,
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111243000,
+          "timestamp_label": "DAY1 11:24:30",
+          "triple": [
+            "Shure",
+            "located_in",
+            "Changchun"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:24:30 Changchun",
+                "retrieved_content_summary": "[visual_1_11193000 frame=7 t=40783.125s] (window, right_of, man_in_peach_shirt) [visual_1_11210000 frame=7 t=40873.125s] (window, behind, people) [visual_1_11153000 frame=7 t=40543.125s] (flowers, on, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(window, right_of, man_in_peach_shirt)",
+                "frame_timestamp_s_set": [
+                  40543.125,
+                  40783.125,
+                  40873.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(window, right_of, man_in_peach_shirt)",
+            "frame_timestamp_s_set": [
+              40543.125,
+              40783.125,
+              40873.125
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:24:30 Changchun object on at Changchun scene",
+                "retrieved_content_summary": "[visual_1_11150000 frame=7 t=40513.125s] (tripod, in_front_of, window) [visual_1_11150000 frame=7 t=40513.125s] (box, on, table) [visual_1_11180000 frame=7 t=40693.125s] (box, on, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(tripod, in_front_of, window)",
+                "frame_timestamp_s_set": [
+                  40513.125,
+                  40693.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(tripod, in_front_of, window)",
+            "frame_timestamp_s_set": [
+              40513.125,
+              40693.125
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:24:30 Changchun scene object on at Changchun",
+                "retrieved_content_summary": "[visual_1_11150000 frame=7 t=40513.125s] (tripod, in_front_of, window) [visual_1_11150000 frame=7 t=40513.125s] (box, on, table) [visual_1_11143000 frame=7 t=40483.125s] (tripod, left_of, mirror)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(tripod, in_front_of, window)",
+                "frame_timestamp_s_set": [
+                  40483.125,
+                  40513.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(tripod, in_front_of, window)",
+            "frame_timestamp_s_set": [
+              40483.125,
+              40513.125
+            ],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Changchun DAY1 11:24:30 object on at",
+                "retrieved_content_summary": "(box, in, box) (box, on, table) (box, on, stool) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (box, on, another_box) (box, on, bed)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(box, in, box)\n(box, on, table)\n(box, on, stool)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, on, another_box)\n(box, on, bed)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Changchun at DAY1 11:24:30 object on at location",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (box, in, box) (I, on, stool) (I, located_in, dining_table) (I, located_in, bedroom) (I, located_in, my_room)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, in, box)\n(I, on, stool)\n(I, located_in, dining_table)\n(I, located_in, bedroom)\n(I, located_in, my_room)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Changchun at DAY1 11:24:30 object location",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (box, in, box) (I, located_in, dining_table) (I, on, stool) (I, located_in, bedroom) (I, located_in, my_room)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, in, box)\n(I, located_in, dining_table)\n(I, on, stool)\n(I, located_in, bedroom)\n(I, located_in, my_room)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 3,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "visual_triple_payload_count": 9,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(window, right_of, man_in_peach_shirt)",
+          "frame_timestamp_s_set": [
+            40483.125,
+            40513.125,
+            40543.125,
+            40693.125,
+            40783.125,
+            40873.125
+          ]
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "visual_triple_payload_count": 0,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": null,
+          "frame_timestamp_s_set": []
+        }
+      }
+    },
+    {
+      "case_num": 9,
+      "id": "SH-B-008",
+      "template": "B",
+      "question": "What object was on/at box at approximately DAY1 11:24:30?",
+      "choices": {
+        "A": "data",
+        "B": "Katrina",
+        "C": "hard drive",
+        "D": "box"
+      },
+      "gold": "D",
+      "gold_answer": "box",
+      "evidence_chunk": 111243000,
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111243000,
+          "timestamp_label": "DAY1 11:24:30",
+          "triple": [
+            "box",
+            "in",
+            "box"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY 1 11:24:30 box scene object on box",
+                "retrieved_content_summary": "[visual_1_11180000 frame=7 t=40693.125s] (box, on, table) [visual_1_11150000 frame=7 t=40513.125s] (box, on, table) [visual_1_11153000 frame=7 t=40543.125s] (cardboard_box, on, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(box, on, table)",
+                "frame_timestamp_s_set": [
+                  40513.125,
+                  40543.125,
+                  40693.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(box, on, table)",
+            "frame_timestamp_s_set": [
+              40513.125,
+              40543.125,
+              40693.125
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:24:30 box object on box",
+                "retrieved_content_summary": "[visual_1_11180000 frame=7 t=40693.125s] (box, on, table) [visual_1_11150000 frame=7 t=40513.125s] (box, on, table) [visual_1_11153000 frame=7 t=40543.125s] (cardboard_box, on, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(box, on, table)",
+                "frame_timestamp_s_set": [
+                  40513.125,
+                  40543.125,
+                  40693.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(box, on, table)",
+            "frame_timestamp_s_set": [
+              40513.125,
+              40543.125,
+              40693.125
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:24:30 box object on box",
+                "retrieved_content_summary": "[visual_1_11180000 frame=7 t=40693.125s] (box, on, table) [visual_1_11150000 frame=7 t=40513.125s] (box, on, table) [visual_1_11153000 frame=7 t=40543.125s] (cardboard_box, on, table)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(box, on, table)",
+                "frame_timestamp_s_set": [
+                  40513.125,
+                  40543.125,
+                  40693.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(box, on, table)",
+            "frame_timestamp_s_set": [
+              40513.125,
+              40543.125,
+              40693.125
+            ],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "box DAY1 11:24:30 on at object",
+                "retrieved_content_summary": "(box, in, box) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (box, on, table) (I, on, stool) (I, located_in, dining_table) (box, on, stool)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, on, table)\n(I, on, stool)\n(I, located_in, dining_table)\n(box, on, stool)"
+            ]
+          },
+          {
+            "trial": 2,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "box DAY1 11:24:30 object on at box",
+                "retrieved_content_summary": "(box, in, box) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (I, located_in, dining_table) (I, on, stool) (box, on, table) (box, on, stool)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(I, located_in, dining_table)\n(I, on, stool)\n(box, on, table)\n(box, on, stool)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "D",
+            "letter": "D",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "box DAY1 11:24:30 object on at",
+                "retrieved_content_summary": "(box, in, box) (Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (box, on, table) (I, on, stool) (I, located_in, dining_table) (box, on, stool)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(box, in, box)\n(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(box, on, table)\n(I, on, stool)\n(I, located_in, dining_table)\n(box, on, stool)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 3,
+      "four_axis_correct": 3,
+      "verdict": "tie",
+      "verdict_across_trials": {
+        "three_axis": "3/3",
+        "four_axis": "3/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 3,
+          "visual_hit_count": 3,
+          "visual_triple_payload_count": 9,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(box, on, table)",
+          "frame_timestamp_s_set": [
+            40513.125,
+            40543.125,
+            40693.125
+          ]
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "visual_triple_payload_count": 0,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": null,
+          "frame_timestamp_s_set": []
+        }
+      }
+    },
+    {
+      "case_num": 10,
+      "id": "SH-C-005",
+      "template": "C",
+      "question": "Who was in the same place as Shure when the interaction happened at approximately DAY1 11:34:30?",
+      "choices": {
+        "A": "Angela",
+        "B": "Katrina",
+        "C": "Alice",
+        "D": "Jake"
+      },
+      "gold": "C",
+      "gold_answer": "Alice",
+      "evidence_chunk": 111343000,
+      "evidence_chunk_label": "DAY1 11:34:30",
+      "spatial_chain": [
+        {
+          "timestamp": 111343000,
+          "timestamp_label": "DAY1 11:34:30",
+          "triple": [
+            "Shure",
+            "next_to",
+            "Alice"
+          ]
+        }
+      ],
+      "evidence_axis": "spatial",
+      "trials": {
+        "three_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "Shure interaction approximately DAY1 11:34:30 who was in same place",
+                "retrieved_content_summary": "[DAY1 11:33:30 - DAY1 11:34:00] Shure asks, \"What did everyone write in the questionnaire? It wasn't all generated by GPT, was it?\" I look at Shure, turn to the right, and burst out laughing. Katrina says, \"No, haha, I wrote it myself.\" \"Generated by Hunan GPT,\" I say. Shure says, \"那既然提到湖南GPT那我们先从 Lyx, haha.\" I keep looking at Shure, tilt my head side to...",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "visual"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "visual",
+                "search_query": "DAY1 11:34:30 Shure interaction same place scene",
+                "retrieved_content_summary": "[visual_1_11243000 frame=7 t=41083.125s] (bed, in, bedroom) [visual_1_11263000 frame=7 t=41203.125s] (kitchen, right_of, dining_room) [visual_1_11293000 frame=7 t=41383.125s] (kitchen, right_of, dining_room)",
+                "visual_triples_retrieved": 3,
+                "first_visual_triple_text": "(bed, in, bedroom)",
+                "frame_timestamp_s_set": [
+                  41083.125,
+                  41203.125,
+                  41383.125
+                ],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 1,
+            "visual_hit_count": 1,
+            "visual_triple_payload_count": 3,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": "(bed, in, bedroom)",
+            "frame_timestamp_s_set": [
+              41083.125,
+              41203.125,
+              41383.125
+            ],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 3,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "Shure interaction approximately DAY1 11:34:30 who was in same place",
+                "retrieved_content_summary": "[DAY1 11:33:30 - DAY1 11:34:00] Shure asks, \"What did everyone write in the questionnaire? It wasn't all generated by GPT, was it?\" I look at Shure, turn to the right, and burst out laughing. Katrina says, \"No, haha, I wrote it myself.\" \"Generated by Hunan GPT,\" I say. Shure says, \"那既然提到湖南GPT那我们先从 Lyx, haha.\" I keep looking at Shure, tilt my head side to...",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": []
+          }
+        ],
+        "four_axis": [
+          {
+            "trial": 1,
+            "prediction": "B",
+            "letter": "B",
+            "correct": false,
+            "num_rounds": 1,
+            "axis_selections": [
+              "episodic"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "episodic",
+                "search_query": "Shure interaction approximately DAY1 11:34:30 who was present same place",
+                "retrieved_content_summary": "[DAY1 11:33:30 - DAY1 11:34:00] Shure asks, \"What did everyone write in the questionnaire? It wasn't all generated by GPT, was it?\" I look at Shure, turn to the right, and burst out laughing. Katrina says, \"No, haha, I wrote it myself.\" \"Generated by Hunan GPT,\" I say. Shure says, \"那既然提到湖南GPT那我们先从 Lyx, haha.\" I keep looking at Shure, tilt my head side to...",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": []
+          },
+          {
+            "trial": 2,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Shure location DAY1 11:34:30 same place who present",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, located_in, Changchun) (Shure, located_in, board) (Shure, on, board) (Shure, on, whiteboard) (Shure, near, whiteboard)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, located_in, Changchun)\n(Shure, located_in, board)\n(Shure, on, board)\n(Shure, on, whiteboard)\n(Shure, near, whiteboard)"
+            ]
+          },
+          {
+            "trial": 3,
+            "prediction": "C",
+            "letter": "C",
+            "correct": true,
+            "num_rounds": 1,
+            "axis_selections": [
+              "spatial"
+            ],
+            "rounds": [
+              {
+                "round_num": 1,
+                "memory_type": "spatial",
+                "search_query": "Shure location DAY1 11:34:30 who co-located",
+                "retrieved_content_summary": "(Shure, next_to, I) (I, next_to, Shure) (I, behind, Shure) (Shure, located_in, Changchun) (Shure, located_in, board) (Shure, on, board) (Shure, on, whiteboard) (Shure, near, whiteboard)",
+                "visual_triples_retrieved": 0,
+                "first_visual_triple_text": null,
+                "frame_timestamp_s_set": [],
+                "f_anchored_hits": 0
+              }
+            ],
+            "visual_selections": 0,
+            "visual_hit_count": 0,
+            "visual_triple_payload_count": 0,
+            "f_anchored_hits": 0,
+            "first_visual_triple_text": null,
+            "frame_timestamp_s_set": [],
+            "spatial_chain_quoted": [
+              "(Shure, next_to, I)\n(I, next_to, Shure)\n(I, behind, Shure)\n(Shure, located_in, Changchun)\n(Shure, located_in, board)\n(Shure, on, board)\n(Shure, on, whiteboard)\n(Shure, near, whiteboard)"
+            ]
+          }
+        ]
+      },
+      "three_axis_correct": 0,
+      "four_axis_correct": 2,
+      "verdict": "candidate_winner",
+      "verdict_across_trials": {
+        "three_axis": "0/3",
+        "four_axis": "2/3"
+      },
+      "visual_totals": {
+        "three_axis": {
+          "visual_selections": 1,
+          "visual_hit_count": 1,
+          "visual_triple_payload_count": 3,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": "(bed, in, bedroom)",
+          "frame_timestamp_s_set": [
+            41083.125,
+            41203.125,
+            41383.125
+          ]
+        },
+        "four_axis": {
+          "visual_selections": 0,
+          "visual_hit_count": 0,
+          "visual_triple_payload_count": 0,
+          "f_anchored_hits": 0,
+          "first_visual_triple_text": null,
+          "frame_timestamp_s_set": []
+        }
+      }
+    }
+  ]
+}

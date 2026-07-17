@@ -1,0 +1,67 @@
+{
+  "picked": [
+    {
+      "rank": 1,
+      "id": "GQA-PH4-DIST-111343000",
+      "template_id": "F",
+      "chunk": "111343000",
+      "lift_trials": 3,
+      "question_kr": "그 시각에 같은 자리처럼 가장 가까웠던 대상 묶음은 뭐였지? 보기 중 하나만."
+    },
+    {
+      "rank": 2,
+      "id": "GQA-PH4-DIST-114093000",
+      "template_id": "E",
+      "chunk": "114093000",
+      "lift_trials": 3,
+      "question_kr": "앞뒤 깊이까지 보면 어떤 두 대상이 제일 붙어 있었어? 보기 중에서 골라줘."
+    },
+    {
+      "rank": 3,
+      "id": "GQA-PH4-DIST-117163000",
+      "template_id": "D",
+      "chunk": "117163000",
+      "lift_trials": 3,
+      "question_kr": "DAY1 17:16:30쯤 서로 제일 가까이 붙어 있던 조합이 뭐였지? 보기에서 골라줘."
+    },
+    {
+      "rank": 4,
+      "id": "GQA-PH4-DIST-119203000",
+      "template_id": "B",
+      "chunk": "119203000",
+      "lift_trials": 3,
+      "question_kr": "그때 부엌 조명 근처에 바로 붙어 있던 건 뭐였어? 가장 가까운 조합을 골라줘."
+    },
+    {
+      "rank": 5,
+      "id": "GQA-PH4-DIST-120260000",
+      "template_id": "C",
+      "chunk": "120260000",
+      "lift_trials": 3,
+      "question_kr": "타샤랑 휴대폰가 서로 바로 붙어 있던 조합 맞아? 보기에서 맞는 조합을 골라줘."
+    }
+  ],
+  "aggregates": {
+    "spatial_OFF": {
+      "correct": 63,
+      "total": 180,
+      "accuracy": 0.35
+    },
+    "spatial_ON_text": {
+      "correct": 118,
+      "total": 180,
+      "accuracy": 0.6556
+    },
+    "spatial_ON_grounded": {
+      "correct": 127,
+      "total": 180,
+      "accuracy": 0.7056
+    }
+  },
+  "delta_analysis": {
+    "spatial_ON_text_minus_spatial_OFF_pp": 30.6,
+    "spatial_ON_grounded_minus_spatial_OFF_pp": 35.6,
+    "grounded_minus_text_pp": 5.0
+  },
+  "filled_without_distinct_positive_lift": false
+}

@@ -1,0 +1,197 @@
+{
+  "schema_version": "aea_spatial_sidecar.v1",
+  "sequence_id": "loc1_script4_seq4_rec1",
+  "chunk_index": 10,
+  "time_range_us": [
+    1342203846,
+    1372203845
+  ],
+  "duration_s": 30.0,
+  "time_window_ms": 100,
+  "metadata": {
+    "location": 1,
+    "script": 4,
+    "sequence": 4,
+    "recording": 1,
+    "concurrent_recordings": [],
+    "dataset_version": "1.0",
+    "dataset_name": "AEA_2024"
+  },
+  "pose_6dof_mean": {
+    "tracking_timestamp_us": 1357203645,
+    "tx": 0.3175727895745243,
+    "ty": -0.5299791981038584,
+    "tz": 0.08972695596590909,
+    "qw": -0.3951479445938541,
+    "qx": 0.48696558970922327,
+    "qy": -0.6461792820215432,
+    "qz": -0.4349424695388159,
+    "quality_score": 1.0,
+    "graph_uid": "4d17867a-9627-c654-99c1-3e9597044e46",
+    "units": "meters",
+    "frame": "world"
+  },
+  "pose_6dof_median": {
+    "tracking_timestamp_us": 1357203752,
+    "tx": 0.0564065,
+    "ty": -0.5889545,
+    "tz": 0.11065,
+    "qw": -0.41801564118215706,
+    "qx": 0.5213213792463629,
+    "qy": -0.6059531852988858,
+    "qz": -0.43163373419355694,
+    "quality_score": 1.0,
+    "graph_uid": "4d17867a-9627-c654-99c1-3e9597044e46",
+    "units": "meters",
+    "frame": "world"
+  },
+  "gaze_samples": [
+    {
+      "tracking_timestamp_us": 1342103858,
+      "yaw_rads_cpf": 0.275487,
+      "pitch_rads_cpf": -0.300039,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.031051,
+        "yaw_high_rads_cpf": 0.339798,
+        "pitch_low_rads_cpf": -0.411927,
+        "pitch_high_rads_cpf": -0.1356619999999999
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1342203846,
+      "nearest_pose_delta_us": -99988,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1348203858,
+      "yaw_rads_cpf": 0.036108,
+      "pitch_rads_cpf": -0.400882,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.012235,
+        "yaw_high_rads_cpf": 0.0631029999999999,
+        "pitch_low_rads_cpf": -0.437587,
+        "pitch_high_rads_cpf": -0.306934
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1348203846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1354303858,
+      "yaw_rads_cpf": 0.268654,
+      "pitch_rads_cpf": -0.374612,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.104398,
+        "yaw_high_rads_cpf": 0.305788,
+        "pitch_low_rads_cpf": -0.4449479999999999,
+        "pitch_high_rads_cpf": -0.255976
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1354303846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1360403858,
+      "yaw_rads_cpf": -0.133443,
+      "pitch_rads_cpf": -0.386649,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.149658,
+        "yaw_high_rads_cpf": -0.116696,
+        "pitch_low_rads_cpf": -0.408062,
+        "pitch_high_rads_cpf": -0.362115
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1360403846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1366503858,
+      "yaw_rads_cpf": 0.152294,
+      "pitch_rads_cpf": -0.407407,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.118807,
+        "yaw_high_rads_cpf": 0.173614,
+        "pitch_low_rads_cpf": -0.436381,
+        "pitch_high_rads_cpf": -0.328504
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1366503846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    }
+  ],
+  "speech_segments": [
+    {
+      "start_time_ns": 1341971000000,
+      "end_time_ns": 1342371000000,
+      "text": "play",
+      "confidence": 0.6517561674118042,
+      "language": null
+    },
+    {
+      "start_time_ns": 1342371000000,
+      "end_time_ns": 1343091000000,
+      "text": "this.",
+      "confidence": 0.6888768672943115,
+      "language": null
+    },
+    {
+      "start_time_ns": 1343451000000,
+      "end_time_ns": 1344451000000,
+      "text": "It's",
+      "confidence": 0.4485209882259369,
+      "language": null
+    },
+    {
+      "start_time_ns": 1344451000000,
+      "end_time_ns": 1344611000000,
+      "text": "got",
+      "confidence": 0.7187240719795227,
+      "language": null
+    },
+    {
+      "start_time_ns": 1344611000000,
+      "end_time_ns": 1344851000000,
+      "text": "like",
+      "confidence": 0.9984293580055236,
+      "language": null
+    },
+    {
+      "start_time_ns": 1344851000000,
+      "end_time_ns": 1345171000000,
+      "text": "two",
+      "confidence": 0.9996451139450072,
+      "language": null
+    },
+    {
+      "start_time_ns": 1345211000000,
+      "end_time_ns": 1346211000000,
+      "text": "plates.",
+      "confidence": 0.8695101141929626,
+      "language": null
+    }
+  ],
+  "trajectory_length_m": 9.565987961857243,
+  "dwell_speed_mps": 0.31886626539524143,
+  "pose_sample_count": 30272,
+  "gaze_sample_count_input": 302,
+  "source_files": {
+    "closed_loop_trajectory": "closed_loop_trajectory.csv",
+    "general_eye_gaze": "general_eye_gaze.csv",
+    "speech": "speech.csv",
+    "metadata": "metadata.json"
+  },
+  "coverage_gaps": {
+    "geo_available": 0,
+    "gaze_depth_all_nan": true,
+    "online_calibration_parsed": false,
+    "place_clustering": false
+  }
+}

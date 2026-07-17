@@ -1,0 +1,169 @@
+{
+  "$schema": "https://worldmm.local/slide.schema.v1.json",
+  "slide_id": "q45-coffee-timing",
+  "deck_position": {
+    "deck": "spatial-memory-cases",
+    "section": "DN",
+    "index": 2,
+    "of": 3
+  },
+  "tagline": "spatial memory · noise case 2 / 3",
+  "title": "Q45 — When was the last time we talked about coffee?",
+  "meta": {
+    "dataset": "EgoLifeQA",
+    "subject": "A1_JAKE",
+    "day": "DAY1",
+    "target_time": "13:34:57.08",
+    "question_type": "EntityLog (temporal flavor)",
+    "ablation": "3-axis vs 4-axis, n=60 unfiltered DAY1"
+  },
+  "question": {
+    "text": "When was the last time we talked about coffee?",
+    "choices": {
+      "A": {
+        "text": "About four hours ago",
+        "gold": true
+      },
+      "B": {
+        "text": "About eight hours ago",
+        "gold": false
+      },
+      "C": {
+        "text": "About an hour ago",
+        "gold": false
+      },
+      "D": {
+        "text": "One day ago",
+        "gold": false
+      }
+    },
+    "annotator_reason": "Jake suggested having some coffee (at DAY1 13:34)",
+    "keywords": "talk about coffee"
+  },
+  "predictions": {
+    "baseline_3axis": {
+      "label": "3-axis (E + S + V no-op)",
+      "letter": "A",
+      "text": "about four hours ago",
+      "correct": true
+    },
+    "with_spatial_4axis": {
+      "label": "4-axis (+ spatial)",
+      "letter": "D",
+      "text": "one day ago",
+      "correct": false
+    }
+  },
+  "video": {
+    "filename": "DAY1_A1_JAKE_13343000.mp4",
+    "covers": {
+      "start": "13:34:30",
+      "end": "13:35:00"
+    },
+    "url": "https://huggingface.co/datasets/lmms-lab/EgoLife/resolve/main/A1_JAKE/DAY1/DAY1_A1_JAKE_13343000.mp4",
+    "size_mb_approx": null,
+    "note": "thumbnail is docs/slides/assets/q33_takeout_app.jpg from nearby Q33 takeout / Q45 coffee context, not a separate exact target frame."
+  },
+  "fine_caption_window": {
+    "start": "13:34:30.00",
+    "end": "13:35:00.00",
+    "text": "I wipe the whiteboard while we talk. Lucia asks, 'Hey, doesn't this whiteboard have a back side? Only one side?' 'It has a back side. The back side is a blackboard. Yes, you can write with chalk,' I say. Lucia says, 'Ah, OK. So that's the design.' 'He also gave red pens and chalk, right,' I say. Tasha asks, 'This is a spare set, right?' Lucia replies, 'Right. That's the one. Th…'",
+    "note": "The visible window is about whiteboards rather than coffee — the coffee mention is slightly earlier in the chunk (Lucia describing ordering coffee). Both the gold annotator and the 3-axis baseline correctly anchored on that earlier coffee utterance."
+  },
+  "spatial_triples": {
+    "near_target_chunk": {
+      "chunk_timestamp": "DAY1 13:34:29",
+      "triples": [
+        {
+          "s": "I",
+          "p": "near",
+          "o": "whiteboard"
+        },
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "first_floor"
+        },
+        {
+          "s": "kitchen",
+          "p": "located_in",
+          "o": "first_floor"
+        },
+        {
+          "s": "activity_room",
+          "p": "located_in",
+          "o": "upstairs"
+        },
+        {
+          "s": "meeting_room",
+          "p": "located_in",
+          "o": "first_floor"
+        },
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "kitchen",
+          "decisive": true
+        }
+      ]
+    },
+    "earlier_chunk": {
+      "chunk_timestamp": "DAY1 13:29:30",
+      "triples": [
+        {
+          "s": "paper_bag",
+          "p": "located_in",
+          "o": "kitchen"
+        },
+        {
+          "s": "I",
+          "p": "located_in",
+          "o": "kitchen",
+          "decisive": true
+        },
+        {
+          "s": "I",
+          "p": "near",
+          "o": "Lucia"
+        },
+        {
+          "s": "water",
+          "p": "on",
+          "o": "table"
+        }
+      ]
+    }
+  },
+  "why_spatial_hurt": "None of the spatial triples are about coffee. But the kitchen-anchor triples dominate the spatial context, and the agent's reasoning chain seems to have gone \"wearer is in the kitchen ↔ kitchen → cooking and drinks ↔ a coffee discussion in the kitchen is something that happens every day\" — therefore \"one day ago\" rather than \"four hours ago\". The spatial layer here did not surface a wrong fact; it surfaced true facts that were irrelevant to a temporal question, and the prompt's added context length pushed the answer.",
+  "pattern": "Temporal \"when was the last time…\" questions should route to episodic with explicit time-window retrieval (use `query_time` minus N hours), not to the spatial layer at all. The spatial axis adds true-but-irrelevant context that nudges the agent away from precise temporal answers.",
+  "deck_footer": {
+    "left": "worldmm · feat/spatial-memory · n=60 ablation, 3-axis 37/60 vs 4-axis 36/60 (Δ −1.7 %p)",
+    "right": "noise case · DN flip · 2 / 3"
+  },
+  "design": {
+    "theme": "dark",
+    "background": "#0b1020",
+    "panel": "#11192f",
+    "ink": "#e9ecf5",
+    "muted": "#8aa0c8",
+    "good": "#22c55e",
+    "bad": "#ef4444",
+    "accent": "#60a5fa",
+    "highlight": "#fbbf24",
+    "aspect_ratio": "16:9",
+    "canvas_px": {
+      "w": 1280,
+      "h": 720
+    },
+    "fonts": {
+      "sans": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
+      "mono": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    },
+    "html_renderer": "docs/slides/q45-coffee-timing.html"
+  },
+  "ppt_export_hints": {
+    "powerpoint": "use python-pptx; map gold choice to green accent fill, both prediction cards to red/green outline; embed the .mp4 once downloaded from `video.url`.",
+    "google_slides": "use Slides API + a 'placeholder' text-box layout; insert `video.url` as the Drive video link after a one-time upload.",
+    "keynote": "import the HTML renderer at design.html_renderer as a single full-bleed image (Keynote does not render HTML natively)."
+  }
+}

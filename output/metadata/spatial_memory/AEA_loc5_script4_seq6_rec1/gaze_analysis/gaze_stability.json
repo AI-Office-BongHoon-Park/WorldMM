@@ -1,0 +1,30 @@
+{
+  "recording_uid": "loc5_script4_seq6_rec1",
+  "rolling_window_samples": 10,
+  "rolling_window_s": 1.0,
+  "quiet_gaze_threshold_rad": 0.05,
+  "quiet_samples_count": 156,
+  "quiet_gaze_pct": 7.321,
+  "rolling_std_yaw_plus_pitch_rad": {
+    "mean": 0.166592,
+    "median": 0.147622,
+    "min": 0.009899,
+    "max": 0.549563,
+    "p25": 0.091486,
+    "p75": 0.224802
+  },
+  "confidence_interval_width_rad": {
+    "yaw_mean": 0.037,
+    "yaw_median": 0.023735,
+    "yaw_min": 0.019209,
+    "yaw_max": 1.125342,
+    "pitch_mean": 0.042623,
+    "pitch_median": 0.030991
+  },
+  "speech_overlap": {
+    "speech_rows": 1,
+    "confident_speech_rows_confidence_gte_0_05": 0,
+    "confident_speech_overlap_s": 0.0,
+    "note": "loc5 has one low-confidence speech row; confident overlap is zero."
+  }
+}

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WorldMM · Spatial retrieval with Gaussian Splatting (mock)</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#11192f; --line:#1c2746; --ink:#e9ecf5; --muted:#8aa0c8;
+    --accent:#60a5fa; --good:#22c55e; --hl:#fbbf24; --orange:#f97316; --purple:#a855f7;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)}
+  .slide{
+    width:1280px; height:720px; margin:24px auto; padding:30px 38px;
+    background:var(--panel); border-radius:16px;
+    box-shadow:0 8px 40px rgba(0,0,0,.45);
+    display:grid; grid-template-rows:auto auto 1fr auto; gap:12px;
+  }
+  header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px}
+  header h1{margin:0;font-size:24px;font-weight:600}
+  header .tag{color:var(--purple);font-family:var(--mono);font-size:12px;letter-spacing:1px;text-transform:uppercase}
+  header .meta{color:var(--muted);font-size:12px;font-family:var(--mono);text-align:right}
+  .query-row{display:flex;align-items:center;gap:14px;background:#0a1429;border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+  .query-row .lbl{color:var(--purple);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:1px}
+  .query-row .q{font-size:16px;font-weight:600}
+  .query-row .api{margin-left:auto;color:var(--muted);font-family:var(--mono);font-size:11px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:10px;min-height:0}
+  .card{background:#0a1429;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;min-height:0}
+  .thumb-wrap{position:relative;aspect-ratio:16/9;background:#06090f;border-bottom:1px solid var(--line)}
+  .thumb-wrap img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.06) contrast(1.04)}
+  .badge{position:absolute;top:6px;left:6px;background:rgba(168,85,247,.92);color:#fff;padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:10px;letter-spacing:0.6px;text-transform:uppercase}
+  .pose{position:absolute;top:6px;right:6px;background:rgba(11,16,32,.85);color:var(--muted);padding:2px 8px;border-radius:4px;font-family:var(--mono);font-size:10px}
+  .body{padding:8px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .triple{font-family:var(--mono);font-size:13.5px}
+  .triple .s{color:var(--accent)} .triple .p{color:var(--good);margin:0 4px} .triple .o{color:var(--hl)}
+  .meta-row{display:flex;justify-content:space-between;color:var(--muted);font-family:var(--mono);font-size:11px}
+  footer{display:flex;justify-content:space-between;color:var(--muted);font-family:var(--mono);font-size:11.5px;border-top:1px solid var(--line);padding-top:6px}
+  .legend{display:flex;gap:14px;color:var(--muted);font-family:var(--mono);font-size:11px;align-items:center}
+  .legend .pill{display:inline-flex;align-items:center;gap:5px}
+  .legend .swatch{width:10px;height:10px;border-radius:2px}
+</style>
+</head>
+<body>
+
+<div class="slide">
+
+  <header>
+    <div>
+      <div class="tag">spatial retrieval · mock</div>
+      <h1>SpatialMemory.retrieve(query) — same JSON, novel-view rendering</h1>
+    </div>
+    <div class="meta">A1_JAKE / DAY1<br>frames stand in for gsplat renders (UI is identical)</div>
+  </header>
+
+  <div class="query-row">
+    <span class="lbl">query</span>
+    <span class="q">"I in kitchen near whiteboard"</span>
+    <span class="api">retrieve_with_render(query, top_k=6)</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- card 1 -->
+    <div class="card">
+      <div class="thumb-wrap">
+        <img src="assets/q1_kitchen_rack.jpg">
+        <div class="badge">GS-RENDERED</div>
+        <div class="pose">pose=median(place)</div>
+      </div>
+      <div class="body">
+        <div class="triple"><span class="s">I</span><span class="p">located_in</span><span class="o">kitchen</span></div>
+        <div class="meta-row"><span>place=kitchen</span><span>render 47 ms</span></div>
+      </div>
+    </div>
+
+    <!-- card 2 -->
+    <div class="card">
+      <div class="thumb-wrap">
+        <img src="assets/q6_restaurant_flowers.jpg">
+        <div class="badge">GS-RENDERED</div>
+        <div class="pose">pose=near(whiteboard)</div>
+      </div>
+      <div class="body">
+        <div class="triple"><span class="s">I</span><span class="p">near</span><span class="o">whiteboard</span></div>
+        <div class="meta-row"><span>place=kitchen</span><span>render 51 ms</span></div>
+      </div>
+    </div>
+
+    <!-- card 3 -->
+    <div class="card">
+      <div class="thumb-wrap">
+        <img src="assets/q50_phone_timer.jpg">
+        <div class="badge">GS-RENDERED</div>
+        <div class="pose">pose=contains(kitchen)</div>
+      </div>
+      <div class="body">
+        <div class="triple"><span class="s">kitchen</span><span class="p">contains</span><span class="o">light</span></div>
+        <div class="meta-row"><span>place=kitchen</span><span>render 49 ms</span></div>
+      </div>
+    </div>
+
+    <!-- card 4 -->
+    <div class="card">
+      <div class="thumb-wrap">
+        <img src="assets/q33_takeout_app.jpg">
+        <div class="badge">GS-RENDERED</div>
+        <div class="pose">pose=on(table)</div>
+      </div>
+      <div class="body">
+        <div class="triple"><span class="s">paper_bag</span><span class="p">located_in</span><span class="o">kitchen</span></div>
+        <div class="meta-row"><span>place=kitchen</span><span>render 52 ms</span></div>
+      </div>
+    </div>
+
+    <!-- card 5 -->
+    <div class="card">
+      <div class="thumb-wrap">
+        <img src="assets/kitchen_stool.jpg">
+        <div class="badge">GS-RENDERED</div>
+        <div class="pose">pose=next_to(stool)</div>
+      </div>
+      <div class="body">
+        <div class="triple"><span class="s">I</span><span class="p">on</span><span class="o">stool</span></div>
+        <div class="meta-row"><span>place=kitchen</span><span>render 48 ms</span></div>
+      </div>
+    </div>
+
+    <!-- card 6 (fallback): show as "frame fallback" -->
+    <div class="card">
+      <div class="thumb-wrap">
+        <img src="assets/q53_supermarket.jpg" style="filter:none">
+        <div class="badge" style="background:rgba(96,165,250,.92)">FRAME FALLBACK</div>
+        <div class="pose">no gsplat for supermarket</div>
+      </div>
+      <div class="body">
+        <div class="triple"><span class="s">Shure</span><span class="p">located_in</span><span class="o">supermarket</span></div>
+        <div class="meta-row"><span>place=supermarket</span><span>extract 43 ms</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="legend">
+      <span class="pill"><span class="swatch" style="background:var(--purple)"></span>GS-rendered (.ply per place loaded)</span>
+      <span class="pill"><span class="swatch" style="background:var(--accent)"></span>frame fallback (live MP4 thumbnail)</span>
+    </div>
+    <div>worldmm · spatial axis · same retrieve() contract for both rendering paths</div>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+{
+  "schema_version": "aea_place_clustering.v1",
+  "sequence_id": "loc1_script4_seq4_rec1",
+  "parameters": {
+    "eps_m": 0.5,
+    "min_samples_raw": 200,
+    "effective_min_samples_downsampled": 2,
+    "dwell_ms": 1500,
+    "target_hz": 10,
+    "stride": 101,
+    "raw_hz": 1009.091
+  },
+  "trajectory": {
+    "raw_rows": 471243,
+    "downsampled_rows": 4666,
+    "duration_s": 466.997,
+    "time_range_us": [
+      1042203846,
+      1509200494
+    ]
+  },
+  "stats": {
+    "place_count": 1,
+    "visit_count": 1,
+    "stop_count": 1,
+    "mean_dwell_s": 467.02,
+    "longest_visit_s": 467.02,
+    "place_coverage_pct": 100.01,
+    "anchored_chunks": 16,
+    "chunk_count": 16
+  },
+  "places": [
+    {
+      "label": "place_0",
+      "cluster_id": 0,
+      "centroid_world_m": [
+        0.7388935113587655,
+        -1.062645267466781,
+        0.018985701243034718
+      ],
+      "total_dwell_s": 467.02,
+      "visit_count": 1,
+      "sample_count": 4666,
+      "time_ranges_us": [
+        [
+          1042203846,
+          1509223554
+        ]
+      ]
+    }
+  ],
+  "visits": [
+    {
+      "visit_id": "visit_000",
+      "label": "place_0",
+      "cluster_id": 0,
+      "time_range_us": [
+        1042203846,
+        1509223554
+      ],
+      "duration_s": 467.02,
+      "sample_count": 4666
+    }
+  ],
+  "transitions": []
+}

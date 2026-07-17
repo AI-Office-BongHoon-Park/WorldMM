@@ -1,0 +1,2206 @@
+{
+  "schema_version": 1,
+  "target_balance": "phase4 grounded Type1 generated 1-2 per grounded chunk",
+  "counts": {
+    "Type1": 60
+  },
+  "coverage": {
+    "selected_chunks": 30,
+    "grounded_chunks_with_questions": 30,
+    "questions": 60,
+    "grounded_chunks": [
+      "111143000",
+      "111193000",
+      "111243000",
+      "111343000",
+      "111543000",
+      "112093000",
+      "112143000",
+      "113193000",
+      "113343000",
+      "114093000",
+      "114113000",
+      "114143000",
+      "117163000",
+      "117263000",
+      "117313000",
+      "117463000",
+      "117563000",
+      "118113000",
+      "118263000",
+      "119103000",
+      "119203000",
+      "119253000",
+      "119353000",
+      "119453000",
+      "120260000",
+      "120310000",
+      "120360000",
+      "120410000",
+      "120460000",
+      "121570000"
+    ]
+  },
+  "questions": [
+    {
+      "id": "GQA-PH4-WHERE-120460000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120460000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was kitchen light upstairs at approximately DAY1 20:46:00?",
+      "choices": {
+        "A": "upstairs",
+        "B": "Lucia",
+        "C": "second floor living room",
+        "D": "table"
+      },
+      "gold": "A",
+      "gold_answer": "upstairs",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:46:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120460000: (kitchen_light_upstairs, located_in, upstairs)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120460000",
+      "evidence_chunk_label": "DAY1 20:46:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120460000_1",
+          "triple": [
+            "kitchen_light_upstairs",
+            "located_in",
+            "upstairs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-120460000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120460000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 20:46:00, which subject-object pair was closest?",
+      "choices": {
+        "A": "power outlet and desk",
+        "B": "food and table",
+        "C": "schoolbag and table",
+        "D": "schoolbag and sofa"
+      },
+      "gold": "A",
+      "gold_answer": "power outlet and desk",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:46:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120460000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120460000",
+      "evidence_chunk_label": "DAY1 20:46:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120460000_4",
+          "triple": [
+            "power_outlet",
+            "next_to",
+            "desk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-119453000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119453000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Alice at approximately DAY1 19:45:30?",
+      "choices": {
+        "A": "kitchen",
+        "B": "phone",
+        "C": "table",
+        "D": "doorway of the second-floor living room"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:45:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119453000: (Alice, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119453000",
+      "evidence_chunk_label": "DAY1 19:45:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119453000_0",
+          "triple": [
+            "Alice",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-119453000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119453000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 19:45:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Katrina and ground",
+        "B": "Alice and kitchen",
+        "C": "Tasha and table",
+        "D": "Katrina and floor"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and ground",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:45:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119453000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119453000",
+      "evidence_chunk_label": "DAY1 19:45:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119453000_8",
+          "triple": [
+            "Katrina",
+            "on",
+            "ground"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-119353000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119353000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Katrina at approximately DAY1 19:35:30?",
+      "choices": {
+        "A": "ground",
+        "B": "second floor living room",
+        "C": "sofa",
+        "D": "I"
+      },
+      "gold": "A",
+      "gold_answer": "ground",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:35:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119353000: (Katrina, on, ground)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119353000",
+      "evidence_chunk_label": "DAY1 19:35:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119353000_0",
+          "triple": [
+            "Katrina",
+            "on",
+            "ground"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-119353000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119353000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 19:35:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Katrina and ground",
+        "B": "computer and sofa",
+        "C": "corner of the second floor living room and second floor living room",
+        "D": "the other computer and ground"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and ground",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:35:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119353000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119353000",
+      "evidence_chunk_label": "DAY1 19:35:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119353000_0",
+          "triple": [
+            "Katrina",
+            "on",
+            "ground"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-113193000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "113193000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was whiteboard at approximately DAY1 13:19:30?",
+      "choices": {
+        "A": "rack",
+        "B": "whiteboard",
+        "C": "Shure",
+        "D": "Shure stand bracket"
+      },
+      "gold": "A",
+      "gold_answer": "rack",
+      "query_time": {
+        "date": "DAY1",
+        "time": "13:19:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 113193000: (whiteboard, on, rack)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "113193000",
+      "evidence_chunk_label": "DAY1 13:19:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_113193000_0",
+          "triple": [
+            "whiteboard",
+            "on",
+            "rack"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-113193000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "113193000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 13:19:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "whiteboard and rack",
+        "B": "whiteboard and rack",
+        "C": "whiteboard and rack",
+        "D": "whiteboard and rack"
+      },
+      "gold": "A",
+      "gold_answer": "whiteboard and rack",
+      "query_time": {
+        "date": "DAY1",
+        "time": "13:19:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 113193000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "113193000",
+      "evidence_chunk_label": "DAY1 13:19:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_113193000_0",
+          "triple": [
+            "whiteboard",
+            "on",
+            "rack"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-120410000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120410000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Katrina at approximately DAY1 20:41:00?",
+      "choices": {
+        "A": "second floor",
+        "B": "living room",
+        "C": "Lucia",
+        "D": "microwave"
+      },
+      "gold": "A",
+      "gold_answer": "second floor",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:41:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120410000: (Katrina, located_in, second_floor)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120410000",
+      "evidence_chunk_label": "DAY1 20:41:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120410000_0",
+          "triple": [
+            "Katrina",
+            "located_in",
+            "second_floor"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-120410000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120410000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 20:41:00, which subject-object pair was closest?",
+      "choices": {
+        "A": "Katrina and living room",
+        "B": "Jake and living room",
+        "C": "Lucia and living room",
+        "D": "food and microwave"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and living room",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:41:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120410000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120410000",
+      "evidence_chunk_label": "DAY1 20:41:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120410000_1",
+          "triple": [
+            "Katrina",
+            "located_in",
+            "living_room"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-119203000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119203000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was kitchen light at approximately DAY1 19:20:30?",
+      "choices": {
+        "A": "kitchen",
+        "B": "I",
+        "C": "upstairs",
+        "D": "refrigerator"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:20:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119203000: (kitchen_light, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119203000",
+      "evidence_chunk_label": "DAY1 19:20:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119203000_1",
+          "triple": [
+            "kitchen_light",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-119203000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119203000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 19:20:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "kitchen light and kitchen",
+        "B": "cola and refrigerator",
+        "C": "entryway light and entryway",
+        "D": "bag and ground"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen light and kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:20:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119203000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119203000",
+      "evidence_chunk_label": "DAY1 19:20:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119203000_1",
+          "triple": [
+            "kitchen_light",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-120260000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120260000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Tasha at approximately DAY1 20:26:00?",
+      "choices": {
+        "A": "kitchen",
+        "B": "first floor",
+        "C": "dining table",
+        "D": "table"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:26:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120260000: (Tasha, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120260000",
+      "evidence_chunk_label": "DAY1 20:26:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120260000_0",
+          "triple": [
+            "Tasha",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-120260000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120260000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 20:26:00, which subject-object pair was closest?",
+      "choices": {
+        "A": "Tasha and phone",
+        "B": "Tasha and kitchen",
+        "C": "Jake and kitchen",
+        "D": "food and dining table"
+      },
+      "gold": "A",
+      "gold_answer": "Tasha and phone",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:26:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120260000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120260000",
+      "evidence_chunk_label": "DAY1 20:26:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120260000_8",
+          "triple": [
+            "Tasha",
+            "on",
+            "phone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-111143000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111143000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Everyone at the table at approximately DAY1 11:14:30?",
+      "choices": {
+        "A": "table",
+        "B": "shelf",
+        "C": "dining table",
+        "D": "bin"
+      },
+      "gold": "A",
+      "gold_answer": "table",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111143000: (Everyone at the table, located_in, table)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111143000",
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111143000_0",
+          "triple": [
+            "Everyone at the table",
+            "located_in",
+            "table"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-111143000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111143000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 11:14:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Everyone at the table and table",
+        "B": "hard drives and table",
+        "C": "box and shelf",
+        "D": "trash and bin"
+      },
+      "gold": "A",
+      "gold_answer": "Everyone at the table and table",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111143000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111143000",
+      "evidence_chunk_label": "DAY1 11:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111143000_0",
+          "triple": [
+            "Everyone at the table",
+            "located_in",
+            "table"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-111243000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111243000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Shure at approximately DAY1 11:24:30?",
+      "choices": {
+        "A": "Changchun",
+        "B": "jilin province",
+        "C": "box",
+        "D": "myself"
+      },
+      "gold": "A",
+      "gold_answer": "Changchun",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:24:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111243000: (Shure, located_in, Changchun)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111243000",
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111243000_0",
+          "triple": [
+            "Shure",
+            "located_in",
+            "Changchun"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-111243000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111243000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 11:24:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Shure and Changchun",
+        "B": "Changchun and jilin province",
+        "C": "Jilin City and jilin province",
+        "D": "stick and box"
+      },
+      "gold": "A",
+      "gold_answer": "Shure and Changchun",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:24:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111243000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111243000",
+      "evidence_chunk_label": "DAY1 11:24:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111243000_0",
+          "triple": [
+            "Shure",
+            "located_in",
+            "Changchun"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-117263000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117263000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Tasha at approximately DAY1 17:26:30?",
+      "choices": {
+        "A": "drink station",
+        "B": "shopping cart",
+        "C": "Jake",
+        "D": "Tasha"
+      },
+      "gold": "A",
+      "gold_answer": "drink station",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:26:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117263000: (Tasha, located_in, drink_station)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117263000",
+      "evidence_chunk_label": "DAY1 17:26:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117263000_0",
+          "triple": [
+            "Tasha",
+            "located_in",
+            "drink_station"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-117263000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117263000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 17:26:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "box and shopping cart",
+        "B": "Tasha and drink station",
+        "C": "boxed item and shopping cart",
+        "D": "Tasha and Jake"
+      },
+      "gold": "A",
+      "gold_answer": "box and shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:26:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117263000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117263000",
+      "evidence_chunk_label": "DAY1 17:26:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117263000_1",
+          "triple": [
+            "box",
+            "in",
+            "shopping_cart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-119103000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119103000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Jake at approximately DAY1 19:10:30?",
+      "choices": {
+        "A": "singapore",
+        "B": "courtyard",
+        "C": "room",
+        "D": "foyer"
+      },
+      "gold": "A",
+      "gold_answer": "singapore",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:10:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119103000: (Jake, located_in, singapore)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119103000",
+      "evidence_chunk_label": "DAY1 19:10:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119103000_0",
+          "triple": [
+            "Jake",
+            "located_in",
+            "singapore"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-119103000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119103000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 19:10:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Jake and singapore",
+        "B": "light and entryway",
+        "C": "groceries and fridge",
+        "D": "it and fridge"
+      },
+      "gold": "A",
+      "gold_answer": "Jake and singapore",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:10:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119103000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119103000",
+      "evidence_chunk_label": "DAY1 19:10:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119103000_0",
+          "triple": [
+            "Jake",
+            "located_in",
+            "singapore"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-120310000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120310000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Tasha at approximately DAY1 20:31:00?",
+      "choices": {
+        "A": "blackboard",
+        "B": "bedroom",
+        "C": "table",
+        "D": "computer"
+      },
+      "gold": "A",
+      "gold_answer": "blackboard",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:31:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120310000: (Tasha, near, blackboard)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120310000",
+      "evidence_chunk_label": "DAY1 20:31:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120310000_0",
+          "triple": [
+            "Tasha",
+            "near",
+            "blackboard"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-120310000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120310000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 20:31:00, which subject-object pair was closest?",
+      "choices": {
+        "A": "cable and computer",
+        "B": "Tasha and blackboard",
+        "C": "glasses and table",
+        "D": "computer and bedroom"
+      },
+      "gold": "A",
+      "gold_answer": "cable and computer",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:31:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120310000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120310000",
+      "evidence_chunk_label": "DAY1 20:31:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120310000_3",
+          "triple": [
+            "cable",
+            "in",
+            "computer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-117563000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117563000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Jake at approximately DAY1 17:56:30?",
+      "choices": {
+        "A": "seafood counter",
+        "B": "I",
+        "C": "right side",
+        "D": "shopping cart"
+      },
+      "gold": "A",
+      "gold_answer": "seafood counter",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:56:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117563000: (Jake, located_in, seafood_counter)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117563000",
+      "evidence_chunk_label": "DAY1 17:56:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117563000_0",
+          "triple": [
+            "Jake",
+            "located_in",
+            "seafood_counter"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-117563000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117563000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 17:56:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Shure and right side",
+        "B": "Jake and seafood counter",
+        "C": "Tasha and shopping cart",
+        "D": "Fresh tofu and shopping cart"
+      },
+      "gold": "A",
+      "gold_answer": "Shure and right side",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:56:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117563000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117563000",
+      "evidence_chunk_label": "DAY1 17:56:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117563000_3",
+          "triple": [
+            "Shure",
+            "located_in",
+            "right_side"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-118113000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "118113000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was logic chain at approximately DAY1 18:11:30?",
+      "choices": {
+        "A": "shelf",
+        "B": "Jake",
+        "C": "Alice",
+        "D": "Katrina"
+      },
+      "gold": "A",
+      "gold_answer": "shelf",
+      "query_time": {
+        "date": "DAY1",
+        "time": "18:11:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 118113000: (logic chain, on, shelf)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "118113000",
+      "evidence_chunk_label": "DAY1 18:11:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_118113000_0",
+          "triple": [
+            "logic chain",
+            "on",
+            "shelf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-118113000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "118113000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 18:11:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "logic chain and shelf",
+        "B": "phone and shelf",
+        "C": "Katrina and Lucia",
+        "D": "Shure and Katrina"
+      },
+      "gold": "A",
+      "gold_answer": "logic chain and shelf",
+      "query_time": {
+        "date": "DAY1",
+        "time": "18:11:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 118113000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "118113000",
+      "evidence_chunk_label": "DAY1 18:11:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_118113000_0",
+          "triple": [
+            "logic chain",
+            "on",
+            "shelf"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-121570000-02",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "121570000:2",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Lucia at approximately DAY1 21:57:00?",
+      "choices": {
+        "A": "small horse",
+        "B": "bed",
+        "C": "stool",
+        "D": "Katrina"
+      },
+      "gold": "A",
+      "gold_answer": "small horse",
+      "query_time": {
+        "date": "DAY1",
+        "time": "21:57:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 121570000: (Lucia, on, small_horse)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "121570000",
+      "evidence_chunk_label": "DAY1 21:57:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_121570000_2",
+          "triple": [
+            "Lucia",
+            "on",
+            "small_horse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-121570000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "121570000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 21:57:00, which subject-object pair was closest?",
+      "choices": {
+        "A": "Lucia and small horse",
+        "B": "Alice and Katrina",
+        "C": "Alice and Lucia",
+        "D": "Katrina and Lucia"
+      },
+      "gold": "A",
+      "gold_answer": "Lucia and small horse",
+      "query_time": {
+        "date": "DAY1",
+        "time": "21:57:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 121570000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "121570000",
+      "evidence_chunk_label": "DAY1 21:57:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_121570000_2",
+          "triple": [
+            "Lucia",
+            "on",
+            "small_horse"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-113343000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "113343000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Katrina at approximately DAY1 13:34:30?",
+      "choices": {
+        "A": "software engineering",
+        "B": "kitchen",
+        "C": "first floor",
+        "D": "upstairs"
+      },
+      "gold": "A",
+      "gold_answer": "software engineering",
+      "query_time": {
+        "date": "DAY1",
+        "time": "13:34:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 113343000: (Katrina, located_in, software_engineering)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "113343000",
+      "evidence_chunk_label": "DAY1 13:34:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_113343000_1",
+          "triple": [
+            "Katrina",
+            "located_in",
+            "software_engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-113343000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "113343000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 13:34:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Katrina and software engineering",
+        "B": "meeting room and here",
+        "C": "kitchen and here",
+        "D": "dessert table and here"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and software engineering",
+      "query_time": {
+        "date": "DAY1",
+        "time": "13:34:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 113343000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "113343000",
+      "evidence_chunk_label": "DAY1 13:34:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_113343000_1",
+          "triple": [
+            "Katrina",
+            "located_in",
+            "software_engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-117313000-03",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117313000:3",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was two cartons of milk at approximately DAY1 17:31:30?",
+      "choices": {
+        "A": "cart",
+        "B": "I",
+        "C": "items ahead",
+        "D": "left"
+      },
+      "gold": "A",
+      "gold_answer": "cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:31:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117313000: (two cartons of milk, in, cart)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117313000",
+      "evidence_chunk_label": "DAY1 17:31:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117313000_3",
+          "triple": [
+            "two cartons of milk",
+            "in",
+            "cart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-117313000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117313000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 17:31:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "two cartons of milk and cart",
+        "B": "drinks and cart",
+        "C": "heavy cream and yogurt",
+        "D": "heavy cream and freezer section"
+      },
+      "gold": "A",
+      "gold_answer": "two cartons of milk and cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:31:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117313000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117313000",
+      "evidence_chunk_label": "DAY1 17:31:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117313000_3",
+          "triple": [
+            "two cartons of milk",
+            "in",
+            "cart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-117463000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117463000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Tasha at approximately DAY1 17:46:30?",
+      "choices": {
+        "A": "shopping cart",
+        "B": "I",
+        "C": "deli section",
+        "D": "Alice"
+      },
+      "gold": "A",
+      "gold_answer": "shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:46:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117463000: (Tasha, on, shopping_cart)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117463000",
+      "evidence_chunk_label": "DAY1 17:46:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117463000_1",
+          "triple": [
+            "Tasha",
+            "on",
+            "shopping_cart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-117463000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117463000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 17:46:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Tasha and shopping cart",
+        "B": "Alice and deli section",
+        "C": "Tasha and Alice",
+        "D": "Salt and shopping cart"
+      },
+      "gold": "A",
+      "gold_answer": "Tasha and shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:46:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117463000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117463000",
+      "evidence_chunk_label": "DAY1 17:46:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117463000_1",
+          "triple": [
+            "Tasha",
+            "on",
+            "shopping_cart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-118263000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "118263000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was bagged items at approximately DAY1 18:26:30?",
+      "choices": {
+        "A": "shopping cart",
+        "B": "supermarket entrance",
+        "C": "hand of Tasha",
+        "D": "service counter"
+      },
+      "gold": "A",
+      "gold_answer": "shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "18:26:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 118263000: (bagged items, in, shopping_cart)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "118263000",
+      "evidence_chunk_label": "DAY1 18:26:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_118263000_0",
+          "triple": [
+            "bagged items",
+            "in",
+            "shopping_cart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-118263000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "118263000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 18:26:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "bagged items and shopping cart",
+        "B": "shopping bag and hand of Tasha",
+        "C": "water bottle and car",
+        "D": "Tasha and Alice"
+      },
+      "gold": "A",
+      "gold_answer": "bagged items and shopping cart",
+      "query_time": {
+        "date": "DAY1",
+        "time": "18:26:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 118263000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "118263000",
+      "evidence_chunk_label": "DAY1 18:26:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_118263000_0",
+          "triple": [
+            "bagged items",
+            "in",
+            "shopping_cart"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-119253000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119253000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Katrina at approximately DAY1 19:25:30?",
+      "choices": {
+        "A": "blackboard",
+        "B": "ground",
+        "C": "chair",
+        "D": "table"
+      },
+      "gold": "A",
+      "gold_answer": "blackboard",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:25:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 119253000: (Katrina, next_to, blackboard)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119253000",
+      "evidence_chunk_label": "DAY1 19:25:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119253000_0",
+          "triple": [
+            "Katrina",
+            "next_to",
+            "blackboard"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-119253000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "119253000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 19:25:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Katrina and ground",
+        "B": "Katrina and blackboard",
+        "C": "Tasha and chair",
+        "D": "unwanted trash and ground"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and ground",
+      "query_time": {
+        "date": "DAY1",
+        "time": "19:25:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 119253000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "119253000",
+      "evidence_chunk_label": "DAY1 19:25:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_119253000_1",
+          "triple": [
+            "Katrina",
+            "on",
+            "ground"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-111193000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111193000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Katrina at approximately DAY1 11:19:30?",
+      "choices": {
+        "A": "windowsill",
+        "B": "desk",
+        "C": "Alice",
+        "D": "I"
+      },
+      "gold": "A",
+      "gold_answer": "windowsill",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:19:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111193000: (Katrina, near, windowsill)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111193000",
+      "evidence_chunk_label": "DAY1 11:19:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111193000_0",
+          "triple": [
+            "Katrina",
+            "near",
+            "windowsill"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-111193000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111193000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 11:19:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Katrina and windowsill",
+        "B": "Katrina and windowsill",
+        "C": "Katrina and windowsill",
+        "D": "Katrina and windowsill"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and windowsill",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:19:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111193000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111193000",
+      "evidence_chunk_label": "DAY1 11:19:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111193000_0",
+          "triple": [
+            "Katrina",
+            "near",
+            "windowsill"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-114143000-04",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114143000:4",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Katrina at approximately DAY1 14:14:30?",
+      "choices": {
+        "A": "neighbors",
+        "B": "KFC",
+        "C": "restaurant",
+        "D": "courtyard"
+      },
+      "gold": "A",
+      "gold_answer": "neighbors",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 114143000: (Katrina, next_to, neighbors)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114143000",
+      "evidence_chunk_label": "DAY1 14:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114143000_4",
+          "triple": [
+            "Katrina",
+            "next_to",
+            "neighbors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-114143000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114143000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 14:14:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Katrina and neighbors",
+        "B": "二环 and 北京",
+        "C": "北航 and 学院路",
+        "D": "food and table"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and neighbors",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 114143000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114143000",
+      "evidence_chunk_label": "DAY1 14:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114143000_4",
+          "triple": [
+            "Katrina",
+            "next_to",
+            "neighbors"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-117163000-02",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117163000:2",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was power bank at approximately DAY1 17:16:30?",
+      "choices": {
+        "A": "seat",
+        "B": "car",
+        "C": "door",
+        "D": "Shure Katrina"
+      },
+      "gold": "A",
+      "gold_answer": "seat",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:16:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 117163000: (power bank, in, seat)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117163000",
+      "evidence_chunk_label": "DAY1 17:16:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117163000_2",
+          "triple": [
+            "power bank",
+            "in",
+            "seat"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-117163000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "117163000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 17:16:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "car door and door",
+        "B": "power bank and seat",
+        "C": "supermarket and beijing",
+        "D": "Katrina Shure Lucia and front door"
+      },
+      "gold": "A",
+      "gold_answer": "car door and door",
+      "query_time": {
+        "date": "DAY1",
+        "time": "17:16:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 117163000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "117163000",
+      "evidence_chunk_label": "DAY1 17:16:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_117163000_1",
+          "triple": [
+            "car_door",
+            "contains",
+            "door"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-120360000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120360000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Alice at approximately DAY1 20:36:00?",
+      "choices": {
+        "A": "kitchen",
+        "B": "I",
+        "C": "second floor",
+        "D": "living room"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:36:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 120360000: (Alice, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120360000",
+      "evidence_chunk_label": "DAY1 20:36:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120360000_0",
+          "triple": [
+            "Alice",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-120360000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "120360000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 20:36:00, which subject-object pair was closest?",
+      "choices": {
+        "A": "bag of food and microwave",
+        "B": "Alice and kitchen",
+        "C": "Lucia and kitchen",
+        "D": "computer and sofa"
+      },
+      "gold": "A",
+      "gold_answer": "bag of food and microwave",
+      "query_time": {
+        "date": "DAY1",
+        "time": "20:36:00"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 120360000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "120360000",
+      "evidence_chunk_label": "DAY1 20:36:00",
+      "evidence_triples": [
+        {
+          "id": "spatial_120360000_5",
+          "triple": [
+            "bag of food",
+            "in",
+            "microwave"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-111343000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111343000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Shure at approximately DAY1 11:34:30?",
+      "choices": {
+        "A": "whiteboard",
+        "B": "stool",
+        "C": "Shure",
+        "D": "Shure's original seat"
+      },
+      "gold": "A",
+      "gold_answer": "whiteboard",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:34:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111343000: (Shure, on, whiteboard)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111343000",
+      "evidence_chunk_label": "DAY1 11:34:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111343000_1",
+          "triple": [
+            "Shure",
+            "on",
+            "whiteboard"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-111343000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111343000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 11:34:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Shure and side",
+        "B": "Shure and whiteboard",
+        "C": "Shure and whiteboard",
+        "D": "Shure and board"
+      },
+      "gold": "A",
+      "gold_answer": "Shure and side",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:34:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111343000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111343000",
+      "evidence_chunk_label": "DAY1 11:34:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111343000_4",
+          "triple": [
+            "Shure",
+            "located_in",
+            "side"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-111543000-01",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111543000:1",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was piece of paper at approximately DAY1 11:54:30?",
+      "choices": {
+        "A": "I left hand",
+        "B": "bedroom",
+        "C": "outside",
+        "D": "Jake"
+      },
+      "gold": "A",
+      "gold_answer": "I left hand",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:54:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 111543000: (piece of paper, in, I left hand)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111543000",
+      "evidence_chunk_label": "DAY1 11:54:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111543000_1",
+          "triple": [
+            "piece of paper",
+            "in",
+            "I left hand"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-111543000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "111543000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 11:54:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "piece of paper and I left hand",
+        "B": "Katrina and whiteboard",
+        "C": "Katrina and whiteboard",
+        "D": "Katrina and whiteboard"
+      },
+      "gold": "A",
+      "gold_answer": "piece of paper and I left hand",
+      "query_time": {
+        "date": "DAY1",
+        "time": "11:54:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 111543000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "111543000",
+      "evidence_chunk_label": "DAY1 11:54:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_111543000_1",
+          "triple": [
+            "piece of paper",
+            "in",
+            "I left hand"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-112093000-02",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "112093000:2",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was charger at approximately DAY1 12:09:30?",
+      "choices": {
+        "A": "kitchen",
+        "B": "Shure",
+        "C": "bedroom",
+        "D": "floor"
+      },
+      "gold": "A",
+      "gold_answer": "kitchen",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:09:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 112093000: (charger, located_in, kitchen)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "112093000",
+      "evidence_chunk_label": "DAY1 12:09:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_112093000_2",
+          "triple": [
+            "charger",
+            "located_in",
+            "kitchen"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-112093000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "112093000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 12:09:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "director's slate and floor",
+        "B": "charger and kitchen",
+        "C": "director's board and left-hand side",
+        "D": "mixing and counter"
+      },
+      "gold": "A",
+      "gold_answer": "director's slate and floor",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:09:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 112093000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "112093000",
+      "evidence_chunk_label": "DAY1 12:09:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_112093000_5",
+          "triple": [
+            "director's slate",
+            "on",
+            "floor"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-112143000-03",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "112143000:3",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was bouquet at approximately DAY1 12:14:30?",
+      "choices": {
+        "A": "table",
+        "B": "desserts",
+        "C": "phone",
+        "D": "I"
+      },
+      "gold": "A",
+      "gold_answer": "table",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 112143000: (bouquet, on, table)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "112143000",
+      "evidence_chunk_label": "DAY1 12:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_112143000_3",
+          "triple": [
+            "bouquet",
+            "on",
+            "table"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-112143000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "112143000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 12:14:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "dessert table and desserts",
+        "B": "bouquet and table",
+        "C": "Shure and whiteboard",
+        "D": "Hugh and whiteboard"
+      },
+      "gold": "A",
+      "gold_answer": "dessert table and desserts",
+      "query_time": {
+        "date": "DAY1",
+        "time": "12:14:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 112143000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "112143000",
+      "evidence_chunk_label": "DAY1 12:14:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_112143000_0",
+          "triple": [
+            "dessert_table",
+            "contains",
+            "desserts"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-114093000-00",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114093000:0",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was ladle at approximately DAY1 14:09:30?",
+      "choices": {
+        "A": "bucket",
+        "B": "here",
+        "C": "kitchen",
+        "D": "oven"
+      },
+      "gold": "A",
+      "gold_answer": "bucket",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:09:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 114093000: (ladle, in, bucket)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114093000",
+      "evidence_chunk_label": "DAY1 14:09:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114093000_0",
+          "triple": [
+            "ladle",
+            "in",
+            "bucket"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-114093000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114093000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 14:09:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "ladle and bucket",
+        "B": "other spoon and bucket",
+        "C": "tableware and bucket",
+        "D": "bowl and here"
+      },
+      "gold": "A",
+      "gold_answer": "ladle and bucket",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:09:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 114093000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114093000",
+      "evidence_chunk_label": "DAY1 14:09:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114093000_0",
+          "triple": [
+            "ladle",
+            "in",
+            "bucket"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-WHERE-114113000-05",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114113000:5",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Where was Katrina at approximately DAY1 14:11:30?",
+      "choices": {
+        "A": "phone",
+        "B": "takeout",
+        "C": "the right",
+        "D": "forward"
+      },
+      "gold": "A",
+      "gold_answer": "phone",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:11:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded chunk 114113000: (Katrina, on, phone)",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114113000",
+      "evidence_chunk_label": "DAY1 14:11:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114113000_5",
+          "triple": [
+            "Katrina",
+            "on",
+            "phone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GQA-PH4-DIST-114113000",
+      "source_pool": "phase4_grounded_generated",
+      "source_id": "114113000:distance",
+      "type_label": "Type1",
+      "type_name": "Spatial-required",
+      "question": "Using grounded relative 3D centers at DAY1 14:11:30, which subject-object pair was closest?",
+      "choices": {
+        "A": "Katrina and phone",
+        "B": "Katrina and phone",
+        "C": "Katrina and phone",
+        "D": "Katrina and phone"
+      },
+      "gold": "A",
+      "gold_answer": "Katrina and phone",
+      "query_time": {
+        "date": "DAY1",
+        "time": "14:11:30"
+      },
+      "reasoning_trace_evidence": "phase4 grounded bbox centers in chunk 114113000",
+      "evidence_axis_contains_answer": [
+        "spatial+grounded"
+      ],
+      "evidence_chunk": "114113000",
+      "evidence_chunk_label": "DAY1 14:11:30",
+      "evidence_triples": [
+        {
+          "id": "spatial_114113000_5",
+          "triple": [
+            "Katrina",
+            "on",
+            "phone"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "schema_version": "aea_spatial_sidecar.v1",
+  "sequence_id": "loc1_script4_seq4_rec1",
+  "chunk_index": 1,
+  "time_range_us": [
+    1072203846,
+    1102203845
+  ],
+  "duration_s": 30.0,
+  "time_window_ms": 100,
+  "metadata": {
+    "location": 1,
+    "script": 4,
+    "sequence": 4,
+    "recording": 1,
+    "concurrent_recordings": [],
+    "dataset_version": "1.0",
+    "dataset_name": "AEA_2024"
+  },
+  "pose_6dof_mean": {
+    "tracking_timestamp_us": 1087202947,
+    "tx": 1.2610608139450388,
+    "ty": -1.8750294831549743,
+    "tz": 0.08399602681992337,
+    "qw": -0.5429375995219601,
+    "qx": -0.023535992227883263,
+    "qy": -0.8393733323131022,
+    "qz": 0.01082723864977951,
+    "quality_score": 1.0,
+    "graph_uid": "4d17867a-9627-c654-99c1-3e9597044e46",
+    "units": "meters",
+    "frame": "world"
+  },
+  "pose_6dof_median": {
+    "tracking_timestamp_us": 1087203210,
+    "tx": 1.2615815000000001,
+    "ty": -1.8208555,
+    "tz": 0.08931700000000001,
+    "qw": -0.5290234238498396,
+    "qx": -0.15268452708676247,
+    "qy": -0.8205135986358851,
+    "qz": 0.15355483274737483,
+    "quality_score": 1.0,
+    "graph_uid": "4d17867a-9627-c654-99c1-3e9597044e46",
+    "units": "meters",
+    "frame": "world"
+  },
+  "gaze_samples": [
+    {
+      "tracking_timestamp_us": 1072103858,
+      "yaw_rads_cpf": 0.087976,
+      "pitch_rads_cpf": -0.306605,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.077227,
+        "yaw_high_rads_cpf": 0.100324,
+        "pitch_low_rads_cpf": -0.319482,
+        "pitch_high_rads_cpf": -0.289163
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1072203846,
+      "nearest_pose_delta_us": -99988,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1078203858,
+      "yaw_rads_cpf": 0.094653,
+      "pitch_rads_cpf": -0.177229,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.079419,
+        "yaw_high_rads_cpf": 0.108319,
+        "pitch_low_rads_cpf": -0.19715,
+        "pitch_high_rads_cpf": -0.141088
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1078203846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1084303858,
+      "yaw_rads_cpf": 0.258231,
+      "pitch_rads_cpf": -0.1635329999999999,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.247681,
+        "yaw_high_rads_cpf": 0.2697739999999999,
+        "pitch_low_rads_cpf": -0.175954,
+        "pitch_high_rads_cpf": -0.151607
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1084303846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1090403858,
+      "yaw_rads_cpf": 0.083019,
+      "pitch_rads_cpf": -0.027904,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.070694,
+        "yaw_high_rads_cpf": 0.097951,
+        "pitch_low_rads_cpf": -0.044176,
+        "pitch_high_rads_cpf": -0.012972
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1090403846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 1096503858,
+      "yaw_rads_cpf": 0.103269,
+      "pitch_rads_cpf": -0.269804,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.091172,
+        "yaw_high_rads_cpf": 0.114864,
+        "pitch_low_rads_cpf": -0.284582,
+        "pitch_high_rads_cpf": -0.252186
+      },
+      "session_uid": "12fc61eb-21f9-4f88-8aa9-81f92588a430",
+      "nearest_pose_tracking_timestamp_us": 1096503846,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    }
+  ],
+  "speech_segments": [
+    {
+      "start_time_ns": 1074651000000,
+      "end_time_ns": 1075651000000,
+      "text": "Okay.",
+      "confidence": 0.4679382443428039,
+      "language": null
+    },
+    {
+      "start_time_ns": 1075651000000,
+      "end_time_ns": 1076451000000,
+      "text": "I",
+      "confidence": 0.2966668307781219,
+      "language": null
+    },
+    {
+      "start_time_ns": 1076451000000,
+      "end_time_ns": 1076611000000,
+      "text": "want",
+      "confidence": 0.6905345916748047,
+      "language": null
+    },
+    {
+      "start_time_ns": 1076611000000,
+      "end_time_ns": 1077011000000,
+      "text": "like",
+      "confidence": 0.9990819692611694,
+      "language": null
+    },
+    {
+      "start_time_ns": 1077011000000,
+      "end_time_ns": 1077251000000,
+      "text": "a",
+      "confidence": 0.963452696800232,
+      "language": null
+    },
+    {
+      "start_time_ns": 1077251000000,
+      "end_time_ns": 1077411000000,
+      "text": "little",
+      "confidence": 0.9709186553955078,
+      "language": null
+    },
+    {
+      "start_time_ns": 1077611000000,
+      "end_time_ns": 1078611000000,
+      "text": "hmm",
+      "confidence": 0.312006801366806,
+      "language": null
+    },
+    {
+      "start_time_ns": 1079451000000,
+      "end_time_ns": 1080451000000,
+      "text": "something",
+      "confidence": 0.999924659729004,
+      "language": null
+    },
+    {
+      "start_time_ns": 1080451000000,
+      "end_time_ns": 1081011000000,
+      "text": "to",
+      "confidence": 0.958374321460724,
+      "language": null
+    },
+    {
+      "start_time_ns": 1081011000000,
+      "end_time_ns": 1081331000000,
+      "text": "grease",
+      "confidence": 0.9957165122032166,
+      "language": null
+    },
+    {
+      "start_time_ns": 1081331000000,
+      "end_time_ns": 1081491000000,
+      "text": "the",
+      "confidence": 0.9968262910842896,
+      "language": null
+    },
+    {
+      "start_time_ns": 1081491000000,
+      "end_time_ns": 1081731000000,
+      "text": "pan",
+      "confidence": 0.906523048877716,
+      "language": null
+    },
+    {
+      "start_time_ns": 1081731000000,
+      "end_time_ns": 1082211000000,
+      "text": "with.",
+      "confidence": 0.3183555901050567,
+      "language": null
+    },
+    {
+      "start_time_ns": 1082211000000,
+      "end_time_ns": 1082291000000,
+      "text": "Little",
+      "confidence": 0.4961341321468353,
+      "language": null
+    },
+    {
+      "start_time_ns": 1082291000000,
+      "end_time_ns": 1082531000000,
+      "text": "oil",
+      "confidence": 0.9998192191123962,
+      "language": null
+    },
+    {
+      "start_time_ns": 1082531000000,
+      "end_time_ns": 1083011000000,
+      "text": "maybe",
+      "confidence": 0.9928962588310242,
+      "language": null
+    },
+    {
+      "start_time_ns": 1083011000000,
+      "end_time_ns": 1083491000000,
+      "text": "would",
+      "confidence": 0.4824849665164947,
+      "language": null
+    },
+    {
+      "start_time_ns": 1083491000000,
+      "end_time_ns": 1083731000000,
+      "text": "be",
+      "confidence": 0.9999966621398926,
+      "language": null
+    },
+    {
+      "start_time_ns": 1083731000000,
+      "end_time_ns": 1084291000000,
+      "text": "good.",
+      "confidence": 0.7135493159294128,
+      "language": null
+    },
+    {
+      "start_time_ns": 1085131000000,
+      "end_time_ns": 1086131000000,
+      "text": "Oil",
+      "confidence": 0.9931273460388184,
+      "language": null
+    },
+    {
+      "start_time_ns": 1086131000000,
+      "end_time_ns": 1086291000000,
+      "text": "would",
+      "confidence": 0.732090413570404,
+      "language": null
+    },
+    {
+      "start_time_ns": 1086291000000,
+      "end_time_ns": 1086451000000,
+      "text": "be",
+      "confidence": 0.9999945163726808,
+      "language": null
+    },
+    {
+      "start_time_ns": 1086451000000,
+      "end_time_ns": 1087091000000,
+      "text": "nice.",
+      "confidence": 0.916178286075592,
+      "language": null
+    },
+    {
+      "start_time_ns": 1091851000000,
+      "end_time_ns": 1092851000000,
+      "text": "Scratch",
+      "confidence": 0.6907181739807129,
+      "language": null
+    },
+    {
+      "start_time_ns": 1092851000000,
+      "end_time_ns": 1092931000000,
+      "text": "your",
+      "confidence": 0.5639612078666687,
+      "language": null
+    },
+    {
+      "start_time_ns": 1092931000000,
+      "end_time_ns": 1093171000000,
+      "text": "thing",
+      "confidence": 0.9990293979644777,
+      "language": null
+    },
+    {
+      "start_time_ns": 1093171000000,
+      "end_time_ns": 1093811000000,
+      "text": "up.",
+      "confidence": 0.4960610866546631,
+      "language": null
+    },
+    {
+      "start_time_ns": 1096411000000,
+      "end_time_ns": 1097411000000,
+      "text": "Okay,",
+      "confidence": 0.3734712302684784,
+      "language": null
+    },
+    {
+      "start_time_ns": 1097411000000,
+      "end_time_ns": 1097531000000,
+      "text": "let's",
+      "confidence": 0.884864091873169,
+      "language": null
+    },
+    {
+      "start_time_ns": 1097531000000,
+      "end_time_ns": 1097651000000,
+      "text": "use",
+      "confidence": 0.4043064713478088,
+      "language": null
+    },
+    {
+      "start_time_ns": 1097651000000,
+      "end_time_ns": 1098451000000,
+      "text": "this.",
+      "confidence": 0.9859956502914428,
+      "language": null
+    }
+  ],
+  "trajectory_length_m": 4.5883566614450615,
+  "dwell_speed_mps": 0.1529452220481687,
+  "pose_sample_count": 30276,
+  "gaze_sample_count_input": 302,
+  "source_files": {
+    "closed_loop_trajectory": "closed_loop_trajectory.csv",
+    "general_eye_gaze": "general_eye_gaze.csv",
+    "speech": "speech.csv",
+    "metadata": "metadata.json"
+  },
+  "coverage_gaps": {
+    "geo_available": 0,
+    "gaze_depth_all_nan": true,
+    "online_calibration_parsed": false,
+    "place_clustering": false
+  }
+}

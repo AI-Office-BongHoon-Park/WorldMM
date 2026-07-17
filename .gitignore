@@ -1,5 +1,7 @@
 data/
 output/
+tools/_mast3r_src/
+*.pt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -174,4 +176,9 @@ cython_debug/
 .ruff_cache/
 
 # PyPI configuration file
-.pypirc
+.pypirc.sisyphus/
+
+# AEA dataset artifacts (gated, large, time-limited URLs)
+data/AEA/
+# Research reports kept; analysis data not
+tools/_triposr_src/

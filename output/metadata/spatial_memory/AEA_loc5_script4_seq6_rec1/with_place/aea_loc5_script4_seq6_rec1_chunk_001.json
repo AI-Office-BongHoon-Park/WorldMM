@@ -1,0 +1,161 @@
+{
+  "schema_version": "aea_spatial_sidecar.v1",
+  "sequence_id": "loc5_script4_seq6_rec1",
+  "chunk_index": 1,
+  "time_range_us": [
+    3140203114,
+    3170203113
+  ],
+  "duration_s": 30.0,
+  "time_window_ms": 100,
+  "metadata": {
+    "location": 5,
+    "script": 4,
+    "sequence": 6,
+    "recording": 1,
+    "concurrent_recordings": [],
+    "dataset_version": "1.0",
+    "dataset_name": "AEA_2024"
+  },
+  "pose_6dof_mean": {
+    "tracking_timestamp_us": 3155202085,
+    "tx": -11.767517957872496,
+    "ty": -7.230214977978805,
+    "tz": 0.06173931159827001,
+    "qw": 0.4883977977920752,
+    "qx": -0.30887115840557633,
+    "qy": 0.7112208243505294,
+    "qz": 0.40028881776437636,
+    "quality_score": 1.0,
+    "graph_uid": "e32cc93e-64c5-3c5d-b4e8-bbb4f23258ca",
+    "units": "meters",
+    "frame": "world"
+  },
+  "pose_6dof_median": {
+    "tracking_timestamp_us": 3155201808,
+    "tx": -11.646765,
+    "ty": -8.312118,
+    "tz": 0.087137,
+    "qw": 0.4462915012666338,
+    "qx": -0.5334165124872681,
+    "qy": 0.5135443672676288,
+    "qz": 0.5025563679337723,
+    "quality_score": 1.0,
+    "graph_uid": "e32cc93e-64c5-3c5d-b4e8-bbb4f23258ca",
+    "units": "meters",
+    "frame": "world"
+  },
+  "gaze_samples": [
+    {
+      "tracking_timestamp_us": 3140103126,
+      "yaw_rads_cpf": 0.088465,
+      "pitch_rads_cpf": -0.14427,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.078423,
+        "yaw_high_rads_cpf": 0.098894,
+        "pitch_low_rads_cpf": -0.156723,
+        "pitch_high_rads_cpf": -0.128539
+      },
+      "session_uid": "c94fa63b-249a-4b41-a4bc-5124e3f355ae",
+      "nearest_pose_tracking_timestamp_us": 3140203114,
+      "nearest_pose_delta_us": -99988,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 3146203126,
+      "yaw_rads_cpf": -0.002583,
+      "pitch_rads_cpf": -0.4921779999999999,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.014745,
+        "yaw_high_rads_cpf": 0.010755,
+        "pitch_low_rads_cpf": -0.507576,
+        "pitch_high_rads_cpf": -0.476739
+      },
+      "session_uid": "c94fa63b-249a-4b41-a4bc-5124e3f355ae",
+      "nearest_pose_tracking_timestamp_us": 3146203114,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 3152303126,
+      "yaw_rads_cpf": -0.291501,
+      "pitch_rads_cpf": -0.397066,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.303956,
+        "yaw_high_rads_cpf": -0.278443,
+        "pitch_low_rads_cpf": -0.412168,
+        "pitch_high_rads_cpf": -0.380928
+      },
+      "session_uid": "c94fa63b-249a-4b41-a4bc-5124e3f355ae",
+      "nearest_pose_tracking_timestamp_us": 3152303114,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 3158403126,
+      "yaw_rads_cpf": 0.192256,
+      "pitch_rads_cpf": 0.138889,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": 0.179881,
+        "yaw_high_rads_cpf": 0.2061989999999999,
+        "pitch_low_rads_cpf": 0.123937,
+        "pitch_high_rads_cpf": 0.158391
+      },
+      "session_uid": "c94fa63b-249a-4b41-a4bc-5124e3f355ae",
+      "nearest_pose_tracking_timestamp_us": 3158403114,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    },
+    {
+      "tracking_timestamp_us": 3164503126,
+      "yaw_rads_cpf": -0.1156859999999999,
+      "pitch_rads_cpf": -0.307136,
+      "point_cpf": null,
+      "confidence_interval": {
+        "yaw_low_rads_cpf": -0.126835,
+        "yaw_high_rads_cpf": -0.104078,
+        "pitch_low_rads_cpf": -0.322405,
+        "pitch_high_rads_cpf": -0.291072
+      },
+      "session_uid": "c94fa63b-249a-4b41-a4bc-5124e3f355ae",
+      "nearest_pose_tracking_timestamp_us": 3164503114,
+      "nearest_pose_delta_us": 12,
+      "aligned_within_time_window": true
+    }
+  ],
+  "speech_segments": [],
+  "trajectory_length_m": 18.73051683147761,
+  "dwell_speed_mps": 0.6243505610492536,
+  "pose_sample_count": 30289,
+  "gaze_sample_count_input": 302,
+  "source_files": {
+    "closed_loop_trajectory": "closed_loop_trajectory.csv",
+    "general_eye_gaze": "general_eye_gaze.csv",
+    "speech": "speech.csv",
+    "metadata": "metadata.json"
+  },
+  "coverage_gaps": {
+    "geo_available": 0,
+    "gaze_depth_all_nan": true,
+    "online_calibration_parsed": false,
+    "place_clustering": false
+  },
+  "place_anchor": {
+    "coordinate_frame_id": "e32cc93e-64c5-3c5d-b4e8-bbb4f23258ca",
+    "centroid_world_m": [
+      -8.781789631603774,
+      -4.251926316509435,
+      0.05194233773584906
+    ],
+    "time_range_us": [
+      3140203114,
+      3170203113
+    ],
+    "label": "place_0",
+    "evidence": []
+  }
+}

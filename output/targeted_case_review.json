@@ -1,0 +1,748 @@
+{
+  "config": {
+    "ids": [
+      "1",
+      "6",
+      "11",
+      "14",
+      "33",
+      "45",
+      "50",
+      "53",
+      "57"
+    ],
+    "day": "DAY1",
+    "model": "chatgpt-gpt-5.4",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "max_rounds": 3,
+    "visual_embeddings_file": "output/metadata/visual_memory/A1_JAKE/visual_embeddings_clip-ViT-B-32.pkl",
+    "visual_clips_file": "output/metadata/visual_memory/A1_JAKE/visual_clips_clip-ViT-B-32.json",
+    "episodic_granularities": [
+      "30sec",
+      "3min",
+      "10min",
+      "1h"
+    ],
+    "baseline_file": "output/three_vs_four_n30_real_visual_expanded.json"
+  },
+  "per_question": [
+    {
+      "id": "1",
+      "type": "EntityLog",
+      "question": "Who used the screwdriver first?",
+      "gold": "B",
+      "choices": {
+        "A": "Tasha",
+        "B": "Alice",
+        "C": "Shure",
+        "D": "Lucia"
+      },
+      "three_axis": {
+        "prediction": "B",
+        "letter": "B",
+        "correct": true,
+        "axis_selections": [
+          "episodic",
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "screwdriver first used by Tasha Alice Shure Lucia",
+            "retrieved_content_summary": "[DAY1 11:17:30 - DAY1 11:18:00]\nI answer Alice, then turn left and walk to the dining table before heading back to the bench and sitting on the stool, resting my hand there while talking with everyone. \"Last time, we kept complaining abo...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "episodic",
+            "search_query": "first used screwdriver Tasha Alice Shure Lucia tightening screws",
+            "retrieved_content_summary": "[DAY1 11:20:31 - DAY1 11:21:00]\nI point to Tasha's things and hold Tasha's black box, then tighten a screw by hand and steady the box with both hands. Katrina says, \"Human confusing behavior.\" \"Then there's a screw here,\" I say. \"Look at...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "3-axis"
+      },
+      "four_axis": {
+        "prediction": "C",
+        "letter": "C",
+        "correct": false,
+        "axis_selections": [
+          "episodic",
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "screwdriver first used by Tasha Alice Shure Lucia",
+            "retrieved_content_summary": "[DAY1 11:17:30 - DAY1 11:18:00]\nI answer Alice, then turn left and walk to the dining table before heading back to the bench and sitting on the stool, resting my hand there while talking with everyone. \"Last time, we kept complaining abo...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "episodic",
+            "search_query": "earliest person using screwdriver among Tasha Alice Shure Lucia during equipment installation",
+            "retrieved_content_summary": "[DAY1 11:17:00 - DAY1 11:17:30]\nI sit still, look around, and watch everyone tidy up and pack away the screws. Lucia says, \"You need to screw that in too. That's the screw hole for the big screw.\" Alice asks, \"Ah, which one?\" Lucia says,...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "4-axis"
+      },
+      "verdict": "DN",
+      "catalog_expected_verdict": "UP",
+      "catalog_status": "flipped",
+      "baseline": {
+        "gold": "B",
+        "three_axis_letter": "C",
+        "four_axis_letter": "B"
+      },
+      "baseline_changed": true,
+      "visual_driven_candidate": false
+    },
+    {
+      "id": "6",
+      "type": "TaskMaster",
+      "question": "Who plans to grow flowers",
+      "gold": "D",
+      "choices": {
+        "A": "Alice",
+        "B": "Tasha",
+        "C": "Me",
+        "D": "Katrina"
+      },
+      "three_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": false,
+        "axis_selections": [
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "plans to grow flowers",
+            "retrieved_content_summary": "[DAY1 11:48:00 - DAY1 11:48:30]\nKatrina says, \"We can plant it too.\" \"Haidilao,\" I say. Tasha says, \"Then we can also plant pea shoots.\" I look toward Tasha, then glance around the group. Katrina says, \"Haidilao recently partnered with C...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 2,
+        "config_label": "3-axis"
+      },
+      "four_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": false,
+        "axis_selections": [
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "plans to grow flowers Alice Tasha me Katrina",
+            "retrieved_content_summary": "[DAY1 11:48:00 - DAY1 11:48:30]\nKatrina says, \"We can plant it too.\" \"Haidilao,\" I say. Tasha says, \"Then we can also plant pea shoots.\" I look toward Tasha, then glance around the group. Katrina says, \"Haidilao recently partnered with C...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 2,
+        "config_label": "4-axis"
+      },
+      "verdict": "same_wrong",
+      "catalog_expected_verdict": "DN",
+      "catalog_status": "flipped",
+      "baseline": {
+        "gold": "D",
+        "three_axis_letter": "D",
+        "four_axis_letter": "D"
+      },
+      "baseline_changed": true,
+      "visual_driven_candidate": false
+    },
+    {
+      "id": "11",
+      "type": "RelationMap",
+      "question": "This morning during our discussion, which two people did I remind not to let their hair cover their glasses?",
+      "gold": "A",
+      "choices": {
+        "A": "Katrina, Alice",
+        "B": "Shure, Tasha",
+        "C": "Alice, Tasha",
+        "D": "Shure, Katrina"
+      },
+      "three_axis": {
+        "prediction": "C",
+        "letter": "C",
+        "correct": false,
+        "axis_selections": [
+          "episodic",
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "this morning discussion reminded not to let hair cover glasses",
+            "retrieved_content_summary": "[DAY1 11:18:00 - DAY1 11:18:29]\nI look across the whiteboard and watch everyone adjust things. Lucia says, \"Yeah, this one is for the bigger ones... it's just like this. It can't really go through this hole.\" Katrina adds, \"Yeah, the big...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "episodic",
+            "search_query": "this morning reminded hair cover glasses two people discussion glasses hair not cover face",
+            "retrieved_content_summary": "[DAY1 11:15:30 - DAY1 11:16:00]\nI raise both hands and point at Alice, then walk up behind her. \"These glasses... Hmm, they shouldn't cover... They shouldn't cover, right? You're not covering anything now,\" I say. I glance right at Tasha...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "3-axis"
+      },
+      "four_axis": {
+        "prediction": "C",
+        "letter": "C",
+        "correct": false,
+        "axis_selections": [
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "this morning discussion reminded not to let hair cover glasses Katrina Alice Shure Tasha",
+            "retrieved_content_summary": "[DAY1 11:15:30 - DAY1 11:16:00]\nI raise both hands and point at Alice, then walk up behind her. \"These glasses... Hmm, they shouldn't cover... They shouldn't cover, right? You're not covering anything now,\" I say. I glance right at Tasha...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 2,
+        "config_label": "4-axis"
+      },
+      "verdict": "same_wrong",
+      "catalog_expected_verdict": null,
+      "catalog_status": null,
+      "baseline": {
+        "gold": "A",
+        "three_axis_letter": "C",
+        "four_axis_letter": "D"
+      },
+      "baseline_changed": true,
+      "visual_driven_candidate": false
+    },
+    {
+      "id": "14",
+      "type": "EventRecall",
+      "question": "Who is missing compared to when we first started the puzzle?",
+      "gold": "A",
+      "choices": {
+        "A": "Katrina",
+        "B": "Tasha",
+        "C": "Alice",
+        "D": "Lucia"
+      },
+      "three_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": true,
+        "axis_selections": [
+          "episodic",
+          "visual",
+          "visual"
+        ],
+        "visual_selections": 2,
+        "visual_hits": 1,
+        "image_payloads": 30,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "first started puzzle participants compared to later who is missing Katrina Tasha Alice Lucia",
+            "retrieved_content_summary": "[DAY1 12:35:31 - DAY1 12:36:00]\nI raise my right hand, sort through the puzzle pieces, and pick up a piece while looking to the right. Lucia says, \"So I think this goes here.\" \"This one looks like it. Wow, this is too strict,\" I say. Luc...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "visual",
+            "search_query": "puzzle group at first started scene participants Katrina Tasha Alice Lucia",
+            "retrieved_content_summary": "[No results]",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 3,
+            "memory_type": "visual",
+            "search_query": "DAY1 12:28:00 - DAY1 12:29:00 puzzle table participants faces Katrina Tasha Alice Lucia",
+            "retrieved_content_summary": "[30 images from 1 clips]",
+            "image_payloads": 30,
+            "clip_payloads": 1
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "3-axis"
+      },
+      "four_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": true,
+        "axis_selections": [
+          "visual",
+          "visual",
+          "episodic"
+        ],
+        "visual_selections": 2,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "visual",
+            "search_query": "first started the puzzle group scene participants",
+            "retrieved_content_summary": "[No results]",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "visual",
+            "search_query": "puzzle group later scene participants missing person Katrina Tasha Alice Lucia",
+            "retrieved_content_summary": "[No results]",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 3,
+            "memory_type": "episodic",
+            "search_query": "started puzzle participants later puzzle missing Katrina Tasha Alice Lucia",
+            "retrieved_content_summary": "[DAY1 12:38:31 - DAY1 12:39:00]\nI watch everyone and study the puzzle, bracing myself on the table with my left hand while I fiddle with the puzzle pieces in my right hand, pick one up, and set it back down. Lucia says, \"Oh no, we haven'...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "4-axis"
+      },
+      "verdict": "same_correct",
+      "catalog_expected_verdict": null,
+      "catalog_status": null,
+      "baseline": {
+        "gold": "A",
+        "three_axis_letter": "D",
+        "four_axis_letter": "A"
+      },
+      "baseline_changed": true,
+      "visual_driven_candidate": true
+    },
+    {
+      "id": "33",
+      "type": "EntityLog",
+      "question": "What app did I order the takeout in my hand?",
+      "gold": "A",
+      "choices": {
+        "A": "Meituan",
+        "B": "Ele.me",
+        "C": "JD.com",
+        "D": "Taobao"
+      },
+      "three_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": true,
+        "axis_selections": [
+          "visual",
+          "visual",
+          "episodic"
+        ],
+        "visual_selections": 2,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "visual",
+            "search_query": "person holding takeout app visible on phone in hand",
+            "retrieved_content_summary": "[No results]",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "visual",
+            "search_query": "close-up phone screen takeout order app logo interface in hand",
+            "retrieved_content_summary": "[No results]",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 3,
+            "memory_type": "episodic",
+            "search_query": "ordering takeout on phone app in hand delivery order event",
+            "retrieved_content_summary": "[DAY1 14:09:30 - DAY1 14:09:58]\nI walk forward, turn right, and say, \"KFC.\" I turn left, turn right, and turn around. \"Oh hi, thank you,\" I say. I walk forward, pick up the takeout, and ask, \"Oh, what should I do?\" \"Thanks,\" I say. Carry...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "3-axis"
+      },
+      "four_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": true,
+        "axis_selections": [
+          "visual",
+          "visual",
+          "episodic"
+        ],
+        "visual_selections": 2,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "visual",
+            "search_query": "takeout in hand app logo on phone screen or bag",
+            "retrieved_content_summary": "[No results]",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "visual",
+            "search_query": "phone in hand showing takeout order app screen delivery interface Meituan Ele.me JD.com Taobao",
+            "retrieved_content_summary": "[No results]",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 3,
+            "memory_type": "episodic",
+            "search_query": "ordering takeout on phone app used before holding takeout",
+            "retrieved_content_summary": "[DAY1 13:35:30 - DAY1 13:36:00]\nLucia says, \"This is ordering coffee. I didn't know how to order at first. Then I ordered a pure espresso, just one shot. And I was really shocked when it came up. How do you drink this?\" and laughs. I kee...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "4-axis"
+      },
+      "verdict": "same_correct",
+      "catalog_expected_verdict": "UP",
+      "catalog_status": "flipped",
+      "baseline": null,
+      "baseline_changed": null,
+      "visual_driven_candidate": false
+    },
+    {
+      "id": "45",
+      "type": "EntityLog",
+      "question": "When was the last time we talked about coffee?",
+      "gold": "A",
+      "choices": {
+        "A": "About four hours ago",
+        "B": "About eight hours ago",
+        "C": "About an hour ago",
+        "D": "One day ago"
+      },
+      "three_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": true,
+        "axis_selections": [
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "talked about coffee last time timestamp",
+            "retrieved_content_summary": "[DAY1 11:09:43 - DAY1 12:09:43]\n**I organized the morning setup, completed the shared timestamp process, and moved the group into the last-day discussion.** I used my phone to set up the shared timestamp process, told Shure everyone need...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 2,
+        "config_label": "3-axis"
+      },
+      "four_axis": {
+        "prediction": "C",
+        "letter": "C",
+        "correct": false,
+        "axis_selections": [
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "last time we talked about coffee",
+            "retrieved_content_summary": "[DAY1 13:20:30 - DAY1 13:20:59]\nI sit and use my phone, switching screens and typing with both hands. Shure asks, \"Hey, where did we put that coffee we grabbed?\" \"Huh?\" I say, turning my head. Shure asks, \"Who unplugged the fridge yester...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 2,
+        "config_label": "4-axis"
+      },
+      "verdict": "DN",
+      "catalog_expected_verdict": "DN",
+      "catalog_status": "drifted",
+      "baseline": null,
+      "baseline_changed": null,
+      "visual_driven_candidate": false
+    },
+    {
+      "id": "50",
+      "type": "HabitInsight",
+      "question": "What do I usually show everyone on my phone?",
+      "gold": "D",
+      "choices": {
+        "A": "Share interesting videos with everyone",
+        "B": "Show everyone what they want to eat",
+        "C": "I'm recording a video and want everyone to be in it",
+        "D": "Take a look at the timer interface on my phone"
+      },
+      "three_axis": {
+        "prediction": "B",
+        "letter": "B",
+        "correct": false,
+        "axis_selections": [
+          "semantic",
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "semantic",
+            "search_query": "usual phone behavior show everyone on my phone",
+            "retrieved_content_summary": "(I, collaborate with, Lucia)\n(I, works on and discusses puzzle assembly with, Lucia)\n(Lucia, gives advice/instructions to, I)\n(I, is traveling with, Lucia)\n(I, am shopping with, Lucia)\n(I, know, Lucia)\n(I, know, Lucia)\n(I, often help, Lu...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "episodic",
+            "search_query": "show everyone phone interesting videos timer recording video what they want to eat",
+            "retrieved_content_summary": "[DAY1 13:49:30 - DAY1 13:50:00]\nI use my phone to place the order. Alice says, \"Tableware... too much movement.\" \"Okay, ordered. Everyone, wait for the food,\" I say. Lucia asks, \"How many kinds of drinks are we making?\" Shure asks, \"What...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "3-axis"
+      },
+      "four_axis": {
+        "prediction": "D",
+        "letter": "D",
+        "correct": true,
+        "axis_selections": [
+          "semantic",
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "semantic",
+            "search_query": "usually show everyone on my phone habit",
+            "retrieved_content_summary": "(I, collaborate with, Lucia)\n(I, works on and discusses puzzle assembly with, Lucia)\n(Lucia, gives advice/instructions to, I)\n(I, is traveling with, Lucia)\n(I, am shopping with, Lucia)\n(I, know, Lucia)\n(I, know, Lucia)\n(I, often help, Lu...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "episodic",
+            "search_query": "show everyone something on my phone to everyone",
+            "retrieved_content_summary": "[DAY1 18:02:31 - DAY1 18:03:00]\nI keep chatting with everyone while looking through pictures on my phone. Shure says, \"It felt like he was on a different level than us, you know? His expression management and style, I mean...\" \"OK, OK,\" ...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "4-axis"
+      },
+      "verdict": "UP",
+      "catalog_expected_verdict": "DN",
+      "catalog_status": "flipped",
+      "baseline": null,
+      "baseline_changed": null,
+      "visual_driven_candidate": false
+    },
+    {
+      "id": "53",
+      "type": "EntityLog",
+      "question": "Who bought the hot pot base on the table?",
+      "gold": "A",
+      "choices": {
+        "A": "Shure",
+        "B": "Me",
+        "C": "Tasha",
+        "D": "Lucia"
+      },
+      "three_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": true,
+        "axis_selections": [
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "bought hot pot base on the table",
+            "retrieved_content_summary": "[DAY1 17:36:36 - DAY1 17:37:00]\nI put down the item in my hand, turn around, and walk back to the vegetable shelf as Katrina, Shure, and Lucia come over. Alice says, \"This is 5 yuan.\" \"That one is 11 yuan, right?\" I ask. Alice replies, \"...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 2,
+        "config_label": "3-axis"
+      },
+      "four_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": true,
+        "axis_selections": [
+          "visual",
+          "episodic"
+        ],
+        "visual_selections": 1,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "visual",
+            "search_query": "hot pot base on the table buyer scene",
+            "retrieved_content_summary": "[No results]",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          },
+          {
+            "round_num": 2,
+            "memory_type": "episodic",
+            "search_query": "who bought hot pot base on the table",
+            "retrieved_content_summary": "[DAY1 17:36:36 - DAY1 17:37:00]\nI put down the item in my hand, turn around, and walk back to the vegetable shelf as Katrina, Shure, and Lucia come over. Alice says, \"This is 5 yuan.\" \"That one is 11 yuan, right?\" I ask. Alice replies, \"...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 3,
+        "config_label": "4-axis"
+      },
+      "verdict": "same_correct",
+      "catalog_expected_verdict": "UP",
+      "catalog_status": "flipped",
+      "baseline": null,
+      "baseline_changed": null,
+      "visual_driven_candidate": false
+    },
+    {
+      "id": "57",
+      "type": "HabitInsight",
+      "question": "Who chats with me the most when I'm cleaning in the kitchen?",
+      "gold": "C",
+      "choices": {
+        "A": "Lucia",
+        "B": "Alice",
+        "C": "Tasha",
+        "D": "Shure"
+      },
+      "three_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": false,
+        "axis_selections": [
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "cleaning in the kitchen chatting most with me Lucia Alice Tasha Shure",
+            "retrieved_content_summary": "[DAY1 19:21:00 - DAY1 19:21:30]\nI hold a garbage bag and look around the room for more trash. \"Leave these two here,\" I say. Alice says, \"I want to change shoes.\" \"See if there's any other trash, I'll throw it out together,\" I say. Lucia...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 2,
+        "config_label": "3-axis"
+      },
+      "four_axis": {
+        "prediction": "A",
+        "letter": "A",
+        "correct": false,
+        "axis_selections": [
+          "episodic"
+        ],
+        "visual_selections": 0,
+        "visual_hits": 0,
+        "image_payloads": 0,
+        "rounds": [
+          {
+            "round_num": 1,
+            "memory_type": "episodic",
+            "search_query": "cleaning in the kitchen chatting with me most often Lucia Alice Tasha Shure",
+            "retrieved_content_summary": "[DAY1 14:03:01 - DAY1 14:03:30]\nI turn my head and speak, then fling water from the sink. Tasha asks, \"Really?\" \"Wanna go up?\" I say as I gesture and nod. Tasha says, \"No, no, no, forget it.\" I lower my head and keep washing the dishes, ...",
+            "image_payloads": 0,
+            "clip_payloads": 0
+          }
+        ],
+        "num_rounds": 2,
+        "config_label": "4-axis"
+      },
+      "verdict": "same_wrong",
+      "catalog_expected_verdict": null,
+      "catalog_status": null,
+      "baseline": null,
+      "baseline_changed": null,
+      "visual_driven_candidate": false
+    }
+  ]
+}
